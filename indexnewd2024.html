@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lost Ark Todo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/la.jpg">
+</head>
+
+<style>
+    body {
+        background: #121212;
+    }
+
+    body::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+
+    @font-face {
+        font-family: kalam;
+        src: url(Kalam/Kalam-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: marker;
+        src: url(Permanent_Marker/PermanentMarker-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: comfortaa;
+        src: url(Comfortaa/Comfortaa-VariableFont_wght.ttf);
+    }
+
+    .liste-task {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+        /* background-color: #2F99FC; */
+        color: #B2B2B2;
+        padding: 4px 16px;
+        cursor: pointer;
+        font-family: comfortaa;
+        font-weight: 900;
+        /* margin-bottom: 5px; */
+    }
+
+    .liste-task-no-card {
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+        border-radius: 10px;
+        /* background-color: #2F99FC; */
+        /* color: #B2B2B2; */
+        padding: 4px 16px;
+        cursor: pointer;
+        font-family: comfortaa;
+        font-weight: 900;
+        /* margin-bottom: 5px; */
+    }
+
+    .histo-task {
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+        border-radius: 10px;
+        /* background-color: #2F99FC; */
+        color: white;
+        padding: 4px 16px;
+        font-family: comfortaa;
+        font-weight: 900;
+        /* margin-bottom: 5px; */
+    }
+
+    .life-task {
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+        border-radius: 10px;
+        /* color: black; */
+        color: #EDEDED;
+        padding: 4px 16px;
+        cursor: pointer;
+        font-family: comfortaa;
+        font-weight: 900;
+        font-size: larger;
+        /* margin-bottom: 5px; */
+    }
+
+    .info {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 6px;
+        background-color: #414141;
+        color: #B2B2B2;
+        padding: 4px 16px;
+        margin-bottom: 15px;
+        /* margin-top: 5px; */
+        text-align: center;
+        font-family: kalam;
+    }
+
+    .neurocard {
+        overflow-y: scroll;
+    }
+
+    .neurocard,
+    .scrollhidden::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .neurocard,
+    .scrollhidden::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .neurocard,
+    .scrollhidden::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+
+    td,
+    th {
+        color: lightgray;
+        border: 2px solid #ff6663;
+    }
+
+    th {
+        font-family: marker;
+    }
+
+    td {
+        font-family: kalam;
+        vertical-align: top;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    table tr:first-child td,
+    table tr:first-child th {
+        border-top: 0;
+    }
+
+    table tr td:first-child,
+    table tr th:first-child {
+        border-left: 0;
+    }
+
+    table tr:last-child td,
+    table tr:last-child th {
+        border-bottom: 0;
+    }
+
+    table tr td:last-child,
+    table tr th:last-child {
+        border-right: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(18, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        grid-gap: 10px;
+        margin: 10px;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+    }
+
+    .grid-card {
+        border-radius: 10px;
+        background-color: #1e1e1e;
+        box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+        padding: 8px;
+    }
+
+    .task-grid-card {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .wrapper-heatmap {
+        display: grid;
+        grid-template-columns: repeat(18, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-gap: 10px;
+        margin: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        border-radius: 10px;
+    }
+
+    .grid-card-heatmap {
+        box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+        cursor: pointer;
+        font-family: comfortaa;
+        font-weight: 900;
+        font-size: 22px;
+        text-align: center;
+        padding-top: 5px;
+        border-radius: 4px;
+    }
+
+    .wrapper-progress {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        /* grid-gap: 30px; */
+        column-gap: 30px;
+        row-gap: 8px;
+        margin: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        border-radius: 10px;
+    }
+
+    /*== start of code for tooltips ==*/
+    .tool {
+        /* cursor: help; */
+        position: relative;
+    }
+
+    /* .tool:hover {
+        filter: contrast(200%);
+    } */
+
+    /*== common styles for both parts of tool tip ==*/
+    .tool::before,
+    .tool::after {
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        z-index: -100;
+    }
+
+    .tool:hover::before,
+    .tool:focus::before,
+    .tool:hover::after,
+    .tool:focus::after {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        z-index: 100;
+        /* filter: contrast(100%); */
+    }
+
+
+    /*== pointer tip ==*/
+    .tool::before {
+        border-style: solid;
+        border-width: 1em 0.75em 0 0.75em;
+        border-color: #3E474F transparent transparent transparent;
+        bottom: 100%;
+        content: "";
+        margin-left: -0.5em;
+        transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26), opacity .65s .5s;
+        transform: scale(.6) translateY(-90%);
+    }
+
+    .tool:hover::before,
+    .tool:focus::before {
+        transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26) .2s;
+    }
+
+
+    /*== speech bubble ==*/
+    .tool::after {
+        background: #3E474F;
+        border-radius: .25em;
+        bottom: 155%;
+        color: #EDEFF0;
+        content: attr(data-tip);
+        margin-left: -8.75em;
+        padding: 0.5em;
+        transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26) .2s;
+        transform: scale(.6) translateY(50%);
+        width: 17.5em;
+    }
+
+    .tool:hover::after,
+    .tool:focus::after {
+        transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26);
+    }
+
+    @media (max-width: 760px) {
+        .tool::after {
+            font-size: .75em;
+            margin-left: -5em;
+            width: 10em;
+        }
+    }
+</style>
+
+<body class="wrapper">
+    <!-- Life Liste ------------------------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 1 / 4; grid-row: 1 / 7;">
+        <div id="liste-life" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Gold & Histo gold income ----------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 1 / 4;grid-row: 7 / 10;">
+        <div id="historique_gold_income" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Gold income graph ------------------------------------------------------------------------------------------------>
+    <div class="grid-card" style="grid-column: 4 / 13;grid-row: 7 / 10;">
+        <div class="d-flex flex-column" style="height: 100%;">
+            <div id="goldchartdiv" style="flex: 1;"><canvas id="goldchart" style="height:100%!important;width:100%!important;margin: auto;"></canvas></div>
+            <div class="d-flex flex-row justify-content-center flex-nowrap gap-3" style="padding: 5px;">
+                <input list="gold_income_type_list" class="form-control flex-grow-1" id="gold_income_type"
+                    style="background-color: #202020;color: white;" placeholder="Gold Income">
+
+                <datalist id="gold_income_type_list">
+                    <option value="Mise à niveau">Mise à niveau</option>
+                    <option value="Accessoire">Accessoire</option>
+                    <option value="Honing">Honing</option>
+                    <option value="Oreha">Oreha</option>
+                    <option value="Gemme">Gemme</option>
+                    <option value="Qualité">Qualité</option>
+                    <option value="Elixir">Elixir</option>
+                    <option value="Raid">Raid</option>
+                    <option value="Fate Ember">Fate Ember</option>
+                    <option value="Tokens Una">Tokens Una</option>
+                </datalist>
+
+                <input list="gold_income_perso_list" class="form-control flex-grow-1" id="gold_income_perso"
+                    style="background-color: #202020;color: white;" placeholder="Roster">
+
+                <datalist id="gold_income_perso_list">
+                    <option selected value="Roster">Roster</option>
+                    <option value="Jeresayaya">Jeresayaya</option>
+                    <option value="Jeresunshine">Jeresunshine</option>
+                    <option value="Imanyrae">Imanyrae</option>
+                    <option value="Jeresbard">Jeresbard</option>
+                    <option value="Jeresakura">Jeresakura</option>
+                    <option value="Jerescelestia">Jerescelestia</option>
+                    <option value="Shadow">Shadowbreacher</option>
+                    <option value="Drevana">Drevana</option>
+                    <option value="Jeresblade">Jeresblade</option>
+                </datalist>
+
+                <input type="number" class="form-control flex-shrink-1" id="gold_income_montant"
+                    style="background-color: #202020;color: white;width: auto;" placeholder="Montant">
+
+                <button id="add_gold_income" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter</button>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Image Perso ------------------------------------------------------------------------------------------------------>
+    <div class="grid-card" style="grid-column: 4 / 10;grid-row: 1 / 4;">
+        <div id="image-perso" style="width: 100%; height: 100%; border-radius: 10px;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Task Perso ------------------------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 10 / 13;grid-row: 1 / 4;">
+        <div id="div-perso" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Graph tasks ------------------------------------------------------------------------------------------------------>
+    <div class="grid-card" style="grid-column: 4 / 13;grid-row: 4 / 7;">
+        <!-- <canvas id="taskbubblechart" style="width: 100%;height: 100%;margin: auto;"></canvas> -->
+
+        <!-- <div class="wrapper-heatmap"></div> -->
+        <div class="wrapper-progress"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Liste task by priority ------------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 13 / 15;grid-row: 1 / 7;">
+        <div id="tasks-by-prio" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+
+    <div class="grid-card" style="grid-column: 15 / 17;grid-row: 1 / 7;">
+        <div id="tasks-weekly-by-prio" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Liste Raid ------------------------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 17 / 19;grid-row: 1 / 10;">
+        <div id="tasks-raidlegion" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Fate Ember ------------------------------------------------------------------------------------------------------->
+    <div class="grid-card" style="grid-column: 13 / 15;grid-row: 7 / 10;">
+        <div id="historique_fate_ember" class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>
+    </div>
+
+    <div class="grid-card" style="grid-column: 15 / 17;grid-row: 7 / 10;">
+        <div class="scrollhidden"
+            style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;">
+            <canvas id="fateemberchart" class="task-grid-card" style="width:100%;margin: auto;"></canvas>
+
+            <select id="fate_ember_type" class="form-select task-grid-card"
+                style="background-color: #202020;color: white;">
+                <option selected>Fate Ember</option>
+                <optgroup label="Silver">
+                    <option value="500K_Silver">500 K</option>
+                    <option value="1M_Silver">1 M</option>
+                    <option value="2M_Silver">2 M</option>
+                </optgroup>
+                <optgroup label="Gold">
+                    <option value="1500_Gold">1500</option>
+                    <option value="3K_Gold">3 K</option>
+                    <option value="10K_Gold">10 K</option>
+                    <option value="20K_Gold">20 K</option>
+                    <option value="50K_Gold">50 K</option>
+                    <option value="100K_Gold">100 K</option>
+                </optgroup>
+                <optgroup label="Xp Card Pack">
+                    <option value="normal_xpcardpack">Normal</option>
+                    <option value="lucky_xpcardpack">Lucky</option>
+                    <option value="special_xpcardpack">Special</option>
+                    <option value="premium_xpcardpack">Premium</option>
+                </optgroup>
+                <optgroup label="Honing Chest">
+                    <option value="S_Honingchest">S</option>
+                    <option value="M_Honingchest">M</option>
+                    <option value="L_Honingchest">L</option>
+                </optgroup>
+                <optgroup label="Card Pack">
+                    <option value="Epic_CardPack">Epic</option>
+                    <option value="RandomLeg_CardPack">Random Leg</option>
+                    <option value="SelectLeg_CardPack">Select Leg</option>
+                </optgroup>
+            </select>
+
+            <select id="fate_ember_perso" class="form-select task-grid-card"
+                style="background-color: #202020;color: white;">
+                <option selected>Perso</option>
+                <option value="Jeresayaya">Jeresayaya</option>
+                <option value="Jeresunshine">Jeresunshine</option>
+                <option value="Imanyrae">Imanyrae</option>
+                <option value="Jeresbard">Jeresbard</option>
+                <option value="Jeresakura">Jeresakura</option>
+                <option value="Jerescelestia">Jerescelestia</option>
+                <option value="Shadow">Shadowbreacher</option>
+                <option value="Drevana">Drevana</option>
+                <option value="Jeresblade">Jeresblade</option>
+            </select>
+
+            <button id="add_fate_ember" type="button" class="btn btn-outline-light task-grid-card"
+                style="width: 100%;">Ajouter</button>
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+</body>
+
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/StormDB.min.js"></script>
+<script type="text/javascript" src="js/BrowserEngine.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"
+    integrity="sha512-6HrPqAvK+lZElIZ4mZ64fyxIBTsaX5zAFZg2V/2WT+iKPrFzTzvx6QAsLW2OaLwobhMYBog/+bvmIEEGXi0p1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const engine = new BrowserEngine("db-dashboard");
+    const db = new StormDB(engine);
+
+    const engine_life = new BrowserEngine("db-life");
+    const db_life = new StormDB(engine_life);
+
+    if (db.get("resetDaily").value() === undefined) db.set("resetDaily", '').save();
+    if (db.get("resetWeekly").value() === undefined) db.set("resetWeekly", '').save();
+    if (db.get("resetBiMensuel").value() === undefined) db.set("resetBiMensuel", '').save();
+
+    var index_perso = 0;
+    var list_perso = ['Roster', 'Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana', 'Lopang'];
+
+    reset();
+
+    // var ctxdaily = document.getElementById("dailychart").getContext("2d");
+    // var ctxweekly = document.getElementById("weeklychart").getContext("2d");
+    var ctxfateember = document.getElementById("fateemberchart").getContext("2d");
+    var ctxgold = document.getElementById("goldchart").getContext("2d");
+    // var ctxtask = document.getElementById("taskbubblechart").getContext("2d");
+
+    var dailychart = null;
+    var weeklychart = null;
+    var fateemberchart = null;
+    var goldchart = null;
+    // var taskbubblechart = null;
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function reset() {
+        let reload = false;
+
+        // Reset quotidien
+        if (db.get('resetDaily').value() != moment().format('DD/MM/YYYY') && moment().format("HH") > 10) {
+            db.get('resetDaily').set(moment().format('DD/MM/YYYY'));
+            db.save();
+
+            db.get("dashboard").value().forEach(function (task, i) {
+                if (task.reset == 'daily') {
+                    if (task.rested) {
+                        let notdone = parseInt(task.repet) - parseInt(task.done);
+                        let newrest = parseInt(task.rest) + (notdone * 10);
+                        if (newrest > 100) newrest = 100;
+
+                        if (notdone > 0) {
+                            db.get("dashboard")
+                                .get(i)
+                                .get('rest')
+                                .set(newrest);
+                        }
+                    }
+
+                    db.get("dashboard")
+                        .get(i)
+                        .get('done')
+                        .set(0);
+
+                    db.save();
+                }
+            });
+
+            let now_date = moment();
+
+            db_life.get("life").value().forEach(function (task, i) {
+                let task_date = moment(task.lastdate, 'DD/MM/YYYY');
+                let days_since_last_done = now_date.diff(task_date, 'days');
+
+                if (days_since_last_done > task.reset) {
+                    db_life.get("life")
+                        .get(i)
+                        .get('done')
+                        .set(0);
+
+                    db_life.save();
+                }
+            });
+
+            reload = true;
+        }
+
+        // Reset weekly
+        if (db.get('resetWeekly').value() != moment().format('DD/MM/YYYY') && moment().format('E') == 3 && moment().format("HH") > 10) {
+            db.get('resetWeekly').set(moment().format('DD/MM/YYYY'));
+            db.save();
+
+            db.get("dashboard").value().forEach(function (task, i) {
+                if (task.reset == 'weekly') {
+                    db.get("dashboard")
+                        .get(i)
+                        .get('done')
+                        .set(0);
+
+                    db.save();
+                }
+            });
+
+            reload = true;
+        }
+
+        // Reset Bi Mensuel
+        let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
+        let b = moment();
+
+        if (db.get('resetBiMensuel').value() != moment().format('DD/MM/YYYY') && moment().format('E') == 3 && moment().format("HH") > 10 && b.diff(a, 'days') > 10) {
+            db.get('resetBiMensuel').set(moment().format('DD/MM/YYYY'));
+            db.save();
+
+            db.get("dashboard").value().forEach(function (task, i) {
+                if (task.reset == 'bimensuel') {
+                    db.get("dashboard")
+                        .get(i)
+                        .get('done')
+                        .set(0);
+
+                    db.save();
+                }
+            });
+
+            reload = true;
+        }
+
+        if (reload) {
+            window.location.reload();
+        }
+    }
+
+    function forceResetDaily() {
+        db.get('resetDaily').set(moment().format('DD/MM/YYYY'));
+        db.save();
+
+        db.get("dashboard").value().forEach(function (task, i) {
+            if (task.reset == 'daily') {
+                if (task.rested) {
+                    let notdone = parseInt(task.repet) - parseInt(task.done);
+                    let newrest = parseInt(task.rest) + (notdone * 10);
+                    if (newrest > 100) newrest = 100;
+
+                    if (notdone > 0) {
+                        db.get("dashboard")
+                            .get(i)
+                            .get('rest')
+                            .set(newrest);
+                    }
+                }
+
+                db.get("dashboard")
+                    .get(i)
+                    .get('done')
+                    .set(0);
+
+                db.save();
+            }
+        });
+
+        window.location.reload();
+    }
+
+    function forceResetWeekly() {
+        db.get('resetWeekly').set(moment().format('DD/MM/YYYY'));
+        db.save();
+
+        db.get("dashboard").value().forEach(function (task, i) {
+            if (task.reset == 'weekly') {
+                db.get("dashboard")
+                    .get(i)
+                    .get('done')
+                    .set(0);
+
+                db.save();
+            }
+        });
+
+        window.location.reload();
+    }
+
+    function forceResetBiMensuel() {
+        console.log(db.get('resetBiMensuel').value());
+        console.log(moment().format('DD/MM/YYYY'))
+        console.log(moment().format('E'));
+        console.log(moment().format("HH"));
+
+        let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
+        let b = moment();
+
+        console.log(a)
+        console.log(b)
+
+        console.log(b.diff(a, 'days'));
+    }
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    $(document).on('click', '.liste-task,.liste-task-no-card', function () {
+        let id = $(this).data('id');
+
+        let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+        let task = db.get("dashboard").value().find((t) => t.id == id);
+
+        if (task) {
+            db.get("dashboard")
+                .get(index)
+                .get('done')
+                .set(parseInt(task.done) + 1);
+
+            db.get("dashboard")
+                .get(index)
+                .get('count')
+                .set(parseInt(task.count) + 1);
+
+            if (task.rest && parseInt(task.rest) >= 20) {
+                db.get("dashboard")
+                    .get(index)
+                    .get('rest')
+                    .set(task.rest - 20);
+            }
+
+            db.save();
+
+            if (task.revenu > 0 && task.done >= task.repet) {
+                let gold_income = {
+                    'type': 'Raids - ' + task.tache_name,
+                    'categorie': 'revenu',
+                    'perso': task.perso,
+                    'montant': task.revenu,
+                    'date': new Date().toString()
+                }
+
+                db.get("gold_income").push(gold_income).save();
+                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.revenu)).save();
+                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+            }
+
+            if (task.cout < 0 && task.done >= task.repet) {
+                let gold_income = {
+                    'type': 'Coffre de raids - ' + task.tache_name,
+                    'categorie': 'depense',
+                    'perso': task.perso,
+                    'montant': task.cout,
+                    'date': new Date().toString()
+                }
+
+                db.get("gold_income").push(gold_income).save();
+                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.cout)).save();
+                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+            }
+        }
+
+        refresh();
+    });
+
+    $(document).on('click', '.life-task', function () {
+        let id = $(this).data('id');
+
+        let index = db_life.get("life").value().findIndex((t) => t.id == id);
+        let task = db_life.get("life").value().find((t) => t.id == id);
+
+        if (task) {
+            db_life.get("life")
+                .get(index)
+                .get('done')
+                .set(1);
+
+            db_life.get("life")
+                .get(index)
+                .get('count')
+                .set(parseInt(task.count) + 1);
+
+            db_life.get("life")
+                .get(index)
+                .get('lastdate')
+                .set(moment().format('DD/MM/YYYY'));
+
+            if (task.type == 'unique') {
+                db_life.get("life")
+                    .get(index)
+                    .get('actif')
+                    .set(false);
+            }
+
+            db_life.save();
+        }
+
+        refresh();
+    });
+
+    $(document).ready(function () {
+        $('#image-perso').bind('mousewheel', function (e) {
+            if (e.originalEvent.wheelDelta / 120 > 0) {
+                if (index_perso > 0) index_perso--;
+                console.log('scrolling up !');
+                console.log(list_perso[index_perso])
+            }
+            else {
+                if (index_perso < 9) index_perso++;
+                console.log('scrolling down !');
+                console.log(list_perso[index_perso])
+
+            }
+
+            showPerso([list_perso[index_perso]], ['solo', 'GR', 'cube', 'shop', 'event', 'roster_daily', 'roster_weekly', 'lopang']);
+        });
+    });
+
+    $(document).on('click', '#add_fate_ember', function () {
+        let types_gold = ['1500_Gold', '3K_Gold', '10K_Gold', '20K_Gold', '50K_Gold', '100K_Gold'];
+        let type = $('#fate_ember_type').val();
+        let perso = $('#fate_ember_perso').val();
+        // let date = moment().format('DD/MM/YYYY');
+
+        let fate_ember = {
+            'type': type,
+            'perso': perso,
+            'date': new Date().toString()
+        }
+
+        db.get("fate_embers").push(fate_ember).save();
+
+        if (types_gold.includes(fate_ember.type)) {
+            let gold = 0;
+
+            switch (fate_ember.type) {
+                case '1500_Gold':
+                    gold = 1500;
+
+                    break;
+                case '3K_Gold':
+                    gold = 3000;
+                    
+                    break;
+                case '10K_Gold':
+                    gold = 10000;
+                    
+                    break;
+                case '20K_Gold':
+                    gold = 20000;
+                    
+                    break;
+                case '50K_Gold':
+                    gold = 50000;
+                    
+                    break;
+                case '100K_Gold':
+                    gold = 100000;
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+
+            let gold_income = {
+                'type': 'Fate Ember',
+                'categorie': 'revenu',
+                'perso': perso,
+                'montant': parseInt(gold),
+                'date': new Date().toString()
+            }
+
+            db.get("gold_income").push(gold_income).save();
+        }
+
+        showHistoFateEmber();
+        showChart();
+    });
+
+    $(document).on('click', '#add_gold_income', function () {
+        let type = $('#gold_income_type').val();
+        let perso = $('#gold_income_perso').val();
+        let montant = $('#gold_income_montant').val();
+
+        let gold_income = {
+            'type': type,
+            'categorie': (montant > 0 ? 'revenu' : 'depense'),
+            'perso': perso,
+            'montant': parseInt(montant),
+            'date': new Date().toString()
+        }
+
+        db.get("gold_income").push(gold_income).save();
+        db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(montant)).save();
+        db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+
+        showHistoGoldIncome();
+        showChart();
+    });
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function stats() {
+        var date_start_of_data_tracking = moment("2023-05-27", "YYYY-MM-DD");
+        var date_now = moment();
+
+        $('#nb_days_of_tracking').html(date_now.diff(date_start_of_data_tracking, 'days'));
+
+        var date_estimate_start_of_data_tracking = moment("2022-02-28", "YYYY-MM-DD");
+
+        $('#nb_estimate_days_of_tracking').html(date_now.diff(date_estimate_start_of_data_tracking, 'days'));
+
+        function get(tache_name, diviseur = null) {
+            let total = 0;
+
+            db.get("dashboard").value().forEach(function (task, i) {
+                if (task.tache_name == tache_name) {
+                    total += task.count;
+                }
+            });
+
+            if (diviseur) {
+                return Math.floor(total / diviseur);
+            } else {
+                return total;
+            }
+        }
+
+        $("#data_tracking").html(`
+            <div class="flex-grow-1" style="background-color: #00651F;color: #B2B2B2;padding: 30px 0px 0px 20px;margin-bottom: 10px;border-radius: 10px;">Quêtes Unas<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Una')}<span></div>
+            <div class="flex-grow-1" style="background-color: #00651F;color: #B2B2B2;padding: 30px 0px 0px 20px;margin-bottom: 10px;border-radius: 10px;">Donjon du Chaos<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Chaos')}<span></div>
+            <div class="flex-grow-1" style="background-color: #00651F;color: #B2B2B2;padding: 30px 0px 0px 20px;margin-bottom: 10px;border-radius: 10px;">Raid de Gardiens<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Gargadis') + get('Sonavel') + get('Hanumatan')}<span></div>
+            <div class="flex-grow-1" style="background-color: #440a08;color: #B2B2B2;padding: 30px 0px 0px 20px;margin-bottom: 10px;border-radius: 10px;">Akkan<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Akkan NM', 3) + get('Akkan HM', 3)}<span></div>
+            <div class="flex-grow-1" style="background-color: #5256bd;color: #B2B2B2;padding: 30px 0px 0px 20px;margin-bottom: 10px;border-radius: 10px;">Porte de Brelshaza<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Brelshaza G1-3') + get('Brelshaza G4')}<span></div>
+            <div class="flex-grow-1" style="background-color: #014B89;color: #B2B2B2;padding: 30px 0px 0px 20px;border-radius: 10px;">Ebony Cube<br><span style="color: #d8d8d8;font-size: xx-large;">${get('Ebony Cube')}<span></div>
+        `);
+    }
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function showTaskGrp(type, div, th) {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == type && t.done < t.repet) : null;
+
+        if (tasks.length > 0) {
+            let html = '';
+            let dps = 0;
+            let supp = 0;
+
+            tasks.forEach(function (task, i) {
+                if (task.type_perso == 'DPS' && (type != 'brelshaza' || task.tache_name == 'Brelshaza G1-3')) dps++;
+                if (task.type_perso == 'Support' && (type != 'brelshaza' || task.tache_name == 'Brelshaza G1-3')) supp++;
+
+                html += `<div class="liste-task" style="background-color: #671010;" data-id="${task.id}">${task.perso} ${task.type_perso} ${task.tache_name}&nbsp;&nbsp;&nbsp;<span class="float-end">${task.done}/${task.repet}</span></div>`;
+            });
+
+            $('#' + div).html(html);
+            $('#' + th).html(` ${dps} DPS & ${supp} Support`);
+        } else {
+            $('#' + div).html('');
+        }
+    }
+
+    function showGR() {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == 'GR' && t.done < t.repet && (t.tache_name == 'Gargadis' || t.tache_name == 'Sonavel' || (t.tache_name == 'Hanumatan' && t.rest >= 20))) : null;
+        let html = '<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;"><img style="width: 100%;border-radius: 10px;" src="images/sonavel2.jpg" /></div>';
+
+        if (tasks.length > 0) {
+
+            tasks.forEach(function (task, i) {
+                html += `<div class="liste-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #a4a69e;color: black;" data-id="${task.id}">${task.perso} ${task.type_perso} ${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</div>`;
+            });
+
+            $('#flex-gr').html(html);
+        } else {
+            $('#flex-gr').html(html);
+        }
+    }
+
+    function showRaid() {
+        let tasksvoldis = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == 'voldis' && t.done < t.repet) : null;
+        let htmlimagevoldis = '<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 10px;" src="images/voldis.jpg" /></div>';
+        
+        let tasksakkan = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == 'akkan' && t.done < t.repet) : null;
+        let htmlimageakkan = '<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 10px;" src="images/akkan.jpg" /></div>';
+
+        let tasksbrel = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == 'brelshaza' && t.done < t.repet) : null;
+        let htmlimagebrel = '<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 10px;" src="images/brelshaza.jpg" /></div>';
+
+        let taskskayangel = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == 'kayangel' && t.done < t.repet) : null;
+        let htmlimagekayangel = '<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 10px;" src="images/kayangel.jpg" /></div>';
+
+        let htmlvoldis = '';
+        let htmlakkan = '';
+        let htmlbrel = '';
+        let htmlkayangel = '';
+
+        if (tasksvoldis.length > 0) {
+            tasksvoldis.forEach(function (task, i) {
+                htmlvoldis += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #00A2BF;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+            });
+        }
+        
+        if (tasksakkan.length > 0) {
+            tasksakkan.forEach(function (task, i) {
+                htmlakkan += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #3ec221;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+            });
+        }
+
+        if (taskskayangel.length > 0) {
+            taskskayangel.forEach(function (task, i) {
+                if (task.restriction !== undefined) {
+                    let taskrestriction = (db.get("dashboard").value()) ? db.get("dashboard").value().find((t) => t.id == task.restriction) : null;
+
+                    if (taskrestriction.done !== taskrestriction.repet) {
+                        htmlkayangel += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #feffe0;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+                    }
+                } else {
+                    htmlkayangel += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #feffe0;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+                }
+            });
+        }
+
+        if (tasksbrel.length > 0) {
+            tasksbrel.forEach(function (task, i) {
+                if (task.restriction !== undefined) {
+                    let taskrestriction = (db.get("dashboard").value()) ? db.get("dashboard").value().find((t) => t.id == task.restriction) : null;
+
+                    if (taskrestriction.done !== taskrestriction.repet) {
+                        htmlbrel += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #8171ff;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+                    }
+                } else {
+                    htmlbrel += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: #8171ff;font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: #a1a1a1;">' + task.description + '</span>' : ''}</div>`;
+                }
+            });
+        }
+
+        $("#tasks-raidlegion").html(`
+            ${htmlvoldis.length > 0 ? htmlimagevoldis + htmlvoldis : ''}
+            ${htmlakkan.length > 0 ? htmlimageakkan + htmlakkan : ''}
+            ${htmlkayangel.length > 0 ? htmlimagekayangel + htmlkayangel : ''}
+            ${htmlbrel.length > 0 ? htmlimagebrel + htmlbrel : ''}
+        `);
+    }
+
+    function showTasksByPrio() {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && (t.reset == 'daily' || t.tache_name == 'Weekly Una' || t.id == 'challenge_abyssal_roster') && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let html = '';
+        let time_remaining = 0;
+        let task_remaining = 0;
+
+        if (tasks.length > 0) {
+            tasks.sort(function (a, b) {
+                return a.prio - b.prio;
+            });
+
+            tasks.forEach(function (task, i) {
+                html += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${task.reset == 'daily' ? (task.type == 'GR' ? '#8cd3eb' : '#008b2a') : '#014B89'};font-size: 22px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</span></div>`;
+                time_remaining += (task.duration * (task.repet - task.done));
+                task_remaining += (task.repet - task.done);
+            });
+
+            html = `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;"><span>Temps restants : ${time_remaining} min</span><span> Daily todo : ${task_remaining}</span></div>` + html;
+
+            $('#tasks-by-prio').html(html);
+        } else {
+            $('#tasks-by-prio').html(html);
+        }
+    }
+
+    function showTasksWeeklyByPrio() {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && (t.reset == 'weekly' || t.tache_name == 'Weekly Una' || t.id == 'challenge_abyssal_roster') && (t.type != 'kayangel' && t.type != 'brelshaza' && t.type != 'akkan' && t.type != 'voldis') && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let html = '';
+        let time_remaining = 0;
+        let task_remaining = 0;
+
+        if (tasks.length > 0) {
+            tasks.sort(function (a, b) {
+                return a.prio - b.prio;
+            });
+
+            tasks.forEach(function (task, i) {
+                html += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${task.color};font-size: 22px;">${task.repet - task.done} - ${task.perso}</span><span style="color: #a1a1a1;">${task.tache_name}</span></div>`;
+                time_remaining += (task.duration * (task.repet - task.done));
+                task_remaining += (task.repet - task.done);
+            });
+
+            html = `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;"><span>Temps restants : ${time_remaining} min</span><span> Weekly todo : ${task_remaining}</span></div>` + html;
+
+            $('#tasks-weekly-by-prio').html(html);
+        } else {
+            $('#tasks-weekly-by-prio').html(html);
+        }
+    }
+
+    function showHeatmap() {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true) : null;
+        let html = '';
+        let color = '';
+        let border = '';
+        let vide = [
+            { x: 4, y:8, color: "#008b2a" },
+            { x: 5, y:8, color: "#008b2a" },
+            { x: 6, y:8, color: "#008b2a" },
+            { x: 7, y:8, color: "#008b2a" },
+            // { x: 9, y:1, color: "#0173d5" },
+            // { x: 9, y:2, color: "#0173d5" },
+            // { x: 9, y:3, color: "#0173d5" },
+            // { x: 9, y:4, color: "#0173d5" },
+            // { x: 9, y:5, color: "#0173d5" },
+            // { x: 9, y:6, color: "#0173d5" },
+            { x: 9, y:7, color: "#0173d5" },
+            { x: 11, y:7, color: "#0173d5" },
+            { x: 12, y:7, color: "#0173d5" },
+            { x: 15, y:6, color: "#0173d5" },
+            { x: 15, y:7, color: "#0173d5" },
+            { x: 17, y:7, color: "#0173d5" },
+        ]
+
+        // console.log(tasks);
+
+        if (tasks.length > 0) {
+            tasks.forEach(function (task, i) {
+                if (task.heatmap) {
+                    // console.log(task.heatmap);
+
+                    if (task.done < task.repet && (task.done == 0 && task.rest >= task.restNeeded || task.done > 0) && ((task.type == 'event' && task.horaire.includes(moment().isoWeekday())) || task.type != 'event')) {
+                        if (task.reset == 'daily') {
+                            if (task.heatmap.nb > 500) color = '#ffc061';
+                            else if (task.heatmap.nb > 200) color = '#ffac61';
+                            else if (task.heatmap.nb > 100) color = '#ff9861';
+                            else if (task.heatmap.nb > 50) color = '#ff8462';
+                            else if (task.heatmap.nb > 20) color = '#ff7064';
+                            else if (task.heatmap.nb > 0) color = '#db5856';
+                        }
+
+                        if (task.reset == 'weekly') {
+                            if (task.heatmap.nb > 200) color = '#e1ff61';
+                            else if (task.heatmap.nb > 100) color = '#f7ff61';
+                            else if (task.heatmap.nb > 50) color = '#fff261';
+                            else if (task.heatmap.nb > 20) color = '#ffde61';
+                            else if (task.heatmap.nb > 0) color = '#ffca61';
+                        }
+
+                        border = 'dashed';
+                    } else {
+                        if (task.reset == 'daily') color = '#008b2a';
+                        if (task.reset == 'weekly' || task.reset == 'bimensuel') color = '#0173d5';
+
+                        border = 'solid';
+                    }
+
+                    html += `<style>.grid-card-heatmap-${task.id}:hover { background-color: ${color}; color: #121212!important; }</style>`;
+                    html += `<div class="grid-card-heatmap tool grid-card-heatmap-${task.id}" data-tip="${task.heatmap.nom}" style="border: 3px ${border} ${color}; color: ${color}; grid-column: ${task.heatmap.x} / ${task.heatmap.x + 1}; grid-row: ${task.heatmap.y} / ${task.heatmap.y + 1};">${task.count}</div>`;
+                }
+
+                // html += `<div class="life-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${color[task.prio]};font-size: 20px;">${task.tache_name}</span><span style="color: #${task.can_be_delayed ? 'a1a1a1' : 'ffffff'};">${task.categorie}${task.can_be_delayed ? '' : ' - ASAP'}</span><span style="color: #a1a1a1;">Temps estimés : ${task.duration} min</span></div>`;
+            });
+
+            html += `<style>.grid-card-heatmap-vide:hover { background-color: #393939; color: #121212!important; }</style>`;
+            
+            vide.forEach(function (v, i) {
+                html += `<div class="grid-card-heatmap grid-card-heatmap-vide" style="border: 3px solid ${v.color}; color: ${v.color}; grid-column: ${v.x} / ${v.x + 1}; grid-row: ${v.y} / ${v.y + 1};">-</div>`;
+            });
+
+            $('.wrapper-heatmap').html(html);
+        }
+    }
+
+    function showProgress() {
+        
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.progress && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let progress = [];
+        let pictures = ['', 'event_quest.webp', 'chaos-dungeon.webp', 'sylmael.png', 'daily.webp', 'guardian.png', 'weekly.webp', 'abyssal-dungeon.webp', 'legion_raid.png', 'legion_raid.png', 'legion_raid.png', 'abyssal-dungeon.webp', 't3_cube.png', 'pirate_coin.png', 'sylmael.png', 'world_quest.webp', 'sylmael.png'];
+        let titles = ['', 'Roster', 'Chaos', 'Dons', 'Unas', 'GR', 'Weekly', 'Voldis', 'Akkan', 'Brel 1-3', 'Brel 4', 'Kayang', 'Cube', 'Pirate', 'Guilde', 'Elgacia', 'GVE'];
+        let html = '';
+
+        tasks.forEach(function (task, i) {
+            if (task.progress.actif == undefined || task.progress.actif === true) {
+                let object = { done: 0, todo: 0, image: `images/${pictures[task.progress.y]}`, title: titles[task.progress.y] };
+                let temp = null;
+                let restriction = false;
+
+                if (task.restriction !== undefined) {
+                    let taskrestriction = (db.get("dashboard").value()) ? db.get("dashboard").value().find((t) => t.id == task.restriction) : null;
+
+                    if (taskrestriction.done == taskrestriction.repet) {
+                        restriction = true;
+                    }
+                }
+                
+                if (progress[task.progress.y]) temp = progress[task.progress.y];
+                else temp = object;
+    
+                if (task.done < task.repet && (task.done == 0 && task.rest >= task.restNeeded || task.done > 0) && !restriction) temp.todo++;
+                else temp.done++;
+    
+                progress[task.progress.y] = temp;
+            }
+        });
+
+        progress.forEach(function (p, i) {
+            html += `<div class="" style="grid-column: ${i} / ${i + 1}; grid-row: 1 / 2;"><img style="width: 100%;border-radius: 10px;" src="${p.image}" /><p style="text-align: center; color: #a1a1a1; margin-bottom: 0px;">${p.title}</p></div>`;
+            html += `<div class="" style="grid-column: ${i} / ${i + 1}; grid-row: 2 / 10;">`;
+
+            html += `<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 0px; overflow-y: scroll; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 10px;">`;
+            for (let y = 0; y < p.done; y++) {
+                html += `<div class="" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #00651F;"></div>`;
+            }
+
+            if (p.done > 0 && p.todo > 0) {
+                html += `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;max-height: 5px!important;"></div>`;
+            }
+
+            for (let y = 0; y < p.todo; y++) {
+                html += `<div class="" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #444444;"></div>`;
+            }
+            html += `</div>`;
+            
+            html += `</div>`;
+
+            // html += `<div class="" style="grid-column: ${i} / ${i + 1}; grid-row: 9 / 10;${p.todo <= 0 ? 'background-color: #00651F;color: #B2B2B2;' : 'background-color: #c63637;color: #121212;'} text-align: center; font-family: comfortaa; font-size: 18px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 10px;padding-top: 6px;">${p.done} / ${p.done + p.todo}</div>`;
+        });
+
+        $('.wrapper-progress').html(html);
+    }
+
+    function showPerso(persos, types) {
+        var lopang = false;
+        var perso_ilevel = { "Roster": 293, "Jeresayaya": 1620, "Jeresunshine": 1620, "Imanyrae": 1610, "Jeresbard": 1610, "Jeresakura": 1610, "Jerescelestia": 1610, "Shadow": 1588, "Drevana": 1540 };
+
+        if (persos.includes('Lopang')) lopang = true;
+        if (lopang) persos = ['Lopang', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim', 'Jerestarwhale', 'Jereseraphina', 'Jeresfighter', 'Jerespala', 'Jereslopang'];
+
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && types.includes(t.type) && persos.includes(t.perso) && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let task_remaining = 0;
+
+        if (tasks.length > 0) {
+            let html = '';
+            let type = '';
+            let perso_hr = '';
+            let hr = false;
+
+            persos.forEach(function (perso, i) {
+                if (lopang && perso_hr != perso) {
+                    if (perso_hr.length > 0) {
+                        if (html.length > 0) hr = true;
+                    }
+
+                    perso_hr = perso;
+                }
+
+                tasks.forEach(function (task, i) {
+                    if (!lopang && type != task.type) {
+                        if (type.length > 0) {
+                            hr = true;
+                        }
+
+                        type = task.type;
+                    }
+
+                    if (task.perso == perso) {
+                        task_remaining += (task.repet - task.done);
+
+                        html += `${hr ? '<hr style="max-height: 10px;margin: 0;flex: 1;display: flex;justify-content: center;flex-direction: column;">' : ''}<div class="liste-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: ${task.reset == 'daily' ? (task.type == 'GR' ? '#203238' : '#00651F') : '#014B89'};" data-id="${task.id}">${task.repet - task.done} - ${lopang ? task.perso : ''} ${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</div>`;
+
+                        hr = false;
+                    }
+                });
+            });
+
+            // background-image: url(images/Roster11.jpg);
+            // background-repeat: no-repeat;
+            // background-position: center;
+            // background-size: cover;
+
+            // $('#image-perso').html(`
+            //     <div class="image-task" style="">
+            //         <img style="width: 100%;border-radius: 10px;" src="images/${persos[0]}11.jpg" />
+            //     </div>
+            // `);
+            $('#image-perso').css("background-image", `url(images/${persos[0]}11.jpg)`);
+
+            // $('#image-perso').css('background-image', url(`images/${persos[0]}11.jpg`));
+            $('#image-perso').css('background-repeat', 'no-repeat');
+            $('#image-perso').css('background-position', 'center');
+            $('#image-perso').css('background-size', 'cover');
+
+            $('#div-perso').html(`
+                <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;">${lopang ? `<span>9 Alts Lopangs</span><span>Lopang daily todo : ${task_remaining}</span>` : `<span>${persos[0]} - ${perso_ilevel[persos[0]]}</span><span>Daily todo : ${task_remaining}</span>`}</div>
+                ${html}
+            `);
+        } else {
+            $('#image-perso').css("background-image", `url(images/${persos[0]}11.jpg)`);
+
+            // $('#image-perso').css('background-image', url(`images/${persos[0]}11.jpg`));
+            $('#image-perso').css('background-repeat', 'no-repeat');
+            $('#image-perso').css('background-position', 'center');
+            $('#image-perso').css('background-size', 'cover');
+
+            $('#div-perso').html(``);
+        }
+    }
+
+    var randoms = [
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        Math.floor(Math.random() * (100 - 70) + 70),
+        1
+    ];
+
+    var randomsbubble = [
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        Math.floor(Math.random() * (90 - 10) + 10),
+        1
+    ];
+
+    function nbtask(types, done, persos, random) {
+        let taskstrue = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && types.includes(t.tache_name) && persos.includes(t.perso) && t.rest >= t.restNeeded && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let tasksfalse = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && types.includes(t.tache_name) && persos.includes(t.perso) && t.done >= t.repet && t.rest >= t.restNeeded && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+
+        return done ? randoms[random] : Math.floor((parseInt(tasksfalse.length) * randoms[random]) / parseInt(taskstrue.length));
+        // return  (parseInt(tasks.length) * randoms[random]) > 50 ? 50 : (parseInt(tasks.length) * randoms[random]);
+    }
+
+    function nbtaskbubble(types, done, persos, randomx, randomy, daily = false) {
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && types.includes(t.tache_name) && persos.includes(t.perso) && ((done && t.done >= t.repet) || !done) && t.rest >= t.restNeeded && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
+        let r = 0;
+
+        tasks.forEach(function (task, i) {
+            r += task.repet * (daily ? task.duration : 2);
+        });
+
+        // return {x: randomsbubble[randomx], y: randomsbubble[randomy], r: r * 2};
+        return r;
+    }
+
+    function nbfateember(type) {
+        let fate_embers = (db.get("fate_embers").value()) ? db.get("fate_embers").value().filter((t) => t.type == type) : null;
+
+        return parseInt(fate_embers.length);
+    }
+
+    function getLabelGoldChart() {
+        let gold_histo = (db.get("gold_histo").value()) ? db.get("gold_histo").value() : null;
+        let labels = [];
+
+        gold_histo.sort(function (a, b) {
+            return new Date(a.date) - new Date(b.date);
+        });
+
+        gold_histo.forEach(function (histo, i) {
+            labels.push(histo.label);
+        });
+
+        return labels;
+    }
+
+    function getValueGoldChart() {
+        let gold_histo = (db.get("gold_histo").value()) ? db.get("gold_histo").value() : null;
+        let values = [];
+
+        gold_histo.sort(function (a, b) {
+            return new Date(a.date) - new Date(b.date);
+        });
+
+        gold_histo.forEach(function (histo, i) {
+            values.push(histo.gold);
+        });
+
+        return values;
+    }
+
+    function showChart() {
+        // if (dailychart) dailychart.destroy();
+        // if (weeklychart) weeklychart.destroy();
+        if (fateemberchart) fateemberchart.destroy();
+        if (goldchart) goldchart.destroy();
+        // if (taskbubblechart) taskbubblechart.destroy();
+        
+        $('#goldchartdiv').html(`<canvas id="goldchart" style="height:100%!important;width:100%!important;margin: auto;"></canvas>`);
+        var ctxgold = document.getElementById("goldchart").getContext("2d");
+
+        fateemberchart = new Chart(ctxfateember, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Silver',
+                    'Gold',
+                    'Card XP',
+                    'Honing',
+                    'Card'
+                ],
+                datasets: [{
+                    label: 'Fate Embers',
+                    data: [
+                        ((nbfateember('500K_Silver') * 0.5) + nbfateember('1M_Silver') + (nbfateember('2M_Silver') * 2)),
+                        ((nbfateember('1500_Gold') * 0.15) + (nbfateember('3K_Gold') * 0.3) + nbfateember('10K_Gold') + (nbfateember('20K_Gold') * 2) + (nbfateember('50K_Gold') * 5) + (nbfateember('100K_Gold') * 10)),
+                        (nbfateember('normal_xpcardpack') + (nbfateember('lucky_xpcardpack') * 2) + (nbfateember('special_xpcardpack') * 3) + (nbfateember('premium_xpcardpack') * 5)),
+                        ((nbfateember('S_Honingchest') * 0.5) + (nbfateember('M_Honingchest') * 1) + (nbfateember('L_Honingchest') * 2)),
+                        nbfateember('Epic_CardPack') + nbfateember('RandomLeg_CardPack') + nbfateember('SelectLeg_CardPack')
+                    ],
+                    backgroundColor: [
+                        'rgba(217, 217, 217, 0.5)',
+                        'rgba(255, 229, 153, 0.5)',
+                        'rgba(246, 178, 107, 0.5)',
+                        'rgba(164, 194, 244, 0.5)',
+                        'rgba(213, 166, 189, 0.5)',
+                        // 'rgba(213, 166, 189, 0.5)',
+                        // 'rgba(213, 166, 189, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgb(217, 217, 217)',
+                        'rgb(255, 229, 153)',
+                        'rgb(246, 178, 107)',
+                        'rgb(164, 194, 244)',
+                        'rgb(213, 166, 189)',
+                        // 'rgb(213, 166, 189)',
+                        // 'rgb(213, 166, 189)'
+                    ]
+                }]
+            },
+            options: {
+                // scales: {
+                //     r: {
+                //         pointLabels: {
+                //             display: false, // Hides the labels around the radar chart 
+                //             centerPointLabels: true,
+                //             color: '#858585',
+                //             font: {
+                //                 size: 16
+                //             }
+                //         },
+                //         ticks: {
+                //             display: false, // Hides the labels in the middel (numbers)
+                //         },
+                //         grid: {
+                //             display: false,
+                //             color: '#858585'
+                //         }
+                //     }
+                // },
+                animation: {
+                    duration: 0
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (data) => {
+                                // console.log(data)
+
+                                if (data.label == 'Silver') return ' ' + data.raw + ' M ' + data.label;
+                                if (data.label == 'Gold') return ' ' + (data.raw * 10) + ' K ' + data.label;
+                                if (data.label == 'Card XP') return ' ' + (data.raw * 18000) + ' ' + data.label;
+                                if (data.label == 'Honing') return ' ' + (data.raw * 9000) + 'S - ' + (data.raw * 30) + 'L - ' + (data.raw * 700) + 'W - ' + (data.raw * 1400) + 'A';
+                                if (data.label == 'Card') return ' ' + data.raw + ' Paquets';
+                                // // if (data.label == 'R Leg') return ' ' + data.raw;
+                                // // if (data.label == 'S Leg') return ' ' + data.raw;
+
+                                return data.raw + ' M ' + data.label;
+                            },
+                        }
+                    }
+                }
+            },
+        });
+
+        goldchart = new Chart(ctxgold, {
+            type: 'line',
+            data: {
+                labels: getLabelGoldChart(),
+                datasets: [{
+                    label: 'Gold',
+                    data: getValueGoldChart(),
+                    fill: true,
+                    borderColor: 'rgb(255, 229, 153)',
+                    backgroundColor: 'rgba(255, 229, 153, 0.5)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        stacked: true,
+                        color: '#FFFFFF',
+                        grid: {
+                            display: false,
+                            color: '#858585'
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 6,
+                            labelOffset: 80
+                        },
+                    },
+                    y: {
+                        display: true,
+                        beginAtZero: true,
+                        color: '#FFFFFF',
+                        grid: {
+                            display: true,
+                            color: '#333333',
+                            drawOnChartArea: true,
+                            drawTicks: false
+                            // lines: [
+                            //         { value: 200000, text: 200000 },
+                            //         { value: 300000, text: 300000 }
+                            //     ]
+                        }
+                    }
+                },
+                animation: {
+                    duration: 0
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                    // tooltip: {
+                    //     callbacks: {
+                    //         label: (data) => {
+                    //             console.log(data)
+
+                    //             if (data.label == 'Silver') return ' ' + data.raw + ' M ' + data.label;
+                    //             if (data.label == 'Gold') return ' ' + (data.raw * 10) + ' K ' + data.label;
+                    //             if (data.label == 'Card XP') return ' ' + (data.raw * 18000) + ' ' + data.label;
+                    //             if (data.label == 'Honing') return ' ' + (data.raw * 9000) + ' Shards - ' + (data.raw * 30) + ' Leapstone\n' + (data.raw * 700) + ' Weapon - ' + (data.raw * 1400) + ' Armor';
+                    //             if (data.label == 'Epic') return ' ' + data.raw;
+                    //             if (data.label == 'R Leg') return ' ' + data.raw;
+                    //             if (data.label == 'S Leg') return ' ' + data.raw;
+
+                    //             return data.raw + ' M ' + data.label;
+                    //         },
+                    //     }
+                    // }
+                }
+            },
+        });
+
+        // taskbubblechart = new Chart(ctxtask, {
+        //     type: 'line',
+        //     data: {
+        //         labels: [
+        //             'Chaos',
+        //             'Guilde',
+        //             'Una',
+        //             'GR',
+        //             'Roster',
+        //             'Lopang',
+        //             'Akkan',
+        //             'Brelshaza',
+        //             'Kayangel',
+        //             'Cube',
+        //             'GVE',
+        //             'Pirate',
+        //             'Guilde',
+        //             'Elgacia',
+        //             'Roster'
+        //         ],
+        //         datasets: [{
+        //             label: 'DONE DAILY',
+        //             data: [
+        //                 nbtaskbubble(['Chaos'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 0, 1, true),
+        //                 nbtaskbubble(['Guilde'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim'], 2, 3, true),
+        //                 nbtaskbubble(['Una'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 4, 5, true),
+        //                 nbtaskbubble(['Sonavel', 'Hanumatan'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 6, 7, true),
+        //                 nbtaskbubble(['Primal Island', 'Chaos Gate', 'World Boss', 'Medeia / Limon', 'Fouille', 'Forteresse'], true, ['Roster'], 8, 9, true),
+        //                 nbtaskbubble(['Una'], true, ['Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim', 'Jerestarwhale', 'Jereseraphina', 'Jeresfighter', 'Jerespala', 'Jereslopang'], 10, 11, true),
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //             ],
+        //             backgroundColor: 'rgba(0, 101, 31, 0.8)',
+        //             borderColor: 'rgb(0, 67, 21)',
+        //             fill: true,
+        //             stepped: 'middle'
+        //         }, {
+        //             label: 'TODO DAILY',
+        //             data: [
+        //                 nbtaskbubble(['Chaos'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 0, 1, true),
+        //                 nbtaskbubble(['Guilde'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim'], 2, 3, true),
+        //                 nbtaskbubble(['Una'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 4, 5, true),
+        //                 nbtaskbubble(['Sonavel', 'Hanumatan'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 6, 7, true),
+        //                 nbtaskbubble(['Primal Island', 'Chaos Gate', 'World Boss', 'Medeia / Limon', 'Fouille', 'Forteresse'], false, ['Roster'], 8, 9, true),
+        //                 nbtaskbubble(['Una'], false, ['Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim', 'Jerestarwhale', 'Jereseraphina', 'Jeresfighter', 'Jerespala', 'Jereslopang'], 10, 11, true),
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //             ],
+        //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        //             borderColor: 'rgba(255, 99, 132, 0.6)',
+        //             fill: true,
+        //             stepped: 'middle'
+        //         }, {
+        //             label: 'DONE WEEKLY',
+        //             data: [
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 nbtaskbubble(['Akkan HM', 'Akkan NM'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 12, 13),
+        //                 nbtaskbubble(['Brelshaza G1-3', 'Brelshaza G4'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 14, 15),
+        //                 nbtaskbubble(['Kayangel'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 16, 17),
+        //                 nbtaskbubble(['Ebony Cube'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 18, 19),
+        //                 nbtaskbubble(['GVE'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 20, 21),
+        //                 nbtaskbubble(['Pirate Shop'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 22, 23),
+        //                 nbtaskbubble(['Guilde Shop'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim'], 24, 25),
+        //                 nbtaskbubble(['Elgacia Shop'], true, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 26, 27),
+        //                 nbtaskbubble(['Event Shop', 'Legion Raid Shop', 'Elgacia leg Shop', 'Abyssal Challenge', 'GR Challenge'], true, ['Roster'], 28, 29)
+        //             ],
+        //             backgroundColor: 'rgba(37, 77, 126, 0.8)',
+        //             borderColor: 'rgb(1, 75, 137)',
+        //             fill: true,
+        //             stepped: 'middle'
+        //         }, {
+        //             label: 'TODO WEEKLY',
+        //             data: [
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 0,
+        //                 nbtaskbubble(['Akkan HM', 'Akkan NM'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 12, 13),
+        //                 nbtaskbubble(['Brelshaza G1-3', 'Brelshaza G4'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 14, 15),
+        //                 nbtaskbubble(['Kayangel'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 16, 17),
+        //                 nbtaskbubble(['Ebony Cube'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana'], 18, 19),
+        //                 nbtaskbubble(['GVE'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 20, 21),
+        //                 nbtaskbubble(['Pirate Shop'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia'], 22, 23),
+        //                 nbtaskbubble(['Guilde Shop'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow', 'Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim'], 24, 25),
+        //                 nbtaskbubble(['Elgacia Shop'], false, ['Jeresayaya', 'Jeresunshine', 'Imanyrae', 'Jeresbard', 'Jeresakura', 'Jerescelestia', 'Shadow'], 26, 27),
+        //                 nbtaskbubble(['Event Shop', 'Legion Raid Shop', 'Elgacia leg Shop', 'Abyssal Challenge', 'GR Challenge'], false, ['Roster'], 28, 29)
+        //             ],
+        //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        //             borderColor: 'rgba(255, 99, 132, 0.6)',
+        //             fill: true,
+        //             stepped: 'middle'
+        //         }]
+        //     },
+        //     options: {
+        //         interaction: {
+        //             intersect: false,
+        //             axis: 'x'
+        //         },
+        //         responsive: true,
+        //         maintainAspectRatio: false,
+        //         plugins: {
+        //             tooltip: {
+        //                 // enabled: false
+        //                 callbacks: {
+        //                     label: (data) => {
+        //                         return null;
+        //                     },
+        //                 }
+        //             },
+        //             legend: {
+        //                 display: false,
+        //                 labels: {
+        //                     display: false,
+        //                 }
+        //             }
+        //         },
+        //         scales: {
+        //             x: {
+        //                 display: false,
+        //             },
+        //             y: {
+        //                 display: false,
+        //             }
+        //         },
+        //         elements: {
+        //             point: {
+        //                 radius: 0
+        //             }
+        //         },
+        //         animation: {
+        //             duration: 0
+        //         }
+        //     },
+        // });
+    }
+
+    function showHistoFateEmber() {
+        let fate_embers = (db.get("fate_embers").value()) ? db.get("fate_embers").value() : null;
+
+        let silver = ['500K_Silver', '1M_Silver', '2M_Silver'];
+        let gold = ['1500_Gold', '3K_Gold', '10K_Gold', '20K_Gold', '50K_Gold', '100K_Gold'];
+        let xpcardpack = ['normal_xpcardpack', 'lucky_xpcardpack', 'special_xpcardpack', 'premium_xpcardpack'];
+        let honingchest = ['S_Honingchest', 'M_Honingchest', 'L_Honingchest'];
+        let cardpack = ['Epic_CardPack', 'RandomLeg_CardPack', 'SelectLeg_CardPack'];
+
+        if (fate_embers.length > 0) {
+            let html = ``;
+            let bg_color = '';
+            let color = '';
+
+            fate_embers.sort(function (a, b) {
+                return new Date(b.date) - new Date(a.date) || a.type.localeCompare(b.type) || b.perso - a.perso;
+            });
+
+            fate_embers.forEach(function (fate_ember, i) {
+                if (silver.includes(fate_ember.type)) {
+                    bg_color = 'd9d9d9';
+                    color = '000';
+                }
+
+                if (gold.includes(fate_ember.type)) {
+                    bg_color = 'ffe599';
+                    color = '000';
+                }
+
+                if (xpcardpack.includes(fate_ember.type)) {
+                    bg_color = 'f6b26b';
+                    color = '000';
+                }
+
+                if (honingchest.includes(fate_ember.type)) {
+                    bg_color = 'a4c2f4';
+                    color = '000';
+                }
+
+                if (cardpack.includes(fate_ember.type)) {
+                    bg_color = 'd5a6bd';
+                    color = '000';
+                }
+
+                html += `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: 20px;">${fate_ember.type}</span><span style="color: #a1a1a1;">${fate_ember.perso}</span><span style="color: #a1a1a1;">le ${new Date(fate_ember.date).toLocaleDateString()}</span></div>`;
+            });
+
+            $('#historique_fate_ember').html(html);
+        } else {
+            $('#historique_fate_ember').html('');
+        }
+    }
+
+    function showHistoGoldIncome() {
+        let gold_incomes = (db.get("gold_income").value()) ? db.get("gold_income").value() : null;
+
+        if (gold_incomes.length > 0) {
+            let html = `
+                <div id="gold" class="histo-task" style="font-size: x-large;text-align: center;background-color: #ffe599;color: #000;flex: 1;display: flex;justify-content: center;flex-direction: column;position: sticky;top: 0;">
+                    ${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Gold
+                </div>`;
+
+            let bg_color = '';
+            let color = '';
+
+            gold_incomes.sort(function (a, b) {
+                return new Date(b.date) - new Date(a.date) || a.type.localeCompare(b.type) || b.perso - a.perso;
+            });
+
+            gold_incomes.forEach(function (gold_income, i) {
+                if (gold_income.montant > 0) {
+                    bg_color = '00b135';
+                    color = 'FFF';
+                } else {
+                    bg_color = 'cf4747';
+                    color = 'FFF';
+                }
+
+                html += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: x-large;">${new Intl.NumberFormat('fr-FR').format(gold_income.montant)} Gold</span><span>${gold_income.type}</span><span style="color: #a1a1a1;">${gold_income.perso}</span><span style="color: #a1a1a1;">le ${new Date(gold_income.date).toLocaleDateString()}</span></div>`;
+            });
+
+            $('#historique_gold_income').html(html);
+        } else {
+            $('#historique_gold_income').html('');
+        }
+    }
+
+    function showLife() {
+        let color = { 1: '#FF6663', 2: '#FEB144', 3: '#FDFD97', 4: '#9EE09E', 5: '#9EC1CF', 6: '#CC99C9' };
+        let tasks = (db_life.get("life").value()) ? db_life.get("life").value().filter((t) => t.actif == true && t.done == 0) : null;
+
+        tasks.sort(function (a, b) {
+            return a.prio - b.prio;
+        });
+
+        if (tasks.length > 0) {
+            let html = `
+                <div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;">
+                    <img style="width: 100%;border-radius: 10px;" src="images/anime1.png" />
+                </div>`;
+
+            tasks.forEach(function (task, i) {
+                html += `<div class="life-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${color[task.prio]};font-size: 20px;">${task.tache_name}</span><span style="color: #${task.can_be_delayed ? 'a1a1a1' : 'ffffff'};">${task.categorie}${task.can_be_delayed ? '' : ' - ASAP'}</span><span style="color: #a1a1a1;">Temps estimés : ${task.duration} min</span></div>`;
+            });
+
+            $('#liste-life').html(html);
+        } else {
+            $('#liste-life').html('');
+        }
+    }
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function refresh() {
+        showGR();
+        showRaid();
+        showPerso([list_perso[index_perso]], ['solo', 'GR', 'cube', 'shop', 'event', 'roster_daily', 'roster_weekly', 'lopang']);
+        showTasksByPrio();
+        showTasksWeeklyByPrio();
+        showChart();
+        stats();
+
+        showHistoFateEmber();
+        showHistoGoldIncome();
+
+        showLife();
+
+        showHeatmap();
+        showProgress();
+    }
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    refresh();
+
+</script>
+
+</html>
