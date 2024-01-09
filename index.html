@@ -5,413 +5,66 @@
     <title>Lost Ark Todo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@2.6.0/event-calendar.min.css">
+    <link rel="stylesheet" href="css/index.css" />
+    
+    <link rel="icon" type="image/png" href="images/la.jpg">
 </head>
 
-<style>
-    html {
-        background: url(images/wallpaper3.png) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-
-    body {
-        background-color: transparent;
-    }
-
-    .card {
-        padding: 15px;
-        border: 1px solid rgba(255, 255, 255, .25);
-        border-radius: 20px;
-        background-color: rgba(255, 255, 255, 0.45);
-        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(5px);
-    }
-
-    .flex-1 {
-        flex: 1;
-    }
-
-    .card-task {
-        cursor: pointer;
-        font-family: monospace;
-        font-weight: 800;
-        border: 1px solid rgba(255, 255, 255, .25);
-        border-radius: 20px;
-        background-color: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(5px);
-        /* display: block; */
-        /* position: relative; */
-        /* max-width: 262px; */
-        /* background-color: #f2f8f9; */
-        /* border-radius: 4px; */
-        /* padding: 32px 24px; */
-        /* margin: 12px; */
-        white-space: nowrap;
-        padding: 10px 35px;
-        border-radius: 10px;
-        margin-bottom: 6px;
-        text-decoration: none;
-        z-index: 0;
-        overflow: hidden;
-        transition: color 0.5s ease-out;
-    }
-
-    .card-task:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: -16px;
-        right: -16px;
-        background: #00838d;
-        height: 32px;
-        width: 32px;
-        border-radius: 32px;
-        transform: scale(1);
-        transform-origin: 50% 50%;
-        transition: transform 0.5s ease-out;
-    }
-
-    .card-task:hover:before {
-        transform: scale(42);
-    }
-
-    .card-task:hover {
-        color: white;
-    }
-
-    .area {
-        border: 3px dashed white;
-        padding: 10px;
-        border-radius: 25px;
-    }
-
-    #task-weekly::-webkit-scrollbar {
-        width: 0px;
-    }
-
-    #task-weekly::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    #task-weekly::-webkit-scrollbar-thumb {
-        background-color: transparent;
-    }
-
-    #task-daily::-webkit-scrollbar {
-        width: 0px;
-    }
-
-    #task-daily::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    #task-daily::-webkit-scrollbar-thumb {
-        background-color: transparent;
-    }
-</style>
-
-<body style="margin: 10px 100px;">
-    <section class="d-flex gap-3">
-        <div class="">
-            <div class="area mb-2">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #33AF0B; border: 3px solid white;">
-                    Evenements
-                </div>
-                <div id="task-event"></div>
-            </div>
-            <div class="area mb-2">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #33AF0B; border: 3px solid white;">Daily
-                    Roster
-                </div>
-                <div id="task-roster-daily"></div>
-            </div>
-            <div class="area">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #33AF0B; border: 3px solid white;">
-                    Weekly Roster
-                </div>
-                <div id="task-roster-weekly"></div>
-            </div>
+<body class="html-wrapper">
+    <!-- SIDEBAR ---------------------------------------------------------------------------------------------------------->
+    <div style="grid-column: 1 / 3; grid-row: 1 / 1;">
+        <div class="sidebar">
+            <div id="menu-dashboard" class="sidebar-link sidebar-link-selected" data-page="dashboard"><i class="fa-solid fa-chart-line"></i>&nbsp;Dashboard</div>
+            <div id="menu-gold" class="sidebar-link" data-page="gold"><i class="fa-solid fa-wallet"></i>&nbsp;Golds</div>
+            <div id="menu-fate-ember" class="sidebar-link" data-page="fate-ember"><i class="fa-solid fa-circle-dollar-to-slot"></i>&nbsp;Fate Embers</div>
+            <div id="menu-events" class="sidebar-link" data-page="events"><i class="fa-solid fa-calendar-check"></i>&nbsp;Events</div>
+            <div id="menu-planning" class="sidebar-link" data-page="planning"><i class="fa-solid fa-calendar-week"></i>&nbsp;Planning</div>
+            <div id="menu-settings" class="sidebar-link" data-page="settings"><i class="fa-solid fa-gear"></i>&nbsp;Settings</div>
+            <div id="menu-help" class="sidebar-link" data-page="help"><i class="fa-solid fa-circle-question"></i>&nbsp;Help</div>
         </div>
-        <div class="flex-grow-1">
-            <div class="d-flex gap-3">
-                <div class="area flex-1">
-                    <div class="card my-3 text-center"
-                        style="white-space: nowrap; color: white; background-color: #33AF0B; border: 3px solid white;">
-                        Daily
-                    </div>
-                    <div id="task-daily" style="max-height: 800px;overflow-y: scroll;"></div>
-                </div>
-                <div class="area flex-1">
-                    <div class="card my-3 text-center"
-                        style="white-space: nowrap; color: white; background-color: #AF2424; border: 3px solid white;">
-                        Guardian
-                        Raids</div>
-                    <div id="task-gr"></div>
-                    <div class="card my-3 text-center"
-                        style="white-space: nowrap; color: white; background-color: #AF2424; border: 3px solid white;">
-                        Guardian
-                        Raids No Rested</div>
-                    <div id="task-gr-no-rested"></div>
-                </div>
-                <div class="area flex-1">
-                    <div class="card my-3 text-center"
-                        style="white-space: nowrap; color: white; background-color: #842A98; border: 3px solid white;">
-                        Weekly
-                    </div>
-                    <div id="task-weekly" style="max-height: 800px;overflow-y: scroll;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="">
-            <!-- <div class="area mb-2">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #B535F1; border: 3px solid white;">Vykas
-                </div>
-                <div id="task-vykas"></div>
-            </div> -->
-            <div class="area mb-2">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #D6B16B; border: 3px solid white;">Kayangel
-                </div>
-                <div id="task-kayangel"></div>
-            </div>
-            <div class="area mb-2">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #DDC607; border: 3px solid white;">Kakul
-                </div>
-                <div id="task-kakul"></div>
-            </div>
-            <div class="area">
-                <div class="card my-2 text-center"
-                    style="white-space: nowrap; color: white; background-color: #A75FFF; border: 3px solid white;">
-                    Brelshaza
-                </div>
-                <div id="task-brelshaza"></div>
-            </div>
-        </div>
-    </section>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
+
+    <!-- CONTENT ---------------------------------------------------------------------------------------------------------->
+    <div class="" style="grid-column: 3 / 11; grid-row: 1 / 1;">
+        <section id="section-dashboard" class="section-content">
+            <div class="dashboard-wrapper"></div>
+        </section>
+        <section id="section-gold" class="section-content"style="display: none;">
+            <div class="gold-wrapper"></div>
+        </section>
+        <section id="section-fate-ember" class="section-content"style="display: none;">
+            <div class="fate-ember-wrapper"></div>
+        </section>
+        <section id="section-events" class="section-content"style="display: none;">
+            <div class="events-wrapper"></div>
+        </section>
+        <section id="section-planning" class="section-content"style="display: none;">
+            <div class="planning-wrapper"></div>
+        </section>
+        <section id="section-settings" class="section-content"style="display: none;">
+            <div class="settings-wrapper"></div>
+        </section>
+        <section id="section-help" class="section-content"style="display: none;">HELP</section>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------->
 </body>
 
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="js/StormDB.min.js"></script>
 <script type="text/javascript" src="js/BrowserEngine.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@2.6.0/event-calendar.min.js"></script>
 <script type="text/javascript" src="js/moment.js"></script>
-
-<script>
-    const engine = new BrowserEngine("db-dashboard");
-    const db = new StormDB(engine);
-
-    if (db.get("resetDaily").value() === undefined) db.set("resetDaily", '').save();
-    if (db.get("resetWeekly").value() === undefined) db.set("resetWeekly", '').save();
-    // if (db.get("dashboard").value() === undefined) db.set("dashboard", []).save();
-
-    reset();
-
-    // function searchByType(type) {
-    //     return (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.type == type) : null;
-    // }
-
-    // let tasks = searchByType('solo');
-
-    // console.log(tasks);
-
-    // tasks.forEach(function (t, i) {
-    //     $('#task-daily').append(`<div class="card-task text-center" data-id="${t.id}">${t.tache_name} - ${t.perso} - ${t.done}/${t.repet} - ${t.rest}</div>`);
-    // });
-
-    showCardSection('solo', 'task-daily', 0, 100);
-    showCardSection('GR', 'task-gr', 40, 100);
-    showCardSection('GR', 'task-gr-no-rested', 0, 30);
-    // showCardSection('vykas', 'task-vykas', 0, 100);
-    showCardSection('kayangel', 'task-kayangel', 0, 100);
-    showCardSection('kakul', 'task-kakul', 0, 100);
-    showCardSection('brelshaza', 'task-brelshaza', 0, 100);
-    showCardSection('weekly', 'task-weekly', 0, 100);
-    showCardSection('event', 'task-event', 0, 100);
-    showCardSection('roster_daily', 'task-roster-daily', 0, 100);
-    showCardSection('roster_weekly', 'task-roster-weekly', 0, 100);
-
-    function showCardSection(type, div, restmin, restmax) {
-        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == type && t.done < t.repet && t.rest >= restmin && t.rest <= restmax && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')) : null;
-        console.log(tasks);
-
-        $(`#${div}`).html('');
-
-        tasks.forEach(function (t, i) {
-            $(`#${div}`).append(`<style>.card-task-${t.id}:before { background: ${t.color}; }</style><div class="card-task card-task-${t.id} text-center" data-id="${t.id}">${t.tache_name} - ${t.perso} - ${t.done}/${t.repet} ${t.rest > 0 ? `- ${t.rest}` : ''}</div>`);
-        });
-    }
-
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    $(document).on('click', '.card-task', function () {
-        let id = $(this).data('id');
-
-        let index = db.get("dashboard").value().findIndex((t) => t.id == id);
-        let task = db.get("dashboard").value().find((t) => t.id == id);
-
-        console.log(task);
-
-        if (task) {
-            db.get("dashboard")
-                .get(index)
-                .get('done')
-                .set(parseInt(task.done) + 1);
-
-            db.get("dashboard")
-                .get(index)
-                .get('count')
-                .set(parseInt(task.count) + 1);
-
-            if (task.rest && parseInt(task.rest) >= 20) {
-                db.get("dashboard")
-                    .get(index)
-                    .get('rest')
-                    .set(task.rest - 20);
-            }
-
-            db.save();
-        }
-
-        showCardSection('solo', 'task-daily', 0, 100);
-        showCardSection('GR', 'task-gr', 40, 100);
-        showCardSection('GR', 'task-gr-no-rested', 0, 30);
-        // showCardSection('vykas', 'task-vykas', 0, 100);
-        showCardSection('kayangel', 'task-kayangel', 0, 100);
-        showCardSection('kakul', 'task-kakul', 0, 100);
-        showCardSection('brelshaza', 'task-brelshaza', 0, 100);
-        showCardSection('weekly', 'task-weekly', 0, 100);
-        showCardSection('event', 'task-event', 0, 100);
-        showCardSection('roster_daily', 'task-roster-daily', 0, 100);
-        showCardSection('roster_weekly', 'task-roster-weekly', 0, 100);
-    });
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    function reset() {
-        let reload = false;
-
-        // Reset quotidien
-        if (db.get('resetDaily').value() != moment().format('DD/MM/YYYY') && moment().format("HH") > 11) {
-            db.get('resetDaily').set(moment().format('DD/MM/YYYY'));
-            db.save();
-
-            db.get("dashboard").value().forEach(function (task, i) {
-                if (task.reset == 'daily') {
-                    if (task.rested) {
-                        let notdone = parseInt(task.repet) - parseInt(task.done);
-                        let newrest = parseInt(task.rest) + (notdone * 10);
-                        if (newrest > 100) newrest = 100;
-
-                        if (notdone > 0) {
-                            db.get("dashboard")
-                                .get(i)
-                                .get('rest')
-                                .set(newrest);
-                        }
-                    }
-
-                    db.get("dashboard")
-                        .get(i)
-                        .get('done')
-                        .set(0);
-
-                    db.save();
-                }
-            });
-
-            reload = true;
-        }
-
-        // Reset weekly
-        if (db.get('resetWeekly').value() != moment().format('DD/MM/YYYY') && moment().format('E') == 3 && moment().format("HH") > 11) {
-            db.get('resetWeekly').set(moment().format('DD/MM/YYYY'));
-            db.save();
-
-            db.get("dashboard").value().forEach(function (task, i) {
-                if (task.reset == 'weekly') {
-                    db.get("dashboard")
-                        .get(i)
-                        .get('done')
-                        .set(0);
-
-                    db.save();
-                }
-            });
-
-            reload = true;
-        }
-
-        if (reload) {
-            window.location.reload();
-        }
-    }
-
-    function forceResetDaily() {
-        db.get('resetDaily').set(moment().format('DD/MM/YYYY'));
-        db.save();
-
-        db.get("dashboard").value().forEach(function (task, i) {
-            if (task.reset == 'daily') {
-                if (task.rested) {
-                    let notdone = parseInt(task.repet) - parseInt(task.done);
-                    let newrest = parseInt(task.rest) + (notdone * 10);
-                    if (newrest > 100) newrest = 100;
-
-                    if (notdone > 0) {
-                        db.get("dashboard")
-                            .get(i)
-                            .get('rest')
-                            .set(newrest);
-                    }
-                }
-
-                db.get("dashboard")
-                    .get(i)
-                    .get('done')
-                    .set(0);
-
-                db.save();
-            }
-        });
-
-        window.location.reload();
-    }
-
-    function forceResetWeekly() {
-        db.get('resetWeekly').set(moment().format('DD/MM/YYYY'));
-        db.save();
-
-        db.get("dashboard").value().forEach(function (task, i) {
-            if (task.reset == 'weekly') {
-                db.get("dashboard")
-                    .get(i)
-                    .get('done')
-                    .set(0);
-
-                db.save();
-            }
-        });
-
-        window.location.reload();
-    }
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-</script>
+<script type="text/javascript" src="js/reset.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"
+    integrity="sha512-6HrPqAvK+lZElIZ4mZ64fyxIBTsaX5zAFZg2V/2WT+iKPrFzTzvx6QAsLW2OaLwobhMYBog/+bvmIEEGXi0p1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </html>
