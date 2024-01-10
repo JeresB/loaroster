@@ -698,6 +698,10 @@ function goldRevenusDepenses() {
 function goldValue() {
     let last_reset = moment(db.get("resetWeekly").value(), 'DD-MM-YYYY').toDate();
     let gold_histo_last_reset = db.get("gold_histo").value().find(function (h) { return new Date(h.date) >= last_reset });
+    
+    if (!gold_histo_last_reset) {
+        gold_histo_last_reset = db.get("gold_histo").value().findLast((g) => true);
+    }
 
     $('#gold_value').html(`
         <div class="" style="display: flex;justify-content: center;align-items: center;height: 100%;font-size: 32px;">
