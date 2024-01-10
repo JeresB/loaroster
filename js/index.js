@@ -1506,6 +1506,11 @@ $(document).on('click', '.card-objectif', function () {
             .get('statut')
             .set('done');
 
+        db.get("events")
+            .get(index)
+            .get('date')
+            .set(new Date().toString());
+
         db.save();
     }
 
