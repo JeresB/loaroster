@@ -1,0 +1,1088 @@
+{
+    "dashboard": [
+        {
+            "id": "chaos_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Chaos",
+            "description": "",
+            "type": "solo",
+            "actif": true,
+            "reset": "daily",
+            "done": 2,
+            "repet": 2,
+            "count": 442,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#145CB8",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": true,
+            "duration": 3,
+            "prio": 1
+        },
+        {
+            "id": "guilde_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Guilde",
+            "description": "",
+            "type": "solo",
+            "actif": true,
+            "reset": "daily",
+            "done": 1,
+            "repet": 1,
+            "count": 228,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#842A98",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 2
+        },
+        {
+            "id": "una_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Una",
+            "description": "",
+            "type": "solo",
+            "actif": true,
+            "reset": "daily",
+            "done": 3,
+            "repet": 3,
+            "count": 675,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#3B990E",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": true,
+            "duration": 1,
+            "prio": 3
+        },
+        {
+            "id": "gr_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Gargadis",
+            "description": "",
+            "type": "GR",
+            "actif": true,
+            "reset": "daily",
+            "done": 1,
+            "repet": 1,
+            "count": 245,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#AF2424",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": true,
+            "duration": 5,
+            "prio": 7
+        },
+        {
+            "id": "brelshaza_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Brelshaza G1-3",
+            "description": "",
+            "type": "brelshaza",
+            "actif": true,
+            "reset": "weekly",
+            "done": 3,
+            "repet": 3,
+            "count": 143,
+            "revenu": 7500,
+            "cout": 0,
+            "color": "#A75FFF",
+            "restriction": "kayangel_jeresayaya",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "prio": 1
+        },
+        {
+            "id": "brelshaza_jeresayaya_2",
+            "perso": "Jeresayaya",
+            "tache_name": "Brelshaza G4",
+            "description": "",
+            "type": "brelshaza",
+            "actif": true,
+            "reset": "bimensuel",
+            "done": 1,
+            "repet": 1,
+            "count": 9,
+            "revenu": 3000,
+            "cout": 0,
+            "color": "#A75FFF",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 20,
+            "prio": 1
+        },
+        {
+            "id": "kayangel_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Kayangel",
+            "description": "",
+            "type": "kayangel",
+            "actif": true,
+            "reset": "weekly",
+            "done": 3,
+            "repet": 3,
+            "count": 99,
+            "revenu": 6500,
+            "cout": 0,
+            "color": "#D6B16B",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 8,
+            "prio": 1
+        },
+        {
+            "id": "voldis_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Ivory Tower of Chaos",
+            "description": "",
+            "type": "voldis",
+            "actif": true,
+            "reset": "weekly",
+            "done": 4,
+            "repet": 4,
+            "count": 12,
+            "revenu": 14500,
+            "cout": -5500,
+            "color": "#B535F1",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 200,
+            "prio": 1
+        },
+        {
+            "id": "akkan_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Akkan",
+            "description": "",
+            "type": "akkan",
+            "actif": true,
+            "reset": "weekly",
+            "done": 3,
+            "repet": 3,
+            "count": 63,
+            "revenu": 10000,
+            "cout": 0,
+            "color": "#B535F1",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 20,
+            "prio": 1
+        },
+        {
+            "id": "cube_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Ebony Cube",
+            "description": "",
+            "type": "cube",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 2,
+            "count": 64,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#cf6363",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 5,
+            "prio": 1
+        },
+        {
+            "id": "pirate_shop_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Pirate Shop",
+            "description": "",
+            "type": "shop",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 34,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#d99157",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 7
+        },
+        {
+            "id": "weekly_una_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Weekly Una",
+            "description": "",
+            "type": "solo",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 34,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#057807",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 1
+        },
+        {
+            "id": "guilde_shop_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Guilde Shop",
+            "description": "",
+            "type": "shop",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 34,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#dbbe56",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 13
+        },
+        {
+            "id": "elgacia_shop_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "Elgacia Shop",
+            "description": "",
+            "type": "shop",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 26,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#74adc0",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 25
+        },
+        {
+            "id": "gve_jeresayaya",
+            "perso": "Jeresayaya",
+            "tache_name": "GVE",
+            "description": "",
+            "type": "shop",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 19,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#9abf96",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 5,
+            "prio": 19
+        },
+        {
+            "id": "event_shop_roster",
+            "perso": "Roster",
+            "tache_name": "Event Shop",
+            "description": "",
+            "type": "roster_weekly",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 34,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#8624E8",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 1
+        },
+        {
+            "id": "legion_raid_shop_roster",
+            "perso": "Roster",
+            "tache_name": "Legion Raid Shop",
+            "description": "Coffres achetables chaque semaine au pnj",
+            "type": "roster_weekly",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 34,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#d52b2b",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 0
+        },
+        {
+            "id": "elgacia_shop_roster",
+            "perso": "Roster",
+            "tache_name": "Elgacia leg Shop",
+            "description": "Gemme achetable au pnj",
+            "type": "roster_weekly",
+            "actif": true,
+            "reset": "weekly",
+            "done": 1,
+            "repet": 1,
+            "count": 26,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#d52b2b",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 1,
+            "prio": 0
+        },
+        {
+            "id": "challenge_abyssal_roster",
+            "perso": "Roster",
+            "tache_name": "Abyssal Challenge",
+            "description": "",
+            "type": "roster_weekly",
+            "actif": true,
+            "reset": "weekly",
+            "done": 2,
+            "repet": 2,
+            "count": 68,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#25C0E2",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 20,
+            "prio": 0
+        },
+        {
+            "id": "guardian_raid_roster",
+            "perso": "Roster",
+            "tache_name": "GR Challenge",
+            "description": "",
+            "type": "roster_weekly",
+            "actif": true,
+            "reset": "weekly",
+            "done": 3,
+            "repet": 3,
+            "count": 99,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#d52b2b",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 20,
+            "prio": 0
+        },
+        {
+            "id": "fouille_roster",
+            "perso": "Roster",
+            "tache_name": "Fouille",
+            "description": "",
+            "type": "roster_daily",
+            "actif": true,
+            "reset": "daily",
+            "done": 1,
+            "repet": 1,
+            "count": 203,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#2056CB",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 15,
+            "prio": 31
+        },
+        {
+            "id": "forteresse_roster",
+            "perso": "Roster",
+            "tache_name": "Forteresse",
+            "description": "",
+            "type": "roster_daily",
+            "actif": true,
+            "reset": "daily",
+            "done": 1,
+            "repet": 1,
+            "count": 208,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#842A98",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 3,
+            "prio": 47
+        },
+        {
+            "id": "merchants_roster",
+            "perso": "Roster",
+            "tache_name": "Merchants",
+            "description": "",
+            "type": "roster_daily",
+            "actif": false,
+            "reset": "daily",
+            "done": 0,
+            "repet": 1,
+            "count": 5,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#842A98",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 5,
+            "prio": 48
+        },
+        {
+            "id": "primal_island_roster",
+            "perso": "Roster",
+            "tache_name": "Primal Island",
+            "description": "",
+            "type": "event",
+            "actif": false,
+            "reset": "weekly",
+            "done": 0,
+            "repet": 1,
+            "count": 13,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#8624E8",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 30,
+            "horaire": [
+                2,
+                4,
+                6
+            ],
+            "prio": 1
+        },
+        {
+            "id": "chaos_gate_roster",
+            "perso": "Roster",
+            "tache_name": "Chaos Gate",
+            "description": "",
+            "type": "event",
+            "actif": true,
+            "reset": "daily",
+            "done": 0,
+            "repet": 1,
+            "count": 133,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#5D13DE",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "horaire": [
+                1,
+                4,
+                6,
+                7
+            ],
+            "prio": 0
+        },
+        {
+            "id": "world_boss_roster",
+            "perso": "Roster",
+            "tache_name": "World Boss",
+            "description": "",
+            "type": "event",
+            "actif": true,
+            "reset": "daily",
+            "done": 1,
+            "repet": 1,
+            "count": 100,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#33AF0B",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "horaire": [
+                2,
+                5,
+                7
+            ],
+            "prio": 0
+        },
+        {
+            "id": "adventure_island_roster",
+            "perso": "Roster",
+            "tache_name": "Adventure Island",
+            "description": "",
+            "type": "event",
+            "actif": false,
+            "reset": "daily",
+            "done": 0,
+            "repet": 1,
+            "count": 12,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#33AF0B",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "horaire": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "prio": 49
+        },
+        {
+            "id": "adventure_island_weekend_roster",
+            "perso": "Roster",
+            "tache_name": "Adventure Island",
+            "description": "",
+            "type": "event",
+            "actif": false,
+            "reset": "daily",
+            "done": 0,
+            "repet": 2,
+            "count": 16,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#33AF0B",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "horaire": [
+                6,
+                7
+            ],
+            "prio": 50
+        },
+        {
+            "id": "medeia_limon_roster",
+            "perso": "Roster",
+            "tache_name": "Medeia / Limon",
+            "description": "",
+            "type": "event",
+            "actif": true,
+            "reset": "daily",
+            "done": 0,
+            "repet": 1,
+            "count": 62,
+            "revenu": 0,
+            "cout": 0,
+            "color": "#33AF0B",
+            "rest": 0,
+            "restNeeded": 0,
+            "rested": false,
+            "duration": 10,
+            "horaire": [
+                6,
+                7
+            ],
+            "prio": 0
+        }
+    ],
+    "resetDaily": "09/01/2024",
+    "resetWeekly": "03/01/2024",
+    "resetBiMensuel": "03/01/2024",
+    "fate_embers": [],
+    "gold_income": [],
+    "gold_histo": [],
+    "gold": 0,
+    "events": [],
+    "planning": {
+        "events": []
+    },
+    "dashboard_card_stats": [
+        {
+            "name": "Chaos Dungeon",
+            "tache_name": [
+                "Chaos"
+            ],
+            "image": "images/chaos-dungeon.webp",
+            "x": 1
+        },
+        {
+            "name": "Guardian Raid",
+            "tache_name": [
+                "Gargadis",
+                "Sonavel",
+                "Hanumatan"
+            ],
+            "image": "images/guardian.png",
+            "x": 3
+        },
+        {
+            "name": "Una Task",
+            "tache_name": [
+                "Una"
+            ],
+            "image": "images/daily.webp",
+            "x": 5
+        },
+        {
+            "name": "Raids",
+            "tache_name": [
+                "Ivory Tower of Chaos",
+                "Akkan",
+                "Brelshaza G1-3",
+                "Brelshaza G4",
+                "Kayangel"
+            ],
+            "image": "images/legion_raid.png",
+            "x": 7
+        },
+        {
+            "name": "Ebony Cube",
+            "tache_name": [
+                "Ebony Cube"
+            ],
+            "image": "images/t3_cube.png",
+            "x": 9
+        },
+        {
+            "name": "Shops",
+            "tache_name": [
+                "Pirate Shop",
+                "Guilde Shop",
+                "Elgacia Shop"
+            ],
+            "image": "images/trade_skill_tool.webp",
+            "x": 11
+        }
+    ],
+    "persos": [
+        {
+            "name": "Roster",
+            "perso": [
+                "Roster"
+            ],
+            "class": "",
+            "image": "images/Roster11.jpg",
+            "logo": "",
+            "ilevel": 296,
+            "page_gold_div_rentabilite": "gold_income_roster"
+        },
+        {
+            "name": "Jeresayaya",
+            "perso": [
+                "Jeresayaya"
+            ],
+            "class": "Artist",
+            "image": "images/Jeresayaya11.jpg",
+            "logo": "images/class_artist.png",
+            "ilevel": 1620,
+            "page_gold_div_rentabilite": "gold_income_jeresayaya"
+        },
+        {
+            "name": "Jeresunshine",
+            "perso": [
+                "Jeresunshine"
+            ],
+            "class": "Bard",
+            "image": "images/Jeresunshine11.jpg",
+            "logo": "images/class_bard.png",
+            "ilevel": 1620,
+            "page_gold_div_rentabilite": "gold_income_jeresunshine"
+        },
+        {
+            "name": "Jeresbard",
+            "perso": [
+                "Jeresbard"
+            ],
+            "class": "Bard",
+            "image": "images/Jeresbard11.jpg",
+            "logo": "images/class_bard.png",
+            "ilevel": 1620,
+            "page_gold_div_rentabilite": "gold_income_jeresbard"
+        },
+        {
+            "name": "Jerescelestia",
+            "perso": [
+                "Jerescelestia"
+            ],
+            "class": "Aeromancer",
+            "image": "images/Jerescelestia11.jpg",
+            "logo": "images/class_aeromancer.png",
+            "ilevel": 1610,
+            "page_gold_div_rentabilite": "gold_income_jerescelestia"
+        },
+        {
+            "name": "Jeresakura",
+            "perso": [
+                "Jeresakura"
+            ],
+            "class": "Bard",
+            "image": "images/Jeresakura11.jpg",
+            "logo": "images/class_bard.png",
+            "ilevel": 1610,
+            "page_gold_div_rentabilite": "gold_income_jeresakura"
+        },
+        {
+            "name": "Imanyrae",
+            "perso": [
+                "Imanyrae"
+            ],
+            "class": "Sorceress",
+            "image": "images/Imanyrae11.jpg",
+            "logo": "images/class_sorceress.png",
+            "ilevel": 1610,
+            "page_gold_div_rentabilite": "gold_income_imanyrae"
+        },
+        {
+            "name": "Shadow",
+            "perso": [
+                "Shadow"
+            ],
+            "class": "Paladin",
+            "image": "images/Shadow11.jpg",
+            "logo": "images/class_paladin.png",
+            "ilevel": 1588
+        },
+        {
+            "name": "Drevana",
+            "perso": [
+                "Drevana"
+            ],
+            "class": "Shadowhunter",
+            "image": "images/Drevana11.jpg",
+            "logo": "images/class_shadowhunter.png",
+            "ilevel": 1540
+        },
+        {
+            "name": "Jeresblade",
+            "perso": [
+                "Jeresblade"
+            ],
+            "class": "Slayer",
+            "image": "images/Jeresblade.jpg",
+            "logo": "images/class_slayer.png",
+            "ilevel": 1540
+        },
+        {
+            "name": "Lopang",
+            "perso": [
+                "Skairiper",
+                "Shadotech",
+                "Shadorim",
+                "Jerestarwhale",
+                "Jereseraphina",
+                "Jeresfighter",
+                "Jerespala",
+                "Jereslopang"
+            ],
+            "class": "Lopang",
+            "image": "images/lopang11.jpg",
+            "logo": "",
+            "ilevel": 9
+        }
+    ],
+    "settings": {
+        "dashboard": {
+            "liste_types_taches_focus_on_carateres": [
+                "solo",
+                "GR",
+                "cube",
+                "shop",
+                "event",
+                "roster_daily",
+                "roster_weekly",
+                "lopang"
+            ],
+            "liste_raids": [
+                {
+                    "name": "voldis",
+                    "image": "images/voldis.jpg",
+                    "color": "#00A2BF"
+                },
+                {
+                    "name": "akkan",
+                    "image": "images/akkan.jpg",
+                    "color": "#3ec221"
+                },
+                {
+                    "name": "brelshaza",
+                    "image": "images/brelshaza.jpg",
+                    "color": "#8171ff"
+                },
+                {
+                    "name": "kayangel",
+                    "image": "images/kayangel.jpg",
+                    "color": "#feffe0"
+                }
+            ],
+            "prio_task_daily": [
+                "Chaos",
+                "Guilde",
+                "Una",
+                "Gargadis",
+                "Sonavel",
+                "Hanumatan",
+                "Fouille",
+                "Forteresse",
+                "Chaos Gate",
+                "World Boss",
+                "Medeia / Limon",
+                "Weekly Una"
+            ],
+            "prio_task_weekly": [
+                "Ebony Cube",
+                "Pirate Shop",
+                "Guilde Shop",
+                "Elgacia Shop",
+                "GVE",
+                "Event Shop",
+                "Legion Raid Shop",
+                "Elgacia leg Shop",
+                "Abyssal Challenge",
+                "GR Challenge",
+                "Primal Island"
+            ]
+        },
+        "gold": {
+            "options_gold_income": [
+                "Update",
+                "Achat",
+                "Vente",
+                "Honing",
+                "Oreha",
+                "Gemme",
+                "Quality",
+                "Elixir",
+                "Raids",
+                "Fate Ember",
+                "Token Una"
+            ]
+        },
+        "fate_embers": {
+            "options_fate_embers": [
+                {
+                    "categorie": "Silver",
+                    "values": [
+                        "500K",
+                        "1M",
+                        "2M"
+                    ]
+                },
+                {
+                    "categorie": "Golds",
+                    "values": [
+                        "1500",
+                        "3000",
+                        "10K",
+                        "20K",
+                        "50K",
+                        "100K"
+                    ]
+                },
+                {
+                    "categorie": "Xp Card Pack",
+                    "values": [
+                        "Normal",
+                        "Lucky",
+                        "Special",
+                        "Premium"
+                    ]
+                },
+                {
+                    "categorie": "Honing Chest",
+                    "values": [
+                        "S",
+                        "M",
+                        "L"
+                    ]
+                },
+                {
+                    "categorie": "Card Pack",
+                    "values": [
+                        "Epic",
+                        "Random Legendary",
+                        "Selection Legendary"
+                    ]
+                }
+            ],
+            "cards_stats": {
+                "types": [
+                    {
+                        "image": "images/use_11_221.webp",
+                        "name": "Fate Embers",
+                        "liste_type": [
+                            "500K Silver",
+                            "1M Silver",
+                            "2M Silver",
+                            "1500 Gold",
+                            "3K Gold",
+                            "10K Gold",
+                            "20K Gold",
+                            "50K Gold",
+                            "100K Gold",
+                            "Normal Xp Card Pack",
+                            "Lucky Xp Card Pack",
+                            "Special Xp Card Pack",
+                            "Premium Xp Card Pack",
+                            "S Honingchest",
+                            "M Honingchest",
+                            "L Honingchest",
+                            "Epic Card Pack",
+                            "Random Legendary Card Pack",
+                            "Selection Legendary Card Pack"
+                        ],
+                        "div": "fate_ember_stats"
+                    },
+                    {
+                        "image": "images/use_11_209.webp",
+                        "name": "Silver",
+                        "liste_type": [
+                            "500K Silver",
+                            "1M Silver",
+                            "2M Silver"
+                        ],
+                        "div": "fate_ember_stats_silver"
+                    },
+                    {
+                        "image": "images/use_11_214.webp",
+                        "name": "Golds",
+                        "liste_type": [
+                            "1500 Gold",
+                            "3K Gold",
+                            "10K Gold",
+                            "20K Gold",
+                            "50K Gold",
+                            "100K Gold"
+                        ],
+                        "div": "fate_ember_stats_golds"
+                    },
+                    {
+                        "image": "images/use_11_218.webp",
+                        "name": "Xp Card Pack",
+                        "liste_type": [
+                            "Normal Xp Card Pack",
+                            "Lucky Xp Card Pack",
+                            "Special Xp Card Pack",
+                            "Premium Xp Card Pack"
+                        ],
+                        "div": "fate_ember_stats_xpcardpack"
+                    },
+                    {
+                        "image": "images/use_11_230.webp",
+                        "name": "Honing Chest",
+                        "liste_type": [
+                            "S Honingchest",
+                            "M Honingchest",
+                            "L Honingchest"
+                        ],
+                        "div": "fate_ember_stats_honingchest"
+                    },
+                    {
+                        "image": "images/use_11_222.webp",
+                        "name": "Card Pack",
+                        "liste_type": [
+                            "Epic Card Pack",
+                            "Random Legendary Card Pack",
+                            "Selection Legendary Card Pack"
+                        ],
+                        "div": "fate_ember_stats_cardpack"
+                    }
+                ],
+                "persos": [
+                    {
+                        "image": "images/class_artist.png",
+                        "name": "Jeresayaya",
+                        "div": "fate_ember_stats_jeresayaya"
+                    },
+                    {
+                        "image": "images/class_bard.png",
+                        "name": "Jeresunshine",
+                        "div": "fate_ember_stats_jeresunshine"
+                    },
+                    {
+                        "image": "images/class_aeromancer.png",
+                        "name": "Jerescelestia",
+                        "div": "fate_ember_stats_jerescelestia"
+                    },
+                    {
+                        "image": "images/class_bard.png",
+                        "name": "Jeresbard",
+                        "div": "fate_ember_stats_jeresbard"
+                    },
+                    {
+                        "image": "images/class_bard.png",
+                        "name": "Jeresakura",
+                        "div": "fate_ember_stats_jeresakura"
+                    },
+                    {
+                        "image": "images/class_sorceress.png",
+                        "name": "Imanyrae",
+                        "div": "fate_ember_stats_imanyrae"
+                    }
+                ]
+            }
+        },
+        "events": {
+            "categories": [
+                {
+                    "name": "Honing",
+                    "logo": ""
+                },
+                {
+                    "name": "Elixir",
+                    "logo": ""
+                },
+                {
+                    "name": "Roster",
+                    "logo": ""
+                },
+                {
+                    "name": "Gear",
+                    "logo": ""
+                }
+            ]
+        },
+        "colors": {
+            "daily": {
+                "bg": "#00651F",
+                "text": "#008b2a"
+            },
+            "GR": {
+                "bg": "#203238",
+                "text": "#8cd3eb"
+            },
+            "weekly": {
+                "bg": "#014B89",
+                "text": "#014B89"
+            },
+            "text": "#a1a1a1"
+        }
+    }
+}
