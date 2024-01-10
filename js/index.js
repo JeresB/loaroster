@@ -1409,14 +1409,14 @@ function eventsFormulaire() {
         <div style="text-align: center;">Formulaire</div><br>
         <div class="d-flex flex-row justify-content-center flex-nowrap gap-3" style="padding: 5px;">
             <input list="events_perso_list" class="form-control flex-grow-1" id="events_perso"
-                style="background-color: #202020;color: white;" placeholder="Roster">
+                style="background-color: #202020;color: white;" placeholder="Roster / Caract&egrave;res">
 
             <datalist id="events_perso_list">
                 ${html_options_perso}
             </datalist>
 
             <input list="events_cateogrie_list" class="form-control flex-grow-1" id="events_categorie"
-                style="background-color: #202020;color: white;" placeholder="Roster">
+                style="background-color: #202020;color: white;" placeholder="Cat&eacute;gorie : Honing, Elixir, Gear, ...">
 
             <datalist id="events_cateogrie_list">
                 ${html_options_categorie}
