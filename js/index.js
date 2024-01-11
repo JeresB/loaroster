@@ -1044,7 +1044,7 @@ function fateEmbersCharts() {
                 {
                     label: 'S Honingchest',
                     data: [
-                        0, 0, 0, nbfateember('S_Honingchest') + nbfateember('S Honingchest'), 0
+                        0, 0, 0, nbfateember('S_Honingchest') + nbfateember('S Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.5)',
                     borderColor: 'rgb(164, 194, 244)',
@@ -1055,7 +1055,7 @@ function fateEmbersCharts() {
                 {
                     label: 'M Honingchest',
                     data: [
-                        0, 0, 0, nbfateember('M_Honingchest') + nbfateember('M Honingchest'), 0
+                        0, 0, 0, nbfateember('M_Honingchest') + nbfateember('M Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.6)',
                     borderColor: 'rgb(164, 194, 244)',
@@ -1066,7 +1066,7 @@ function fateEmbersCharts() {
                 {
                     label: 'L Honingchest',
                     data: [
-                        0, 0, 0, nbfateember('L_Honingchest') + nbfateember('L Honingchest'), 0
+                        0, 0, 0, nbfateember('L_Honingchest') + nbfateember('L Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.7)',
                     borderColor: 'rgb(164, 194, 244)',
