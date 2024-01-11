@@ -125,6 +125,7 @@ $(document).on('click', '.table-task,.liste-task-no-card', function () {
 
 function dashboard() {
     sidebar_dashboard();
+    sidebar_golds();
 
     // Reset de l'HTML
     $('.dashboard-wrapper').html('');
@@ -823,6 +824,7 @@ function fate_embers() {
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 15 / 17; grid-row: 9 / 11;"><div id="fate_ember_stats_imanyrae" style="flex: 1;height: 100%!important;"></div></div>`);
     
     sidebar_fate_embers();
+    sidebar_golds();
     fateEmbersHistorique();
     fateEmbersCharts();
     fateEmbersForm();
