@@ -16,6 +16,7 @@ reset();
 
 $(document).ready(function () {
     dashboard();
+    sidebar();
 });
 
 // Au click sur un lien du menu
@@ -40,6 +41,11 @@ $(document).on('click', '.sidebar-link', function () {
     if (page == 'events') events();
     if (page == 'planning') planning();
 });
+
+function sidebar() {
+    sidebar_dashboard();
+    sidebar_golds();
+}
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -49,6 +55,13 @@ $(document).on('click', '.sidebar-link', function () {
 // -------------------------------------------------------------------------------------------------------------
 // --- DASHBOARD -----------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
+function sidebar_dashboard() {
+    let done = getDone('Chaos') + getDone('Guilde') + getDone('Una') + getDone('Gargadis') + getDone('Sonavel') + getDone('Hanumatan');
+    let all = getAll('Chaos') + getAll('Guilde') + getAll('Una') + getAll('Gargadis') + getAll('Sonavel') + getAll('Hanumatan');
+
+    $('#sidebar-dashboard-data').html(`&nbsp;-&nbsp;Daily&nbsp;${done} / ${all}`);
+}
+
 $(document).on('click', '.table-task,.liste-task-no-card', function () {
     let id = $(this).data('id');
 
@@ -110,6 +123,8 @@ $(document).on('click', '.table-task,.liste-task-no-card', function () {
 });
 
 function dashboard() {
+    sidebar_dashboard();
+
     // Reset de l'HTML
     $('.dashboard-wrapper').html('');
 
@@ -372,6 +387,17 @@ function showTasksWeeklyByPrio() {
 // -------------------------------------------------------------------------------------------------------------
 var goldchart = null;
 
+function sidebar_golds() {
+    let last_reset = moment(db.get("resetWeekly").value(), 'DD-MM-YYYY').toDate();
+    let gold_histo_last_reset = db.get("gold_histo").value().find(function (h) { return new Date(h.date) >= last_reset });
+
+    if (!gold_histo_last_reset) {
+        gold_histo_last_reset = db.get("gold_histo").value().findLast((g) => true);
+    }
+
+    $('#sidebar-golds-data').html(`${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds ${gold_histo_last_reset.gold > db.get("gold").value() ? `<span style="color: #cf4747;font-size: 24px;"><i class="fa-solid fa-arrow-trend-down"></i>` : `<span style="color: #00b135;font-size: 24px;"><i class="fa-solid fa-arrow-trend-up"></i>`}&nbsp;${(((db.get("gold").value() * 100) / gold_histo_last_reset.gold) - 100).toFixed(2)}%</span>`);
+}
+
 function gold() {
     $('.gold-wrapper').html('');
 
@@ -402,6 +428,7 @@ function gold() {
     $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 12 / 14;"><div id="gold_income_jeresakura" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
     $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 14 / 16;"><div id="gold_income_imanyrae" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
+    sidebar_golds();
     goldChart();
     goldformulaire();
     goldHistorique();
