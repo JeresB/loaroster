@@ -45,6 +45,7 @@ $(document).on('click', '.sidebar-link', function () {
 function sidebar() {
     sidebar_dashboard();
     sidebar_golds();
+    sidebar_fate_embers();
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -779,6 +780,17 @@ function goldRentabilitePerso() {
 var fateemberbar = null;
 var fateemberpie = null;
 
+function sidebar_fate_embers() {
+    let info = db.get("settings.fate_embers.cards_stats.types").value().find((fe) => fe.name == "Fate Embers");
+    let total = 0;
+
+    info.liste_type.forEach(function (t, i) {
+        total += nbfateember(t);
+    });
+
+    $('#sidebar-fate-embers-data').html(`${total} Fate Embers`);
+}
+
 function fate_embers() {
     $('.fate-ember-wrapper').html('');
 
@@ -809,7 +821,8 @@ function fate_embers() {
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 11 / 13; grid-row: 9 / 11;"><div id="fate_ember_stats_jeresbard" style="flex: 1;height: 100%!important;"></div></div>`);
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 13 / 15; grid-row: 9 / 11;"><div id="fate_ember_stats_jeresakura" style="flex: 1;height: 100%!important;"></div></div>`);
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 15 / 17; grid-row: 9 / 11;"><div id="fate_ember_stats_imanyrae" style="flex: 1;height: 100%!important;"></div></div>`);
-
+    
+    sidebar_fate_embers();
     fateEmbersHistorique();
     fateEmbersCharts();
     fateEmbersForm();
