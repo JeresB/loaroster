@@ -129,7 +129,7 @@ function dashboard() {
             if (index_perso > 0) index_perso--;
         }
         else {
-            if (index_perso < list_perso.length) index_perso++;
+            if (index_perso < list_perso.length - 1) index_perso++;
         }
 
         list_perso[index_perso] ? showPerso(list_perso[index_perso], db.get("settings").value().dashboard.liste_types_taches_focus_on_carateres) : null;
