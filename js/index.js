@@ -11,6 +11,7 @@ if (db.get("resetBiMensuel").value() === undefined) db.set("resetBiMensuel", '')
 
 var index_perso = 0;
 var list_perso = db.get("persos").value();
+var scroll_position = [];
 
 reset();
 
@@ -18,6 +19,21 @@ $(document).ready(function () {
     dashboard();
     sidebar();
 });
+
+function setScrollPos(div) {
+    let scroll = scroll_position.find((s) => s.div == div);
+    let index = scroll_position.findIndex((s) => s.div == div);
+
+    if (scroll) scroll_position[index].scrollTop = document.getElementById(div).scrollTop;
+    else scroll_position.push({ div: div, scrollTop: document.getElementById(div).scrollTop});
+}
+
+function getScrollPos(div) {
+    let scroll = scroll_position.find((s) => s.div == div);
+
+    if (scroll) return scroll.scrollTop;
+    else return 0;
+}
 
 // Au click sur un lien du menu
 $(document).on('click', '.sidebar-link', function () {
@@ -46,6 +62,8 @@ function sidebar() {
     sidebar_dashboard();
     sidebar_golds();
     sidebar_fate_embers();
+    sidebar_events();
+    sidebar_planning();
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -57,10 +75,24 @@ function sidebar() {
 // --- DASHBOARD -----------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 function sidebar_dashboard() {
-    let done = getDone('Chaos') + getDone('Guilde') + getDone('Una') + getDone('Gargadis') + getDone('Sonavel') + getDone('Hanumatan');
-    let all = getAll('Chaos') + getAll('Guilde') + getAll('Una') + getAll('Gargadis') + getAll('Sonavel') + getAll('Hanumatan');
+    let done = 0;
+    let all = 0;
+    let task_types = db.get("settings.dashboard.prio_task_daily").value();
 
-    $('#sidebar-dashboard-data').html(`&nbsp;-&nbsp;Daily&nbsp;${done} / ${all}`);
+    task_types.forEach(function (type, i) {
+        if (type != 'Weekly Una') {
+            done += getDone([type]);
+            all += getAll([type]);
+        }
+    });
+
+    let color = '#cf634d';
+
+    if ((done * 100) / all > 25) color = '#d99157';
+    if ((done * 100) / all > 50) color = '#dbbe56';
+    if ((done * 100) / all > 75) color = '#00b135';
+
+    $('#sidebar-dashboard-data').html(`&nbsp;-&nbsp;<span style="color: ${color};">Daily&nbsp;${done} / ${all}</span>`);
 }
 
 $(document).on('click', '.table-task,.liste-task-no-card', function () {
@@ -153,13 +185,13 @@ function dashboard() {
     });
 
     // Mise en place de la card liste daily
-    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 7 / 9; grid-row: 2 / 8;"><div id="tasks-by-prio" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
+    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 7 / 9; grid-row: 2 / 8;"><div id="tasks-by-prio" onscroll="setScrollPos(\'tasks-by-prio\');" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
 
     // Mise en place de la card liste weekly
-    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 9 / 11; grid-row: 2 / 8;"><div id="tasks-weekly-by-prio" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
+    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 9 / 11; grid-row: 2 / 8;"><div id="tasks-weekly-by-prio" onscroll="setScrollPos(\'tasks-weekly-by-prio\');" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
 
     // Mise en place de la card liste raids
-    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 11 / 13; grid-row: 2 / 8;"><div id="tasks-raidlegion" class="scrollhidden"style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
+    $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 11 / 13; grid-row: 2 / 8;"><div id="tasks-raidlegion" onscroll="setScrollPos(\'tasks-raidlegion\');" class="scrollhidden"style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
 
     showRaid();
     showTasksByPrio();
@@ -207,7 +239,7 @@ function getDone(tache_name) {
     let total = 0;
 
     db.get("dashboard").value().forEach(function (task, i) {
-        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded) {
+        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded && ((task.type == 'event' && task.horaire.includes(moment().isoWeekday())) || task.type != 'event')) {
             total += task.done;
         }
     });
@@ -219,7 +251,7 @@ function getTodo(tache_name) {
     let total = 0;
 
     db.get("dashboard").value().forEach(function (task, i) {
-        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded) {
+        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded && ((task.type == 'event' && task.horaire.includes(moment().isoWeekday())) || task.type != 'event')) {
             total += (task.repet - task.done);
         }
     });
@@ -231,7 +263,7 @@ function getAll(tache_name) {
     let total = 0;
 
     db.get("dashboard").value().forEach(function (task, i) {
-        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded) {
+        if (task.actif == true && tache_name.includes(task.tache_name) && task.rest >= task.restNeeded && ((task.type == 'event' && task.horaire.includes(moment().isoWeekday())) || task.type != 'event')) {
             let taskrestriction = (db.get("dashboard").value()) ? db.get("dashboard").value().find((t) => t.id == task.restriction) : null;
 
             if (task.done > 0 || task.restriction === undefined || (task.restriction !== undefined && taskrestriction.done !== taskrestriction.repet)) {
@@ -320,6 +352,9 @@ function showRaid() {
     });
 
     $("#tasks-raidlegion").html(html);
+
+    let div = document.getElementById('tasks-raidlegion');
+    div.scrollTop = getScrollPos('tasks-raidlegion');
 }
 
 function showTasksByPrio() {
@@ -349,6 +384,9 @@ function showTasksByPrio() {
     } else {
         $('#tasks-by-prio').html('');
     }
+
+    let div = document.getElementById('tasks-by-prio');
+    div.scrollTop = getScrollPos('tasks-by-prio');
 }
 
 function showTasksWeeklyByPrio() {
@@ -377,6 +415,9 @@ function showTasksWeeklyByPrio() {
     } else {
         $('#tasks-weekly-by-prio').html('');
     }
+
+    let div = document.getElementById('tasks-weekly-by-prio');
+    div.scrollTop = getScrollPos('tasks-weekly-by-prio');
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -727,7 +768,7 @@ function goldRevenusDepenses() {
 function goldValue() {
     let last_reset = moment(db.get("resetWeekly").value(), 'DD-MM-YYYY').toDate();
     let gold_histo_last_reset = db.get("gold_histo").value().find(function (h) { return new Date(h.date) >= last_reset });
-    
+
     if (!gold_histo_last_reset) {
         gold_histo_last_reset = db.get("gold_histo").value().findLast((g) => true);
     }
@@ -822,7 +863,7 @@ function fate_embers() {
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 11 / 13; grid-row: 9 / 11;"><div id="fate_ember_stats_jeresbard" style="flex: 1;height: 100%!important;"></div></div>`);
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 13 / 15; grid-row: 9 / 11;"><div id="fate_ember_stats_jeresakura" style="flex: 1;height: 100%!important;"></div></div>`);
     $('.fate-ember-wrapper').append(`<div class="card-content" style="grid-column: 15 / 17; grid-row: 9 / 11;"><div id="fate_ember_stats_imanyrae" style="flex: 1;height: 100%!important;"></div></div>`);
-    
+
     sidebar_fate_embers();
     sidebar_golds();
     fateEmbersHistorique();
@@ -834,11 +875,11 @@ function fate_embers() {
 function fateEmbersHistorique() {
     let fate_embers = (db.get("fate_embers").value()) ? db.get("fate_embers").value() : null;
 
-    let silver = ['500K_Silver', '1M_Silver', '2M_Silver'];
-    let gold = ['1500_Gold', '3K_Gold', '10K_Gold', '20K_Gold', '50K_Gold', '100K_Gold'];
-    let xpcardpack = ['normal_xpcardpack', 'lucky_xpcardpack', 'special_xpcardpack', 'premium_xpcardpack'];
-    let honingchest = ['S_Honingchest', 'M_Honingchest', 'L_Honingchest'];
-    let cardpack = ['Epic_CardPack', 'RandomLeg_CardPack', 'SelectLeg_CardPack'];
+    let silver = [];
+    let gold = [];
+    let xpcardpack = [];
+    let honingchest = [];
+    let cardpack = [];
 
     db.get("settings.fate_embers.options_fate_embers").value().forEach(function (fe, i) {
         if (fe.categorie == 'Silver') {
@@ -943,7 +984,7 @@ function fateEmbersCharts() {
                 {
                     label: '500K Silver',
                     data: [
-                        nbfateember('500K_Silver') + nbfateember('500K Silver'), 0, 0, 0, 0
+                        nbfateember('500K Silver'), 0, 0, 0, 0
                     ],
                     backgroundColor: 'rgba(217, 217, 217, 0.2)',
                     borderColor: 'rgb(217, 217, 217)',
@@ -954,7 +995,7 @@ function fateEmbersCharts() {
                 {
                     label: '1M Silver',
                     data: [
-                        nbfateember('1M_Silver') + nbfateember('1M Silver'), 0, 0, 0, 0
+                        nbfateember('1M Silver'), 0, 0, 0, 0
                     ],
                     backgroundColor: 'rgba(217, 217, 217, 0.5)',
                     borderColor: 'rgb(217, 217, 217)',
@@ -965,7 +1006,7 @@ function fateEmbersCharts() {
                 {
                     label: '2M Silver',
                     data: [
-                        nbfateember('2M_Silver') + nbfateember('2M Silver'), 0, 0, 0, 0
+                        nbfateember('2M Silver'), 0, 0, 0, 0
                     ],
                     backgroundColor: 'rgba(217, 217, 217, 0.8)',
                     borderColor: 'rgb(217, 217, 217)',
@@ -976,7 +1017,7 @@ function fateEmbersCharts() {
                 {
                     label: '1500 Golds',
                     data: [
-                        0, nbfateember('1500_Gold') + nbfateember('1500 Gold'), 0, 0, 0
+                        0, nbfateember('1500 Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.3)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -987,7 +1028,7 @@ function fateEmbersCharts() {
                 {
                     label: '3K Golds',
                     data: [
-                        0, nbfateember('3K_Gold') + nbfateember('3K Gold'), 0, 0, 0
+                        0, nbfateember('3K Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.4)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -998,7 +1039,7 @@ function fateEmbersCharts() {
                 {
                     label: '10K Golds',
                     data: [
-                        0, nbfateember('10K_Gold') + nbfateember('10K Gold'), 0, 0, 0
+                        0, nbfateember('10K Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.5)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -1009,7 +1050,7 @@ function fateEmbersCharts() {
                 {
                     label: '20K Golds',
                     data: [
-                        0, nbfateember('20K_Gold') + nbfateember('20K Gold'), 0, 0, 0
+                        0, nbfateember('20K Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.6)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -1020,7 +1061,7 @@ function fateEmbersCharts() {
                 {
                     label: '50K Golds',
                     data: [
-                        0, nbfateember('50K_Gold') + nbfateember('50K Gold'), 0, 0, 0
+                        0, nbfateember('50K Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.7)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -1031,7 +1072,7 @@ function fateEmbersCharts() {
                 {
                     label: '100K Golds',
                     data: [
-                        0, nbfateember('100K_Gold') + nbfateember('100K Gold'), 0, 0, 0
+                        0, nbfateember('100K Golds'), 0, 0, 0
                     ],
                     backgroundColor: 'rgba(255, 229, 153, 0.8)',
                     borderColor: 'rgb(255, 229, 153)',
@@ -1042,7 +1083,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Normal Xp Card Pack',
                     data: [
-                        0, 0, nbfateember('normal_xpcardpack') + nbfateember('Normal Xp Card Pack'), 0, 0
+                        0, 0, nbfateember('Normal Xp Card Pack'), 0, 0
                     ],
                     backgroundColor: 'rgba(246, 178, 107, 0.5)',
                     borderColor: 'rgb(246, 178, 107)',
@@ -1053,7 +1094,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Lucky Xp Card Pack',
                     data: [
-                        0, 0, nbfateember('lucky_xpcardpack') + nbfateember('Lucky Xp Card Pack'), 0, 0
+                        0, 0, nbfateember('Lucky Xp Card Pack'), 0, 0
                     ],
                     backgroundColor: 'rgba(246, 178, 107, 0.6)',
                     borderColor: 'rgb(246, 178, 107)',
@@ -1064,7 +1105,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Special Xp Card Pack',
                     data: [
-                        0, 0, nbfateember('special_xpcardpack') + nbfateember('Special Xp Card Pack'), 0, 0
+                        0, 0, nbfateember('Special Xp Card Pack'), 0, 0
                     ],
                     backgroundColor: 'rgba(246, 178, 107, 0.7)',
                     borderColor: 'rgb(246, 178, 107)',
@@ -1075,7 +1116,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Premium Xp Card Pack',
                     data: [
-                        0, 0, nbfateember('premium_xpcardpack') + nbfateember('Premium Xp Card Pack'), 0, 0
+                        0, 0, nbfateember('Premium Xp Card Pack'), 0, 0
                     ],
                     backgroundColor: 'rgba(246, 178, 107, 0.8)',
                     borderColor: 'rgb(246, 178, 107)',
@@ -1084,9 +1125,9 @@ function fateEmbersCharts() {
                     //borderSkipped: false,
                 },
                 {
-                    label: 'S Honingchest',
+                    label: 'S Honing Chest',
                     data: [
-                        0, 0, 0, nbfateember('S_Honingchest') + nbfateember('S Honing Chest'), 0
+                        0, 0, 0, nbfateember('S Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.5)',
                     borderColor: 'rgb(164, 194, 244)',
@@ -1095,9 +1136,9 @@ function fateEmbersCharts() {
                     //borderSkipped: false,
                 },
                 {
-                    label: 'M Honingchest',
+                    label: 'M Honing Chest',
                     data: [
-                        0, 0, 0, nbfateember('M_Honingchest') + nbfateember('M Honing Chest'), 0
+                        0, 0, 0, nbfateember('M Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.6)',
                     borderColor: 'rgb(164, 194, 244)',
@@ -1106,9 +1147,9 @@ function fateEmbersCharts() {
                     //borderSkipped: false,
                 },
                 {
-                    label: 'L Honingchest',
+                    label: 'L Honing Chest',
                     data: [
-                        0, 0, 0, nbfateember('L_Honingchest') + nbfateember('L Honing Chest'), 0
+                        0, 0, 0, nbfateember('L Honing Chest'), 0
                     ],
                     backgroundColor: 'rgba(164, 194, 244, 0.7)',
                     borderColor: 'rgb(164, 194, 244)',
@@ -1119,7 +1160,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Epic Card Pack',
                     data: [
-                        0, 0, 0, 0, nbfateember('Epic_CardPack') + nbfateember('Epic Card Pack')
+                        0, 0, 0, 0, nbfateember('Epic Card Pack')
                     ],
                     backgroundColor: 'rgba(213, 166, 189, 0.5)',
                     borderColor: 'rgb(213, 166, 189)',
@@ -1130,7 +1171,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Random Legendary Card Pack',
                     data: [
-                        0, 0, 0, 0, nbfateember('RandomLeg_CardPack') + nbfateember('Random Legendary Card Pack')
+                        0, 0, 0, 0, nbfateember('Random Legendary Card Pack')
                     ],
                     backgroundColor: 'rgba(213, 166, 189, 0.7)',
                     borderColor: 'rgb(213, 166, 189)',
@@ -1141,7 +1182,7 @@ function fateEmbersCharts() {
                 {
                     label: 'Selection Legendary Card Pack',
                     data: [
-                        0, 0, 0, 0, nbfateember('SelectLeg_CardPack') + nbfateember('Selection Legendary Card Pack')
+                        0, 0, 0, 0, nbfateember('Selection Legendary Card Pack')
                     ],
                     backgroundColor: 'rgba(213, 166, 189, 0.8)',
                     borderColor: 'rgb(213, 166, 189)',
@@ -1198,11 +1239,11 @@ function fateEmbersCharts() {
             datasets: [{
                 label: 'Fate Embers',
                 data: [
-                    ((nbfateember('500K_Silver') * 0.5) + nbfateember('1M_Silver') + (nbfateember('2M_Silver') * 2)),
-                    ((nbfateember('1500_Gold') * 0.15) + (nbfateember('3K_Gold') * 0.3) + nbfateember('10K_Gold') + (nbfateember('20K_Gold') * 2) + (nbfateember('50K_Gold') * 5) + (nbfateember('100K_Gold') * 10)),
-                    (nbfateember('normal_xpcardpack') + (nbfateember('lucky_xpcardpack') * 2) + (nbfateember('special_xpcardpack') * 3) + (nbfateember('premium_xpcardpack') * 5)),
-                    ((nbfateember('S_Honingchest') * 0.5) + (nbfateember('M_Honingchest') * 1) + (nbfateember('L_Honingchest') * 2)),
-                    nbfateember('Epic_CardPack') + nbfateember('RandomLeg_CardPack') + nbfateember('SelectLeg_CardPack')
+                    ((nbfateember('500K Silver') * 0.5) + nbfateember('1M Silver') + (nbfateember('2M Silver') * 2)),
+                    ((nbfateember('1500 Golds') * 0.15) + (nbfateember('3K Golds') * 0.3) + nbfateember('10K Golds') + (nbfateember('20K Golds') * 2) + (nbfateember('50K Golds') * 5) + (nbfateember('100K Golds') * 10)),
+                    (nbfateember('Normal Xp Card Pack') + (nbfateember('Lucky Xp Card Pack') * 2) + (nbfateember('Special Xp Card Pack') * 3) + (nbfateember('Premium Xp Card Pack') * 5)),
+                    ((nbfateember('S Honing Chest') * 0.5) + (nbfateember('M Honing Chest') * 1) + (nbfateember('L Honing Chest') * 2)),
+                    nbfateember('Epic Card Pack') + nbfateember('Random Legendary Card Pack') + nbfateember('Selection Legendary Card Pack')
                 ],
                 backgroundColor: [
                     'rgba(217, 217, 217, 0.5)',
@@ -1304,7 +1345,7 @@ function fateEmbersStats() {
     db.get("settings.fate_embers.cards_stats.types").value().forEach(function (c, i) {
         let total = 0;
 
-        c.liste_type.forEach(function(t, i) {
+        c.liste_type.forEach(function (t, i) {
             total += nbfateember(t);
         });
 
@@ -1407,29 +1448,46 @@ $(document).on('click', '#add_fate_ember', function () {
 // -------------------------------------------------------------------------------------------------------------
 // --- EVENTS --------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
+function sidebar_events() {
+    let objectifs = (db.get("events").value()) ? db.get("events").value() : null;
+    let doing = 0;
+    let done = 0;
+
+    if (objectifs.length > 0) {
+        objectifs.forEach(function (objectif, i) {
+            if (objectif.statut != 'done') doing++;
+            else done++;
+        });
+    }
+
+    $('#sidebar-events-data').html(`- Goals ${done} / ${doing + done}`);
+}
+
 function events() {
     $('.events-wrapper').html('');
 
     // Timeline
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 1 / 7; grid-row: 1 / 11;"><div id="timeline_objectifs" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 11;"><div id="timeline_objectifs" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Formulaire
-    $('.events-wrapper').append(`<div id="events_form" class="card-content" style="grid-column: 7 / 17; grid-row: 1 / 2;"></div>`);
+    $('.events-wrapper').append(`<div id="events_form" class="card-content" style="grid-column: 5 / 17; grid-row: 1 / 2;"></div>`);
 
     // Objectifs
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 17; grid-row: 2 / 5;"><div id="events_objectifs" class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 17; grid-row: 2 / 5;"><div id="events_objectifs" class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Persos
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 5 / 7;"></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 7 / 9;"></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 9 / 11;"></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 5 / 7;"></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 7 / 9;"></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 9 / 11;"></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 5 / 7;"><div id="perso1-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 7 / 9;"><div class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 9 / 11;"><div class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 5 / 7;"><div class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 7 / 9;"><div class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 9 / 11;"><div class="perso-wrapper"></div></div>`);
 
+    sidebar_events();
     eventsFormulaire();
     objectifs();
     timeline();
+    eventsPerso('Jeresayaya');
 }
 
 function eventsFormulaire() {
@@ -1490,7 +1548,7 @@ $(document).on('click', '#add_events', function () {
     }
 
     db.get("events").push(event).save();
-    
+
     events();
 });
 
@@ -1506,7 +1564,7 @@ function objectifs() {
         });
 
         objectifs.forEach(function (objectif, i) {
-            if(objectif.statut != 'done') html += `<div class="card-objectif pointer" data-id="${objectif.description}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
+            if (objectif.statut != 'done') html += `<div class="card-objectif pointer" data-id="${objectif.description}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
         });
 
         $('#events_objectifs').html(html);
@@ -1517,7 +1575,7 @@ function objectifs() {
 
 function timeline() {
     let objectifs = (db.get("events").value()) ? db.get("events").value() : null;
-    
+
     if (objectifs.length > 0) {
         let html = '';
 
@@ -1526,7 +1584,7 @@ function timeline() {
         });
 
         objectifs.forEach(function (objectif, i) {
-            if(objectif.statut == 'done') html += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
+            if (objectif.statut == 'done') html += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
         });
 
         $('#timeline_objectifs').html(html);
@@ -1537,7 +1595,7 @@ function timeline() {
 
 $(document).on('click', '.card-objectif', function () {
     let id = $(this).data('id');
-    
+
     console.log(id);
 
     let index = db.get("events").value().findIndex((t) => t.description == id);
@@ -1562,6 +1620,28 @@ $(document).on('click', '.card-objectif', function () {
 
     events();
 });
+
+function eventsPerso(name) { 
+    let perso = db.get("persos").value().find((t) => t.name == name);
+
+    console.log(perso)
+
+    let html_effets_bracelet = '';
+
+    perso.bracelet.effets.forEach(function (effet, i) {
+        html_effets_bracelet += `<span style="font-size: 12px;">${effet.name}&nbsp;-&nbsp;Valeur ${effet.value}&nbsp;-&nbsp;Tier ${effet.tier}</span>`;
+    });
+
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.logo}" /><span>${perso.name}</span><span>${perso.ilevel}</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_11_146.webp" /><span>${perso.elixir.point} Points</span><span>Gain<br>${perso.elixir.gain} %</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_65.webp" /><span>${perso.gemme.cdr} avg</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_55.webp" /><span>${perso.gemme.dmg} avg</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/sdm_item_136.webp" /><span>+${perso.gear.weapon.level}</span><span>Quality ${perso.gear.weapon.quality}</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/sdm_item_78.webp" /><span>Min ${perso.gear.armor.quality.min}</span><span>Avg ${perso.gear.armor.quality.mean}</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/acc_304.webp" /><span>Gain ${perso.bracelet.gain} %</span></div></div>`);
+    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 2 / 4;"><div style="flex: 1;display: flex;justify-content: center;flex-direction: column;align-items: center;height: 100%;">${html_effets_bracelet}</div></div>`);
+    
+}
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -1575,10 +1655,13 @@ function planning() {
     $('.planning-wrapper').html('');
 
     // Programmed Raids
-    $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 4; grid-row: 1 / 11;"></div>`);
+    $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 7;"><div id="planning-raids" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    
+    // Formulaire
+    $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 7 / 11;"></div>`);
 
     // Calendar
-    $('.planning-wrapper').append(`<div class="card-content d-flex align-items-center" style="grid-column: 4 / 17; grid-row: 1 / 11;"><div id="calendar_div" class="flex-grow-1"></div></div>`);
+    $('.planning-wrapper').append(`<div class="card-content d-flex align-items-center" style="grid-column: 5 / 17; grid-row: 1 / 11;"><div id="calendar_div" class="flex-grow-1"></div></div>`);
 
     // Events for calendar
     let events = (db.get("planning.events").value()) ? db.get("planning.events").value() : null;
@@ -1587,7 +1670,7 @@ function planning() {
     events.forEach(function (e, i) {
         calendarEvents.push({
             'id': e.id,
-            'title': {html: `<p style="font-size: 20px;font-family: comfortaa;font-weight: 900;">${e.title}</p>`},
+            'title': { html: `<p style="font-size: 20px;font-family: comfortaa;font-weight: 900;">${e.title}</p>` },
             'start': new Date(e.start),
             'end': new Date(e.end),
             'backgroundColor': e.backgroundColor,
@@ -1607,6 +1690,61 @@ function planning() {
         slotHeight: 48,
         events: calendarEvents
     });
+
+    sidebar_planning();
+    planningRaids();
+}
+
+function sidebar_planning() {
+    let events = (db.get("planning.events").value()) ? db.get("planning.events").value() : null;
+    let done = 0
+
+    events.forEach(function (e, i) {
+        if (new Date() > new Date(e.start)) done++;
+    });
+
+    $('#sidebar-planning-data').html(`- Raids ${done} / ${events.length}`);
+}
+
+function planningRaids() {
+    let config_raids = db.get("settings.dashboard.liste_raids").value();
+    let raids_name_type = [];
+    let html_ok = '';
+    let html_ko = '';
+    $('#planning-raids').html('');
+
+    config_raids.forEach(function (cr, i) {
+        raids_name_type.push(cr.name);
+    });
+
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.done < t.repet && raids_name_type.includes(t.type));
+
+    tasks.sort(function (a, b) {
+        return a.tache_name - b.tache_name;
+    });
+
+    tasks.forEach(function (task, i) {
+        let taskrestriction = db.get("dashboard").value().find((t) => t.id == task.restriction);
+
+        if (task.done > 0 || task.restriction === undefined || (task.restriction !== undefined && taskrestriction.done !== taskrestriction.repet)) {
+            console.log(task);
+
+            let event = db.get("planning.events").value().find((t) => t.raid == task.id);
+
+            if (event) {
+                html_ok += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+            } else {
+                html_ko += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+            }
+        }
+    });
+    
+    $('#planning-raids').html(`
+        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>
+            ${html_ok}
+        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Non Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>
+            ${html_ko}
+    `);
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
