@@ -241,12 +241,21 @@ th {
 
 .card-objectif {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #2F58CD;
+    background-color: #014b89;
     border-radius: 6px;
     color: #a1a1a1;
     padding: 2px 8px;
     font-family: comfortaa;
     font-size: 24px;
+    font-weight: 900;
+}
+
+.card-timeline {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 6px;
+    background-color: #00651F;
+    padding: 4px 8px;
+    font-family: comfortaa;
     font-weight: 900;
 }
 

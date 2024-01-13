@@ -2723,9 +2723,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 12,
+            "count": 16,
             "revenu": 9000,
             "cout": -3500,
             "color": "#B535F1",
@@ -2819,9 +2819,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 12,
+            "count": 16,
             "revenu": 9000,
             "cout": -3500,
             "color": "#B535F1",
@@ -3011,9 +3011,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 57,
+            "count": 60,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3076,9 +3076,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 2,
-            "count": 64,
+            "count": 65,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3325,9 +3325,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 35,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -4159,9 +4159,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 26,
+            "count": 27,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -6125,6 +6125,78 @@
         }
     ],
     "gold_income": [
+        {
+            "type": "Achat",
+            "description": "Gem Stone LVL 4",
+            "categorie": "depense",
+            "perso": "Jeresbard",
+            "montant": -6000,
+            "date": "Fri Jan 12 2024 21:27:43 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Ivory Tower of Chaos NM",
+            "categorie": "depense",
+            "perso": "Imanyrae",
+            "montant": -3500,
+            "date": "Fri Jan 12 2024 21:01:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos NM",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 9000,
+            "date": "Fri Jan 12 2024 21:01:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Ivory Tower of Chaos NM",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -3500,
+            "date": "Fri Jan 12 2024 20:15:34 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos NM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 9000,
+            "date": "Fri Jan 12 2024 20:15:34 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Elixir",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -3000,
+            "date": "Fri Jan 12 2024 19:26:06 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 10000,
+            "date": "Fri Jan 12 2024 19:25:52 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de akkan HM",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -4500,
+            "date": "Fri Jan 12 2024 19:25:47 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Vente Oreha",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 9000,
+            "date": "Fri Jan 12 2024 16:51:41 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "type": "Achat",
             "description": "Restore craft kit",
@@ -8821,12 +8893,12 @@
             "date": "Fri Nov 24 2023 19:59:47 GMT+0100 (heure normale d’Europe centrale)"
         },
         {
-            "type": "Oreha",
-            "description": "Vente Oreha",
-            "categorie": "revenu",
-            "perso": "Roster",
-            "montant": 9000,
-            "date": "Fri Jan 12 2024 16:51:41 GMT+0100 (heure normale d’Europe centrale)"
+            "type": "Elixir",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jeresakura",
+            "montant": -3000,
+            "date": "Fri Jan 12 2024 22:43:39 GMT+0100 (heure normale d’Europe centrale)"
         }
     ],
     "gold_histo": [
@@ -10564,9 +10636,54 @@
             "date": "2024-01-12T15:51:41.445Z",
             "label": "12/01/2024 16:51:41",
             "gold": 900797
+        },
+        {
+            "date": "2024-01-12T18:25:47.668Z",
+            "label": "12/01/2024 19:25:47",
+            "gold": 896297
+        },
+        {
+            "date": "2024-01-12T18:25:52.307Z",
+            "label": "12/01/2024 19:25:52",
+            "gold": 906297
+        },
+        {
+            "date": "2024-01-12T18:26:06.174Z",
+            "label": "12/01/2024 19:26:06",
+            "gold": 903297
+        },
+        {
+            "date": "2024-01-12T19:15:34.579Z",
+            "label": "12/01/2024 20:15:34",
+            "gold": 912297
+        },
+        {
+            "date": "2024-01-12T19:15:34.587Z",
+            "label": "12/01/2024 20:15:34",
+            "gold": 908797
+        },
+        {
+            "date": "2024-01-12T20:01:02.785Z",
+            "label": "12/01/2024 21:01:02",
+            "gold": 917797
+        },
+        {
+            "date": "2024-01-12T20:01:02.794Z",
+            "label": "12/01/2024 21:01:02",
+            "gold": 914297
+        },
+        {
+            "date": "2024-01-12T20:27:43.786Z",
+            "label": "12/01/2024 21:27:43",
+            "gold": 908297
+        },
+        {
+            "date": "2024-01-12T21:43:39.134Z",
+            "label": "12/01/2024 22:43:39",
+            "gold": 905297
         }
     ],
-    "gold": 900797,
+    "gold": 905297,
     "events": [
         {
             "perso": "Jeresayaya",
@@ -10767,14 +10884,16 @@
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
-                        "max": 100,
-                        "mean": 50
-                    }
+                        "min": 72,
+                        "max": 94,
+                        "mean": 84
+                    },
+                    "image": "images/sdm_item_78.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 98,
+                    "level": 22,
+                    "image": "images/sdm_item_136.webp"
                 }
             },
             "bracelet": {
@@ -10812,8 +10931,8 @@
             "logo": "images/class_bard.png",
             "ilevel": 1620,
             "elixir": {
-                "point": 30,
-                "gain": 0
+                "point": 34,
+                "gain": 1.48
             },
             "gemme": {
                 "cdr": 9.5,
@@ -10822,15 +10941,52 @@
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
-                        "max": 100,
-                        "mean": 50
-                    }
+                        "min": 81,
+                        "max": 95,
+                        "mean": 88.8
+                    },
+                    "image": "images/sm_item_01_169.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 98,
+                    "level": 19,
+                    "image": "images/sm_item_01_172.webp"
                 }
+            },
+            "bracelet": {
+                "effets": [
+                    {
+                        "name": "Swiftness",
+                        "description": "",
+                        "tier": "S",
+                        "value": 79
+                    },
+                    {
+                        "name": "Specialization",
+                        "description": "",
+                        "tier": "S",
+                        "value": 85
+                    },
+                    {
+                        "name": "Intelligence",
+                        "description": "",
+                        "tier": "S",
+                        "value": 3650
+                    },
+                    {
+                        "name": "MP Recovery",
+                        "description": "",
+                        "tier": "A",
+                        "value": 175
+                    },
+                    {
+                        "name": "Cheers",
+                        "description": "",
+                        "tier": "A",
+                        "value": "0.9%"
+                    }
+                ],
+                "gain": 1.70
             },
             "page_gold_div_rentabilite": "gold_income_jeresunshine"
         },
@@ -10845,7 +11001,7 @@
             "ilevel": 1620,
             "elixir": {
                 "point": 40,
-                "gain": 0
+                "gain": 3.2
             },
             "gemme": {
                 "cdr": 9.5,
@@ -10854,15 +11010,46 @@
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
-                        "max": 100,
-                        "mean": 50
-                    }
+                        "min": 72,
+                        "max": 95,
+                        "mean": 77.8
+                    },
+                    "image": "images/sm_item_01_169.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 56,
+                    "level": 19,
+                    "image": "images/sm_item_01_172.webp"
                 }
+            },
+            "bracelet": {
+                "effets": [
+                    {
+                        "name": "Swiftness",
+                        "description": "",
+                        "tier": "S",
+                        "value": 70
+                    },
+                    {
+                        "name": "Intelligence",
+                        "description": "",
+                        "tier": "S",
+                        "value": 2525
+                    },
+                    {
+                        "name": "MP Recovery",
+                        "description": "",
+                        "tier": "A",
+                        "value": 200
+                    },
+                    {
+                        "name": "Expose Weakness",
+                        "description": "",
+                        "tier": "S",
+                        "value": "-1.8%"
+                    }
+                ],
+                "gain": 1.69
             },
             "page_gold_div_rentabilite": "gold_income_jeresbard"
         },
@@ -10876,25 +11063,56 @@
             "logo": "images/class_aeromancer.png",
             "ilevel": 1610,
             "elixir": {
-                "point": 0,
-                "gain": 0
+                "point": 24,
+                "gain": 5.94
             },
             "gemme": {
-                "cdr": 9.5,
-                "dmg": 0
+                "cdr": 8,
+                "dmg": "9 (2x10)"
             },
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
+                        "min": 81,
                         "max": 100,
-                        "mean": 50
-                    }
+                        "mean": 92.4
+                    },
+                    "image": "images/smw_item_57.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 86,
+                    "level": 18,
+                    "image": "images/smw_item_126.webp"
                 }
+            },
+            "bracelet": {
+                "effets": [
+                    {
+                        "name": "Crit",
+                        "description": "",
+                        "tier": "S",
+                        "value": 119
+                    },
+                    {
+                        "name": "Swiftness",
+                        "description": "",
+                        "tier": "S",
+                        "value": 70
+                    },
+                    {
+                        "name": "Intelligence",
+                        "description": "",
+                        "tier": "S",
+                        "value": 2900
+                    },
+                    {
+                        "name": "Precise Crit Hit",
+                        "description": "",
+                        "tier": "A",
+                        "value": "5%"
+                    }
+                ],
+                "gain": 6.65
             },
             "page_gold_div_rentabilite": "gold_income_jerescelestia"
         },
@@ -10908,8 +11126,8 @@
             "logo": "images/class_bard.png",
             "ilevel": 1610,
             "elixir": {
-                "point": 0,
-                "gain": 0
+                "point": 15,
+                "gain": 0.79
             },
             "gemme": {
                 "cdr": 9.5,
@@ -10918,15 +11136,46 @@
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
-                        "max": 100,
-                        "mean": 50
-                    }
+                        "min": 73,
+                        "max": 91,
+                        "mean": 79.6
+                    },
+                    "image": "images/sm_item_01_169.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 85,
+                    "level": 17,
+                    "image": "images/sm_item_01_172.webp"
                 }
+            },
+            "bracelet": {
+                "effets": [
+                    {
+                        "name": "Swiftness",
+                        "description": "",
+                        "tier": "S",
+                        "value": 90
+                    },
+                    {
+                        "name": "Specialization",
+                        "description": "",
+                        "tier": "S",
+                        "value": 94
+                    },
+                    {
+                        "name": "Intelligence",
+                        "description": "",
+                        "tier": "S",
+                        "value": 2575
+                    },
+                    {
+                        "name": "Dagger",
+                        "description": "",
+                        "tier": "S",
+                        "value": "-2.1%"
+                    }
+                ],
+                "gain": 1.91
             },
             "page_gold_div_rentabilite": "gold_income_jeresakura"
         },
@@ -10940,25 +11189,62 @@
             "logo": "images/class_sorceress.png",
             "ilevel": 1610,
             "elixir": {
-                "point": 0,
-                "gain": 0
+                "point": 8,
+                "gain": 3.44
             },
             "gemme": {
-                "cdr": 9.5,
-                "dmg": 0
+                "cdr": 8.4,
+                "dmg": 9
             },
             "gear": {
                 "armor": {
                     "quality": {
-                        "min": 0,
+                        "min": 81,
                         "max": 100,
-                        "mean": 50
-                    }
+                        "mean": 89.2
+                    },
+                    "image": "images/mem_item_183.webp"
                 },
                 "weapon": {
-                    "quality": 90,
-                    "level": 19
+                    "quality": 95,
+                    "level": 18,
+                    "image": "images/mem_item_185.webp"
                 }
+            },
+            "bracelet": {
+                "effets": [
+                    {
+                        "name": "Crit",
+                        "description": "",
+                        "tier": "S",
+                        "value": 85
+                    },
+                    {
+                        "name": "Swiftness",
+                        "description": "",
+                        "tier": "S",
+                        "value": 91
+                    },
+                    {
+                        "name": "Intelligence",
+                        "description": "",
+                        "tier": "S",
+                        "value": 4875
+                    },
+                    {
+                        "name": "Vitality",
+                        "description": "",
+                        "tier": "S",
+                        "value": 3675
+                    },
+                    {
+                        "name": "Dagger",
+                        "description": "",
+                        "tier": "S",
+                        "value": "-1.8%"
+                    }
+                ],
+                "gain": 5.85
             },
             "page_gold_div_rentabilite": "gold_income_imanyrae"
         },

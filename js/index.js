@@ -25,7 +25,7 @@ function setScrollPos(div) {
     let index = scroll_position.findIndex((s) => s.div == div);
 
     if (scroll) scroll_position[index].scrollTop = document.getElementById(div).scrollTop;
-    else scroll_position.push({ div: div, scrollTop: document.getElementById(div).scrollTop});
+    else scroll_position.push({ div: div, scrollTop: document.getElementById(div).scrollTop });
 }
 
 function getScrollPos(div) {
@@ -673,6 +673,19 @@ $(document).on('click', '#update_gold_income', function () {
     gold();
 });
 
+$(document).on('keyup', '#gold_histo_search', function () {
+    let search = $(this).val();
+    
+    if (search.length >= 3) {
+        $("#historique_gold_income .goldhisto").hide();
+        $(`#historique_gold_income .goldhisto span:contains('${search}')`).parent().show();
+    }
+
+    if (search.length == 0) {
+        $("#historique_gold_income .goldhisto").show();
+    }
+});
+
 function goldHistorique() {
     let gold_incomes = (db.get("gold_income").value()) ? db.get("gold_income").value() : null;
 
@@ -695,10 +708,15 @@ function goldHistorique() {
                 color = 'FFF';
             }
 
-            html += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: x-large;">${gold_income.montant > 0 ? '+' : ''}${new Intl.NumberFormat('fr-FR').format(gold_income.montant)} Golds</span><span>${gold_income.type}</span>${gold_income.description ? `<span>${gold_income.description}</span>` : ''}<span style="color: #a1a1a1;">${gold_income.perso}</span><span style="color: #a1a1a1;">le ${new Date(gold_income.date).toLocaleDateString()}</span></div>`;
+            html += `<div class="histo-task goldhisto" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: x-large;">${gold_income.montant > 0 ? '+' : ''}${new Intl.NumberFormat('fr-FR').format(gold_income.montant)} Golds</span><span>${gold_income.type}</span>${gold_income.description ? `<span>${gold_income.description}</span>` : ''}<span style="color: #a1a1a1;">${gold_income.perso}</span><span style="color: #a1a1a1;">le ${new Date(gold_income.date).toLocaleDateString()}</span></div>`;
         });
 
-        $('#historique_gold_income').html(html);
+        $('#historique_gold_income').html(`
+            <div style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;">
+                <input class="form-control" id="gold_histo_search" style="background-color: #202020;color: white;" placeholder="Search">
+            </div>
+            ${html}
+        `);
     } else {
         $('#historique_gold_income').html('');
     }
@@ -785,8 +803,6 @@ function goldRentabilitePerso() {
     let gold_incomes_groupby_persos = Object.groupBy(gold_incomes, ({ perso }) => perso);
     let gold_incomes_group_total = [];
 
-    console.log(gold_incomes_groupby_persos);
-
     Object.entries(gold_incomes_groupby_persos).forEach(function (gold_income_group, i) {
         let total = 0;
 
@@ -797,12 +813,8 @@ function goldRentabilitePerso() {
         gold_incomes_group_total.push({ "perso": gold_income_group[0], "montant": total });
     });
 
-    console.log(gold_incomes_group_total);
-    console.log(list_perso)
-
     gold_incomes_group_total.forEach(function (g, i) {
         let perso = list_perso.find((p) => p.name == g.perso);
-        console.log(perso)
 
         $(`#${perso.page_gold_div_rentabilite}`).html(`
             <div class="head-task" style="flex: 1;display: flex;justify-content: center;flex-direction: row;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 40%;max-height: 40%;gap: 20px;"><img src="${perso.logo}"><div style="display: flex; flex-direction: column; justify-content: center;">${perso.name} ${perso.ilevel}</span></div></div>
@@ -948,7 +960,7 @@ function fateEmbersHistorique() {
                 color = '000';
             }
 
-            html += `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: 20px;">${fate_ember.type}</span><span style="color: #a1a1a1;">${fate_ember.perso}</span><span style="color: #a1a1a1;">le ${new Date(fate_ember.date).toLocaleDateString()}</span></div>`;
+            html += `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: 20px;">${fate_ember.type}</span><span style="color: #a1a1a1;">${fate_ember.perso}</span><span style="color: #a1a1a1;">Le ${new Date(fate_ember.date).toLocaleDateString()}</span></div>`;
         });
 
         $('#historique_fate_ember').html(html);
@@ -1477,17 +1489,22 @@ function events() {
 
     // Persos
     $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 5 / 7;"><div id="perso1-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 7 / 9;"><div class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 9 / 11;"><div class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 5 / 7;"><div class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 7 / 9;"><div class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 9 / 11;"><div class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 7 / 9;"><div id="perso2-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 9 / 11;"><div id="perso3-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 5 / 7;"><div id="perso4-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 7 / 9;"><div id="perso5-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 9 / 11;"><div id="perso6-wrapper" class="perso-wrapper"></div></div>`);
 
     sidebar_events();
     eventsFormulaire();
     objectifs();
     timeline();
-    eventsPerso('Jeresayaya');
+    eventsPerso('Jeresayaya', 'perso1');
+    eventsPerso('Jeresunshine', 'perso4');
+    eventsPerso('Jeresbard', 'perso2');
+    eventsPerso('Jerescelestia', 'perso3');
+    eventsPerso('Jeresakura', 'perso5');
+    eventsPerso('Imanyrae', 'perso6');
 }
 
 function eventsFormulaire() {
@@ -1575,6 +1592,8 @@ function objectifs() {
 
 function timeline() {
     let objectifs = (db.get("events").value()) ? db.get("events").value() : null;
+    let months = [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" ];
+    let month = null;
 
     if (objectifs.length > 0) {
         let html = '';
@@ -1584,7 +1603,14 @@ function timeline() {
         });
 
         objectifs.forEach(function (objectif, i) {
-            if (objectif.statut == 'done') html += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
+            let objectif_month = months[new Date(objectif.date).getMonth()];
+            
+            if (!month || month != objectif_month) {
+                month = objectif_month;
+                html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;background-color: #444444;text-align: center;position: sticky; top: 0;font-size: 24px;"><span><i class="fa-regular fa-calendar"></i> ${month}</span></div>`;
+            }
+
+            if (objectif.statut == 'done') html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;"><span style="color: white;">${objectif.description}</span><span style="color: #a1a1a1;">${objectif.perso} - ${objectif.categorie}</span><span style="color: #a1a1a1;">Le ${new Date(objectif.date).toLocaleDateString()}</span></div>`;
         });
 
         $('#timeline_objectifs').html(html);
@@ -1621,26 +1647,23 @@ $(document).on('click', '.card-objectif', function () {
     events();
 });
 
-function eventsPerso(name) { 
+function eventsPerso(name, div) {
     let perso = db.get("persos").value().find((t) => t.name == name);
-
-    console.log(perso)
-
     let html_effets_bracelet = '';
 
     perso.bracelet.effets.forEach(function (effet, i) {
-        html_effets_bracelet += `<span style="font-size: 12px;">${effet.name}&nbsp;-&nbsp;Valeur ${effet.value}&nbsp;-&nbsp;Tier ${effet.tier}</span>`;
+        html_effets_bracelet += `<span style="font-size: 18px;">${effet.name} ${effet.value}</span>`;
     });
 
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.logo}" /><span>${perso.name}</span><span>${perso.ilevel}</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_11_146.webp" /><span>${perso.elixir.point} Points</span><span>Gain<br>${perso.elixir.gain} %</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_65.webp" /><span>${perso.gemme.cdr} avg</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_55.webp" /><span>${perso.gemme.dmg} avg</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/sdm_item_136.webp" /><span>+${perso.gear.weapon.level}</span><span>Quality ${perso.gear.weapon.quality}</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/sdm_item_78.webp" /><span>Min ${perso.gear.armor.quality.min}</span><span>Avg ${perso.gear.armor.quality.mean}</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/acc_304.webp" /><span>Gain ${perso.bracelet.gain} %</span></div></div>`);
-    $('#perso1-wrapper').append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 2 / 4;"><div style="flex: 1;display: flex;justify-content: center;flex-direction: column;align-items: center;height: 100%;">${html_effets_bracelet}</div></div>`);
-    
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.logo}" /><span>${perso.name}</span><span>${perso.ilevel}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_11_146.webp" /><span>${perso.elixir.point} Points</span><span>Gain<br>${perso.elixir.gain} %</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_65.webp" /><span>${perso.gemme.cdr} avg</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_55.webp" /><span>${perso.gemme.dmg} avg</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.weapon.image}" /><span>+${perso.gear.weapon.level}</span><span>Quality ${perso.gear.weapon.quality}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.armor.image}" /><span>Min ${perso.gear.armor.quality.min}</span><span>Avg ${perso.gear.armor.quality.mean}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/acc_304.webp" /><span>Gain</span><span>${perso.bracelet.gain} %</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 2 / 4;"><div style="flex: 1;display: flex;justify-content: center;flex-direction: column;align-items: center;height: 100%;">${html_effets_bracelet}</div></div>`);
+
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -1656,7 +1679,7 @@ function planning() {
 
     // Programmed Raids
     $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 7;"><div id="planning-raids" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    
+
     // Formulaire
     $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 7 / 11;"></div>`);
 
@@ -1738,7 +1761,7 @@ function planningRaids() {
             }
         }
     });
-    
+
     $('#planning-raids').html(`
         <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>
             ${html_ok}
