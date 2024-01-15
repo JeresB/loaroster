@@ -287,13 +287,21 @@ function showPerso(persos, types) {
             html_tables += tr_vide;
 
             html_tables += `
-                <tr class="table-task" data-id="${task.id}" style="cursor: pointer; border-radius: 8px; background-color: ${task.reset == 'daily' ? (task.type == 'GR' ? db.get("settings.colors.GR.bg").value() : db.get("settings.colors.daily.bg").value()) : db.get("settings.colors.weekly.bg").value()};color: ${db.get("settings.colors.text").value()};">
-                    <td style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;">${task.perso}</td>
+                <style>
+                    .table-task-${task.id} {
+                        color: ${task.reset == 'daily' ? (task.type == 'GR' ? db.get("settings.colors.GR.text").value() : db.get("settings.colors.daily.text").value()) : db.get("settings.colors.weekly.text").value()};
+                    }
+                    .table-task-${task.id}:hover {
+                        background-color: #444444;
+                    }
+                </style>
+                <tr class="table-task table-task-${task.id}" data-id="${task.id}">
+                    <td style="border-top-left-radius: 6px;border-bottom-left-radius: 6px;">${task.perso}</td>
                     <td>${task.tache_name}</td>
                     <td style="text-align: center;">${task.done}</td>
                     <td style="text-align: center;">${task.repet - task.done}</td>
                     <td style="text-align: center;">${task.rest > 0 ? task.rest : ''}</td>
-                    <td style="text-align: center; border-top-right-radius: 8px;border-bottom-right-radius: 8px;">${task.duration}</td>
+                    <td style="text-align: center; border-top-right-radius: 6px;border-bottom-right-radius: 6px;">${task.duration}</td>
                 </tr>
             `;
 
@@ -304,12 +312,12 @@ function showPerso(persos, types) {
             <div class="head-task" style="flex: 1;display: flex;justify-content: center;flex-direction: row;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 16%;max-height: 16%;gap: 20px;"><img src="${persos.logo}"><div style="display: flex; flex-direction: column; justify-content: center;">${persos.name} ${persos.ilevel}</span><span>Daily todo : ${task_remaining}</span></div></div>
             <table>
                 <tr style="background-color: #a1a1a1;color: black;position: sticky;top: 92px;">
-                    <th>Perso</th>
+                    <th style="border-top-left-radius: 6px;border-bottom-left-radius: 6px;">Perso</th>
                     <th>Task</th>
-                    <th>Done</th>
-                    <th>Todo</th>
-                    <th>Rest</th>
-                    <th>Duration</th>
+                    <th style="text-align: center;">Done</th>
+                    <th style="text-align: center;">Todo</th>
+                    <th style="text-align: center;">Rest</th>
+                    <th style="text-align: center; border-top-right-radius: 6px;border-bottom-right-radius: 6px;">Duration</th>
                 </tr>
                 ${html_tables}
             </table>    
@@ -1479,22 +1487,33 @@ function events() {
     $('.events-wrapper').html('');
 
     // Timeline
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 11;"><div id="timeline_objectifs" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 4 / 7; grid-row: 1 / 11;"><div id="timeline_objectifs" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Formulaire
-    $('.events-wrapper').append(`<div id="events_form" class="card-content" style="grid-column: 5 / 17; grid-row: 1 / 2;"></div>`);
+    $('.events-wrapper').append(`<div id="events_form" class="card-content" style="grid-column: 7 / 17; grid-row: 1 / 2;"></div>`);
 
     // Objectifs
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 17; grid-row: 2 / 5;"><div id="events_objectifs" class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 1 / 4; grid-row: 1 / 11;"><div id="events_objectifs" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Persos
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 5 / 7;"><div id="perso1-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 7 / 9;"><div id="perso2-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 5 / 11; grid-row: 9 / 11;"><div id="perso3-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 5 / 7;"><div id="perso4-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 7 / 9;"><div id="perso5-wrapper" class="perso-wrapper"></div></div>`);
-    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 11 / 17; grid-row: 9 / 11;"><div id="perso6-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 2 / 5;"><div id="perso1-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 5 / 8;"><div id="perso2-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 7 / 12; grid-row: 8 / 11;"><div id="perso3-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 2 / 5;"><div id="perso4-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 5 / 8;"><div id="perso5-wrapper" class="perso-wrapper"></div></div>`);
+    $('.events-wrapper').append(`<div class="card-content" style="grid-column: 12 / 17; grid-row: 8 / 11;"><div id="perso6-wrapper" class="perso-wrapper"></div></div>`);
 
+    $('#image-perso').bind('mousewheel', function (e) {
+        if (e.originalEvent.wheelDelta / 120 > 0) {
+            if (index_perso > 0) index_perso--;
+        }
+        else {
+            if (index_perso < list_perso.length - 1) index_perso++;
+        }
+
+        list_perso[index_perso] ? showPerso(list_perso[index_perso], db.get("settings").value().dashboard.liste_types_taches_focus_on_carateres) : null;
+    });
+    
     sidebar_events();
     eventsFormulaire();
     objectifs();
@@ -1546,6 +1565,16 @@ function eventsFormulaire() {
             <input id="events_description" class="form-control flex-grow-1"
                 style="background-color: #202020;color: white;" placeholder="Description">
 
+            <input id="events_max" type="number" class="form-control flex-grow-1"
+                style="background-color: #202020;color: white;" placeholder="Nombre d'&eacute;tapes">
+
+            <input id="events_prio" type="number" class="form-control"
+                style="background-color: #202020;color: white;" placeholder="Priorit&eacute;">
+            
+            <div class="form-check" style="margin-bottom: 0px;">
+                <input id="events_expensive" title="Expensive ?" class="form-check-input" type="checkbox" style="width: 2.2em;height: 100%;margin-top: 0em;">
+            </div>
+
             <button id="add_events" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter</button>
         </div>
     `);
@@ -1555,12 +1584,19 @@ $(document).on('click', '#add_events', function () {
     let perso = $('#events_perso').val();
     let categorie = $('#events_categorie').val();
     let description = $('#events_description').val();
+    let max = $('#events_max').val();
+    let prio = $('#events_prio').val();
+    let expensive = $('#events_expensive').is(":checked");
 
     let event = {
         'perso': perso,
         'categorie': categorie,
         'description': description,
         'statut': 'todo',
+        'compteur': 0,
+        'max': parseInt(max),
+        'priority': parseInt(prio),
+        'expensive': expensive,
         'date': new Date().toString()
     }
 
@@ -1571,17 +1607,49 @@ $(document).on('click', '#add_events', function () {
 
 function objectifs() {
     let objectifs = (db.get("events").value()) ? db.get("events").value() : null;
-    console.log(objectifs)
+    let categorie = null;
+    let top_priority = 1;
+    // console.log(objectifs)
 
     if (objectifs.length > 0) {
         let html = '';
+        let gold_saved = true;
+
+        let last_reset = moment(db.get("resetWeekly").value(), 'DD-MM-YYYY').toDate();
+        let gold_histo_last_reset = db.get("gold_histo").value().find(function (h) { return new Date(h.date) >= last_reset });
+
+        if (!gold_histo_last_reset) gold_histo_last_reset = db.get("gold_histo").value().findLast((g) => true);
+        if (gold_histo_last_reset.gold > db.get("gold").value()) gold_saved = false;
 
         objectifs.sort(function (a, b) {
-            return new Date(b.date) - new Date(a.date) || a.type.localeCompare(b.type) || b.perso - a.perso;
+            return b.priority - a.priority || a.categorie.localeCompare(b.categorie) || a.perso.localeCompare(b.perso);
+        });
+
+        objectifs.forEach(function (o, i) {
+            if (o.priority > top_priority && o.expensive) top_priority = o.priority;
         });
 
         objectifs.forEach(function (objectif, i) {
-            if (objectif.statut != 'done') html += `<div class="card-objectif pointer" data-id="${objectif.description}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span>${objectif.perso}</span><span>${objectif.categorie}</span><span>${objectif.description}</span></div>`;
+            if (objectif.statut != 'done') {
+                let can_be_done = objectif.expensive && gold_saved || !objectif.expensive || objectif.priority == top_priority;
+
+                if (!categorie || categorie != objectif.categorie) {
+                    categorie = objectif.categorie;
+                    html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;background-color: #444444;text-align: center;position: sticky; top: 0;font-size: 24px;"><span><i class="fa-solid fa-list"></i> ${categorie}</span></div>`;
+                }
+
+                html += `<div class="card-timeline objectif_todo ${can_be_done ? 'pointer' : ''}" ${can_be_done ? `data-id="${objectif.description}"` : ''} style="display: flex;justify-content: center;flex-direction: column;background-color: ${can_be_done ? '#014b89' : '#652222'};">
+                            <span style="color: white;"><span style="float: right;"><i class="fa-solid fa-arrow-up" data-prio="up" data-id="${objectif.description}" style="background-color: #a1a1a1;padding: 2px;color: black;border-radius: 4px;"></i> <i class="fa-solid fa-arrow-down" data-prio="down" data-id="${objectif.description}" style="background-color: #a1a1a1;padding: 2px;color: black;border-radius: 4px;"></i></span>${objectif.description}</span>
+                            <span>${objectif.perso} - ${objectif.categorie}</span>
+                            <span style="white-space: nowrap; overflow-x: hidden;">Priorit&eacute; ${objectif.priority}</span>
+                            <span style="white-space: nowrap; overflow-x: hidden;">${objectif.max > 0 ? `${objectif.compteur} / ${objectif.max}` : `Compteur <i class="fa-solid fa-arrow-right"></i> ${objectif.compteur}`}</span>
+                            ${objectif.max > 0 ? `
+                                <div class="progress" style="margin-bottom: 6px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${(objectif.compteur * 100) / objectif.max}%"></div>
+                                </div>
+                            ` : ''}
+                        </div>`;
+            }
         });
 
         $('#events_objectifs').html(html);
@@ -1599,18 +1667,20 @@ function timeline() {
         let html = '';
 
         objectifs.sort(function (a, b) {
-            return new Date(b.date) - new Date(a.date) || a.type.localeCompare(b.type) || b.perso - a.perso;
+            return new Date(b.date) - new Date(a.date) || a.categorie.localeCompare(b.categorie) || a.perso.localeCompare(b.perso);
         });
 
         objectifs.forEach(function (objectif, i) {
-            let objectif_month = months[new Date(objectif.date).getMonth()];
+            if (objectif.statut == 'done') {
+                let objectif_month = months[new Date(objectif.date).getMonth()];
             
-            if (!month || month != objectif_month) {
-                month = objectif_month;
-                html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;background-color: #444444;text-align: center;position: sticky; top: 0;font-size: 24px;"><span><i class="fa-regular fa-calendar"></i> ${month}</span></div>`;
-            }
+                if (!month || month != objectif_month) {
+                    month = objectif_month;
+                    html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;background-color: #444444;text-align: center;position: sticky; top: 0;font-size: 24px;"><span><i class="fa-regular fa-calendar"></i> ${month}</span></div>`;
+                }
 
-            if (objectif.statut == 'done') html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;"><span style="color: white;">${objectif.description}</span><span style="color: #a1a1a1;">${objectif.perso} - ${objectif.categorie}</span><span style="color: #a1a1a1;">Le ${new Date(objectif.date).toLocaleDateString()}</span></div>`;
+                html += `<div class="card-timeline" style="display: flex;justify-content: center;flex-direction: column;"><span style="color: white;">${objectif.description}</span><span style="color: #a1a1a1;">${objectif.perso} - ${objectif.categorie}</span><span style="color: #a1a1a1;">Accomplis le ${new Date(objectif.date).toLocaleDateString()}</span></div>`;
+            }
         });
 
         $('#timeline_objectifs').html(html);
@@ -1619,22 +1689,59 @@ function timeline() {
     }
 }
 
-$(document).on('click', '.card-objectif', function () {
+$(document).on('click mousewheel', '.fa-solid', function (e) {
+    e.stopPropagation();
+
     let id = $(this).data('id');
-
-    console.log(id);
-
     let index = db.get("events").value().findIndex((t) => t.description == id);
     let event = db.get("events").value().find((t) => t.description == id);
 
     if (event) {
-        console.log(event)
-        console.log(index)
+        if ($(this).data('prio') == 'up') {
+            db.get("events")
+                .get(index)
+                .get('priority')
+                .set(event.priority + 1);
+        } else if ($(this).data('prio') == 'down') {
+            db.get("events")
+                .get(index)
+                .get('priority')
+                .set(event.priority - 1);
+        }
 
-        db.get("events")
-            .get(index)
-            .get('statut')
-            .set('done');
+        db.save();
+    }
+
+    events();
+});
+
+$(document).on('click mousewheel', '.objectif_todo', function (e) {
+    let id = $(this).data('id');
+    let index = db.get("events").value().findIndex((t) => t.description == id);
+    let event = db.get("events").value().find((t) => t.description == id);
+
+    if (event) {
+        if (e.which === 1) {
+            db.get("events")
+                .get(index)
+                .get('statut')
+                .set('done');
+            
+            db.get("events")
+                .get(index)
+                .get('compteur')
+                .set(event.max == 0 ? event.compteur + 1 : event.compteur >= event.max ? event.max : event.compteur + 1);
+        } else if (e.originalEvent.wheelDelta / 120 > 0) {
+            db.get("events")
+                .get(index)
+                .get('compteur')
+                .set(event.max == 0 ? event.compteur + 1 : event.compteur >= event.max ? event.max : event.compteur + 1);
+        } else {
+            db.get("events")
+                .get(index)
+                .get('compteur')
+                .set(event.compteur > 0 ? event.compteur - 1 : 0);
+        }
 
         db.get("events")
             .get(index)
@@ -1655,14 +1762,14 @@ function eventsPerso(name, div) {
         html_effets_bracelet += `<span style="font-size: 18px;">${effet.name} ${effet.value}</span>`;
     });
 
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.logo}" /><span>${perso.name}</span><span>${perso.ilevel}</span></div></div>`);
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_11_146.webp" /><span>${perso.elixir.point} Points</span><span>Gain<br>${perso.elixir.gain} %</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 7; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.logo}" /><span>${perso.name}</span><span>${perso.ilevel}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 7; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_11_146.webp" /><span>${perso.elixir.point} Points</span><span>Gain<br>${perso.elixir.gain} %</span></div></div>`);
     $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_65.webp" /><span>${perso.gemme.cdr} avg</span></div></div>`);
     $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/use_9_55.webp" /><span>${perso.gemme.dmg} avg</span></div></div>`);
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 4; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.weapon.image}" /><span>+${perso.gear.weapon.level}</span><span>Quality ${perso.gear.weapon.quality}</span></div></div>`);
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 4 / 7; grid-row: 3 / 4;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.armor.image}" /><span>Min ${perso.gear.armor.quality.min}</span><span>Avg ${perso.gear.armor.quality.mean}</span></div></div>`);
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/acc_304.webp" /><span>Gain</span><span>${perso.bracelet.gain} %</span></div></div>`);
-    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 10; grid-row: 2 / 4;"><div style="flex: 1;display: flex;justify-content: center;flex-direction: column;align-items: center;height: 100%;">${html_effets_bracelet}</div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 13; grid-row: 1 / 2;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.weapon.image}" /><span>+${perso.gear.weapon.level}</span><span>Quality ${perso.gear.weapon.quality}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 13; grid-row: 2 / 3;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="${perso.gear.armor.image}" /><span>Min ${perso.gear.armor.quality.min}</span><span>Avg ${perso.gear.armor.quality.mean}</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 1 / 7; grid-row: 4 / 5;"><div style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;height: 100%;"><img src="images/acc_304.webp" /><span>Gain</span><span>${perso.bracelet.gain} %</span></div></div>`);
+    $(`#${div}-wrapper`).append(`<div class="card-content-perso" style="grid-column: 7 / 13; grid-row: 3 / 5;"><div style="flex: 1;display: flex;justify-content: center;flex-direction: column;align-items: center;height: 100%;">${html_effets_bracelet}</div></div>`);
 
 }
 // -------------------------------------------------------------------------------------------------------------
@@ -1681,7 +1788,7 @@ function planning() {
     $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 7;"><div id="planning-raids" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Formulaire
-    $('.planning-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 7 / 11;"></div>`);
+    $('.planning-wrapper').append(`<div id="planning_form" class="card-content" style="grid-column: 1 / 5; grid-row: 7 / 11;"></div>`);
 
     // Calendar
     $('.planning-wrapper').append(`<div class="card-content d-flex align-items-center" style="grid-column: 5 / 17; grid-row: 1 / 11;"><div id="calendar_div" class="flex-grow-1"></div></div>`);
@@ -1692,8 +1799,9 @@ function planning() {
 
     events.forEach(function (e, i) {
         calendarEvents.push({
-            'id': e.id,
+            'id': e.raid,
             'title': { html: `<p style="font-size: 20px;font-family: comfortaa;font-weight: 900;">${e.title}</p>` },
+            'titleHTML': e.title,
             'start': new Date(e.start),
             'end': new Date(e.end),
             'backgroundColor': e.backgroundColor,
@@ -1711,11 +1819,38 @@ function planning() {
         slotMinTime: '11:00:00',
         slotMaxTime: '24:00:00',
         slotHeight: 48,
-        events: calendarEvents
+        events: calendarEvents,
+        eventClick: function(info) {
+            console.log(info)
+            console.log(info.event.id)
+            console.log(info.event.titleHTML)
+            console.log(new Date(info.event.start).toLocaleString())
+            console.log(new Date(info.event.end).toLocaleString())
+
+            let start = new Date(info.event.start);
+            startyyyy = start.getFullYear();
+            startmm = start.getMonth() < 9 ? '0' + (start.getMonth() + 1) : (start.getMonth() + 1);
+            startdd = start.getDate() < 10 ? '0' + start.getDate() : start.getDate();
+            starthh = start.getHours() < 10 ? '0' + start.getHours() : start.getHours();
+            startmin = start.getMinutes() < 10 ? '0' + start.getMinutes() : start.getMinutes();
+
+            let end = new Date(info.event.end);
+            endyyyy = end.getFullYear();
+            endmm = end.getMonth() < 9 ? '0' + (end.getMonth() + 1) : (end.getMonth() + 1);
+            enddd = end.getDate() < 10 ? '0' + end.getDate() : end.getDate();
+            endhh = end.getHours() < 10 ? '0' + end.getHours() : end.getHours();
+            endmin = end.getMinutes() < 10 ? '0' + end.getMinutes() : end.getMinutes();
+
+            $('#planning_title').val(info.event.titleHTML);
+            $('#planning_raid').val(info.event.id);
+            $('#planning_start').val(`${startyyyy}-${startmm}-${startdd}T${starthh}:${startmin}`);
+            $('#planning_end').val(`${endyyyy}-${endmm}-${enddd}T${endhh}:${endmin}`);
+        }
     });
 
     sidebar_planning();
     planningRaids();
+    planningFormulaire();
 }
 
 function sidebar_planning() {
@@ -1750,7 +1885,7 @@ function planningRaids() {
         let taskrestriction = db.get("dashboard").value().find((t) => t.id == task.restriction);
 
         if (task.done > 0 || task.restriction === undefined || (task.restriction !== undefined && taskrestriction.done !== taskrestriction.repet)) {
-            console.log(task);
+            // console.log(task);
 
             let event = db.get("planning.events").value().find((t) => t.raid == task.id);
 
@@ -1769,6 +1904,65 @@ function planningRaids() {
             ${html_ko}
     `);
 }
+
+function planningFormulaire() {
+    let raids_name_type = [];
+    let html_options_raids = '';
+    let html_options_perso = '';
+
+    db.get("settings.dashboard.liste_raids").value().forEach(function (cr, i) {
+        raids_name_type.push(cr.name);
+    });
+
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && raids_name_type.includes(t.type));
+
+    tasks.forEach(function (t, i) {
+        html_options_raids += `<option>${t.id}</option>`;
+    });
+
+    db.get("persos").value().forEach(function (p, i) {
+        html_options_perso += `<option>${p.name}</option>`;
+    });
+    
+    $('#planning_form').html(`
+        <div style="text-align: center;">Formulaire</div><br>
+        <div class="d-flex flex-column justify-content-center flex-nowrap gap-3" style="padding: 5px;">
+            <input id="planning_title" class="form-control flex-grow-1"
+                style="background-color: #202020;color: white;" placeholder="Title">
+
+            <input list="planning_raids_list" class="form-control flex-grow-1" id="planning_raid"
+                style="background-color: #202020;color: white;" placeholder="Raids">
+
+            <datalist id="planning_raids_list">
+                ${html_options_raids}
+            </datalist>
+
+            <input id="planning_start" type="datetime-local" class="form-control flex-grow-1"
+                style="background-color: #202020;color: white;" placeholder="">
+
+            <input id="planning_end" type="datetime-local" class="form-control flex-grow-1"
+                style="background-color: #202020;color: white;" placeholder="">
+
+            <button id="update_planning" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter / Modifier</button>
+        </div>
+    `);
+}
+
+$(document).on('click', '#update_planning', function () {
+    let title = $('#planning_title').val();
+    let raid = $('#planning_raid').val();
+    let start = $('#planning_start').val();
+    let end = $('#planning_end').val();
+
+    console.log(title)
+    console.log(raid)
+    console.log(start)
+    console.log(end)
+
+
+
+    // planning();
+});
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
