@@ -1820,12 +1820,15 @@ function planning() {
         slotMaxTime: '24:00:00',
         slotHeight: 48,
         events: calendarEvents,
-        eventClick: function(info) {
+        eventClick: function (info) {
             console.log(info)
             console.log(info.event.id)
             console.log(info.event.titleHTML)
             console.log(new Date(info.event.start).toLocaleString())
             console.log(new Date(info.event.end).toLocaleString())
+
+            let infoIndex = db.get("planning.events").value().findIndex((e) => e.raid == info.event.id);
+            console.log(infoIndex)
 
             let start = new Date(info.event.start);
             startyyyy = start.getFullYear();
@@ -1841,6 +1844,7 @@ function planning() {
             endhh = end.getHours() < 10 ? '0' + end.getHours() : end.getHours();
             endmin = end.getMinutes() < 10 ? '0' + end.getMinutes() : end.getMinutes();
 
+            $('#planning_id').val(infoIndex);
             $('#planning_title').val(info.event.titleHTML);
             $('#planning_raid').val(info.event.id);
             $('#planning_start').val(`${startyyyy}-${startmm}-${startdd}T${starthh}:${startmin}`);
@@ -1869,13 +1873,15 @@ function planningRaids() {
     let raids_name_type = [];
     let html_ok = '';
     let html_ko = '';
+    let all_done = true;
+
     $('#planning-raids').html('');
 
     config_raids.forEach(function (cr, i) {
         raids_name_type.push(cr.name);
     });
 
-    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.done < t.repet && raids_name_type.includes(t.type));
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && raids_name_type.includes(t.type));
 
     tasks.sort(function (a, b) {
         return a.tache_name - b.tache_name;
@@ -1884,25 +1890,33 @@ function planningRaids() {
     tasks.forEach(function (task, i) {
         let taskrestriction = db.get("dashboard").value().find((t) => t.id == task.restriction);
 
-        if (task.done > 0 || task.restriction === undefined || (task.restriction !== undefined && taskrestriction.done !== taskrestriction.repet)) {
-            // console.log(task);
+        if (task.done < task.repet && (task.done > 0 || task.restriction === undefined || (task.restriction !== undefined && taskrestriction.done !== taskrestriction.repet))) {
+            all_done = false;
 
             let event = db.get("planning.events").value().find((t) => t.raid == task.id);
 
             if (event) {
-                html_ok += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+                html_ok += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
             } else {
-                html_ko += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+                html_ko += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
             }
         }
     });
 
-    $('#planning-raids').html(`
-        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>
-            ${html_ok}
-        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Non Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>
-            ${html_ko}
-    `);
+    if (!all_done) {
+        $('#planning-raids').html(`
+            ${html_ok.length > 0 ? `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>` : ''}
+                ${html_ok.length > 0 ? html_ok : ''}
+            ${html_ko.length > 0 ? `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span><i class="fa-solid fa-arrow-down"></i> Raids Non Programm&eacute;s <i class="fa-solid fa-arrow-down"></i></span></div>` : ''}
+                ${html_ko.length > 0 ? html_ko : ''}
+        `);
+    } else {
+        $('#planning-raids').html(`<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span>Raids de la semaine prochaine</span></div>`);
+
+        tasks.forEach(function (task, i) {
+            $('#planning-raids').append(`<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`);
+        });
+    }
 }
 
 function planningFormulaire() {
@@ -1923,10 +1937,12 @@ function planningFormulaire() {
     db.get("persos").value().forEach(function (p, i) {
         html_options_perso += `<option>${p.name}</option>`;
     });
-    
+
     $('#planning_form').html(`
         <div style="text-align: center;">Formulaire</div><br>
         <div class="d-flex flex-column justify-content-center flex-nowrap gap-3" style="padding: 5px;">
+            <input id="planning_id" type="hidden">
+
             <input id="planning_title" class="form-control flex-grow-1"
                 style="background-color: #202020;color: white;" placeholder="Title">
 
@@ -1943,25 +1959,127 @@ function planningFormulaire() {
             <input id="planning_end" type="datetime-local" class="form-control flex-grow-1"
                 style="background-color: #202020;color: white;" placeholder="">
 
-            <button id="update_planning" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter / Modifier</button>
+            <span class="d-flex gap-2">
+                <button id="update_planning" type="button" class="btn btn-outline-light flex-grow-1">Ajouter / Modifier</button>
+                <button id="remove_planning" type="button" class="btn btn-outline-danger flex-shrink-1"><i class="fa-solid fa-xmark"></i></button>
+            </span>
         </div>
     `);
 }
 
+$(document).on('click', '.card-raid', function () {
+    console.log($(this).data('id'));
+
+    let task = db.get("dashboard").value().find((t) => t.id == $(this).data('id'));
+    let info = db.get("planning.events").value().find((e) => e.raid == $(this).data('id'));
+    let infoIndex = db.get("planning.events").value().findIndex((e) => e.raid == $(this).data('id'));
+
+    console.log(task)
+    console.log(info)
+
+    $('#planning_raid').val(task.id);
+    $('#planning_id').val(-1);
+
+    if (info) {
+        let start = new Date(info.start);
+        startyyyy = start.getFullYear();
+        startmm = start.getMonth() < 9 ? '0' + (start.getMonth() + 1) : (start.getMonth() + 1);
+        startdd = start.getDate() < 10 ? '0' + start.getDate() : start.getDate();
+        starthh = start.getHours() < 10 ? '0' + start.getHours() : start.getHours();
+        startmin = start.getMinutes() < 10 ? '0' + start.getMinutes() : start.getMinutes();
+
+        let end = new Date(info.end);
+        endyyyy = end.getFullYear();
+        endmm = end.getMonth() < 9 ? '0' + (end.getMonth() + 1) : (end.getMonth() + 1);
+        enddd = end.getDate() < 10 ? '0' + end.getDate() : end.getDate();
+        endhh = end.getHours() < 10 ? '0' + end.getHours() : end.getHours();
+        endmin = end.getMinutes() < 10 ? '0' + end.getMinutes() : end.getMinutes();
+
+        $('#planning_id').val(infoIndex);
+        $('#planning_title').val(info.title);
+        $('#planning_start').val(`${startyyyy}-${startmm}-${startdd}T${starthh}:${startmin}`);
+        $('#planning_end').val(`${endyyyy}-${endmm}-${enddd}T${endhh}:${endmin}`);
+    } else {
+        $('#planning_title').val(`${task.tache_name}<br>${task.perso}`);
+    }
+});
+
 $(document).on('click', '#update_planning', function () {
+    let index = parseInt($('#planning_id').val());
     let title = $('#planning_title').val();
     let raid = $('#planning_raid').val();
     let start = $('#planning_start').val();
     let end = $('#planning_end').val();
+    let task = db.get("dashboard").value().find((t) => t.id == raid);
+    let textColor = db.get("settings.dashboard.liste_raids").value().find((r) => r.name == task.type).color;
+    let backgroundColor = '#444444';
 
-    console.log(title)
-    console.log(raid)
-    console.log(start)
-    console.log(end)
+    if (index >= 0) {
+        db.get("planning.events")
+            .get(index)
+            .get('id')
+            .set(raid);
 
+        db.get("planning.events")
+            .get(index)
+            .get('raid')
+            .set(raid);
 
+        db.get("planning.events")
+            .get(index)
+            .get('title')
+            .set(title);
 
-    // planning();
+        db.get("planning.events")
+            .get(index)
+            .get('start')
+            .set(start);
+
+        db.get("planning.events")
+            .get(index)
+            .get('end')
+            .set(end);
+
+        db.get("planning.events")
+            .get(index)
+            .get('backgroundColor')
+            .set(backgroundColor);
+
+        db.get("planning.events")
+            .get(index)
+            .get('textColor')
+            .set(textColor);
+
+        db.save();
+    } else {
+        let event = {
+            id: raid,
+            raid: raid,
+            title: title,
+            start: start,
+            end: end,
+            backgroundColor: backgroundColor,
+            textColor: textColor
+        }
+
+        db.get("planning.events").push(event).save();
+    }
+
+    planning();
+});
+
+$(document).on('click', '#remove_planning', function () {
+    let index = parseInt($('#planning_id').val());
+
+    if (index >= 0) {
+        db.get("planning.events")
+            .get(index)
+            .delete(true);
+
+        db.save();
+    }
+
+    planning();
 });
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
