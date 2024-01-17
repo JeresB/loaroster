@@ -1480,25 +1480,101 @@ function gemme() {
     // Header - Nombre de gemme généré cette semaine 
     // -> exemple avec 8 gemmes 5 générées -> afficher 2 gemmes 6 et 2 gemmes 5
     // -> exemple avec 11 gemmes 5 générées -> afficher 1 gemme 7 et 2 gemme 5 
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 13; grid-row: 1 / 2;"></div>`);
+    $('.gemme-wrapper').append(`<div id="gemme_value" class="card-content" style="grid-column: 1 / 13; grid-row: 1 / 2;"></div>`);
 
     // 3 ou 4 Cards stats -> avec le logo de la gemme (dmg et / ou cdr)
     // Nb gemmes 5 total
     // Nb gemmes 7 total
     // Nb gemmes 9 total
     // Nb gemmes 10 total (optional to see if it's good)
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 5 / 7; grid-row: 2 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 7 / 9; grid-row: 2 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 9 / 11; grid-row: 2 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 11 / 13; grid-row: 2 / 4;"></div>`);
+
 
     // Sur la partie gauche en hauteur
     // Une liste des objectifs futur en termes de gemmes dans l'ordre des priorités
     // Un formulaire pour remplir cette liste ?
     // Click sur un objectif pour le compléter
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 2 / 10;"></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 10 / 16;"></div>`);
+
 
     // sur le contenu principale -> x grandes cards avec l'espace disponible
     // Le nom du ou des persos
     // Un bouton pour ajouter une gemme 5 généré sur le perso // Différencier dmg / cdr ?
     // Affichage dynamique en flex des gemmes avec possibilité de surligner la gemme si elle fait partie des objectifs
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 5 / 9; grid-row: 4 / 10;"><div id="gemme_class_1" style="flex: 1;height: 100%!important;"></div></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 5 / 9; grid-row: 10 / 16;"><div id="gemme_class_3" style="flex: 1;height: 100%!important;"></div></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 9 / 13; grid-row: 4 / 10;"><div id="gemme_class_2" style="flex: 1;height: 100%!important;"></div></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 9 / 13; grid-row: 10 / 16;"><div id="gemme_class_4" style="flex: 1;height: 100%!important;"></div></div>`);
+
+
     sidebar_gemme();
+
+    gemmesClasses();
+    gemmeValue();
 }
+
+function gemmeValue() {
+    let total = db.get('gemmes.total').value();
+    let total_save = total;
+    let gemme_level = 5;
+    let html = '';
+
+    for (let index = 0; index < 6; index++) {
+        html += `<span>Gem ${gemme_level} : {${Math.floor(total % 3)}}</span>`;
+        gemme_level++;
+        total = total / 3;
+    }
+
+    $('#gemme_value').html(`
+        <div class="" style="display: flex;justify-content: center;align-items: center;height: 100%;font-size: 32px;gap: 30px;">
+            <span>Total en gemme 5 : {${total_save}}</span>${html}  
+        </div>
+    `);
+}
+
+function gemmesClasses() {
+    let classes = db.get('gemmes.classes').value();
+
+    classes.forEach(function (c, i) {
+        let html_persos = '';
+
+        c.persos.forEach(function (p, j) {
+            html_persos += `<div class="card-gemme-perso" data-idclasse="${i}" data-idperso="${j}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${p.gemme}/${p.name}</span></div>`;
+        });
+
+
+        $(`#${c.div}`).html(`
+            <div class="d-flex gap-2 justify-content-center flex-row">${html_persos}</div>
+        `);
+    });
+}
+
+$(document).on('click', '.card-gemme-perso', function () {
+    let gem = db.get("gemmes.classes")
+        .get($(this).data('idclasse'))
+        .get('persos')
+        .get($(this).data('idperso'))
+        .get('gemme').value();
+    
+    db.get("gemmes.classes")
+        .get($(this).data('idclasse'))
+        .get('persos')
+        .get($(this).data('idperso'))
+        .get('gemme')
+        .set(parseInt(gem) + 1);
+
+    db.get("gemmes.week").set(parseInt(db.get("gemmes.week").value()) + 1);
+
+    db.get("gemmes.total").set(parseInt(db.get("gemmes.total").value()) + 1);
+
+    db.save();
+
+    gemme();
+});
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
