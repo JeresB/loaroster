@@ -1894,11 +1894,12 @@ function planningRaids() {
             all_done = false;
 
             let event = db.get("planning.events").value().find((t) => t.raid == task.id);
+            let config_raid = db.get("settings.dashboard.liste_raids").value().find((cr) => cr.name == task.type);
 
             if (event) {
-                html_ok += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+                html_ok += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;color: ${config_raid.color};">${task.tache_name}</span><span style="font-size: 20px;">${task.perso}</span></div>`;
             } else {
-                html_ko += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`;
+                html_ko += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;color: ${config_raid.color};">${task.tache_name}</span><span style="font-size: 20px;">${task.perso}</span></div>`;
             }
         }
     });
@@ -1914,7 +1915,9 @@ function planningRaids() {
         $('#planning-raids').html(`<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;font-size: 24px;"><span>Raids de la semaine prochaine</span></div>`);
 
         tasks.forEach(function (task, i) {
-            $('#planning-raids').append(`<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;">${task.tache_name}<br>${task.perso}</span></div>`);
+            let config_raid = db.get("settings.dashboard.liste_raids").value().find((cr) => cr.name == task.type);
+
+            $('#planning-raids').append(`<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;color: ${config_raid.color};">${task.tache_name}</span><span style="font-size: 20px;">${task.perso}</span></div>`);
         });
     }
 }
