@@ -54,6 +54,7 @@ $(document).on('click', '.sidebar-link', function () {
     if (page == 'settings') settings();
     if (page == 'gold') gold();
     if (page == 'fate-ember') fate_embers();
+    if (page == 'gemme') gemme();
     if (page == 'events') events();
     if (page == 'planning') planning();
 });
@@ -62,6 +63,7 @@ function sidebar() {
     sidebar_dashboard();
     sidebar_golds();
     sidebar_fate_embers();
+    sidebar_gemme();
     sidebar_events();
     sidebar_planning();
 }
@@ -1459,6 +1461,44 @@ $(document).on('click', '#add_fate_ember', function () {
 
     fate_embers();
 });
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- GEMME ---------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_gemme() {
+
+}
+
+function gemme() {
+    $('.gemme-wrapper').html('');
+
+    // Header - Nombre de gemme généré cette semaine 
+    // -> exemple avec 8 gemmes 5 générées -> afficher 2 gemmes 6 et 2 gemmes 5
+    // -> exemple avec 11 gemmes 5 générées -> afficher 1 gemme 7 et 2 gemme 5 
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 13; grid-row: 1 / 2;"></div>`);
+
+    // 3 ou 4 Cards stats -> avec le logo de la gemme (dmg et / ou cdr)
+    // Nb gemmes 5 total
+    // Nb gemmes 7 total
+    // Nb gemmes 9 total
+    // Nb gemmes 10 total (optional to see if it's good)
+
+    // Sur la partie gauche en hauteur
+    // Une liste des objectifs futur en termes de gemmes dans l'ordre des priorités
+    // Un formulaire pour remplir cette liste ?
+    // Click sur un objectif pour le compléter
+
+    // sur le contenu principale -> x grandes cards avec l'espace disponible
+    // Le nom du ou des persos
+    // Un bouton pour ajouter une gemme 5 généré sur le perso // Différencier dmg / cdr ?
+    // Affichage dynamique en flex des gemmes avec possibilité de surligner la gemme si elle fait partie des objectifs
+    sidebar_gemme();
+}
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
