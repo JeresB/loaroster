@@ -313,7 +313,7 @@ function showPerso(persos, types) {
         $('#div-perso').html(`
             <div class="head-task" style="flex: 1;display: flex;justify-content: center;flex-direction: row;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 16%;max-height: 16%;gap: 20px;"><img src="${persos.logo}"><div style="display: flex; flex-direction: column; justify-content: center;">${persos.name} ${persos.ilevel}</span><span>Daily todo : ${task_remaining}</span></div></div>
             <table>
-                <tr style="background-color: #a1a1a1;color: black;position: sticky;top: 92px;">
+                <tr style="background-color: #444444;color: #a1a1a1;position: sticky;top: 92px;">
                     <th style="border-top-left-radius: 6px;border-bottom-left-radius: 6px;">Perso</th>
                     <th>Task</th>
                     <th style="text-align: center;">Done</th>
@@ -373,27 +373,58 @@ function showTasksByPrio() {
 
     let time_remaining = 0;
     let task_remaining = 0;
-    let text_color = db.get("settings.colors.text").value()
+    let text_color = db.get("settings.colors.text").value();
+    
+    let sidebar_1 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
+    let sidebar_2 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
+    let sidebar_3 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
+    let sidebar_4 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
 
     if (tasks.length > 0) {
         let html = '';
+        let html_1 = '';
+        let html_2 = '';
+        let html_3 = '';
+        let html_4 = '';
+        
 
         tasks.sort(function (a, b) {
             return a.prio - b.prio;
         });
 
         tasks.forEach(function (task, i) {
-            html += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${task.reset == 'daily' ? (task.type == 'GR' ? db.get("settings.colors.GR.text").value() : db.get("settings.colors.daily.text").value()) : db.get("settings.colors.weekly.text").value()};font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: ${text_color};">${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</span></div>`;
+            html = `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${task.reset == 'daily' ? (task.type == 'GR' ? db.get("settings.colors.GR.text").value() : db.get("settings.colors.daily.text").value()) : db.get("settings.colors.weekly.text").value()};font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: ${text_color};">${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</span></div>`;
+            
+            if (task.importance == 1) {
+                html_1 += html;
+                sidebar_1 = `<i class="fa-solid fa-angles-up" style="color: #cf6363;"></i>`;
+            } else if (task.importance == 2) {
+                html_2 += html;
+                sidebar_2 = `<i class="fa-solid fa-angles-up" style="color: #d99157;"></i>`;
+            } else if (task.importance == 3) {
+                html_3 += html;
+                sidebar_3 = `<i class="fa-solid fa-angles-up" style="color: #dbbe56;"></i>`;
+            } else if (task.importance == 4) {
+                html_4 += html;
+                sidebar_4 = `<i class="fa-solid fa-angles-up" style="color: #74adc0;"></i>`;
+            }
+
             time_remaining += (task.duration * (task.repet - task.done));
             task_remaining += (task.repet - task.done);
         });
 
-        html = `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;"><span>Temps restants : ${time_remaining} min</span><span> Daily todo : ${task_remaining}</span></div>` + html;
+        html = `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><span>Temps restants : ${time_remaining} min</span><span> Daily todo : ${task_remaining}</span></div>`;
+        html += html_1.length > 0 ? `<div class="card-task-prio-dashboard prio_1 align-items-center" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><i class="fa-solid fa-arrow-up-short-wide"></i> Must do all days</div>` + html_1 : '';
+        html += html_2.length > 0 ? `<div class="card-task-prio-dashboard prio_2 align-items-center" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><i class="fa-solid fa-arrow-up-short-wide"></i> Todo but not before sleep</div>` + html_2 : '';
+        html += html_3.length > 0 ? `<div class="card-task-prio-dashboard prio_3 align-items-center" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><i class="fa-solid fa-arrow-up-short-wide"></i> If I have some time</div>` + html_3 : '';
+        html += html_4.length > 0 ? `<div class="card-task-prio-dashboard prio_4 align-items-center" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><i class="fa-solid fa-arrow-up-short-wide"></i> Not mandatory</div>` + html_4 : '';
 
         $('#tasks-by-prio').html(html);
     } else {
         $('#tasks-by-prio').html('');
     }
+
+    $(`#sidebar-dashboard-prio`).html(`${sidebar_1} ${sidebar_2} ${sidebar_3} ${sidebar_4}`);
 
     let div = document.getElementById('tasks-by-prio');
     div.scrollTop = getScrollPos('tasks-by-prio');
@@ -419,7 +450,7 @@ function showTasksWeeklyByPrio() {
             task_remaining += (task.repet - task.done);
         });
 
-        html = `<div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;"><span>Temps restants : ${time_remaining} min</span><span> Weekly todo : ${task_remaining}</span></div>` + html;
+        html = `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;position: sticky; top: 0;min-height: 52px;max-height: 52px;"><span>Temps restants : ${time_remaining} min</span><span> Weekly todo : ${task_remaining}</span></div>` + html;
 
         $('#tasks-weekly-by-prio').html(html);
     } else {
@@ -1471,7 +1502,9 @@ $(document).on('click', '#add_fate_ember', function () {
 // --- GEMME ---------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 function sidebar_gemme() {
+    let total = db.get('gemmes.total').value();
 
+    $('#sidebar-gemme-data').html(total);
 }
 
 function gemme() {
@@ -1482,22 +1515,25 @@ function gemme() {
     // -> exemple avec 11 gemmes 5 générées -> afficher 1 gemme 7 et 2 gemme 5 
     $('.gemme-wrapper').append(`<div id="gemme_value" class="card-content" style="grid-column: 1 / 13; grid-row: 1 / 2;"></div>`);
 
+    // Liste des persos qui gagne des gemmes
+    $('.gemme-wrapper').append(`<div id="liste_persos_gemmes" class="d-flex flex-row" style="grid-column: 1 / 13; grid-row: 2 / 3; gap: 10px;"></div>`);
+
     // 3 ou 4 Cards stats -> avec le logo de la gemme (dmg et / ou cdr)
     // Nb gemmes 5 total
     // Nb gemmes 7 total
     // Nb gemmes 9 total
     // Nb gemmes 10 total (optional to see if it's good)
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 5 / 7; grid-row: 2 / 4;"></div>`);
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 7 / 9; grid-row: 2 / 4;"></div>`);
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 9 / 11; grid-row: 2 / 4;"></div>`);
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 11 / 13; grid-row: 2 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="gemmes_stats gemmes_stats_5 gemmes_stats_6 card-content d-flex flex-row justify-content-between align-items-center" style="grid-column: 5 / 7; grid-row: 3 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="gemmes_stats gemmes_stats_7 gemmes_stats_8 card-content d-flex flex-row justify-content-between align-items-center" style="grid-column: 7 / 9; grid-row: 3 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="gemmes_stats gemmes_stats_9 card-content d-flex flex-row justify-content-between align-items-center" style="grid-column: 9 / 11; grid-row: 3 / 4;"></div>`);
+    $('.gemme-wrapper').append(`<div class="gemmes_stats gemmes_stats_10 card-content d-flex flex-row justify-content-between align-items-center" style="grid-column: 11 / 13; grid-row: 3 / 4;"></div>`);
 
 
     // Sur la partie gauche en hauteur
     // Une liste des objectifs futur en termes de gemmes dans l'ordre des priorités
     // Un formulaire pour remplir cette liste ?
     // Click sur un objectif pour le compléter
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 2 / 10;"></div>`);
+    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 3 / 10;"></div>`);
     $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 10 / 16;"></div>`);
 
 
@@ -1515,6 +1551,7 @@ function gemme() {
 
     gemmesClasses();
     gemmeValue();
+    gemmesPersos();
 }
 
 function gemmeValue() {
@@ -1522,19 +1559,64 @@ function gemmeValue() {
     let total_save = total;
     let gemme_level = 5;
     let html = '';
+    let random = 1;
+
+    $('.gemmes_stats').html('');
 
     for (let index = 0; index < 6; index++) {
-        html += `<span>Gem ${gemme_level} : {${Math.floor(total % 3)}}</span>`;
+        
+        let nb = Math.floor(total % 3);
+        
+        for (let index = 0; index < nb; index++) {
+            random = Math.random() > 0.5 ? 1 : 2;
+            html += `<span class="d-flex flex-column gap-2 text-center"><img src="images/gem${gemme_level}_${random}.webp" style="background-image: url('images/gem${gemme_level}_bg.webp');background-size: cover;border-radius: 8px;" /><span style="font-size: 16px;">Niv.${gemme_level}</span></span>`;
+        }
+        // html += `<img src="images/gem${gemme_level}_${random}.webp" />`;
+        // html += `<span>Gem ${gemme_level} : {${Math.floor(total % 3)}}</span>`;
         gemme_level++;
         total = total / 3;
     }
 
+    $(`.gemmes_stats_5`).append(`<span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 32px;">${total_save}</span>`);
+    $(`.gemmes_stats_7`).append(`<span><img src="images/gem7_${Math.random() > 0.5 ? 1 : 2}.webp" style="background-image: url('images/gem7_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 32px;">${Math.floor(total_save / 9)}</span>`);
+    $(`.gemmes_stats_9`).append(`<span><img src="images/gem9_${Math.random() > 0.5 ? 1 : 2}.webp" style="background-image: url('images/gem9_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 32px;">${Math.floor(total_save / 81)}</span>`);
+    $(`.gemmes_stats_10`).append(`<span><img src="images/gem10_${Math.random() > 0.5 ? 1 : 2}.webp" style="background-image: url('images/gem10_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 32px;">${Math.floor(total_save / 243)}</span>`);
+
     $('#gemme_value').html(`
         <div class="" style="display: flex;justify-content: center;align-items: center;height: 100%;font-size: 32px;gap: 30px;">
-            <span>Total en gemme 5 : {${total_save}}</span>${html}  
+            ${html}  
         </div>
     `);
 }
+
+function gemmesPersos() {
+    $('#liste_persos_gemmes').html('');
+
+    let collected = db.get("gemmes.collected").value();
+
+    collected.forEach(function (c, i) {
+        $('#liste_persos_gemmes').append(`<div class="card-gemme-perso-collected" data-id="${i}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${c.gemme}/${c.name}</span></div>`);
+    });
+}
+
+$(document).on('click', '.card-gemme-perso-collected', function () {
+    let gem = db.get("gemmes.collected")
+        .get($(this).data('id'))
+        .get('gemme').value();
+    
+    db.get("gemmes.collected")
+        .get($(this).data('id'))
+        .get('gemme')
+        .set(parseInt(gem) + 1);
+
+    db.get("gemmes.week").set(parseInt(db.get("gemmes.week").value()) + 1);
+
+    db.get("gemmes.total").set(parseInt(db.get("gemmes.total").value()) + 1);
+
+    db.save();
+
+    gemme();
+});
 
 function gemmesClasses() {
     let classes = db.get('gemmes.classes').value();

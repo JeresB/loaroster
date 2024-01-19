@@ -118,9 +118,47 @@ body,
     font-size: 18px;
 }
 
+.histo-task-dashboard {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #444444;
+    border-radius: 6px;
+    color: #a1a1a1;
+    padding: 2px 8px;
+    font-family: comfortaa;
+    font-weight: 900;
+}
+
+.card-task-prio-dashboard {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-family: comfortaa;
+    font-weight: 900;
+}
+
+.prio_1 {
+    background-color: #cf6363;
+    color: #4e2525;
+}
+
+.prio_2 {
+    background-color: #d99157;
+    color: #593b23;
+}
+
+.prio_3 {
+    background-color: #dbbe56;
+    color: #5b4e23;
+}
+
+.prio_4 {
+    background-color: #74adc0;
+    color: #263940;
+}
+
 .histo-task {
     border-radius: 6px;
-    color: white;
+    color: #a1a1a1;
     padding: 2px 8px;
     font-family: comfortaa;
     font-weight: 900;
@@ -245,6 +283,20 @@ th {
     margin: 5px;
     width: calc(100% - 10px);
     height: calc(100vh - 30px);
+}
+
+.card-gemme-perso-collected {
+    background-color: #1e1e1e;
+    border-radius: 6px;
+    padding: 4px 16px;
+    cursor: pointer;
+    font-family: comfortaa;
+    font-weight: 900;
+}
+
+.card-gemme-perso-collected:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #444444;
 }
 
 .card-gemme-perso {

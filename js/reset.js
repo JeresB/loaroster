@@ -49,6 +49,9 @@ function reset() {
             }
         });
 
+        db.get("gemmes.week").set(0);
+        db.save();
+
         reload = true;
     }
 
@@ -124,6 +127,9 @@ function forceResetWeekly() {
             db.save();
         }
     });
+
+    db.get("gemmes.week").set(0);
+    db.save();
 
     window.location.reload();
 }
