@@ -10,9 +10,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 2,
+            "done": 0,
             "repet": 2,
-            "count": 462,
+            "count": 480,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -43,9 +43,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 1,
+            "done": 0,
             "repet": 1,
-            "count": 238,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -76,9 +76,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 3,
+            "done": 0,
             "repet": 3,
-            "count": 705,
+            "count": 732,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -111,7 +111,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 460,
+            "count": 480,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -144,7 +144,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 237,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -177,7 +177,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 701,
+            "count": 731,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -210,7 +210,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 456,
+            "count": 474,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -243,7 +243,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 245,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -276,7 +276,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 699,
+            "count": 726,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -290,7 +290,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -309,7 +309,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 454,
+            "count": 474,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -342,7 +342,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 245,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -375,7 +375,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 695,
+            "count": 722,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -389,7 +389,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -408,7 +408,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 460,
+            "count": 480,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -441,7 +441,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 237,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -474,7 +474,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 701,
+            "count": 731,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -507,7 +507,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 308,
+            "count": 328,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -540,7 +540,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 154,
+            "count": 164,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -573,7 +573,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 461,
+            "count": 491,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -606,7 +606,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 436,
+            "count": 452,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -639,7 +639,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 244,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -672,7 +672,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 693,
+            "count": 717,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -705,7 +705,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 164,
+            "count": 182,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -738,7 +738,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 233,
+            "count": 242,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -771,7 +771,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 699,
+            "count": 726,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -785,7 +785,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -804,7 +804,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 77,
+            "count": 83,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -818,7 +818,7 @@
             "progress": {
                 "y": 2
             },
-            "rest": 0,
+            "rest": 20,
             "restNeeded": 40,
             "rested": true,
             "duration": 3,
@@ -837,7 +837,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 228,
+            "count": 236,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -870,7 +870,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 683,
+            "count": 707,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -903,7 +903,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 229,
+            "count": 237,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -936,7 +936,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 687,
+            "count": 711,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -969,7 +969,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 227,
+            "count": 235,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1002,7 +1002,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 681,
+            "count": 705,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1035,7 +1035,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 228,
+            "count": 236,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1068,7 +1068,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 682,
+            "count": 706,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1101,7 +1101,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 168,
+            "count": 192,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1134,7 +1134,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 678,
+            "count": 702,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1167,7 +1167,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 678,
+            "count": 702,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1200,7 +1200,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 677,
+            "count": 701,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1256,7 +1256,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 468,
+            "count": 492,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1287,9 +1287,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 1,
+            "done": 0,
             "repet": 1,
-            "count": 255,
+            "count": 264,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1322,7 +1322,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 251,
+            "count": 261,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1355,7 +1355,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 250,
+            "count": 260,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1388,7 +1388,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 246,
+            "count": 256,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1421,7 +1421,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 242,
+            "count": 252,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1454,7 +1454,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 151,
+            "count": 161,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1487,7 +1487,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 245,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1501,7 +1501,7 @@
             "progress": {
                 "y": 5
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
@@ -1520,7 +1520,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 125,
+            "count": 134,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1534,11 +1534,11 @@
             "progress": {
                 "y": 5
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 3,
             "prio": 29
         },
         {
@@ -1553,7 +1553,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 16,
+            "count": 19,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1567,7 +1567,7 @@
             "progress": {
                 "y": 5
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 20,
             "rested": true,
             "duration": 5,
@@ -2046,7 +2046,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 146,
             "revenu": 7500,
@@ -2111,7 +2111,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 145,
             "revenu": 7500,
@@ -2176,7 +2176,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 141,
             "revenu": 7500,
@@ -2243,7 +2243,7 @@
             "reset": "weekly",
             "done": 0,
             "repet": 3,
-            "count": 134,
+            "count": 137,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2274,9 +2274,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "bimensuel",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 9,
+            "count": 10,
             "revenu": 3000,
             "cout": 0,
             "color": "#A75FFF",
@@ -2306,7 +2306,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 140,
             "revenu": 7500,
@@ -2373,7 +2373,7 @@
             "reset": "weekly",
             "done": 0,
             "repet": 3,
-            "count": 72,
+            "count": 75,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2404,9 +2404,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "bimensuel",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 9,
+            "count": 10,
             "revenu": 3000,
             "cout": 0,
             "color": "#A75FFF",
@@ -2482,7 +2482,7 @@
             "reset": "weekly",
             "done": 3,
             "repet": 3,
-            "count": 105,
+            "count": 108,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2512,9 +2512,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 92,
+            "count": 95,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2545,9 +2545,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 96,
+            "count": 99,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2578,9 +2578,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 98,
+            "count": 101,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2594,6 +2594,7 @@
             "progress": {
                 "y": 11
             },
+            "restriction": "brelshaza_jeresbard",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2610,9 +2611,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 102,
+            "count": 108,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2642,9 +2643,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 70,
+            "count": 76,
             "revenu": 6500,
             "cout": 0,
             "color": "#D6B16B",
@@ -2709,7 +2710,7 @@
             "reset": "weekly",
             "done": 4,
             "repet": 4,
-            "count": 20,
+            "count": 24,
             "revenu": 14500,
             "cout": -5500,
             "color": "#B535F1",
@@ -2741,9 +2742,9 @@
             "reset": "weekly",
             "done": 4,
             "repet": 4,
-            "count": 20,
+            "count": 24,
             "revenu": 14500,
-            "cout": -5500,
+            "cout": 0,
             "color": "#B535F1",
             "heatmap": {
                 "x": 9,
@@ -2773,9 +2774,9 @@
             "reset": "weekly",
             "done": 4,
             "repet": 4,
-            "count": 20,
+            "count": 24,
             "revenu": 9000,
-            "cout": -3500,
+            "cout": 0,
             "color": "#B535F1",
             "heatmap": {
                 "x": 9,
@@ -2803,11 +2804,11 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 16,
+            "count": 24,
             "revenu": 14500,
-            "cout": -5500,
+            "cout": 0,
             "color": "#B535F1",
             "heatmap": {
                 "x": 9,
@@ -2835,11 +2836,11 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 16,
+            "count": 24,
             "revenu": 9000,
-            "cout": -3500,
+            "cout": 0,
             "color": "#B535F1",
             "heatmap": {
                 "x": 9,
@@ -2860,7 +2861,7 @@
         {
             "id": "voldis_jerescelestia",
             "perso": "Jerescelestia",
-            "tache_name": "Ivory Tower of Chaos NM",
+            "tache_name": "Ivory Tower of Chaos HM",
             "description": "",
             "type": "voldis",
             "important": true,
@@ -2869,9 +2870,9 @@
             "reset": "weekly",
             "done": 4,
             "repet": 4,
-            "count": 20,
-            "revenu": 9000,
-            "cout": -3500,
+            "count": 24,
+            "revenu": 14500,
+            "cout": 0,
             "color": "#B535F1",
             "heatmap": {
                 "x": 9,
@@ -2901,7 +2902,7 @@
             "reset": "weekly",
             "done": 3,
             "repet": 3,
-            "count": 69,
+            "count": 72,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -2931,9 +2932,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 66,
+            "count": 72,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -2965,7 +2966,7 @@
             "reset": "weekly",
             "done": 3,
             "repet": 3,
-            "count": 69,
+            "count": 72,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -2995,9 +2996,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 66,
+            "count": 72,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3027,9 +3028,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 66,
+            "count": 72,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3059,9 +3060,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 60,
+            "count": 66,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3124,9 +3125,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 2,
-            "count": 66,
+            "count": 69,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3158,7 +3159,7 @@
             "reset": "weekly",
             "done": 0,
             "repet": 2,
-            "count": 68,
+            "count": 70,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3188,9 +3189,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 64,
+            "count": 68,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3220,9 +3221,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 64,
+            "count": 68,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3252,9 +3253,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 66,
+            "count": 70,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3284,9 +3285,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 44,
+            "count": 48,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3316,9 +3317,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 60,
+            "count": 62,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3348,9 +3349,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 56,
+            "count": 58,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3373,9 +3374,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -3405,9 +3406,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -3456,12 +3457,12 @@
             "description": "",
             "type": "shop",
             "important": true,
-            "actif": false,
+            "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 32,
+            "count": 33,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -3491,9 +3492,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -3523,9 +3524,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 22,
+            "count": 24,
             "revenu": 0,
             "cout": 0,
             "color": "#d99157",
@@ -3579,7 +3580,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3612,7 +3613,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3645,7 +3646,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3678,7 +3679,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3711,7 +3712,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3744,7 +3745,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 22,
+            "count": 23,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3777,7 +3778,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3810,7 +3811,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 36,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3831,9 +3832,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -3863,9 +3864,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -3895,9 +3896,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -3927,9 +3928,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -3959,9 +3960,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -3991,9 +3992,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 22,
+            "count": 24,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4023,9 +4024,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 34,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4055,9 +4056,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4089,7 +4090,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4121,7 +4122,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4153,7 +4154,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4185,7 +4186,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 36,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4215,9 +4216,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 27,
+            "count": 29,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4247,9 +4248,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 26,
+            "count": 28,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4276,9 +4277,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 26,
+            "count": 28,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4305,9 +4306,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 27,
+            "count": 29,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4337,9 +4338,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 27,
+            "count": 29,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4369,9 +4370,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 22,
+            "count": 24,
             "revenu": 0,
             "cout": 0,
             "color": "#74adc0",
@@ -4430,9 +4431,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 20,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4464,7 +4465,7 @@
             "reset": "weekly",
             "done": 1,
             "repet": 1,
-            "count": 21,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4494,9 +4495,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 20,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4526,9 +4527,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 20,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4558,9 +4559,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 20,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4590,9 +4591,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 20,
+            "count": 22,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4622,9 +4623,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4654,9 +4655,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 35,
+            "count": 37,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4686,9 +4687,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 27,
+            "count": 29,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4786,10 +4787,10 @@
             "reset": "weekly",
             "done": 2,
             "repet": 2,
-            "count": 72,
+            "count": 74,
             "revenu": 0,
             "cout": 0,
-            "color": "#25C0E2",
+            "color": "#d52b2b",
             "heatmap": {
                 "x": 8,
                 "y": 8,
@@ -4818,7 +4819,7 @@
             "reset": "weekly",
             "done": 3,
             "repet": 3,
-            "count": 105,
+            "count": 108,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4850,7 +4851,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 209,
+            "count": 216,
             "revenu": 0,
             "cout": 0,
             "color": "#2056CB",
@@ -4883,7 +4884,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 215,
+            "count": 222,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -5021,7 +5022,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 138,
+            "count": 144,
             "revenu": 0,
             "cout": 0,
             "color": "#5D13DE",
@@ -5058,9 +5059,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 1,
+            "done": 0,
             "repet": 1,
-            "count": 104,
+            "count": 108,
             "revenu": 0,
             "cout": 0,
             "color": "#33AF0B",
@@ -5184,7 +5185,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 63,
+            "count": 66,
             "revenu": 0,
             "cout": 0,
             "color": "#33AF0B",
@@ -5210,10 +5211,55 @@
             "prio": 0
         }
     ],
-    "resetDaily": "19/01/2024",
-    "resetWeekly": "17/01/2024",
+    "resetDaily": "29/01/2024",
+    "resetWeekly": "24/01/2024",
     "resetBiMensuel": "17/01/2024",
     "fate_embers": [
+        {
+            "type": "1500 Golds",
+            "perso": "Drevana",
+            "date": "Thu Jan 25 2024 19:56:03 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "S Honing Chest",
+            "perso": "Jeresbard",
+            "date": "Wed Jan 24 2024 23:52:41 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Epic Card Pack",
+            "perso": "Imanyrae",
+            "date": "Wed Jan 24 2024 18:56:07 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Normal Xp Card Pack",
+            "perso": "Shadow",
+            "date": "Mon Jan 22 2024 13:56:55 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Epic Card Pack",
+            "perso": "Jeresunshine",
+            "date": "Mon Jan 22 2024 12:27:53 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Lucky Xp Card Pack",
+            "perso": "Drevana",
+            "date": "Mon Jan 22 2024 12:19:47 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "L Honing Chest",
+            "perso": "Drevana",
+            "date": "Mon Jan 22 2024 12:11:57 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "S Honing Chest",
+            "perso": "Jeresayaya",
+            "date": "Sun Jan 21 2024 16:20:29 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Random Legendary Card Pack",
+            "perso": "Jerescelestia",
+            "date": "Sat Jan 20 2024 12:50:04 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "type": "S Honing Chest",
             "perso": "Shadow",
@@ -6231,6 +6277,605 @@
         }
     ],
     "gold_income": [
+        {
+            "type": "Artisanat",
+            "description": "Vente ressources fouille",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 13029,
+            "date": "Sun Jan 28 2024 19:29:25 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -2172,
+            "date": "Sun Jan 28 2024 19:28:53 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Vente",
+            "description": "Bijou",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 15000,
+            "date": "Sun Jan 28 2024 14:30:59 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Artisanat",
+            "description": "Vente ressources fouille",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 9080,
+            "date": "Sun Jan 28 2024 12:46:32 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Artisanat",
+            "description": "Vente ressources fouille",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 77391,
+            "date": "Sun Jan 28 2024 12:44:37 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -5400,
+            "date": "Sun Jan 28 2024 12:43:34 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -32250,
+            "date": "Sun Jan 28 2024 01:15:38 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -161,
+            "date": "Sun Jan 28 2024 01:08:26 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 10000,
+            "date": "Sat Jan 27 2024 21:35:20 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Akkan HM",
+            "categorie": "depense",
+            "perso": "Jeresakura",
+            "montant": -4500,
+            "date": "Sat Jan 27 2024 19:06:31 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 10000,
+            "date": "Sat Jan 27 2024 19:06:18 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -10320,
+            "date": "Fri Jan 26 2024 23:06:40 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 2839,
+            "date": "Fri Jan 26 2024 23:05:06 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 10000,
+            "date": "Fri Jan 26 2024 22:20:39 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos NM",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 9000,
+            "date": "Fri Jan 26 2024 20:48:35 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos NM",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 9000,
+            "date": "Fri Jan 26 2024 20:48:34 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresunshine",
+            "montant": 10000,
+            "date": "Fri Jan 26 2024 20:48:17 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jeresunshine",
+            "montant": 6500,
+            "date": "Fri Jan 26 2024 16:39:06 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -6236,
+            "date": "Fri Jan 26 2024 16:09:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 6500,
+            "date": "Fri Jan 26 2024 16:08:47 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 6500,
+            "date": "Fri Jan 26 2024 15:41:25 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 6500,
+            "date": "Fri Jan 26 2024 15:00:50 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 6500,
+            "date": "Fri Jan 26 2024 14:21:30 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Vente",
+            "description": "Gravure",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 2400,
+            "date": "Fri Jan 26 2024 12:06:07 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 1682,
+            "date": "Fri Jan 26 2024 10:17:29 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Craft Rouge",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -8280,
+            "date": "Fri Jan 26 2024 09:07:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 4503,
+            "date": "Fri Jan 26 2024 09:06:18 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -40070,
+            "date": "Thu Jan 25 2024 22:46:56 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Voldis",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -5500,
+            "date": "Thu Jan 25 2024 22:45:33 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos HM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 14500,
+            "date": "Thu Jan 25 2024 22:43:12 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos HM",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 14500,
+            "date": "Thu Jan 25 2024 22:43:10 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos HM",
+            "categorie": "revenu",
+            "perso": "Jeresunshine",
+            "montant": 14500,
+            "date": "Thu Jan 25 2024 22:43:05 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Ivory Tower of Chaos HM",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -5500,
+            "date": "Thu Jan 25 2024 22:42:50 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos HM",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 14500,
+            "date": "Thu Jan 25 2024 22:42:50 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 10000,
+            "date": "Thu Jan 25 2024 21:28:25 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 10000,
+            "date": "Thu Jan 25 2024 20:45:41 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 6500,
+            "date": "Thu Jan 25 2024 20:45:17 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Fate Ember",
+            "categorie": "revenu",
+            "perso": "Drevana",
+            "montant": 1500,
+            "date": "Thu Jan 25 2024 19:56:03 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Elixir",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -10000,
+            "date": "Wed Jan 24 2024 21:49:52 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Quality",
+            "description": "Weapon tap",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -70000,
+            "date": "Wed Jan 24 2024 20:12:35 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Achat",
+            "description": "Bijou",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -120000,
+            "date": "Wed Jan 24 2024 20:09:01 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 7818,
+            "date": "Mon Jan 22 2024 23:13:31 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Ivory Tower of Chaos HM",
+            "categorie": "depense",
+            "perso": "Jeresbard",
+            "montant": -5500,
+            "date": "Mon Jan 22 2024 23:13:19 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos HM",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 14500,
+            "date": "Mon Jan 22 2024 23:13:19 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Ivory Tower of Chaos NM",
+            "categorie": "depense",
+            "perso": "Jeresakura",
+            "montant": -3500,
+            "date": "Mon Jan 22 2024 19:24:36 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Ivory Tower of Chaos NM",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 9000,
+            "date": "Mon Jan 22 2024 19:24:36 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Elixir",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -45930,
+            "date": "Mon Jan 22 2024 13:49:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Quality",
+            "description": "50 Tap Weapon",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -40880,
+            "date": "Mon Jan 22 2024 09:36:20 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "1620",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -84910,
+            "date": "Sun Jan 21 2024 23:41:10 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 23:36:18 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21300,
+            "date": "Sun Jan 21 2024 23:31:57 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 23:30:10 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "1615",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -71006,
+            "date": "Sun Jan 21 2024 22:50:51 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 22:29:11 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 22:26:52 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "Weapon 18 -> 20",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -66918,
+            "date": "Sun Jan 21 2024 22:13:15 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 22:09:10 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 22:07:04 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -21600,
+            "date": "Sun Jan 21 2024 22:06:13 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -1335,
+            "date": "Sun Jan 21 2024 21:59:56 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 10000,
+            "date": "Sat Jan 20 2024 22:50:49 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "Drevana 1560",
+            "categorie": "depense",
+            "perso": "Drevana",
+            "montant": -17260,
+            "date": "Sat Jan 20 2024 19:20:04 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 1656,
+            "date": "Sat Jan 20 2024 19:11:12 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 10000,
+            "date": "Sat Jan 20 2024 18:45:30 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G4",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 3000,
+            "date": "Sat Jan 20 2024 14:21:09 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 7500,
+            "date": "Sat Jan 20 2024 14:21:07 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G4",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 3000,
+            "date": "Sat Jan 20 2024 01:00:36 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 7500,
+            "date": "Sat Jan 20 2024 01:00:35 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Vente",
+            "description": "Bijou",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 25000,
+            "date": "Sat Jan 20 2024 00:14:40 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Achat",
+            "description": "Aide Micru",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -10000,
+            "date": "Fri Jan 19 2024 21:52:44 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresunshine",
+            "montant": 10000,
+            "date": "Fri Jan 19 2024 21:41:10 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Elixir",
+            "description": "Set 40",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -40790,
+            "date": "Fri Jan 19 2024 20:58:17 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Elixir",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -13410,
+            "date": "Fri Jan 19 2024 20:14:13 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Akkan HM",
+            "categorie": "depense",
+            "perso": "Jerescelestia",
+            "montant": -4500,
+            "date": "Fri Jan 19 2024 18:56:37 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 10000,
+            "date": "Fri Jan 19 2024 18:56:03 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "type": "Vente",
             "description": "Bijou",
@@ -11397,10 +12042,489 @@
             "date": "2024-01-19T10:46:04.824Z",
             "label": "19/01/2024 11:46:04",
             "gold": 812433
+        },
+        {
+            "date": "2024-01-19T17:56:03.636Z",
+            "label": "19/01/2024 18:56:03",
+            "gold": 822433
+        },
+        {
+            "date": "2024-01-19T17:56:37.994Z",
+            "label": "19/01/2024 18:56:37",
+            "gold": 817933
+        },
+        {
+            "date": "2024-01-19T19:14:13.617Z",
+            "label": "19/01/2024 20:14:13",
+            "gold": 804523
+        },
+        {
+            "date": "2024-01-19T19:58:17.226Z",
+            "label": "19/01/2024 20:58:17",
+            "gold": 763733
+        },
+        {
+            "date": "2024-01-19T20:41:10.174Z",
+            "label": "19/01/2024 21:41:10",
+            "gold": 773733
+        },
+        {
+            "date": "2024-01-19T20:52:44.727Z",
+            "label": "19/01/2024 21:52:44",
+            "gold": 763733
+        },
+        {
+            "date": "2024-01-19T23:14:40.347Z",
+            "label": "20/01/2024 00:14:40",
+            "gold": 788733
+        },
+        {
+            "date": "2024-01-20T00:00:35.458Z",
+            "label": "20/01/2024 01:00:35",
+            "gold": 796233
+        },
+        {
+            "date": "2024-01-20T00:00:36.250Z",
+            "label": "20/01/2024 01:00:36",
+            "gold": 799233
+        },
+        {
+            "date": "2024-01-20T13:21:07.968Z",
+            "label": "20/01/2024 14:21:07",
+            "gold": 806733
+        },
+        {
+            "date": "2024-01-20T13:21:09.257Z",
+            "label": "20/01/2024 14:21:09",
+            "gold": 809733
+        },
+        {
+            "date": "2024-01-20T17:45:30.369Z",
+            "label": "20/01/2024 18:45:30",
+            "gold": 819733
+        },
+        {
+            "date": "2024-01-20T18:11:12.638Z",
+            "label": "20/01/2024 19:11:12",
+            "gold": 821389
+        },
+        {
+            "date": "2024-01-20T18:20:04.736Z",
+            "label": "20/01/2024 19:20:04",
+            "gold": 804129
+        },
+        {
+            "date": "2024-01-20T21:50:49.464Z",
+            "label": "20/01/2024 22:50:49",
+            "gold": 814129
+        },
+        {
+            "date": "2024-01-21T20:59:56.412Z",
+            "label": "21/01/2024 21:59:56",
+            "gold": 812794
+        },
+        {
+            "date": "2024-01-21T21:06:13.895Z",
+            "label": "21/01/2024 22:06:13",
+            "gold": 791194
+        },
+        {
+            "date": "2024-01-21T21:07:04.448Z",
+            "label": "21/01/2024 22:07:04",
+            "gold": 769594
+        },
+        {
+            "date": "2024-01-21T21:09:10.213Z",
+            "label": "21/01/2024 22:09:10",
+            "gold": 747994
+        },
+        {
+            "date": "2024-01-21T21:13:15.951Z",
+            "label": "21/01/2024 22:13:15",
+            "gold": 681076
+        },
+        {
+            "date": "2024-01-21T21:26:52.990Z",
+            "label": "21/01/2024 22:26:52",
+            "gold": 659476
+        },
+        {
+            "date": "2024-01-21T21:29:11.818Z",
+            "label": "21/01/2024 22:29:11",
+            "gold": 637876
+        },
+        {
+            "date": "2024-01-21T21:50:51.031Z",
+            "label": "21/01/2024 22:50:51",
+            "gold": 566870
+        },
+        {
+            "date": "2024-01-21T22:30:10.214Z",
+            "label": "21/01/2024 23:30:10",
+            "gold": 545270
+        },
+        {
+            "date": "2024-01-21T22:31:57.184Z",
+            "label": "21/01/2024 23:31:57",
+            "gold": 523970
+        },
+        {
+            "date": "2024-01-21T22:36:18.098Z",
+            "label": "21/01/2024 23:36:18",
+            "gold": 502370
+        },
+        {
+            "date": "2024-01-21T22:41:11.002Z",
+            "label": "21/01/2024 23:41:11",
+            "gold": 417460
+        },
+        {
+            "date": "2024-01-22T08:36:20.310Z",
+            "label": "22/01/2024 09:36:20",
+            "gold": 376580
+        },
+        {
+            "date": "2024-01-22T12:49:02.931Z",
+            "label": "22/01/2024 13:49:02",
+            "gold": 330650
+        },
+        {
+            "date": "2024-01-22T18:24:36.300Z",
+            "label": "22/01/2024 19:24:36",
+            "gold": 339650
+        },
+        {
+            "date": "2024-01-22T18:24:36.310Z",
+            "label": "22/01/2024 19:24:36",
+            "gold": 336150
+        },
+        {
+            "date": "2024-01-22T22:13:19.128Z",
+            "label": "22/01/2024 23:13:19",
+            "gold": 350650
+        },
+        {
+            "date": "2024-01-22T22:13:19.141Z",
+            "label": "22/01/2024 23:13:19",
+            "gold": 345150
+        },
+        {
+            "date": "2024-01-22T22:13:31.224Z",
+            "label": "22/01/2024 23:13:31",
+            "gold": 352968
+        },
+        {
+            "date": "2024-01-24T12:00:00.000Z",
+            "label": "24/01/2024 13:00:00",
+            "gold": 352968
+        },
+        {
+            "date": "2024-01-24T19:09:01.152Z",
+            "label": "24/01/2024 20:09:01",
+            "gold": 232968
+        },
+        {
+            "date": "2024-01-24T19:12:35.968Z",
+            "label": "24/01/2024 20:12:35",
+            "gold": 162968
+        },
+        {
+            "date": "2024-01-24T20:49:52.354Z",
+            "label": "24/01/2024 21:49:52",
+            "gold": 152968
+        },
+        {
+            "date": "2024-01-25T18:56:03.383Z",
+            "label": "25/01/2024 19:56:03",
+            "gold": 154468
+        },
+        {
+            "date": "2024-01-25T19:45:17.587Z",
+            "label": "25/01/2024 20:45:17",
+            "gold": 160968
+        },
+        {
+            "date": "2024-01-25T19:45:41.718Z",
+            "label": "25/01/2024 20:45:41",
+            "gold": 170968
+        },
+        {
+            "date": "2024-01-25T20:28:25.112Z",
+            "label": "25/01/2024 21:28:25",
+            "gold": 180968
+        },
+        {
+            "date": "2024-01-25T21:42:50.616Z",
+            "label": "25/01/2024 22:42:50",
+            "gold": 195468
+        },
+        {
+            "date": "2024-01-25T21:42:50.622Z",
+            "label": "25/01/2024 22:42:50",
+            "gold": 189968
+        },
+        {
+            "date": "2024-01-25T21:43:05.290Z",
+            "label": "25/01/2024 22:43:05",
+            "gold": 204468
+        },
+        {
+            "date": "2024-01-25T21:43:10.256Z",
+            "label": "25/01/2024 22:43:10",
+            "gold": 218968
+        },
+        {
+            "date": "2024-01-25T21:43:12.180Z",
+            "label": "25/01/2024 22:43:12",
+            "gold": 233468
+        },
+        {
+            "date": "2024-01-25T21:45:33.553Z",
+            "label": "25/01/2024 22:45:33",
+            "gold": 227968
+        },
+        {
+            "date": "2024-01-25T21:46:56.405Z",
+            "label": "25/01/2024 22:46:56",
+            "gold": 187898
+        },
+        {
+            "date": "2024-01-26T08:06:18.855Z",
+            "label": "26/01/2024 09:06:18",
+            "gold": 192401
+        },
+        {
+            "date": "2024-01-26T08:07:02.150Z",
+            "label": "26/01/2024 09:07:02",
+            "gold": 184121
+        },
+        {
+            "date": "2024-01-26T09:17:29.918Z",
+            "label": "26/01/2024 10:17:29",
+            "gold": 185803
+        },
+        {
+            "date": "2024-01-26T11:06:07.863Z",
+            "label": "26/01/2024 12:06:07",
+            "gold": 188203
+        },
+        {
+            "date": "2024-01-26T13:21:30.285Z",
+            "label": "26/01/2024 14:21:30",
+            "gold": 194703
+        },
+        {
+            "date": "2024-01-26T14:00:50.151Z",
+            "label": "26/01/2024 15:00:50",
+            "gold": 201203
+        },
+        {
+            "date": "2024-01-26T14:41:25.029Z",
+            "label": "26/01/2024 15:41:25",
+            "gold": 207703
+        },
+        {
+            "date": "2024-01-26T15:08:47.766Z",
+            "label": "26/01/2024 16:08:47",
+            "gold": 214203
+        },
+        {
+            "date": "2024-01-26T15:09:02.722Z",
+            "label": "26/01/2024 16:09:02",
+            "gold": 207967
+        },
+        {
+            "date": "2024-01-26T15:39:06.467Z",
+            "label": "26/01/2024 16:39:06",
+            "gold": 214467
+        },
+        {
+            "date": "2024-01-26T19:48:17.744Z",
+            "label": "26/01/2024 20:48:17",
+            "gold": 224467
+        },
+        {
+            "date": "2024-01-26T19:48:34.417Z",
+            "label": "26/01/2024 20:48:34",
+            "gold": 233467
+        },
+        {
+            "date": "2024-01-26T19:48:35.930Z",
+            "label": "26/01/2024 20:48:35",
+            "gold": 242467
+        },
+        {
+            "date": "2024-01-26T21:20:39.423Z",
+            "label": "26/01/2024 22:20:39",
+            "gold": 252467
+        },
+        {
+            "date": "2024-01-26T22:05:06.366Z",
+            "label": "26/01/2024 23:05:06",
+            "gold": 255306
+        },
+        {
+            "date": "2024-01-26T22:06:40.736Z",
+            "label": "26/01/2024 23:06:40",
+            "gold": 244986
+        },
+        {
+            "date": "2024-01-27T18:06:18.089Z",
+            "label": "27/01/2024 19:06:18",
+            "gold": 254986
+        },
+        {
+            "date": "2024-01-27T18:06:31.045Z",
+            "label": "27/01/2024 19:06:31",
+            "gold": 250486
+        },
+        {
+            "date": "2024-01-27T20:35:20.869Z",
+            "label": "27/01/2024 21:35:20",
+            "gold": 260486
+        },
+        {
+            "date": "2024-01-28T00:08:26.407Z",
+            "label": "28/01/2024 01:08:26",
+            "gold": 260325
+        },
+        {
+            "date": "2024-01-28T00:15:38.701Z",
+            "label": "28/01/2024 01:15:38",
+            "gold": 228075
+        },
+        {
+            "date": "2024-01-28T11:43:34.465Z",
+            "label": "28/01/2024 12:43:34",
+            "gold": 222675
+        },
+        {
+            "date": "2024-01-28T11:44:37.020Z",
+            "label": "28/01/2024 12:44:37",
+            "gold": 300066
+        },
+        {
+            "date": "2024-01-28T11:46:32.604Z",
+            "label": "28/01/2024 12:46:32",
+            "gold": 309146
+        },
+        {
+            "date": "2024-01-28T13:30:59.853Z",
+            "label": "28/01/2024 14:30:59",
+            "gold": 324146
+        },
+        {
+            "date": "2024-01-28T18:28:53.215Z",
+            "label": "28/01/2024 19:28:53",
+            "gold": 321974
+        },
+        {
+            "date": "2024-01-28T18:29:25.403Z",
+            "label": "28/01/2024 19:29:25",
+            "gold": 335003
         }
     ],
-    "gold": 812433,
+    "gold": 335003,
     "events": [
+        {
+            "perso": "Jerescelestia",
+            "categorie": "Qualité",
+            "description": "Monter l'arme 90+",
+            "statut": "todo",
+            "compteur": 150,
+            "max": 0,
+            "priority": 6,
+            "expensive": true,
+            "date": "Fri Jan 26 2024 22:58:48 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Imanyrae",
+            "categorie": "Gear",
+            "description": "Refaire les gemmes",
+            "statut": "done",
+            "compteur": 1,
+            "max": 1,
+            "priority": 15,
+            "expensive": false,
+            "date": "Fri Jan 26 2024 22:58:23 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Drevana",
+            "categorie": "Quêtes",
+            "description": "Pleccia",
+            "statut": "done",
+            "compteur": 1,
+            "max": 1,
+            "priority": 2,
+            "expensive": false,
+            "date": "Fri Jan 26 2024 10:21:28 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Jeresblade",
+            "categorie": "Cube",
+            "description": "Finir les cubes de la slayer avant expiration du build",
+            "statut": "done",
+            "compteur": 23,
+            "max": 23,
+            "priority": 10,
+            "expensive": false,
+            "date": "Mon Jan 22 2024 18:29:14 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Jerescelestia",
+            "categorie": "Honing",
+            "description": "Go 1620",
+            "statut": "done",
+            "compteur": 12,
+            "max": 12,
+            "priority": 6,
+            "expensive": true,
+            "date": "Mon Jan 22 2024 00:06:27 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Drevana",
+            "categorie": "Honing",
+            "description": "Monter 1580 Akkan",
+            "statut": "todo",
+            "compteur": 0,
+            "max": 12,
+            "priority": 9,
+            "expensive": true,
+            "date": "Sat Jan 20 2024 19:21:14 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Drevana",
+            "categorie": "Honing",
+            "description": "Monter 1560 Brel 1-4",
+            "statut": "done",
+            "compteur": 6,
+            "max": 6,
+            "priority": 5,
+            "expensive": true,
+            "date": "Sat Jan 20 2024 19:20:44 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Drevana",
+            "categorie": "Honing",
+            "description": "Monter 1550",
+            "statut": "done",
+            "compteur": 6,
+            "max": 6,
+            "priority": 2,
+            "expensive": true,
+            "date": "Sat Jan 20 2024 19:20:17 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "perso": "Jeresayaya",
+            "categorie": "Elixir",
+            "description": "Set 40",
+            "statut": "done",
+            "compteur": 1,
+            "max": 1,
+            "priority": 5,
+            "expensive": true,
+            "date": "Fri Jan 19 2024 22:45:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "perso": "Jeresunshine",
             "categorie": "Elixir",
@@ -11413,70 +12537,15 @@
             "date": "Fri Jan 19 2024 10:54:34 GMT+0100 (heure normale d’Europe centrale)"
         },
         {
-            "perso": "Jeresblade",
-            "categorie": "Cube",
-            "description": "Finir les cubes de la slayer avant expiration du build",
-            "statut": "todo",
-            "compteur": 0,
-            "max": 23,
-            "priority": 10,
-            "expensive": false,
-            "date": "Mon Jan 15 2024 18:12:03 GMT+0100 (heure normale d’Europe centrale)"
-        },
-        {
             "perso": "Drevana",
             "categorie": "Quêtes",
             "description": "Voldis",
             "statut": "todo",
             "compteur": 0,
             "max": 1,
-            "priority": 5,
+            "priority": 1,
             "expensive": false,
             "date": "Mon Jan 15 2024 17:23:10 GMT+0100 (heure normale d’Europe centrale)"
-        },
-        {
-            "perso": "Jerescelestia",
-            "categorie": "Qualité",
-            "description": "Monter l'arme 90+",
-            "statut": "todo",
-            "compteur": 0,
-            "max": 0,
-            "priority": 1,
-            "expensive": true,
-            "date": "Mon Jan 15 2024 16:49:51 GMT+0100 (heure normale d’Europe centrale)"
-        },
-        {
-            "perso": "Drevana",
-            "categorie": "Honing",
-            "description": "Monter 1550",
-            "statut": "todo",
-            "compteur": 4,
-            "max": 6,
-            "priority": 2,
-            "expensive": true,
-            "date": "Mon Jan 15 2024 16:49:14 GMT+0100 (heure normale d’Europe centrale)"
-        },
-        {
-            "perso": "Jerescelestia",
-            "categorie": "Honing",
-            "description": "Go 1620",
-            "statut": "todo",
-            "compteur": 0,
-            "max": 12,
-            "priority": 4,
-            "expensive": true,
-            "date": "Mon Jan 15 2024 16:46:37 GMT+0100 (heure normale d’Europe centrale)"
-        },
-        {
-            "perso": "Drevana",
-            "categorie": "Quêtes",
-            "description": "Pleccia",
-            "statut": "todo",
-            "compteur": 0,
-            "max": 1,
-            "priority": 5,
-            "expensive": false,
-            "date": "Mon Jan 15 2024 15:34:36 GMT+0100 (heure normale d’Europe centrale)"
         },
         {
             "perso": "Drevana",
@@ -11518,7 +12587,7 @@
             "statut": "todo",
             "compteur": 0,
             "max": 9,
-            "priority": 3,
+            "priority": 10,
             "expensive": true,
             "date": "Mon Jan 08 2024 22:53:47 GMT+0100 (heure normale d’Europe centrale)"
         }
@@ -11526,85 +12595,22 @@
     "planning": {
         "events": [
             {
-                "id": "voldis_jeresayaya",
-                "raid": "voldis_jeresayaya",
-                "title": "Voldis HM<br>Ina, Strain, Speedz",
-                "start": "2024-01-17T17:30",
-                "end": "2024-01-17T18:30",
-                "backgroundColor": "#444444",
-                "textColor": "#00A2BF"
-            },
-            {
-                "id": "voldis_jeresunshine",
-                "raid": "voldis_jeresunshine",
-                "title": "Voldis HM<br>R1",
-                "start": "2024-01-17T18:30",
-                "end": "2024-01-17T19:30",
+                "id": "voldis_jerescelestia",
+                "raid": "voldis_jerescelestia",
+                "title": "Ivory Tower of Chaos HM<br>Jerescelestia",
+                "start": "2024-01-31T22:00",
+                "end": "2024-01-31T23:00",
                 "backgroundColor": "#444444",
                 "textColor": "#00A2BF"
             },
             {
                 "id": "voldis_jeresbard",
                 "raid": "voldis_jeresbard",
-                "title": "Voldis HM<br>Exca, Xiao, Kiba",
-                "start": "2024-01-22T21:30",
-                "end": "2024-01-22T23:00",
+                "title": "Ivory Tower of Chaos HM<br>Jeresbard",
+                "start": "2024-01-31T20:00",
+                "end": "2024-01-31T21:30",
                 "backgroundColor": "#444444",
                 "textColor": "#00A2BF"
-            },
-            {
-                "id": "akkan_jerescelestia",
-                "raid": "akkan_jerescelestia",
-                "title": "Akkan HM<br>Jerescelestia - DPS",
-                "start": "2024-01-19T18:00",
-                "end": "2024-01-19T19:00",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
-            },
-            {
-                "id": "akkan_jeresbard",
-                "raid": "akkan_jeresbard",
-                "title": "Akkan HM<br>Jeresbard - Supp",
-                "start": "2024-01-20T20:30",
-                "end": "2024-01-20T21:30",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
-            },
-            {
-                "id": "akkan_imanyrae",
-                "raid": "akkan_imanyrae",
-                "title": "Akkan HM<br>Imanyrae - DPS",
-                "start": "2024-01-18T18:00",
-                "end": "2024-01-18T19:00",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
-            },
-            {
-                "id": "akkan_jeresayaya",
-                "raid": "akkan_jeresayaya",
-                "title": "Akkan HM<br>Jeresayaya",
-                "start": "2024-01-18T20:30",
-                "end": "2024-01-18T21:30",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
-            },
-            {
-                "id": "akkan_jeresunshine",
-                "raid": "akkan_jeresunshine",
-                "title": "Akkan HM<br>Jeresunshine",
-                "start": "2024-01-19T21:00",
-                "end": "2024-01-19T22:00",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
-            },
-            {
-                "id": "akkan_jeresakura",
-                "raid": "akkan_jeresakura",
-                "title": "Akkan HM<br>Jeresakura",
-                "start": "2024-01-20T18:00",
-                "end": "2024-01-20T19:00",
-                "backgroundColor": "#444444",
-                "textColor": "#3ec221"
             }
         ]
     },
@@ -11675,7 +12681,7 @@
                 "Roster"
             ],
             "class": "",
-            "image": "images/Roster11.jpg",
+            "image": "images/roster1.jpg",
             "logo": "",
             "ilevel": 296,
             "page_gold_div_rentabilite": "gold_income_roster"
@@ -11686,7 +12692,7 @@
                 "Jeresayaya"
             ],
             "class": "Artist",
-            "image": "images/Jeresayaya11.jpg",
+            "image": "images/Jeresayayavoldis1.jpg",
             "logo": "images/class_artist.png",
             "ilevel": 1620,
             "elixir": {
@@ -11875,7 +12881,7 @@
                 "Jerescelestia"
             ],
             "class": "Aeromancer",
-            "image": "images/Jerescelestia11.jpg",
+            "image": "images/jeresclestiavoldis1.jpg",
             "logo": "images/class_aeromancer.png",
             "ilevel": 1610,
             "elixir": {
@@ -12108,50 +13114,57 @@
             ],
             "class": "Lopang",
             "image": "images/lopang11.jpg",
-            "logo": "",
+            "logo": "images/etc_14.webp",
             "ilevel": 9
         }
     ],
     "gemmes": {
         "weekaverage": 0,
-        "week": 7,
-        "total": 7,
+        "week": 30,
+        "total": 79,
+        "all": [
+            {
+                "date": "2024-01-24T11:12:39.590Z",
+                "label": "24/01/2024 12:12:39",
+                "gemmes": 49
+            }
+        ],
         "collected": [
             {
                 "name": "Jeresayaya",
-                "gemme": 1
+                "gemme": 12
             },
             {
                 "name": "Jeresunshine",
-                "gemme": 1
+                "gemme": 6
             },
             {
                 "name": "Jerescelestia",
-                "gemme": 1
+                "gemme": 10
             },
             {
                 "name": "Jeresbard",
-                "gemme": 0
+                "gemme": 8
             },
             {
                 "name": "Jeresakura",
-                "gemme": 1
+                "gemme": 7
             },
             {
                 "name": "Imanyrae",
-                "gemme": 1
+                "gemme": 9
             },
             {
                 "name": "Shadowbreacher",
-                "gemme": 1
+                "gemme": 5
             },
             {
                 "name": "Drevana",
-                "gemme": 1
+                "gemme": 6
             },
             {
                 "name": "Jeresblade",
-                "gemme": 0
+                "gemme": 15
             }
         ],
         "classes": [
@@ -12205,7 +13218,7 @@
                 "persos": [
                     {
                         "name": "Jeresayaya",
-                        "gemme": 1
+                        "gemme": 2
                     }
                 ]
             },
@@ -12343,7 +13356,9 @@
                 "Achat",
                 "Vente",
                 "Honing",
+                "Coffre de raids",
                 "Oreha",
+                "Artisanat",
                 "Gemme",
                 "Quality",
                 "Elixir",

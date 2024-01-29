@@ -49,8 +49,12 @@ function reset() {
             }
         });
 
+        db.get("gemmes.all").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gemmes': db.get("gemmes.week").value() }).save();
+
         db.get("gemmes.week").set(0);
         db.save();
+
+        db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
 
         reload = true;
     }

@@ -16,8 +16,8 @@ var scroll_position = [];
 reset();
 
 $(document).ready(function () {
-    dashboard();
     sidebar();
+    dashboard();
 });
 
 function setScrollPos(div) {
@@ -51,6 +51,8 @@ $(document).on('click', '.sidebar-link', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'daily') daily();
+    if (page == 'weekly') weekly();
     if (page == 'settings') settings();
     if (page == 'gold') gold();
     if (page == 'fate-ember') fate_embers();
@@ -61,6 +63,8 @@ $(document).on('click', '.sidebar-link', function () {
 
 function sidebar() {
     sidebar_dashboard();
+    sidebar_daily();
+    sidebar_weekly();
     sidebar_golds();
     sidebar_fate_embers();
     sidebar_gemme();
@@ -77,24 +81,7 @@ function sidebar() {
 // --- DASHBOARD -----------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 function sidebar_dashboard() {
-    let done = 0;
-    let all = 0;
-    let task_types = db.get("settings.dashboard.prio_task_daily").value();
-
-    task_types.forEach(function (type, i) {
-        if (type != 'Weekly Una') {
-            done += getDone([type]);
-            all += getAll([type]);
-        }
-    });
-
-    let color = '#cf634d';
-
-    if ((done * 100) / all > 25) color = '#d99157';
-    if ((done * 100) / all > 50) color = '#dbbe56';
-    if ((done * 100) / all > 75) color = '#00b135';
-
-    $('#sidebar-dashboard-data').html(`&nbsp;-&nbsp;<span style="color: ${color};">Daily&nbsp;${done} / ${all}</span>`);
+    $('#sidebar-dashboard-data').html('');
 }
 
 $(document).on('click', '.table-task,.liste-task-no-card', function () {
@@ -123,34 +110,39 @@ $(document).on('click', '.table-task,.liste-task-no-card', function () {
 
         db.save();
 
-        if (task.revenu > 0 && task.done >= task.repet) {
-            let gold_income = {
-                'type': 'Raids',
-                'description': task.tache_name,
-                'categorie': 'revenu',
-                'perso': task.perso,
-                'montant': task.revenu,
-                'date': new Date().toString()
+        let tbrel13 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G1-3' && t.perso == task.perso);
+        let tbrel4 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G4' && t.perso == task.perso);
+        
+        if (task.tache_name != 'Kayangel' || (task.tache_name == 'Kayangel' && tbrel4.done > 0 && tbrel13.done == 0)) {
+            if (task.revenu > 0 && task.done >= task.repet) {
+                let gold_income = {
+                    'type': 'Raids',
+                    'description': task.tache_name,
+                    'categorie': 'revenu',
+                    'perso': task.perso,
+                    'montant': task.revenu,
+                    'date': new Date().toString()
+                }
+
+                db.get("gold_income").push(gold_income).save();
+                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.revenu)).save();
+                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
             }
 
-            db.get("gold_income").push(gold_income).save();
-            db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.revenu)).save();
-            db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
-        }
+            if (task.cout < 0 && task.done >= task.repet) {
+                let gold_income = {
+                    'type': 'Coffre de raids',
+                    'description': 'Coffre de ' + task.tache_name,
+                    'categorie': 'depense',
+                    'perso': task.perso,
+                    'montant': task.cout,
+                    'date': new Date().toString()
+                }
 
-        if (task.cout < 0 && task.done >= task.repet) {
-            let gold_income = {
-                'type': 'Coffre de raids',
-                'description': 'Coffre de ' + task.tache_name,
-                'categorie': 'depense',
-                'perso': task.perso,
-                'montant': task.cout,
-                'date': new Date().toString()
+                db.get("gold_income").push(gold_income).save();
+                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.cout)).save();
+                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
             }
-
-            db.get("gold_income").push(gold_income).save();
-            db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.cout)).save();
-            db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
         }
     }
 
@@ -195,9 +187,9 @@ function dashboard() {
     // Mise en place de la card liste raids
     $('.dashboard-wrapper').append('<div class="card-content" style="grid-column: 11 / 13; grid-row: 2 / 8;"><div id="tasks-raidlegion" onscroll="setScrollPos(\'tasks-raidlegion\');" class="scrollhidden"style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>');
 
-    showRaid();
     showTasksByPrio();
     showTasksWeeklyByPrio();
+    showRaid();
 }
 
 function cardstats() {
@@ -337,6 +329,7 @@ function showPerso(persos, types) {
 function showRaid() {
     let config_raids = db.get("settings.dashboard.liste_raids").value();
     let html = '';
+    let task_remaining = 0;
 
     config_raids.forEach(function (config_raid, i) {
         let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == config_raid.name && t.done < t.repet) : null;
@@ -349,17 +342,21 @@ function showRaid() {
                 let taskrestriction = (db.get("dashboard").value()) ? db.get("dashboard").value().find((t) => t.id == task.restriction) : null;
 
                 if (taskrestriction.done !== taskrestriction.repet) {
+                    task_remaining++;
                     indeximage ? html += image : null;
                     html += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${config_raid.color};font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: ${text_color};">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: ' + text_color + ';">' + task.description + '</span>' : ''}</div>`;
                     indeximage = false;
                 }
             } else {
+                task_remaining++;
                 indeximage ? html += image : null;
                 html += `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${config_raid.color};font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: ${text_color};">${task.tache_name}</span>${task.description.length > 0 ? '<span style="color: ' + text_color + ';">' + task.description + '</span>' : ''}</div>`;
                 indeximage = false;
             }
         });
     });
+
+    task_remaining > 0 ? $(`#sidebar-dashboard-data`).append(`<span style="color: #cf6363;"><i class="fa-solid fa-angles-up"></i>${task_remaining}</span>`) : $(`#sidebar-dashboard-data`).append(`<i class="fa-solid fa-check-double" style="color: #cf6363;"></i>`);
 
     $("#tasks-raidlegion").html(html);
 
@@ -374,11 +371,6 @@ function showTasksByPrio() {
     let time_remaining = 0;
     let task_remaining = 0;
     let text_color = db.get("settings.colors.text").value();
-    
-    let sidebar_1 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
-    let sidebar_2 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
-    let sidebar_3 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
-    let sidebar_4 = `<i class="fa-solid fa-angles-up" style="color: #008b2b;"></i>`;
 
     if (tasks.length > 0) {
         let html = '';
@@ -387,27 +379,20 @@ function showTasksByPrio() {
         let html_3 = '';
         let html_4 = '';
         
-
         tasks.sort(function (a, b) {
             return a.prio - b.prio;
         });
 
         tasks.forEach(function (task, i) {
+            let importance = task.importance;
             html = `<div class="liste-task-no-card" style="flex: 1;display: flex;justify-content: center;flex-direction: column;" data-id="${task.id}"><span style="color: ${task.reset == 'daily' ? (task.type == 'GR' ? db.get("settings.colors.GR.text").value() : db.get("settings.colors.daily.text").value()) : db.get("settings.colors.weekly.text").value()};font-size: 20px;">${task.repet - task.done} - ${task.perso}</span><span style="color: ${text_color};">${task.tache_name} ${task.rest > 10 ? ` (${task.rest})` : ''}</span></div>`;
+
+            if (task.rest >= 40 && importance > 1) importance--;
             
-            if (task.importance == 1) {
-                html_1 += html;
-                sidebar_1 = `<i class="fa-solid fa-angles-up" style="color: #cf6363;"></i>`;
-            } else if (task.importance == 2) {
-                html_2 += html;
-                sidebar_2 = `<i class="fa-solid fa-angles-up" style="color: #d99157;"></i>`;
-            } else if (task.importance == 3) {
-                html_3 += html;
-                sidebar_3 = `<i class="fa-solid fa-angles-up" style="color: #dbbe56;"></i>`;
-            } else if (task.importance == 4) {
-                html_4 += html;
-                sidebar_4 = `<i class="fa-solid fa-angles-up" style="color: #74adc0;"></i>`;
-            }
+            if (importance == 1) html_1 += html;
+            else if (importance == 2) html_2 += html;
+            else if (importance == 3) html_3 += html;
+            else if (importance == 4) html_4 += html;
 
             time_remaining += (task.duration * (task.repet - task.done));
             task_remaining += (task.repet - task.done);
@@ -424,7 +409,7 @@ function showTasksByPrio() {
         $('#tasks-by-prio').html('');
     }
 
-    $(`#sidebar-dashboard-prio`).html(`${sidebar_1} ${sidebar_2} ${sidebar_3} ${sidebar_4}`);
+    task_remaining > 0 ? $(`#sidebar-dashboard-data`).append(`<span style="color: #008b2b;"><i class="fa-solid fa-angles-up"></i>${task_remaining}</span>&nbsp;`) : $(`#sidebar-dashboard-data`).append(`<i class="fa-solid fa-check-double" style="color: #008b2b;"></i>&nbsp;`);
 
     let div = document.getElementById('tasks-by-prio');
     div.scrollTop = getScrollPos('tasks-by-prio');
@@ -457,9 +442,253 @@ function showTasksWeeklyByPrio() {
         $('#tasks-weekly-by-prio').html('');
     }
 
+    task_remaining > 0 ? $(`#sidebar-dashboard-data`).append(`<span style="color: #2b87fb;"><i class="fa-solid fa-angles-up"></i>${task_remaining}</span>&nbsp;`) : $(`#sidebar-dashboard-data`).append(`<i class="fa-solid fa-check-double" style="color: #2b87fb;"></i>&nbsp;`);
+
     let div = document.getElementById('tasks-weekly-by-prio');
     div.scrollTop = getScrollPos('tasks-weekly-by-prio');
 }
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- DAILY ---------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_daily() {
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.reset == 'daily' && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    let time_remaining = 0;
+
+    tasks.forEach(function(t, i) {
+        let todo = t.repet - t.done > 0 && t.rest >= t.restNeeded ? true : false;
+        todo ? time_remaining += (t.duration * (t.repet - t.done)) : null;
+    });
+
+    let h_remaining = Math.floor(time_remaining / 60);
+    let min_remaining = time_remaining % 60;
+
+    h_remaining = h_remaining < 10 ? '0' + h_remaining : h_remaining;
+    min_remaining = min_remaining < 10 ? '0' + min_remaining : min_remaining;
+
+    $(`#sidebar-daily-data`).html(`<span style="color: #008b2b;">${h_remaining}:${min_remaining}</span>`);
+}
+
+function daily() {
+    sidebar_daily();
+
+    // Reset de l'HTML
+    $('.daily-wrapper').html('');
+
+    // Row 1
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresayaya" class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 4;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresunshine" class="card-content" style="grid-column: 5 / 9; grid-row: 1 / 4;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jerescelestia" class="card-content" style="grid-column: 9 / 13; grid-row: 1 / 4;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresbard" class="card-content" style="grid-column: 13 / 17; grid-row: 1 / 4;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresakura" class="card-content" style="grid-column: 17 / 21; grid-row: 1 / 4;"></div>');
+    
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresayaya" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 1 / 5; grid-row: 4 / 8;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresunshine" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 4 / 8;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jerescelestia" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 4 / 8;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresbard" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 4 / 8;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresakura" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 4 / 8;"></div>');
+    
+    // Row 2
+    $('.daily-wrapper').append('<div id="daily-entete-Roster" class="card-content" style="grid-column: 1 / 5; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Imanyrae" class="card-content" style="grid-column: 5 / 9; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Shadow" class="card-content" style="grid-column: 9 / 13; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Drevana" class="card-content" style="grid-column: 13 / 17; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresblade" class="card-content" style="grid-column: 17 / 21; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Lopang" class="card-content" style="grid-column: 21 / 25; grid-row: 1 / 4;"></div>');
+    
+    $('.daily-wrapper').append('<div id="daily-tasks-Roster" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 1 / 5; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Imanyrae" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Shadow" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Drevana" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresblade" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Lopang" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 21 / 25; grid-row: 4 / 15;"></div>');
+
+    tasksDaily();
+}
+
+function tasksDaily() {
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.reset == 'daily' && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    // let gr_tasks = ['Gargadis', 'Sonavel', 'Hanumatan'];
+    let bgcolor = '';
+    let color = '';
+
+    tasks.forEach(function(t, i) {
+        let perso = list_perso.find((p) => p.perso.includes(t.perso));
+        let importance = t.importance;
+        let tache_name = perso.name == 'Lopang' ? t.tache_name + '<br>' + t.perso : t.tache_name;
+        let todo = t.repet - t.done > 0 && t.rest >= t.restNeeded ? true : false;
+
+        if (t.rest >= 40 && importance > 1) importance--;
+            
+        if (importance == 1) {
+            bgcolor = '#511313';
+            color = '#a1a1a1';
+        } else if (importance == 2) {
+            bgcolor = '#54391e';
+            color = '#a1a1a1';
+        } else if (importance == 3) {
+            bgcolor = '#4f4416';
+            color = '#a1a1a1';
+        } else if (importance == 4) {
+            bgcolor = '#36515a';
+            color = '#a1a1a1';
+        }
+
+        $(`#daily-entete-${perso.name}`).css('background-image', `url(${perso.image})`);
+        $(`#daily-entete-${perso.name}`).css('background-repeat', 'no-repeat');
+        $(`#daily-entete-${perso.name}`).css('background-position', 'center center');
+        $(`#daily-entete-${perso.name}`).css('background-size', 'cover');
+
+        $(`#daily-tasks-${perso.name}`).append(`<div class="${todo ? 'card-daily-todo' : 'card-daily-done'}" style="flex: 1;display: flex;justify-content: center;flex-direction: row;justify-content: space-between;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}</span><span style="font-size: 20px;">${t.done} / ${t.repet}</span></div>`);
+
+    });
+}
+
+$(document).on('click', '.card-daily-todo', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1);
+
+        if (task.rest && parseInt(task.rest) >= 20) {
+            db.get("dashboard")
+                .get(index)
+                .get('rest')
+                .set(task.rest - 20);
+        }
+
+        db.save();
+    }
+
+    daily();
+});
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- WEEKLY --------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_weekly() {
+    let type = [ 'Ebony Cube', 'Pirate Shop', 'Guilde Shop', 'Elgacia Shop', 'GVE', 'Event Shop', 'Legion Raid Shop', 'Elgacia leg Shop', 'Abyssal Challenge', 'GR Challenge' ];
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.reset == 'weekly' && type.includes(t.tache_name));
+    let time_remaining = 0;
+
+    tasks.forEach(function(t, i) {
+        let todo = t.repet - t.done > 0  ? true : false;
+        todo ? time_remaining += (t.duration * (t.repet - t.done)) : null;
+    });
+
+    let h_remaining = Math.floor(time_remaining / 60);
+    let min_remaining = time_remaining % 60;
+
+    h_remaining = h_remaining < 10 ? '0' + h_remaining : h_remaining;
+    min_remaining = min_remaining < 10 ? '0' + min_remaining : min_remaining;
+
+    $(`#sidebar-weekly-data`).html(`<span style="color: #2b87fb;">${h_remaining}:${min_remaining}</span>`);
+}
+
+function weekly() {
+    sidebar_weekly();
+
+    // Reset de l'HTML
+    $('.weekly-wrapper').html('');
+
+    // Row 1
+    $('.weekly-wrapper').append('<div id="weekly-entete-Roster" class="card-content" style="grid-column: 1 / 5; grid-row: 1 / 4;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-Jeresayaya" class="card-content" style="grid-column: 5 / 9; grid-row: 1 / 4;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-Jeresunshine" class="card-content" style="grid-column: 9 / 13; grid-row: 1 / 4;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-Jerescelestia" class="card-content" style="grid-column: 13 / 17; grid-row: 1 / 4;"></div>');
+    
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Roster" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 1 / 5; grid-row: 4 / 15;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Jeresayaya" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 4 / 8;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Jeresunshine" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 4 / 8;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Jerescelestia" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 4 / 8;"></div>');
+    
+    // Row 2
+    $('.weekly-wrapper').append('<div id="weekly-entete-Jeresbard" class="card-content" style="grid-column: 5 / 9; grid-row: 8 / 11;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-Jeresakura" class="card-content" style="grid-column: 9 / 13; grid-row: 8 / 11;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-Imanyrae" class="card-content" style="grid-column: 13 / 17; grid-row: 8 / 11;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-entete-horsroster" class="card-content" style="grid-column: 17 / 21; grid-row: 1 / 4;"></div>');
+    
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Jeresbard" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 11 / 15;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Jeresakura" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 11 / 15;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-Imanyrae" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 11 / 15;"></div>');
+    $('.weekly-wrapper').append('<div id="weekly-tasks-horsroster" class="card-weekly-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 4 / 15;"></div>');
+
+    tasksWeekly();
+}
+
+function tasksWeekly() {
+    let type = [ 'Ebony Cube', 'Pirate Shop', 'Guilde Shop', 'Elgacia Shop', 'GVE', 'Event Shop', 'Legion Raid Shop', 'Elgacia leg Shop', 'Abyssal Challenge', 'GR Challenge' ];
+    let tasks = db.get("dashboard").value().filter((t) => t.actif == true && t.reset == 'weekly' && type.includes(t.tache_name));
+
+    let bgcolor = '#08428C';
+    let color = '#98BFF0';
+
+    tasks.forEach(function(t, i) {
+        let perso = list_perso.find((p) => p.perso.includes(t.perso));
+        let persohorsroster = [ 'Shadow', 'Drevana', 'Jeresblade', 'Lopang' ];
+        let tache_name = persohorsroster.includes(perso.name) ? t.tache_name + '<br>' + t.perso : t.tache_name;
+        let todo = t.repet - t.done > 0 ? true : false;
+        let personame = persohorsroster.includes(perso.name) ? 'horsroster' : perso.name;
+
+        $(`#weekly-entete-${personame}`).css('background-image', `url(${perso.image})`);
+        $(`#weekly-entete-${personame}`).css('background-repeat', 'no-repeat');
+        $(`#weekly-entete-${personame}`).css('background-position', 'center center');
+        $(`#weekly-entete-${personame}`).css('background-size', 'cover');
+
+        $(`#weekly-tasks-${personame}`).append(`<div class="${todo ? 'card-weekly-todo' : 'card-weekly-done'}" style="flex: 1;display: flex;justify-content: center;flex-direction: row;justify-content: space-between;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}</span><span style="font-size: 20px;">${t.done} / ${t.repet}</span></div>`);
+    });
+}
+
+$(document).on('click', '.card-weekly-todo', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1);
+
+        if (task.rest && parseInt(task.rest) >= 20) {
+            db.get("dashboard")
+                .get(index)
+                .get('rest')
+                .set(task.rest - 20);
+        }
+
+        db.save();
+    }
+
+    weekly();
+});
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -479,7 +708,8 @@ function sidebar_golds() {
         gold_histo_last_reset = db.get("gold_histo").value().findLast((g) => true);
     }
 
-    $('#sidebar-golds-data').html(`${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds ${gold_histo_last_reset.gold > db.get("gold").value() ? `<span style="color: #cf4747;font-size: 24px;"><i class="fa-solid fa-arrow-trend-down"></i>` : `<span style="color: #00b135;font-size: 24px;"><i class="fa-solid fa-arrow-trend-up"></i>`}&nbsp;${(((db.get("gold").value() * 100) / gold_histo_last_reset.gold) - 100).toFixed(2)}%</span>`);
+    $('#sidebar-golds-datavalue').html(`${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds`);
+    $('#sidebar-golds-datastatus').html(`${gold_histo_last_reset.gold > db.get("gold").value() ? `<span style="color: #cf6363;font-size: 24px;"><i class="fa-solid fa-arrow-trend-down"></i>` : `<span style="color: #00b135;font-size: 24px;"><i class="fa-solid fa-arrow-trend-up"></i>`}&nbsp;${(((db.get("gold").value() * 100) / gold_histo_last_reset.gold) - 100).toFixed(2)}%</span>`);
 }
 
 function gold() {
@@ -875,15 +1105,14 @@ function goldRentabilitePerso() {
 var fateemberbar = null;
 var fateemberpie = null;
 
-function sidebar_fate_embers() {
-    let info = db.get("settings.fate_embers.cards_stats.types").value().find((fe) => fe.name == "Fate Embers");
-    let total = 0;
+function sidebar_fate_embers() {   
+    let last_reset = moment(db.get("resetWeekly").value(), 'DD-MM-YYYY').toDate();
+    
+    let total = db.get("fate_embers").value().length;
+    let week = db.get("fate_embers").value().filter((fe) => new Date(fe.date) >= last_reset).length;
 
-    info.liste_type.forEach(function (t, i) {
-        total += nbfateember(t);
-    });
-
-    $('#sidebar-fate-embers-data').html(`${total} Fate Embers`);
+    $('#sidebar-fate-embers-datatotal').html(`${total} Fate Embers`);
+    $('#sidebar-fate-embers-dataweek').html(`<span style="color: #008b2b;"><i class="fa-solid fa-arrow-trend-up"></i>&nbsp;${week}</span>`);
 }
 
 function fate_embers() {
@@ -1503,8 +1732,10 @@ $(document).on('click', '#add_fate_ember', function () {
 // -------------------------------------------------------------------------------------------------------------
 function sidebar_gemme() {
     let total = db.get('gemmes.total').value();
+    let week = db.get('gemmes.week').value();
 
-    $('#sidebar-gemme-data').html(total);
+    $('#sidebar-gemme-datavalue').html(total);
+    $('#sidebar-gemme-datastatus').html(`<span style="color: #008b2b;"><i class="fa-solid fa-arrow-trend-up"></i>&nbsp;${week}</span>`);
 }
 
 function gemme() {
@@ -1556,6 +1787,7 @@ function gemme() {
 
 function gemmeValue() {
     let total = db.get('gemmes.total').value();
+    let week = db.get('gemmes.week').value();
     let total_save = total;
     let gemme_level = 5;
     let html = '';
@@ -1565,7 +1797,7 @@ function gemmeValue() {
 
     for (let index = 0; index < 6; index++) {
         
-        let nb = Math.floor(total % 3);
+        let nb = Math.floor(week % 3);
         
         for (let index = 0; index < nb; index++) {
             random = Math.random() > 0.5 ? 1 : 2;
@@ -1574,7 +1806,7 @@ function gemmeValue() {
         // html += `<img src="images/gem${gemme_level}_${random}.webp" />`;
         // html += `<span>Gem ${gemme_level} : {${Math.floor(total % 3)}}</span>`;
         gemme_level++;
-        total = total / 3;
+        week = week / 3;
     }
 
     $(`.gemmes_stats_5`).append(`<span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 32px;">${total_save}</span>`);
@@ -1620,17 +1852,21 @@ $(document).on('click', '.card-gemme-perso-collected', function () {
 
 function gemmesClasses() {
     let classes = db.get('gemmes.classes').value();
+    let disposition = [ {x: 0, y:0}, {x: 1, y:0}, {x: 3, y:0}, {x: 4, y:0}, {x: 1, y:1}, {x: 2, y:1}, {x: 3, y:1}, {x: 0, y:2}, {x: 1, y:2}, {x: 3, y:2}, {x: 4, y:2} ];
 
     classes.forEach(function (c, i) {
-        let html_persos = '';
+        let html = '';
 
-        c.persos.forEach(function (p, j) {
-            html_persos += `<div class="card-gemme-perso" data-idclasse="${i}" data-idperso="${j}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${p.gemme}/${p.name}</span></div>`;
-        });
+        // console.log(c)
 
+        // c.persos.forEach(function (p, j) {
+            // html_persos += `<div class="card-gemme-perso" data-idclasse="${i}" data-idperso="${j}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${p.gemme}/${p.name}</span></div>`;
+        // });
+        
+        html += `<div class="" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${c.name}</span></div>`;
 
         $(`#${c.div}`).html(`
-            <div class="d-flex gap-2 justify-content-center flex-row">${html_persos}</div>
+            <div class="d-flex gap-2 justify-content-center flex-row">${html}</div>
         `);
     });
 }
@@ -1678,7 +1914,7 @@ function sidebar_events() {
         });
     }
 
-    $('#sidebar-events-data').html(`- Goals ${done} / ${doing + done}`);
+    $('#sidebar-events-data').html(`<span style="color: #008b2b;"><i class="fa-solid fa-plane-departure"></i> ${doing}</span>`);
 }
 
 function events() {
@@ -2063,7 +2299,9 @@ function sidebar_planning() {
         if (new Date() > new Date(e.start)) done++;
     });
 
-    $('#sidebar-planning-data').html(`- Raids ${done} / ${events.length}`);
+    let todo = events.length - done;
+
+    todo > 0 ? $('#sidebar-planning-data').html(`<span style="color: #d99157;"><i class="fa-regular fa-clock"></i> ${todo}</span>`) : $('#sidebar-planning-data').html(`<span style="color: #008b2b;"><i class="fa-regular fa-clock"></i> ${todo}</span>`);
 }
 
 function planningRaids() {
