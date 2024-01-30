@@ -53,6 +53,7 @@ $(document).on('click', '.sidebar-link', function () {
     if (page == 'dashboard') dashboard();
     if (page == 'daily') daily();
     if (page == 'weekly') weekly();
+    if (page == 'raids') raids();
     if (page == 'settings') settings();
     if (page == 'gold') gold();
     if (page == 'fate-ember') fate_embers();
@@ -65,6 +66,7 @@ function sidebar() {
     sidebar_dashboard();
     sidebar_daily();
     sidebar_weekly();
+    sidebar_raids();
     sidebar_golds();
     sidebar_fate_embers();
     sidebar_gemme();
@@ -688,6 +690,396 @@ $(document).on('click', '.card-weekly-todo', function () {
     }
 
     weekly();
+});
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- RAIDS ---------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_raids() {
+    let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
+    let semaine_brel_1_4 = true;
+    let time_remaining = 0;
+    let tasks = null;
+
+    let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
+    let b = moment();
+    
+    if (b.diff(a, 'days') >= 7) semaine_brel_1_4 = false;
+    
+    semaine_brel_1_4
+        ? tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && (t.type != 'kayangel' || (t.type == 'kayangel' && !t.restriction)))
+        : tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && t.type != 'brelshaza');
+    
+    tasks.forEach(function(t, i) {
+        t.repet - t.done > 0 ? time_remaining += (t.duration * (t.repet - t.done)) : null;
+    });
+
+    let h_remaining = Math.floor(time_remaining / 60);
+    let min_remaining = time_remaining % 60;
+
+    h_remaining = h_remaining < 10 ? '0' + h_remaining : h_remaining;
+    min_remaining = min_remaining < 10 ? '0' + min_remaining : min_remaining;
+
+    $(`#sidebar-raids-data`).html(`<span style="color: #cf6363;">${h_remaining}:${min_remaining}</span>`);
+}
+
+function raids() {
+    sidebar_raids();
+
+    // Reset de l'HTML
+    $('.raids-wrapper').html('');
+
+    tasksRaids();
+}
+
+function tasksRaids() {
+    let disposition = [
+        {
+            perso: "Jeresayaya",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 3
+            },
+            kay: {
+                x: 6,
+                y: 3
+            }
+        },{
+            perso: "Jeresayaya",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 3
+            },
+            kay: {
+                x: 11,
+                y: 3
+            }
+        },{
+            perso: "Jeresayaya",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 3
+            }
+        },
+        {
+            perso: "Jeresayaya",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 3
+            },
+            kay: {
+                x: 16,
+                y: 3
+            }
+        },
+        {
+            perso: "Jeresunshine",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 4
+            },
+            kay: {
+                x: 6,
+                y: 4
+            }
+        },{
+            perso: "Jeresunshine",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 4
+            },
+            kay: {
+                x: 11,
+                y: 4
+            }
+        },{
+            perso: "Jeresunshine",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 4
+            }
+        },
+        {
+            perso: "Jeresunshine",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 4
+            },
+            kay: {
+                x: 16,
+                y: 4
+            }
+        },
+        {
+            perso: "Jerescelestia",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 5
+            },
+            kay: {
+                x: 6,
+                y: 5
+            }
+        },{
+            perso: "Jerescelestia",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 5
+            },
+            kay: {
+                x: 11,
+                y: 5
+            }
+        },{
+            perso: "Jerescelestia",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 5
+            }
+        },
+        {
+            perso: "Jerescelestia",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 5
+            },
+            kay: {
+                x: 16,
+                y: 5
+            }
+        },
+        {
+            perso: "Jeresbard",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 6
+            },
+            kay: {
+                x: 6,
+                y: 6
+            }
+        },{
+            perso: "Jeresbard",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 6
+            },
+            kay: {
+                x: 11,
+                y: 6
+            }
+        },{
+            perso: "Jeresbard",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 6
+            }
+        },
+        {
+            perso: "Jeresbard",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 6
+            },
+            kay: {
+                x: 16,
+                y: 6
+            }
+        },
+        {
+            perso: "Jeresakura",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 7
+            },
+            kay: {
+                x: 6,
+                y: 7
+            }
+        },{
+            perso: "Jeresakura",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 7
+            },
+            kay: {
+                x: 11,
+                y: 7
+            }
+        },{
+            perso: "Jeresakura",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 7
+            }
+        },
+        {
+            perso: "Jeresakura",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 7
+            },
+            kay: {
+                x: 16,
+                y: 7
+            }
+        },
+        {
+            perso: "Imanyrae",
+            raid: "voldis",
+            brel14: {
+                x: 5,
+                y: 8
+            },
+            kay: {
+                x: 6,
+                y: 8
+            }
+        },{
+            perso: "Imanyrae",
+            raid: "akkan",
+            brel14: {
+                x: 9,
+                y: 8
+            },
+            kay: {
+                x: 11,
+                y: 8
+            }
+        },{
+            perso: "Imanyrae",
+            raid: "brelshaza",
+            brel14: {
+                x: 13,
+                y: 8
+            }
+        },
+        {
+            perso: "Imanyrae",
+            raid: "kayangel",
+            brel14: {
+                x: 17,
+                y: 8
+            },
+            kay: {
+                x: 16,
+                y: 8
+            }
+        },
+    ];
+    let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
+    let liste_raids = db.get('settings.dashboard.liste_raids').value();
+    let semaine_brel_1_4 = true;
+    let x_perso = 0;
+    let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
+    let b = moment();
+    
+    if (b.diff(a, 'days') >= 7) semaine_brel_1_4 = false;
+    
+    semaine_brel_1_4
+        ? tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && (t.type != 'kayangel' || (t.type == 'kayangel' && !t.restriction)))
+        : tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && t.type != 'brelshaza');
+    
+    //console.log(tasks)
+
+    semaine_brel_1_4 ? x_perso = 5 : x_perso = 6
+
+    $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / ${x_perso};"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Kayangel'}</span></div></div>`);
+    
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresayaya" class="card-content" style="grid-column: 3 / 4; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresunshine" class="card-content" style="grid-column: 4 / 5; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jerescelestia" class="card-content" style="grid-column: 5 / 6; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresbard" class="card-content" style="grid-column: 6 / 7; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresakura" class="card-content" style="grid-column: 7 / 8; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Imanyrae" class="card-content" style="grid-column: 8 / 9; grid-row: 1 / ${x_perso};"></div>`);
+    
+    list_perso.forEach(function(p, i) {
+        $(`#raids-entete-${p.name}`).css('background-image', `url(${p.image})`);
+        $(`#raids-entete-${p.name}`).css('background-repeat', 'no-repeat');
+        $(`#raids-entete-${p.name}`).css('background-position', 'center center');
+        $(`#raids-entete-${p.name}`).css('background-size', 'cover');
+    });
+
+    if (semaine_brel_1_4) {
+        $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 5 / 9;"></div>');
+        $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 9 / 13;"></div>');
+        $('.raids-wrapper').append('<div id="raids-entete-brelshaza" class="card-content" style="grid-column: 1 / 3; grid-row: 13 / 17;"></div>');
+        $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 17 / 21;"></div>');
+    } else {
+        $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 6 / 11;"></div>');
+        $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 11 / 16;"></div>');
+        $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 16 / 21;"></div>');
+    }
+
+    liste_raids.forEach(function(r, i) {
+        $(`#raids-entete-${r.name}`).css('background-image', `url(${r.image})`);
+        $(`#raids-entete-${r.name}`).css('background-repeat', 'no-repeat');
+        $(`#raids-entete-${r.name}`).css('background-position', 'center center');
+        $(`#raids-entete-${r.name}`).css('background-size', 'cover');
+    });
+
+    let bgcolor = '#08428C';
+    let color = '#98BFF0';
+
+    tasks.forEach(function(t, i) {
+        let dispo = disposition.find((d) => d.perso == t.perso && d.raid == t.type);
+        let todo = t.repet - t.done > 0 ? true : false;
+        let brel13 = t.tache_name == 'Brelshaza G1-3' ? true : false;
+        let brel4 = t.tache_name == 'Brelshaza G4' ? true : false;
+
+        console.log(t, dispo)
+        semaine_brel_1_4
+            ? $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>'}</span></div></div>`)
+            : $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>'}</span></div></div>`);
+    });
+}
+
+$(document).on('click', '.card-raid-todo', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1); 
+
+        db.save();
+    }
+
+    raids();
 });
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
