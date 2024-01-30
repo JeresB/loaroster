@@ -994,6 +994,7 @@ function tasksRaids() {
     ];
     let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
     let liste_raids = db.get('settings.dashboard.liste_raids').value();
+    let liste_events = db.get('planning.events').value();
     let semaine_brel_1_4 = true;
     let x_perso = 0;
     let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
@@ -1004,8 +1005,6 @@ function tasksRaids() {
     semaine_brel_1_4
         ? tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && (t.type != 'kayangel' || (t.type == 'kayangel' && !t.restriction)))
         : tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && t.type != 'brelshaza');
-    
-    //console.log(tasks)
 
     semaine_brel_1_4 ? x_perso = 5 : x_perso = 6
 
@@ -1043,19 +1042,19 @@ function tasksRaids() {
         $(`#raids-entete-${r.name}`).css('background-size', 'cover');
     });
 
-    let bgcolor = '#08428C';
-    let color = '#98BFF0';
+    let bgcolor = '#5a5a5a';
+    let color = '#e1e1e1';
 
     tasks.forEach(function(t, i) {
         let dispo = disposition.find((d) => d.perso == t.perso && d.raid == t.type);
         let todo = t.repet - t.done > 0 ? true : false;
         let brel13 = t.tache_name == 'Brelshaza G1-3' ? true : false;
         let brel4 = t.tache_name == 'Brelshaza G4' ? true : false;
+        let event = liste_events.find((e) => e.raid == t.id);
 
-        console.log(t, dispo)
         semaine_brel_1_4
-            ? $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>'}</span></div></div>`)
-            : $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>'}</span></div></div>`);
+            ? $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`)
+            : $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
     });
 }
 
