@@ -155,6 +155,10 @@ $(document).on('click', '.table-task,.liste-task-no-card', function () {
 
 function dashboard() {
     sidebar_dashboard();
+    sidebar_perso();
+    sidebar_daily();
+    sidebar_weekly();
+    sidebar_raids();
     sidebar_golds();
 
     // Reset de l'HTML
@@ -462,7 +466,7 @@ function showTasksWeeklyByPrio() {
 // --- PERSO ---------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 function sidebar_perso() {
-    let tasks = db.get("dashboard").value().filter((t) => t.actif && t.perso == list_perso[index_perso].name);
+    let tasks = db.get("dashboard").value().filter((t) => t.actif && list_perso[index_perso].perso.includes(t.perso) && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
     let time_remaining = 0;
 
     tasks.forEach(function (t, i) {
@@ -494,6 +498,7 @@ $('#pageperso-wrapper').bind('mousewheel', function (e) {
 
 function perso() {
     sidebar_perso();
+    dashboard();
 
     // Reset de l'HTML
     $('#pageperso-wrapper').html('');
@@ -504,14 +509,22 @@ function perso() {
     $('#pageperso-wrapper').css('background-size', 'cover');
 
     let tasks = db.get('dashboard').value().filter((t) => t.actif && t.perso == list_perso[index_perso].name);
-    let html = '';
+    let type_raid = ['akkan', 'brelshaza', 'voldis', 'kayangel'];
+    let lopang = list_perso[index_perso].name == 'Lopang';
+    let html_raid = '';
+    let html_daily = '';
+    let html_weekly = '';
 
     tasks.forEach(function (t, i) {
-        let color = hexToRgb(t.color);
-        html += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.tache_name}</span></div>`;
+        let color = hexToRgb(type_raid.includes(t.type) ? '#cf6363' : (t.reset == 'daily' ? '#008b2b' : '#2b87fb'));
+        if (type_raid.includes(t.type)) html_raid += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.tache_name}</span></div>`;
+        else if (t.reset == 'daily') html_daily += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}</span>${lopang ? '<span style="color: #1e1e1e;font-size: 20px;">' + t.perso + '</span>' : ''}</div>`;
+        else html_weekly += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name}</span></div>`;
     });
 
-    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 3 / 23; grid-row: 13 / 14;">${html}</div>`);
+    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 2 / 6; grid-row: ${lopang ? 2 : 10} / 14;">${html_daily}</div>`);
+    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 7 / 19; grid-row: 13 / 14;">${html_raid}</div>`);
+    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 20 / 24; grid-row: 10 / 14;">${html_weekly}</div>`);
 }
 
 function hexToRgb(hex) {
@@ -522,6 +535,36 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+$(document).on('click', '.liste-task-pageperso', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1);
+
+        if (task.rest && parseInt(task.rest) >= 20) {
+            db.get("dashboard")
+                .get(index)
+                .get('rest')
+                .set(task.rest - 20);
+        }
+
+        db.save();
+    }
+
+    perso();
+});
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -551,6 +594,7 @@ function sidebar_daily() {
 
 function daily() {
     sidebar_daily();
+    dashboard();
 
     // Reset de l'HTML
     $('.daily-wrapper').html('');
@@ -683,6 +727,7 @@ function sidebar_weekly() {
 
 function weekly() {
     sidebar_weekly();
+    dashboard();
 
     // Reset de l'HTML
     $('.weekly-wrapper').html('');
@@ -803,6 +848,7 @@ function sidebar_raids() {
 
 function raids() {
     sidebar_raids();
+    dashboard();
 
     // Reset de l'HTML
     $('.raids-wrapper').html('');

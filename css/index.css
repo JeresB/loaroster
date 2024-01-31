@@ -245,6 +245,7 @@ th {
     margin: 5px;
     width: calc(100% - 10px);
     height: calc(100vh - 30px);
+    border-radius: 8px;
 }
 
 .liste-task-pageperso {
