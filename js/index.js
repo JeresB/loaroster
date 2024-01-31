@@ -51,6 +51,7 @@ $(document).on('click', '.sidebar-link', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'perso') perso();
     if (page == 'daily') daily();
     if (page == 'weekly') weekly();
     if (page == 'raids') raids();
@@ -64,6 +65,7 @@ $(document).on('click', '.sidebar-link', function () {
 
 function sidebar() {
     sidebar_dashboard();
+    sidebar_perso();
     sidebar_daily();
     sidebar_weekly();
     sidebar_raids();
@@ -176,7 +178,8 @@ function dashboard() {
         else {
             if (index_perso < list_perso.length - 1) index_perso++;
         }
-
+        
+        sidebar_perso();
         list_perso[index_perso] ? showPerso(list_perso[index_perso], db.get("settings").value().dashboard.liste_types_taches_focus_on_carateres) : null;
     });
 
@@ -448,6 +451,76 @@ function showTasksWeeklyByPrio() {
 
     let div = document.getElementById('tasks-weekly-by-prio');
     div.scrollTop = getScrollPos('tasks-weekly-by-prio');
+}
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- PERSO ---------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_perso() {
+    let tasks = db.get("dashboard").value().filter((t) => t.actif && t.perso == list_perso[index_perso].name);
+    let time_remaining = 0;
+
+    tasks.forEach(function (t, i) {
+        let todo = t.repet - t.done > 0 && t.rest >= t.restNeeded ? true : false;
+        todo ? time_remaining += (t.duration * (t.repet - t.done)) : null;
+    });
+
+    let h_remaining = Math.floor(time_remaining / 60);
+    let min_remaining = time_remaining % 60;
+
+    h_remaining = h_remaining < 10 ? '0' + h_remaining : h_remaining;
+    min_remaining = min_remaining < 10 ? '0' + min_remaining : min_remaining;
+
+    $(`#sidebar-perso-data`).html(`<span style="color: #008b2b;">${h_remaining}:${min_remaining}</span>`);
+    $(`#sidebar-personame-data`).html(list_perso[index_perso].name);
+}
+
+$('#pageperso-wrapper').bind('mousewheel', function (e) {
+    if (e.originalEvent.wheelDelta / 120 > 0) {
+        if (index_perso > 0) index_perso--;
+    }
+    else {
+        if (index_perso < list_perso.length - 1) index_perso++;
+    }
+
+    sidebar_perso();
+    perso();
+});
+
+function perso() {
+    sidebar_perso();
+
+    // Reset de l'HTML
+    $('#pageperso-wrapper').html('');
+
+    $('#pageperso-wrapper').css('background-image', `url(${list_perso[index_perso].image})`);
+    $('#pageperso-wrapper').css('background-repeat', 'no-repeat');
+    $('#pageperso-wrapper').css('background-position', 'center center');
+    $('#pageperso-wrapper').css('background-size', 'cover');
+
+    let tasks = db.get('dashboard').value().filter((t) => t.actif && t.perso == list_perso[index_perso].name);
+    let html = '';
+
+    tasks.forEach(function (t, i) {
+        let color = hexToRgb(t.color);
+        html += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.tache_name}</span></div>`;
+    });
+
+    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 3 / 23; grid-row: 13 / 14;">${html}</div>`);
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
