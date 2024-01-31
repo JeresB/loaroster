@@ -432,6 +432,16 @@ th {
     height: calc(100vh - 30px);
 }
 
+.gem-classe-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+}
+
 .card-gemme-perso-collected {
     background-color: #1e1e1e;
     border-radius: 6px;

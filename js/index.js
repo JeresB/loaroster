@@ -75,6 +75,43 @@ function sidebar() {
     sidebar_events();
     sidebar_planning();
 }
+
+function completedRaid(task) {
+    let tbrel13 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G1-3' && t.perso == task.perso);
+    let tbrel4 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G4' && t.perso == task.perso);
+    
+    if (task.tache_name != 'Kayangel' || (task.tache_name == 'Kayangel' && tbrel4.done > 0 && tbrel13.done == 0)) {
+        if (task.revenu > 0 && task.done >= task.repet) {
+            let gold_income = {
+                'type': 'Raids',
+                'description': task.tache_name,
+                'categorie': 'revenu',
+                'perso': task.perso,
+                'montant': task.revenu,
+                'date': new Date().toString()
+            }
+
+            db.get("gold_income").push(gold_income).save();
+            db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.revenu)).save();
+            db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+        }
+
+        if (task.cout < 0 && task.done >= task.repet) {
+            let gold_income = {
+                'type': 'Coffre de raids',
+                'description': 'Coffre de ' + task.tache_name,
+                'categorie': 'depense',
+                'perso': task.perso,
+                'montant': task.cout,
+                'date': new Date().toString()
+            }
+
+            db.get("gold_income").push(gold_income).save();
+            db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.cout)).save();
+            db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+        }
+    }
+}
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -114,40 +151,7 @@ $(document).on('click', '.table-task,.liste-task-no-card', function () {
 
         db.save();
 
-        let tbrel13 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G1-3' && t.perso == task.perso);
-        let tbrel4 = db.get("dashboard").value().find((t) => t.tache_name == 'Brelshaza G4' && t.perso == task.perso);
-        
-        if (task.tache_name != 'Kayangel' || (task.tache_name == 'Kayangel' && tbrel4.done > 0 && tbrel13.done == 0)) {
-            if (task.revenu > 0 && task.done >= task.repet) {
-                let gold_income = {
-                    'type': 'Raids',
-                    'description': task.tache_name,
-                    'categorie': 'revenu',
-                    'perso': task.perso,
-                    'montant': task.revenu,
-                    'date': new Date().toString()
-                }
-
-                db.get("gold_income").push(gold_income).save();
-                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.revenu)).save();
-                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
-            }
-
-            if (task.cout < 0 && task.done >= task.repet) {
-                let gold_income = {
-                    'type': 'Coffre de raids',
-                    'description': 'Coffre de ' + task.tache_name,
-                    'categorie': 'depense',
-                    'perso': task.perso,
-                    'montant': task.cout,
-                    'date': new Date().toString()
-                }
-
-                db.get("gold_income").push(gold_income).save();
-                db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(task.cout)).save();
-                db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
-            }
-        }
+        completedRaid(task);
     }
 
     dashboard();
@@ -508,7 +512,7 @@ function perso() {
     $('#pageperso-wrapper').css('background-position', 'center center');
     $('#pageperso-wrapper').css('background-size', 'cover');
 
-    let tasks = db.get('dashboard').value().filter((t) => t.actif && t.perso == list_perso[index_perso].name);
+    let tasks = db.get('dashboard').value().filter((t) => t.actif && list_perso[index_perso].perso.includes(t.perso) && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
     let type_raid = ['akkan', 'brelshaza', 'voldis', 'kayangel'];
     let lopang = list_perso[index_perso].name == 'Lopang';
     let html_raid = '';
@@ -519,7 +523,7 @@ function perso() {
         let color = hexToRgb(type_raid.includes(t.type) ? '#cf6363' : (t.reset == 'daily' ? '#008b2b' : '#2b87fb'));
         if (type_raid.includes(t.type)) html_raid += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.tache_name}</span></div>`;
         else if (t.reset == 'daily') html_daily += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}</span>${lopang ? '<span style="color: #1e1e1e;font-size: 20px;">' + t.perso + '</span>' : ''}</div>`;
-        else html_weekly += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name}</span></div>`;
+        else html_weekly += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name}</span>${lopang ? '<span style="color: #1e1e1e;font-size: 20px;">' + t.perso + '</span>' : ''}</div>`;
     });
 
     $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 2 / 6; grid-row: ${lopang ? 2 : 10} / 14;">${html_daily}</div>`);
@@ -561,6 +565,8 @@ $(document).on('click', '.liste-task-pageperso', function () {
         }
 
         db.save();
+
+        completedRaid(task);
     }
 
     perso();
@@ -1195,6 +1201,8 @@ $(document).on('click', '.card-raid-todo', function () {
             .set(parseInt(task.count) + 1); 
 
         db.save();
+
+        completedRaid(task);
     }
 
     raids();

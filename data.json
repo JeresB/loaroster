@@ -12,7 +12,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 480,
+            "count": 484,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -45,7 +45,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 247,
+            "count": 249,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -78,7 +78,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 732,
+            "count": 738,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -111,7 +111,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 480,
+            "count": 484,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -144,7 +144,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 247,
+            "count": 249,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -177,7 +177,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 731,
+            "count": 737,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -210,7 +210,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 474,
+            "count": 478,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -243,7 +243,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 245,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -276,7 +276,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 726,
+            "count": 732,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -309,7 +309,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 474,
+            "count": 478,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -342,7 +342,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 245,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -375,7 +375,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 722,
+            "count": 728,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -408,7 +408,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 480,
+            "count": 484,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -441,7 +441,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 247,
+            "count": 249,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -474,7 +474,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 731,
+            "count": 737,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -507,7 +507,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 328,
+            "count": 332,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -540,7 +540,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 164,
+            "count": 166,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -573,7 +573,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 491,
+            "count": 497,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -606,7 +606,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 452,
+            "count": 456,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -639,7 +639,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 244,
+            "count": 246,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -672,7 +672,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 717,
+            "count": 723,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -705,7 +705,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 182,
+            "count": 184,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -719,7 +719,7 @@
             "progress": {
                 "y": 2
             },
-            "rest": 0,
+            "rest": 20,
             "restNeeded": 0,
             "rested": true,
             "duration": 3,
@@ -738,7 +738,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 242,
+            "count": 244,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -771,7 +771,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 726,
+            "count": 732,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -818,7 +818,7 @@
             "progress": {
                 "y": 2
             },
-            "rest": 20,
+            "rest": 60,
             "restNeeded": 40,
             "rested": true,
             "duration": 3,
@@ -837,7 +837,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 238,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -870,7 +870,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 707,
+            "count": 713,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -903,7 +903,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 237,
+            "count": 239,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -936,7 +936,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 711,
+            "count": 717,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -969,7 +969,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 235,
+            "count": 237,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1002,7 +1002,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 705,
+            "count": 711,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1035,7 +1035,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 236,
+            "count": 238,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1068,7 +1068,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 706,
+            "count": 712,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1101,7 +1101,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 192,
+            "count": 195,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1115,7 +1115,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 30,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1134,7 +1134,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 702,
+            "count": 705,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1148,7 +1148,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 30,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1167,7 +1167,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 702,
+            "count": 705,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1181,7 +1181,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 30,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1200,7 +1200,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 701,
+            "count": 704,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1214,7 +1214,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 30,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1256,7 +1256,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 492,
+            "count": 495,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1270,7 +1270,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 30,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1289,7 +1289,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 264,
+            "count": 266,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1322,7 +1322,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 261,
+            "count": 263,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1355,7 +1355,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 260,
+            "count": 262,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1388,7 +1388,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 256,
+            "count": 258,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1421,7 +1421,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 252,
+            "count": 254,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1454,7 +1454,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 161,
+            "count": 163,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1487,7 +1487,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 245,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1520,7 +1520,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 134,
+            "count": 135,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1534,7 +1534,7 @@
             "progress": {
                 "y": 5
             },
-            "rest": 10,
+            "rest": 20,
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
@@ -1553,7 +1553,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 19,
+            "count": 20,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1567,7 +1567,7 @@
             "progress": {
                 "y": 5
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 20,
             "rested": true,
             "duration": 5,
@@ -2079,7 +2079,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2144,7 +2144,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2209,7 +2209,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2274,7 +2274,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2339,7 +2339,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2404,7 +2404,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "bimensuel",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 10,
             "revenu": 3000,
@@ -2480,7 +2480,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 108,
             "revenu": 6500,
@@ -2512,7 +2512,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 95,
             "revenu": 6500,
@@ -2545,7 +2545,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 99,
             "revenu": 6500,
@@ -2578,7 +2578,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 101,
             "revenu": 6500,
@@ -2611,7 +2611,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 108,
             "revenu": 6500,
@@ -2643,7 +2643,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 76,
             "revenu": 6500,
@@ -2708,7 +2708,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 14500,
@@ -2740,7 +2740,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 14500,
@@ -2772,7 +2772,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 9000,
@@ -2804,7 +2804,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 14500,
@@ -2836,7 +2836,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 9000,
@@ -2868,7 +2868,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 4,
+            "done": 0,
             "repet": 4,
             "count": 24,
             "revenu": 14500,
@@ -2900,7 +2900,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 72,
             "revenu": 10000,
@@ -2932,7 +2932,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 72,
             "revenu": 10000,
@@ -2964,7 +2964,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 72,
             "revenu": 10000,
@@ -2996,7 +2996,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 72,
             "revenu": 10000,
@@ -3028,7 +3028,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 72,
             "revenu": 10000,
@@ -3060,7 +3060,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 66,
             "revenu": 10000,
@@ -3125,7 +3125,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 2,
             "count": 69,
             "revenu": 0,
@@ -3159,7 +3159,7 @@
             "reset": "weekly",
             "done": 0,
             "repet": 2,
-            "count": 70,
+            "count": 72,
             "revenu": 0,
             "cout": 0,
             "color": "#cf6363",
@@ -3189,7 +3189,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 2,
+            "done": 0,
             "repet": 2,
             "count": 68,
             "revenu": 0,
@@ -3221,7 +3221,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 2,
+            "done": 0,
             "repet": 2,
             "count": 68,
             "revenu": 0,
@@ -3253,7 +3253,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 2,
+            "done": 0,
             "repet": 2,
             "count": 70,
             "revenu": 0,
@@ -3285,7 +3285,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 2,
+            "done": 0,
             "repet": 2,
             "count": 48,
             "revenu": 0,
@@ -3317,7 +3317,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 62,
             "revenu": 0,
@@ -3349,7 +3349,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 58,
             "revenu": 0,
@@ -3374,7 +3374,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3406,7 +3406,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3460,7 +3460,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 33,
             "revenu": 0,
@@ -3492,7 +3492,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -3524,7 +3524,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 24,
             "revenu": 0,
@@ -3578,7 +3578,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3611,7 +3611,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3644,7 +3644,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3677,7 +3677,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3710,7 +3710,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3743,7 +3743,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 23,
             "revenu": 0,
@@ -3776,7 +3776,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3809,7 +3809,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3832,7 +3832,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3864,7 +3864,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -3896,7 +3896,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -3928,7 +3928,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -3960,7 +3960,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -3992,7 +3992,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 24,
             "revenu": 0,
@@ -4024,7 +4024,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -4056,7 +4056,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -4088,7 +4088,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -4120,7 +4120,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -4152,7 +4152,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -4184,7 +4184,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 36,
             "revenu": 0,
@@ -4216,7 +4216,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 29,
             "revenu": 0,
@@ -4248,7 +4248,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 28,
             "revenu": 0,
@@ -4277,7 +4277,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 28,
             "revenu": 0,
@@ -4306,7 +4306,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 29,
             "revenu": 0,
@@ -4338,7 +4338,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 29,
             "revenu": 0,
@@ -4370,7 +4370,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 24,
             "revenu": 0,
@@ -4431,7 +4431,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4463,7 +4463,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4495,7 +4495,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4527,7 +4527,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4559,7 +4559,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4591,7 +4591,7 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 22,
             "revenu": 0,
@@ -4623,7 +4623,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -4655,7 +4655,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 37,
             "revenu": 0,
@@ -4687,7 +4687,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 1,
+            "done": 0,
             "repet": 1,
             "count": 29,
             "revenu": 0,
@@ -4785,7 +4785,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 2,
+            "done": 0,
             "repet": 2,
             "count": 74,
             "revenu": 0,
@@ -4817,7 +4817,7 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 3,
+            "done": 0,
             "repet": 3,
             "count": 108,
             "revenu": 0,
@@ -4851,7 +4851,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 216,
+            "count": 218,
             "revenu": 0,
             "cout": 0,
             "color": "#2056CB",
@@ -4884,7 +4884,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 222,
+            "count": 223,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -5022,7 +5022,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 144,
+            "count": 145,
             "revenu": 0,
             "cout": 0,
             "color": "#5D13DE",
@@ -5061,7 +5061,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 108,
+            "count": 109,
             "revenu": 0,
             "cout": 0,
             "color": "#33AF0B",
@@ -5211,10 +5211,30 @@
             "prio": 0
         }
     ],
-    "resetDaily": "29/01/2024",
-    "resetWeekly": "24/01/2024",
-    "resetBiMensuel": "17/01/2024",
+    "resetDaily": "31/01/2024",
+    "resetWeekly": "31/01/2024",
+    "resetBiMensuel": "31/01/2024",
     "fate_embers": [
+        {
+            "type": "10K Golds",
+            "perso": "Jeresblade",
+            "date": "Tue Jan 30 2024 18:34:20 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Random Legendary Card Pack",
+            "perso": "Imanyrae",
+            "date": "Tue Jan 30 2024 18:12:04 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "1M Silver",
+            "perso": "Imanyrae",
+            "date": "Tue Jan 30 2024 18:11:21 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "2M Silver",
+            "perso": "Imanyrae",
+            "date": "Tue Jan 30 2024 18:08:05 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "type": "1500 Golds",
             "perso": "Drevana",
@@ -6277,6 +6297,85 @@
         }
     ],
     "gold_income": [
+        {
+            "type": "Vente",
+            "description": "Weapon stone",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 24975,
+            "date": "Tue Jan 30 2024 18:59:06 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -825,
+            "date": "Tue Jan 30 2024 18:55:42 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Fate Ember",
+            "categorie": "revenu",
+            "perso": "Jeresblade",
+            "montant": 10000,
+            "date": "Tue Jan 30 2024 18:34:20 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -1998,
+            "date": "Mon Jan 29 2024 17:13:24 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Honing",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -140430,
+            "date": "Mon Jan 29 2024 17:04:45 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 630",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -50400,
+            "date": "Mon Jan 29 2024 16:55:27 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -24300,
+            "date": "Mon Jan 29 2024 16:48:38 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 500",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -40500,
+            "date": "Mon Jan 29 2024 16:43:29 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 500",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -40500,
+            "date": "Mon Jan 29 2024 16:40:54 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Achat 300",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -24386,
+            "date": "Mon Jan 29 2024 16:36:26 GMT+0100 (heure normale d’Europe centrale)"
+        },
         {
             "type": "Artisanat",
             "description": "Vente ressources fouille",
@@ -10025,6 +10124,14 @@
             "perso": "Imanyrae",
             "montant": 10000,
             "date": "Fri Nov 24 2023 19:59:47 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Craft",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -8280,
+            "date": "Tue Jan 30 2024 18:59:53 GMT+0100 (heure normale d’Europe centrale)"
         }
     ],
     "gold_histo": [
@@ -12422,9 +12529,69 @@
             "date": "2024-01-28T18:29:25.403Z",
             "label": "28/01/2024 19:29:25",
             "gold": 335003
+        },
+        {
+            "date": "2024-01-29T15:36:26.439Z",
+            "label": "29/01/2024 16:36:26",
+            "gold": 310617
+        },
+        {
+            "date": "2024-01-29T15:40:54.305Z",
+            "label": "29/01/2024 16:40:54",
+            "gold": 270117
+        },
+        {
+            "date": "2024-01-29T15:43:29.776Z",
+            "label": "29/01/2024 16:43:29",
+            "gold": 229617
+        },
+        {
+            "date": "2024-01-29T15:48:38.854Z",
+            "label": "29/01/2024 16:48:38",
+            "gold": 205317
+        },
+        {
+            "date": "2024-01-29T15:55:27.893Z",
+            "label": "29/01/2024 16:55:27",
+            "gold": 154917
+        },
+        {
+            "date": "2024-01-29T16:04:45.311Z",
+            "label": "29/01/2024 17:04:45",
+            "gold": 14487
+        },
+        {
+            "date": "2024-01-29T16:13:24.251Z",
+            "label": "29/01/2024 17:13:24",
+            "gold": 12489
+        },
+        {
+            "date": "2024-01-30T17:34:20.187Z",
+            "label": "30/01/2024 18:34:20",
+            "gold": 22489
+        },
+        {
+            "date": "2024-01-30T17:55:42.193Z",
+            "label": "30/01/2024 18:55:42",
+            "gold": 21664
+        },
+        {
+            "date": "2024-01-30T17:59:06.568Z",
+            "label": "30/01/2024 18:59:06",
+            "gold": 46639
+        },
+        {
+            "date": "2024-01-30T17:59:53.624Z",
+            "label": "30/01/2024 18:59:53",
+            "gold": 38359
+        },
+        {
+            "date": "2024-01-31T11:13:33.456Z",
+            "label": "31/01/2024 12:13:33",
+            "gold": 38359
         }
     ],
-    "gold": 335003,
+    "gold": 38359,
     "events": [
         {
             "perso": "Jerescelestia",
@@ -13120,27 +13287,32 @@
     ],
     "gemmes": {
         "weekaverage": 0,
-        "week": 30,
-        "total": 79,
+        "week": 0,
+        "total": 87,
         "all": [
             {
                 "date": "2024-01-24T11:12:39.590Z",
                 "label": "24/01/2024 12:12:39",
                 "gemmes": 49
+            },
+            {
+                "date": "2024-01-31T11:13:33.442Z",
+                "label": "31/01/2024 12:13:33",
+                "gemmes": 38
             }
         ],
         "collected": [
             {
                 "name": "Jeresayaya",
-                "gemme": 12
+                "gemme": 13
             },
             {
                 "name": "Jeresunshine",
-                "gemme": 6
+                "gemme": 9
             },
             {
                 "name": "Jerescelestia",
-                "gemme": 10
+                "gemme": 13
             },
             {
                 "name": "Jeresbard",
@@ -13156,7 +13328,7 @@
             },
             {
                 "name": "Shadowbreacher",
-                "gemme": 5
+                "gemme": 6
             },
             {
                 "name": "Drevana",
@@ -13171,19 +13343,72 @@
             {
                 "name": "Bard",
                 "div": "gemme_class_2",
-                "gemmes": {
-                    "cdr": [
-                        {
-                            "nb": 4,
-                            "level": 10
-                        },
-                        {
-                            "nb": 4,
-                            "level": 9
+                "gemmes": [
+                    {
+                        "type": "cdr",
+                        "level": 10,
+                        "pos": {
+                            "x": 0,
+                            "y": 0
                         }
-                    ],
-                    "damage": []
-                },
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 10,
+                        "pos": {
+                            "x": 0,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 10,
+                        "pos": {
+                            "x": 0,
+                            "y": 3
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 10,
+                        "pos": {
+                            "x": 0,
+                            "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 0
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 3
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 4
+                        }
+                    }
+                ],
                 "persos": [
                     {
                         "name": "Jeresunshine",
@@ -13202,19 +13427,96 @@
             {
                 "name": "Artist",
                 "div": "gemme_class_1",
-                "gemmes": {
-                    "cdr": [
-                        {
-                            "nb": 6,
-                            "level": 9
-                        },
-                        {
-                            "nb": 5,
-                            "level": 7
+                "gemmes": [
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 0,
+                            "y": 0
                         }
-                    ],
-                    "damage": []
-                },
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 0,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 0,
+                            "y": 3
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 0
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 2,
+                            "y": 3
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 0,
+                            "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 2,
+                            "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 1,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 1,
+                            "y": 2
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 1,
+                            "y": 3
+                        }
+                    }
+                ],
                 "persos": [
                     {
                         "name": "Jeresayaya",
@@ -13225,28 +13527,7 @@
             {
                 "name": "Aeromancer",
                 "div": "gemme_class_3",
-                "gemmes": {
-                    "cdr": [
-                        {
-                            "nb": 5,
-                            "level": 8
-                        }
-                    ],
-                    "damage": [
-                        {
-                            "nb": 2,
-                            "level": 10
-                        },
-                        {
-                            "nb": 2,
-                            "level": 9
-                        },
-                        {
-                            "nb": 2,
-                            "level": 8
-                        }
-                    ]
-                },
+                "gemmes": [],
                 "persos": [
                     {
                         "name": "Jerescelestia",
@@ -13257,28 +13538,7 @@
             {
                 "name": "Sorceress",
                 "div": "gemme_class_4",
-                "gemmes": {
-                    "cdr": [
-                        {
-                            "nb": 1,
-                            "level": 10
-                        },
-                        {
-                            "nb": 4,
-                            "level": 8
-                        }
-                    ],
-                    "damage": [
-                        {
-                            "nb": 4,
-                            "level": 9
-                        },
-                        {
-                            "nb": 2,
-                            "level": 7
-                        }
-                    ]
-                },
+                "gemmes": [],
                 "persos": [
                     {
                         "name": "Imanyrae",
