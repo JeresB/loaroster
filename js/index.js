@@ -1172,8 +1172,8 @@ function tasksRaids() {
         let event = liste_events.find((e) => e.raid == t.id);
 
         semaine_brel_1_4
-            ? $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`)
-            : $('.raids-wrapper').append(`<div class="card-content" style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
+            ? $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`)
+            : $('.raids-wrapper').append(`<div style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
     });
 }
 
@@ -2362,21 +2362,22 @@ $(document).on('click', '.card-gemme-perso-collected', function () {
 
 function gemmesClasses() {
     let classes = db.get('gemmes.classes').value();
-    let disposition = [ {x: 0, y:0}, {x: 1, y:0}, {x: 3, y:0}, {x: 4, y:0}, {x: 1, y:1}, {x: 2, y:1}, {x: 3, y:1}, {x: 0, y:2}, {x: 1, y:2}, {x: 3, y:2}, {x: 4, y:2} ];
-
+    
     classes.forEach(function (c, i) {
         let html = '';
+        let html_gem = '';
 
-        // console.log(c)
+        c.gemmes.forEach(function(g, i) {
+            let x = parseInt(g.pos.x);
+            let y = parseInt(g.pos.y);
+            html_gem += `<div style="grid-column: ${y} / ${y + 1}; grid-row: ${x} / ${x + 1};"><img src="images/gem${g.level}_${g.type == 'dmg' ? 1 : 2}.webp" style="background-image: url('images/gem${g.level}_bg.webp');background-size: cover;border-radius: 8px;width: 100%;" /></div>`;
+        });
 
-        // c.persos.forEach(function (p, j) {
-            // html_persos += `<div class="card-gemme-perso" data-idclasse="${i}" data-idperso="${j}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${p.gemme}/${p.name}</span></div>`;
-        // });
-        
-        html += `<div class="" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${c.name}</span></div>`;
+        html += `<h2 style="text-align: center;">${c.name}</h2>`;
+        html += `<div class="gem-classe-wrapper" style="flex: 1; align-items: center; justify-content: center;">${html_gem}</div>`;
 
         $(`#${c.div}`).html(`
-            <div class="d-flex gap-2 justify-content-center flex-row">${html}</div>
+            <div class="d-flex gap-2 justify-content-center flex-column h-100">${html}</div>
         `);
     });
 }
