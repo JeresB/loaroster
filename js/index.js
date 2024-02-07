@@ -536,6 +536,7 @@ function perso() {
     let tasks = db.get('dashboard').value().filter((t) => t.actif && list_perso[index_perso].perso.includes(t.perso) && getRaidsTodo(t) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
     
     let html_tasks = '';
+    let current_categorie = null;
     let lopang = list_perso[index_perso].name == 'Lopang';
     let type_raid = ['akkan', 'brelshaza', 'voldis', 'kayangel'];
     let setting_tasks = db.get('settings.pageperso.tasks').value();
@@ -543,10 +544,15 @@ function perso() {
     tasks.forEach(function(t, i) {
         setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
         let color = type_raid.includes(t.type) ? '#cf6363' : (t.reset == 'daily' ? '#008b2b' : '#2b87fb');
+        let categorie = t.reset == 'daily' ? 'daily' : (type_raid.includes(t.type) ? 'raids' : 'weekly');
+
+        if (current_categorie != categorie && current_categorie != null) html_tasks += `<div style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><br></div>`;
 
         t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0)
-            ? html_tasks += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: ${color};color: #1e1e1e;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`
-            : html_tasks += `<div class="card-content" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="color: #a1a1a1;font-size: 20px;text-align: center;">${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-check fa-2x"></i></span></div>`;
+            ? html_tasks += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`
+            : html_tasks += `<div class="card-content" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><span><img style="width: 64px;filter: grayscale(1);" src="images/${setting ? setting.image : ''}" /></span><span style="color: #a1a1a1;font-size: 20px;text-align: center;">${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-check fa-2x"></i></span></div>`;
+    
+        current_categorie = categorie;
     });
     
     $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 1 / 5; grid-row: 1 / 15;">${html_tasks}</div>`);
@@ -555,31 +561,47 @@ function perso() {
     let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == list_perso[index_perso].name);
 
     if (collected) {
-        $('#pageperso-wrapper').append(`<div class="card-gemme-perso-collected card-content d-flex flex-row justify-content-center align-items-center" data-id="${collectedIndex}" style="grid-column: 21 / 25; grid-row: 1 / 4;"><h2>${collected.gemme} Gemmes Niv.5</h2></div>`);
+        $('#pageperso-wrapper').append(`<div class="card-gemme-perso-collected card-content d-flex flex-row justify-content-center align-items-center" data-id="${collectedIndex}" style="grid-column: 21 / 25; grid-row: 1 / 2;"><h2>${collected.gemme} Gemmes Niv.5</h2></div>`);
     } else {
-        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 1 / 4;"></div>`);
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 1 / 2;"></div>`);
     }
 
-    // collected.forEach(function (c, i) {
-    //     $('#liste_persos_gemmes').append(`<div class="card-gemme-perso-collected" data-id="${i}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="font-size: 20px;">${c.gemme}/${c.name}</span></div>`);
-    // });
+    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 2 / 3;"><h2>${nbfateemberPerso(list_perso[index_perso].name) ? nbfateemberPerso(list_perso[index_perso].name) + ' Fate Embers' : ''}</h2></div>`);
+
+    let last_fate_ember = db.get("fate_embers").value().find((fe) => fe.perso == list_perso[index_perso].name);
     
-    // let type_raid = ['akkan', 'brelshaza', 'voldis', 'kayangel'];
-    // let lopang = list_perso[index_perso].name == 'Lopang';
-    // let html_raid = '';
-    // let html_daily = '';
-    // let html_weekly = '';
+    if (last_fate_ember) {
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 3 / 5;"><div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: ${colorFateEmbers(last_fate_ember).bg_color};font-size: 20px;">${last_fate_ember.type}</span><span style="color: #a1a1a1;">${last_fate_ember.perso}</span><span style="color: #a1a1a1;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div></div>`);
+    } else {
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 3 / 5;"><div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;">Pas de fate embers</div></div>`);
+    }
 
-    // tasks.forEach(function (t, i) {
-    //     let color = hexToRgb(type_raid.includes(t.type) ? '#cf6363' : (t.reset == 'daily' ? '#008b2b' : '#2b87fb'));
-    //     if (type_raid.includes(t.type)) html_raid += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.tache_name}</span></div>`;
-    //     else if (t.reset == 'daily') html_daily += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}</span>${lopang ? '<span style="color: #1e1e1e;font-size: 20px;">' + t.perso + '</span>' : ''}</div>`;
-    //     else html_weekly += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.8);" data-id="${t.id}"><span style="color: #1e1e1e;font-size: 20px;">${t.repet - t.done} - ${t.tache_name}</span>${lopang ? '<span style="color: #1e1e1e;font-size: 20px;">' + t.perso + '</span>' : ''}</div>`;
-    // });
+    let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
+    let html_option_fate_ember = '';
 
-    // $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 2 / 6; grid-row: ${lopang ? 2 : 10} / 14;">${html_daily}</div>`);
-    // $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 7 / 19; grid-row: 13 / 14;">${html_raid}</div>`);
-    // $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 20 / 24; grid-row: 10 / 14;">${html_weekly}</div>`);
+    fate_ember_types.forEach(function(type, i) {
+        html_option_fate_ember += `<div class="pageperso-fateember" data-type="${type}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
+    });
+    
+    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-start" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 5 / 15;">
+        ${html_option_fate_ember}
+    </div>`);
+
+    let gold_income_perso = db.get("gold_income").value().filter((gold) => list_perso[index_perso].perso.includes(gold.perso));
+    let depense = 0;
+    let revenu = 0;
+    let resultat = 0;
+    let good = '#00b135';
+    let bad = '#cf4747';
+
+    gold_income_perso.forEach(function(g, i) {
+        g.montant > 0 ? revenu += g.montant : depense += g.montant;
+    });
+
+    resultat = revenu + depense;
+
+    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-evenly align-items-center" style="display: flex; flex-direction: row;height: 100%;font-size: xx-large;gap: 10px; overflow-y: scroll;grid-column: 5 / 21; grid-row: 14 / 15;"><span style="color: ${good};"><i class="fa-solid fa-arrow-trend-up"></i> ${new Intl.NumberFormat('fr-FR').format(revenu)}</span><span><i class="fa-solid fa-minus"></i></span><span style="color: ${bad};"><i class="fa-solid fa-arrow-trend-down"></i> ${new Intl.NumberFormat('fr-FR').format(Math.abs(depense))}</span><span><i class="fa-solid fa-equals"></i></span><span style="color: ${resultat > 0 ? good : bad};">${resultat > 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${new Intl.NumberFormat('fr-FR').format(Math.abs(resultat))}</span></div>`);
+
 }
 
 function hexToRgb(hex) {
@@ -620,6 +642,78 @@ $(document).on('click', '.liste-task-pageperso', function () {
         completedRaid(task);
     }
 
+    perso();
+});
+
+$(document).on('click', '.pageperso-fateember', function () {
+    let types_gold = [];
+
+    db.get("settings.fate_embers.options_fate_embers").value().forEach(function (fe, i) {
+        if (fe.categorie == 'Golds') {
+            fe.values.forEach(function (type, i) {
+                types_gold.push(type + ' ' + fe.categorie);
+            });
+        }
+    });
+
+    let type = $(this).data('type');
+    let name_perso = list_perso[index_perso].name;
+
+    let fate_ember = {
+        'type': type,
+        'perso': name_perso,
+        'date': new Date().toString()
+    }
+
+    db.get("fate_embers").push(fate_ember).save();
+
+    if (types_gold.includes(fate_ember.type)) {
+        let gold = 0;
+
+        switch (fate_ember.type) {
+            case '1500 Golds':
+                gold = 1500;
+
+                break;
+            case '3K Golds':
+                gold = 3000;
+
+                break;
+            case '10K Golds':
+                gold = 10000;
+
+                break;
+            case '20K Golds':
+                gold = 20000;
+
+                break;
+            case '50K Golds':
+                gold = 50000;
+
+                break;
+            case '100K Golds':
+                gold = 100000;
+
+                break;
+
+            default:
+                break;
+        }
+
+        let gold_income = {
+            'type': 'Fate Ember',
+            'categorie': 'revenu',
+            'perso': name_perso,
+            'montant': parseInt(gold),
+            'date': new Date().toString()
+        }
+
+        db.get("gold_income").push(gold_income).save();
+        db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(gold)).save();
+        db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+    }
+
+    fate_embers();
     perso();
 });
 // -------------------------------------------------------------------------------------------------------------
@@ -2220,6 +2314,79 @@ function fateEmbersStats() {
     });
 }
 
+function colorFateEmbers(fate_ember) {
+    if (fate_ember) {
+        let silver = [];
+        let gold = [];
+        let xpcardpack = [];
+        let honingchest = [];
+        let cardpack = [];
+        let color = '';
+        let bg_color = '';
+        
+        db.get("settings.fate_embers.options_fate_embers").value().forEach(function (fe, i) {
+            if (fe.categorie == 'Silver') {
+                fe.values.forEach(function (type, i) {
+                    silver.push(type + ' ' + fe.categorie);
+                });
+            }
+    
+            if (fe.categorie == 'Golds') {
+                fe.values.forEach(function (type, i) {
+                    gold.push(type + ' ' + fe.categorie);
+                });
+            }
+    
+            if (fe.categorie == 'Xp Card Pack') {
+                fe.values.forEach(function (type, i) {
+                    xpcardpack.push(type + ' ' + fe.categorie);
+                });
+            }
+    
+            if (fe.categorie == 'Honing Chest') {
+                fe.values.forEach(function (type, i) {
+                    honingchest.push(type + ' ' + fe.categorie);
+                });
+            }
+    
+            if (fe.categorie == 'Card Pack') {
+                fe.values.forEach(function (type, i) {
+                    cardpack.push(type + ' ' + fe.categorie);
+                });
+            }
+        });
+    
+        if (silver.includes(fate_ember.type)) {
+            bg_color = '#d9d9d9';
+            color = '#000000';
+        }
+    
+        if (gold.includes(fate_ember.type)) {
+            bg_color = '#ffe599';
+            color = '#000000';
+        }
+    
+        if (xpcardpack.includes(fate_ember.type)) {
+            bg_color = '#f6b26b';
+            color = '#000000';
+        }
+    
+        if (honingchest.includes(fate_ember.type)) {
+            bg_color = '#a4c2f4';
+            color = '#000000';
+        }
+    
+        if (cardpack.includes(fate_ember.type)) {
+            bg_color = '#d5a6bd';
+            color = '#000000';
+        }
+    
+        return { color: color, bg_color: bg_color };
+    }
+
+    return { color: '#a1a1a1', bg_color: '#a1a1a1' };
+}
+
 $(document).on('click', '#add_fate_ember', function () {
     let types_gold = [];
 
@@ -2250,7 +2417,7 @@ $(document).on('click', '#add_fate_ember', function () {
                 gold = 1500;
 
                 break;
-            case '3000 Golds':
+            case '3K Golds':
                 gold = 3000;
 
                 break;
@@ -2333,9 +2500,9 @@ function gemme() {
     // Une liste des objectifs futur en termes de gemmes dans l'ordre des priorités
     // Un formulaire pour remplir cette liste ?
     // Click sur un objectif pour le compléter
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 3 / 10;"></div>`);
-    $('.gemme-wrapper').append(`<div class="card-content" style="grid-column: 1 / 5; grid-row: 10 / 16;"></div>`);
-
+    //
+    // Liste des gemmes pour le moment
+    $('.gemme-wrapper').append(`<div id="page-gemme-liste" class="card-content scrollhidden" style="grid-column: 1 / 5; grid-row: 3 / 16;display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div>`);
 
     // sur le contenu principale -> x grandes cards avec l'espace disponible
     // Le nom du ou des persos
@@ -2352,6 +2519,7 @@ function gemme() {
     gemmesClasses();
     gemmeValue();
     gemmesPersos();
+    gemmesListe();
 }
 
 function gemmeValue() {
@@ -2433,7 +2601,7 @@ function gemmesClasses() {
             html_gem += `<div style="grid-column: ${y} / ${y + 1}; grid-row: ${x} / ${x + 1};"><img src="images/gem${g.level}_${g.type == 'dmg' ? 1 : 2}.webp" style="background-image: url('images/gem${g.level}_bg.webp');background-size: cover;border-radius: 8px;width: 100%;" /></div>`;
         });
 
-        html += `<h2 style="text-align: center;">${c.name}</h2>`;
+        html += `<div style="display:flex;flex: 1; align-items: center; justify-content: center;text-align: center;font-size: xx-large;">${c.name}</div>`;
         html += `<div class="gem-classe-wrapper" style="flex: 1; align-items: center; justify-content: center;">${html_gem}</div>`;
 
         $(`#${c.div}`).html(`
@@ -2464,6 +2632,27 @@ $(document).on('click', '.card-gemme-perso', function () {
 
     gemme();
 });
+
+function gemmesListe() {
+    let classes = db.get('gemmes.classes').value();
+    let liste_gemmes = [];
+    
+    $('#page-gemme-liste').html('');
+
+    classes.forEach(function(classe, i) {
+        classe.gemmes.forEach(function(gem, j) {
+            liste_gemmes.push({ classe: classe.name, type: gem.type, level: gem.level });
+        });
+    });
+
+    liste_gemmes.sort(function (a, b) {
+        return b.level - a.level || a.type.localeCompare(b.type) || a.classe.localeCompare(b.classe);
+    });
+
+    liste_gemmes.forEach(function(gem, j) {
+        $('#page-gemme-liste').append(`<div class="page-gemme-liste-card" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;"><span><img src="images/gem${gem.level}_${gem.type == 'dmg' ? 1 : 2}.webp" style="background-image: url('images/gem${gem.level}_bg.webp');background-size: cover;border-radius: 8px;" /></span><span>${gem.classe}</span></div>`);
+    });
+}
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
