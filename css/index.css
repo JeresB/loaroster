@@ -173,6 +173,9 @@ th {
     cursor: pointer;
 }
 
+div[class*="wrapper"] {
+    background-color: #121212;
+}
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -197,14 +200,28 @@ th {
     padding: 8px;
     cursor: pointer;
     user-select: none;
+    white-space: nowrap;
+}
+
+.logo-sidebar {
+    font-size: 36px;
 }
 
 .sidebar-link:hover {
     color: #c2c2c2;
 }
 
+div.sidebar-link {
+    width: 52px!important;
+    transition: width 0.7s ease-in-out;
+}
+
+.sidebar:hover > div.sidebar-link {
+    width: 400px!important;
+}
+
 .sidebar-link-selected {
-    background-color: #1e1e1e;
+    background-color: #3f3f3f;
     color: #c2c2c2;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
 }

@@ -15,28 +15,97 @@
     <link rel="icon" type="image/png" href="images/la.jpg">
 </head>
 
-<body class="html-wrapper">
+<body class="d-flex flex-row" style="width: 100%;height: 100%;">
     <!-- SIDEBAR ---------------------------------------------------------------------------------------------------------->
-    <div style="grid-column: 1 / 3; grid-row: 1 / 1;">
+    <div style="height: calc(100vh - 10px);position: fixed;background-color: #1e1e1e;overflow: hidden;z-index: 99;padding-right: 10px;">
         <div class="sidebar">
-            <div id="menu-dashboard" class="sidebar-link sidebar-link-selected d-flex flex-row justify-content-between" data-page="dashboard"><span><i class="fa-solid fa-chart-line"></i>&nbsp;Dashboard</span><span id="sidebar-dashboard-data"></span></div>
-            <div id="menu-perso" class="sidebar-link d-flex flex-row justify-content-between" data-page="perso"><span><i class="fa-solid fa-user"></i>&nbsp;<span id="sidebar-personame-data">Perso</span></span><span id="sidebar-perso-data"></span></div>
-            <div id="menu-daily" class="sidebar-link d-flex flex-row justify-content-between" data-page="daily"><span><i class="fa-solid fa-list-check"></i>&nbsp;Daily</span><span id="sidebar-daily-data"></span></div>
-            <div id="menu-weekly" class="sidebar-link d-flex flex-row justify-content-between" data-page="weekly"><span><i class="fa-solid fa-list-check"></i>&nbsp;Weekly</span><span id="sidebar-weekly-data"></span></div>
-            <div id="menu-raids" class="sidebar-link d-flex flex-row justify-content-between" data-page="raids"><span><i class="fa-solid fa-list-check"></i>&nbsp;Raids</span><span id="sidebar-raids-data"></span></div>
-            <div id="menu-gold" class="sidebar-link d-flex flex-row justify-content-between" data-page="gold"><span><i class="fa-solid fa-wallet"></i>&nbsp;<span id="sidebar-golds-datavalue"></span></span><span id="sidebar-golds-datastatus"></span></div>
-            <div id="menu-fate-ember" class="sidebar-link d-flex flex-row justify-content-between" data-page="fate-ember"><span><i class="fa-solid fa-circle-dollar-to-slot"></i>&nbsp;<span id="sidebar-fate-embers-datatotal"></span></span><span id="sidebar-fate-embers-dataweek"></span></div>
-            <div id="menu-gemme" class="sidebar-link d-flex flex-row justify-content-between" data-page="gemme"><span><i class="fa-solid fa-gem"></i>&nbsp;<span id="sidebar-gemme-datavalue"></span> Gemmes Niv.5</span><span id="sidebar-gemme-datastatus"></span></div>
-            <div id="menu-events" class="sidebar-link d-flex flex-row justify-content-between" data-page="events"><span><i class="fa-solid fa-calendar-check"></i>&nbsp;Roster</span><span id="sidebar-events-data"></span></div>
-            <div id="menu-planning" class="sidebar-link d-flex flex-row justify-content-between" data-page="planning"><span><i class="fa-solid fa-calendar-week"></i>&nbsp;Planning</span><span id="sidebar-planning-data"></span></div>
-            <div id="menu-settings" class="sidebar-link d-flex flex-row justify-content-between" data-page="settings"><span><i class="fa-solid fa-gear"></i>&nbsp;Settings</span></div>
-            <div id="menu-help" class="sidebar-link d-flex flex-row justify-content-between" data-page="help"><span><i class="fa-solid fa-circle-question"></i>&nbsp;Help</span></div>
+            <!-- DASHBOARD-->
+            <div id="menu-dashboard" class="sidebar-link d-flex flex-row gap-4" data-page="dashboard">
+                <i class="logo-sidebar fa-solid fa-chart-line"></i>
+                <span class="flex-grow-1">Dashboard</span>
+                <span id="sidebar-dashboard-data"></span>
+            </div>
+            
+            <!-- PERSO-->
+            <div id="menu-perso" class="sidebar-link d-flex flex-row gap-4" data-page="perso">
+                <i class="logo-sidebar fa-solid fa-user"></i>
+                <span id="sidebar-personame-data" class="flex-grow-1">Perso</span>
+                <span id="sidebar-perso-data"></span>
+            </div>
+            
+            <!-- DAILY-->
+            <div id="menu-daily" class="sidebar-link d-flex flex-row gap-4" data-page="daily">
+                <i class="logo-sidebar fa-solid fa-list-check"></i>
+                <span class="flex-grow-1">Daily</span>
+                <span id="sidebar-daily-data"></span>
+            </div>
+            
+            <!-- WEEKLY-->
+            <div id="menu-weekly" class="sidebar-link d-flex flex-row gap-4" data-page="weekly">
+                <i class="logo-sidebar fa-solid fa-list-check"></i>
+                <span class="flex-grow-1">Weekly</span>
+                <span id="sidebar-weekly-data"></span>
+            </div>
+            
+            <!-- RAIDS-->
+            <div id="menu-raids" class="sidebar-link d-flex flex-row gap-4" data-page="raids">
+                <i class="logo-sidebar fa-solid fa-list-check"></i>
+                <span class="flex-grow-1">Raids</span>
+                <span id="sidebar-raids-data"></span>
+            </div>
+            
+            <!-- GOLDS-->
+            <div id="menu-gold" class="sidebar-link d-flex flex-row gap-4" data-page="gold">
+                <i class="logo-sidebar fa-solid fa-wallet"></i>
+                <span id="sidebar-golds-datavalue" class="flex-grow-1"></span>
+                <span id="sidebar-golds-datastatus"></span>
+            </div>
+            
+            <!-- FATE EMBERS-->
+            <div id="menu-fate-ember" class="sidebar-link d-flex flex-row gap-4" data-page="fate-ember">
+                <i class="logo-sidebar fa-solid fa-circle-dollar-to-slot"></i>
+                <span id="sidebar-fate-embers-datatotal" class="flex-grow-1"></span>
+                <span id="sidebar-fate-embers-dataweek"></span>
+            </div>
+            
+            <!-- GEMMES-->
+            <div id="menu-gemme" class="sidebar-link d-flex flex-row gap-4" data-page="gemme">
+                <i class="logo-sidebar fa-solid fa-gem"></i>
+                <span class="flex-grow-1"><span id="sidebar-gemme-datavalue"></span> Gemmes Niv.5</span>
+                <span id="sidebar-gemme-datastatus"></span>
+            </div>
+            
+            <!-- EVENTS (ROSTER)-->
+            <div id="menu-events" class="sidebar-link d-flex flex-row gap-4" data-page="events">
+                <i class="logo-sidebar fa-solid fa-calendar-check"></i>
+                <span class="flex-grow-1">Roster</span>
+                <span id="sidebar-events-data"></span>
+            </div>
+            
+            <!-- PLANNING-->
+            <div id="menu-planning" class="sidebar-link d-flex flex-row gap-4" data-page="planning">
+                <i class="logo-sidebar fa-solid fa-calendar-week"></i>
+                <span class="flex-grow-1">Planning</span>
+                <span id="sidebar-planning-data"></span>
+            </div>
+            
+            <!-- SETTINGS-->
+            <div id="menu-settings" class="sidebar-link d-flex flex-row gap-4" data-page="settings">
+                <i class="logo-sidebar fa-solid fa-gear"></i>
+                <span class="flex-grow-1">Settings</span>
+            </div>
+            
+            <!-- README-->
+            <div id="menu-help" class="sidebar-link sidebar-link-selected d-flex flex-row gap-4" data-page="help">
+                <i class="logo-sidebar fa-solid fa-circle-question"></i>
+                <span class="flex-grow-1">Help</span>
+            </div>
         </div>
     </div>
     <!--------------------------------------------------------------------------------------------------------------------->
 
     <!-- CONTENT ---------------------------------------------------------------------------------------------------------->
-    <div class="" style="grid-column: 3 / 11; grid-row: 1 / 1;">
+    <div class="flex-grow-1" style="margin-left: 65px;">
         <section id="section-dashboard" class="section-content">
             <div class="dashboard-wrapper"></div>
         </section>

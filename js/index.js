@@ -63,6 +63,33 @@ $(document).on('click', '.sidebar-link', function () {
     if (page == 'planning') planning();
 });
 
+$(document).on('click', '.logo-sidebar', function () {
+    // récupération de la page
+    let page = $(this).parent().data('page');
+
+    // Changement du lien du menu qui est sélectionné
+    $('.sidebar-link').removeClass('sidebar-link-selected');
+    $(this).parent().addClass('sidebar-link-selected');
+
+    // Affichage du contenu approprié
+    $('.section-content').hide();
+    $(`#section-${page}`).show();
+
+    console.log(page);
+
+    if (page == 'dashboard') dashboard();
+    if (page == 'perso') perso();
+    if (page == 'daily') daily();
+    if (page == 'weekly') weekly();
+    if (page == 'raids') raids();
+    if (page == 'settings') settings();
+    if (page == 'gold') gold();
+    if (page == 'fate-ember') fate_embers();
+    if (page == 'gemme') gemme();
+    if (page == 'events') events();
+    if (page == 'planning') planning();
+});
+
 function sidebar() {
     sidebar_dashboard();
     sidebar_perso();
