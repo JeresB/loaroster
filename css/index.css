@@ -1,6 +1,11 @@
 /* ------------------------------------------------------------------------------------------------------------- */
 /* --- GLOBAL -------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 html {
     background-color: #121212;
 }
@@ -46,7 +51,7 @@ body,
 }
 
 .grid-card {
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: #1e1e1e;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
     padding: 8px;
@@ -89,7 +94,7 @@ body,
 
 .liste-task {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     color: #B2B2B2;
     padding: 8px 16px;
     cursor: pointer;
@@ -98,7 +103,7 @@ body,
 }
 
 .liste-task-no-card {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     cursor: pointer;
     font-family: comfortaa;
@@ -112,7 +117,7 @@ body,
 
 .table-task {
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     font-family: comfortaa;
     font-weight: 900;
     font-size: 18px;
@@ -121,7 +126,7 @@ body,
 .histo-task-dashboard {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #444444;
-    border-radius: 6px;
+    border-radius: 8px;
     color: #a1a1a1;
     padding: 2px 8px;
     font-family: comfortaa;
@@ -130,7 +135,7 @@ body,
 
 .card-task-prio-dashboard {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 2px 8px;
     font-family: comfortaa;
     font-weight: 900;
@@ -157,7 +162,7 @@ body,
 }
 
 .histo-task {
-    border-radius: 6px;
+    border-radius: 8px;
     color: #a1a1a1;
     padding: 2px 8px;
     font-family: comfortaa;
@@ -176,6 +181,10 @@ th {
 div[class*="wrapper"] {
     background-color: #121212;
 }
+
+.br8 {
+    border-radius: 8px!important;
+}
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -189,15 +198,15 @@ div[class*="wrapper"] {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-evenly;
+    /* gap: 20px; */
     font-size: 24px;
 }
 
 .sidebar-link {
     color: #a1a1a1;
-    border-radius: 10px;
-    padding: 8px;
+    border-radius: 8px;
+    padding: 10px;
     cursor: pointer;
     user-select: none;
     white-space: nowrap;
@@ -205,7 +214,8 @@ div[class*="wrapper"] {
 
 .logo-sidebar {
     font-size: 36px;
-    min-width: 36px;
+    width: 36px;
+    height: 36px;
 }
 
 .sidebar-link:hover {
@@ -241,9 +251,9 @@ div.sidebar-link {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(7, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -260,9 +270,9 @@ div.sidebar-link {
     grid-template-columns: repeat(24, 1fr);
     grid-template-rows: repeat(14, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
     border-radius: 8px;
 }
 
@@ -279,9 +289,17 @@ div.sidebar-link {
 }
 
 .pageperso-fateember {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     cursor: pointer;
+    font-family: comfortaa;
+    font-weight: 900;
+    width: 100%;
+}
+
+.pageperso-fateember-no-click {
+    border-radius: 8px;
+    padding: 4px 16px;
     font-family: comfortaa;
     font-weight: 900;
     width: 100%;
@@ -302,12 +320,12 @@ div.sidebar-link {
 /* ------------------------------------------------------------------------------------------------------------- */
 .daily-wrapper {
     display: grid;
-    grid-template-columns: repeat(24, 1fr);
+    grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(14, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .card-daily-done {
@@ -344,9 +362,9 @@ div.sidebar-link {
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(14, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .card-weekly-done {
@@ -383,9 +401,9 @@ div.sidebar-link {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(20, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .card-raid-done {
@@ -421,9 +439,9 @@ div.sidebar-link {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(15, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -440,9 +458,9 @@ div.sidebar-link {
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -459,9 +477,9 @@ div.sidebar-link {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(15, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .gem-classe-wrapper {
@@ -476,9 +494,17 @@ div.sidebar-link {
 
 .card-gemme-perso-collected {
     background-color: #1e1e1e;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     cursor: pointer;
+    font-family: comfortaa;
+    font-weight: 900;
+}
+
+.card-gemme-perso-total {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 4px 16px;
     font-family: comfortaa;
     font-weight: 900;
 }
@@ -489,7 +515,7 @@ div.sidebar-link {
 }
 
 .card-gemme-perso {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     cursor: pointer;
     font-family: comfortaa;
@@ -502,7 +528,7 @@ div.sidebar-link {
 }
 
 .page-gemme-liste-card {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     font-family: comfortaa;
     font-weight: 900;
@@ -527,15 +553,15 @@ div.sidebar-link {
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .card-objectif {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #014b89;
-    border-radius: 6px;
+    border-radius: 8px;
     color: #a1a1a1;
     padding: 2px 8px;
     font-family: comfortaa;
@@ -545,7 +571,7 @@ div.sidebar-link {
 
 .card-timeline {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #00651F;
     padding: 4px 8px;
     font-family: comfortaa;
@@ -564,7 +590,7 @@ div.sidebar-link {
 
 .card-content-perso {
     background-color: #444444;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 0px 10px;
     font-family: comfortaa;
 }
@@ -583,9 +609,9 @@ div.sidebar-link {
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .ec-time,
@@ -594,7 +620,7 @@ div.sidebar-link {
 }
 
 .card-raid {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 4px 16px;
     cursor: pointer;
     font-family: comfortaa;
@@ -620,9 +646,9 @@ div.sidebar-link {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 10px;
-    margin: 5px;
-    width: calc(100% - 10px);
-    height: calc(100vh - 30px);
+    /* margin: 5px; */
+    width: calc(100% - 0px);
+    height: calc(100vh - 20px);
 }
 
 .settings-bouton {

@@ -389,8 +389,8 @@ function showRaid() {
     let task_remaining = 0;
 
     config_raids.forEach(function (config_raid, i) {
-        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == config_raid.name && t.done < t.repet && getRaidsTodo(t)) : null;
-        let image = `<div class="image-task" style="border-radius: 10px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 10px;" src="${config_raid.image}" /></div>`;
+        let tasks = (db.get("dashboard").value()) ? db.get("dashboard").value().filter((t) => t.actif == true && t.type == config_raid.name && t.done < t.repet) : null;
+        let image = `<div class="image-task" style="border-radius: 8px;padding-bottom: 10px;position: sticky; top: 0;"><img style="width: 100%;border-radius: 8px;" src="${config_raid.image}" /></div>`;
         let text_color = db.get("settings.colors.text").value()
         let indeximage = true;
 
@@ -552,7 +552,7 @@ function perso() {
     $('#pageperso-wrapper').html('');
     
     $('#pageperso-wrapper').append(`<div class="card-content text-center d-flex justify-content-center align-items-center" style="grid-column: 5 / 21; grid-row: 1 / 2;"><span style="font-size: 32px;">${list_perso[index_perso].name} - ${list_perso[index_perso].ilevel}</span></div>`);
-    $('#pageperso-wrapper').append(`<div id="image-page-perso" style="grid-column: 5 / 21; grid-row: 2 / 14;"></div>`);
+    $('#pageperso-wrapper').append(`<div id="image-page-perso" style="grid-column: 5 / 21; grid-row: 2 / ${list_perso[index_perso].name == 'Lopang' ? '15' : '14'};"></div>`);
 
     $('#image-page-perso').css('background-image', `url(${list_perso[index_perso].image})`);
     $('#image-page-perso').css('background-repeat', 'no-repeat');
@@ -560,75 +560,103 @@ function perso() {
     $('#image-page-perso').css('background-size', 'cover');
     $('#image-page-perso').css('border-radius', '8px');
 
-    let tasks = db.get('dashboard').value().filter((t) => t.actif && list_perso[index_perso].perso.includes(t.perso) && getRaidsTodo(t) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    let tasks = db.get('dashboard').value().filter((t) => t.actif && list_perso[index_perso].perso.includes(t.perso) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
     
+
     let html_tasks = '';
+    let html_daily = '';
+    let html_weekly = '';
     let current_categorie = null;
     let lopang = list_perso[index_perso].name == 'Lopang';
     let type_raid = ['akkan', 'brelshaza', 'voldis', 'kayangel'];
     let setting_tasks = db.get('settings.pageperso.tasks').value();
 
-    tasks.forEach(function(t, i) {
-        setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
-        let color = type_raid.includes(t.type) ? '#cf6363' : (t.reset == 'daily' ? '#008b2b' : '#2b87fb');
-        let categorie = t.reset == 'daily' ? 'daily' : (type_raid.includes(t.type) ? 'raids' : 'weekly');
+    // Gestion Lopang Only
+    if (list_perso[index_perso].name == 'Lopang') {
+        tasks.sort(function (a, b) {
+            return a.perso.localeCompare(b.perso) || a.prio - b.prio;
+        });
 
-        if (current_categorie != categorie && current_categorie != null) html_tasks += `<div style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><br></div>`;
+        tasks.forEach(function(t, i) {
+            setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
+            
+            t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0)
+                ? html_tasks = `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 0px 10px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`
+                : html_tasks = `<div class="card-content" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;padding: 0px 10px;"><span><img style="width: 64px;filter: grayscale(1);" src="images/${setting ? setting.image : ''}" /></span><span style="color: #a1a1a1;font-size: 20px;text-align: center;">${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-check fa-2x"></i></span></div>`;
+        
+            t.reset == 'daily' ? html_daily += html_tasks : html_weekly += html_tasks;
+        });
 
-        t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0)
-            ? html_tasks += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`
-            : html_tasks += `<div class="card-content" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><span><img style="width: 64px;filter: grayscale(1);" src="images/${setting ? setting.image : ''}" /></span><span style="color: #a1a1a1;font-size: 20px;text-align: center;">${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-check fa-2x"></i></span></div>`;
-    
-        current_categorie = categorie;
-    });
-    
-    $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 1 / 5; grid-row: 1 / 15;">${html_tasks}</div>`);
+        $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 1 / 5; grid-row: 1 / 15;">${html_daily}</div>`);
+        $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 1 / 15;">${html_weekly}</div>`);
 
-    let collected = db.get("gemmes.collected").value().find((c) => c.name == list_perso[index_perso].name);
-    let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == list_perso[index_perso].name);
 
-    if (collected) {
-        $('#pageperso-wrapper').append(`<div class="card-gemme-perso-collected card-content d-flex flex-row justify-content-center align-items-center" data-id="${collectedIndex}" style="grid-column: 21 / 25; grid-row: 1 / 2;"><h2>${collected.gemme} Gemmes Niv.5</h2></div>`);
     } else {
-        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 1 / 2;"></div>`);
-    }
-
-    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 2 / 3;"><h2>${nbfateemberPerso(list_perso[index_perso].name) ? nbfateemberPerso(list_perso[index_perso].name) + ' Fate Embers' : ''}</h2></div>`);
-
-    let last_fate_ember = db.get("fate_embers").value().find((fe) => fe.perso == list_perso[index_perso].name);
+        tasks.forEach(function(t, i) {
+            setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
+            let categorie = t.reset == 'daily' ? 'daily' : (type_raid.includes(t.type) ? 'raids' : 'weekly');
     
-    if (last_fate_ember) {
-        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 3 / 5;"><div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: ${colorFateEmbers(last_fate_ember).bg_color};font-size: 20px;">${last_fate_ember.type}</span><span style="color: #a1a1a1;">${last_fate_ember.perso}</span><span style="color: #a1a1a1;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div></div>`);
-    } else {
-        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 3 / 5;"><div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;">Pas de fate embers</div></div>`);
-    }
-
-    let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
-    let html_option_fate_ember = '';
-
-    fate_ember_types.forEach(function(type, i) {
-        html_option_fate_ember += `<div class="pageperso-fateember" data-type="${type}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
-    });
+            if (current_categorie != categorie && current_categorie != null) html_tasks += `<div style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;"><br></div>`;
     
-    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-start" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 5 / 15;">
-        ${html_option_fate_ember}
-    </div>`);
-
-    let gold_income_perso = db.get("gold_income").value().filter((gold) => list_perso[index_perso].perso.includes(gold.perso));
-    let depense = 0;
-    let revenu = 0;
-    let resultat = 0;
-    let good = '#00b135';
-    let bad = '#cf4747';
-
-    gold_income_perso.forEach(function(g, i) {
-        g.montant > 0 ? revenu += g.montant : depense += g.montant;
-    });
-
-    resultat = revenu + depense;
-
-    $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-evenly align-items-center" style="display: flex; flex-direction: row;height: 100%;font-size: xx-large;gap: 10px; overflow-y: scroll;grid-column: 5 / 21; grid-row: 14 / 15;"><span style="color: ${good};"><i class="fa-solid fa-arrow-trend-up"></i> ${new Intl.NumberFormat('fr-FR').format(revenu)}</span><span><i class="fa-solid fa-minus"></i></span><span style="color: ${bad};"><i class="fa-solid fa-arrow-trend-down"></i> ${new Intl.NumberFormat('fr-FR').format(Math.abs(depense))}</span><span><i class="fa-solid fa-equals"></i></span><span style="color: ${resultat > 0 ? good : bad};">${resultat > 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${new Intl.NumberFormat('fr-FR').format(Math.abs(resultat))}</span></div>`);
-
+            t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0)
+                ? html_tasks += `<div class="liste-task-pageperso" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 0px 10px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`
+                : html_tasks += `<div class="card-content" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;padding: 0px 10px;"><span><img style="width: 64px;filter: grayscale(1);" src="images/${setting ? setting.image : ''}" /></span><span style="color: #a1a1a1;font-size: 20px;text-align: center;">${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''}${lopang ? '<br>' + t.perso : ''}</span><span><i class="fa-solid fa-check fa-2x"></i></span></div>`;
+        
+            current_categorie = categorie;
+        });
+        
+        $('#pageperso-wrapper').append(`<div class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 1 / 5; grid-row: 1 / 15;">${html_tasks}</div>`);
+    
+        let collected = db.get("gemmes.collected").value().find((c) => c.name == list_perso[index_perso].name);
+        let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == list_perso[index_perso].name);
+    
+        if (collected) {
+            $('#pageperso-wrapper').append(`<div class="card-gemme-perso-collected card-content d-flex flex-row justify-content-center align-items-center" data-id="${collectedIndex}" style="grid-column: 21 / 25; grid-row: 1 / 3;"><h2>${collected.gemme} Gemmes Niv.5</h2></div>`);
+        } else {
+            $('#pageperso-wrapper').append(`<div class="card-content card-gemme-perso-total d-flex flex-row justify-content-center align-items-center" style="grid-column: 21 / 25; grid-row: 1 / 3;"><h2>${db.get('gemmes.total').value()} Gemmes Niv.5</h2></div>`);
+        }
+    
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 3 / 5;"><h2>${nbfateemberPerso(list_perso[index_perso].name) ? nbfateemberPerso(list_perso[index_perso].name) : db.get("fate_embers").value().length} Fate Embers</h2></div>`);
+        
+        let last_fate_ember = null;
+        if (list_perso[index_perso].name == 'Roster' || list_perso[index_perso].name == 'Lopang') {
+            last_fate_ember = db.get("fate_embers").value().find((fe) => true); 
+        } else {
+            last_fate_ember = db.get("fate_embers").value().find((fe) => fe.perso == list_perso[index_perso].name);
+        }
+        
+        if (last_fate_ember) {
+            $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 5 / 7;"><div class="histo-task" style="padding: 8px 16px;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: ${colorFateEmbers(last_fate_ember).bg_color};font-size: 20px;">${last_fate_ember.type}</span><span style="color: #a1a1a1;">${last_fate_ember.perso}</span><span style="color: #a1a1a1;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div></div>`);
+        } else {
+            $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-center" style="display: flex; flex-direction: row;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 5 / 7;"><div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;">Pas de fate embers</div></div>`);
+        }
+    
+        let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
+        let html_option_fate_ember = '';
+    
+        fate_ember_types.forEach(function(type, i) {
+            html_option_fate_ember += `<div class="${list_perso[index_perso].name == 'Roster' || list_perso[index_perso].name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
+        });
+        
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-start" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 7 / 15;">
+            ${html_option_fate_ember}
+        </div>`);
+    
+        let gold_income_perso = db.get("gold_income").value().filter((gold) => list_perso[index_perso].perso.includes(gold.perso));
+        let depense = 0;
+        let revenu = 0;
+        let resultat = 0;
+        let good = '#00b135';
+        let bad = '#cf4747';
+    
+        gold_income_perso.forEach(function(g, i) {
+            g.montant > 0 ? revenu += g.montant : depense += g.montant;
+        });
+    
+        resultat = revenu + depense;
+    
+        $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-evenly align-items-center" style="display: flex; flex-direction: row;height: 100%;font-size: xx-large;gap: 10px; overflow-y: scroll;grid-column: 5 / 21; grid-row: 14 / 15;"><span style="color: ${good};"><i class="fa-solid fa-arrow-trend-up"></i> ${new Intl.NumberFormat('fr-FR').format(revenu)}</span><span><i class="fa-solid fa-minus"></i></span><span style="color: ${bad};"><i class="fa-solid fa-arrow-trend-down"></i> ${new Intl.NumberFormat('fr-FR').format(Math.abs(depense))}</span><span><i class="fa-solid fa-equals"></i></span><span style="color: ${resultat > 0 ? good : bad};">${resultat > 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${new Intl.NumberFormat('fr-FR').format(Math.abs(resultat))}</span></div>`);
+    }
 }
 
 function hexToRgb(hex) {
@@ -782,28 +810,24 @@ function daily() {
     $('.daily-wrapper').append('<div id="daily-entete-Jeresunshine" class="card-content" style="grid-column: 5 / 9; grid-row: 1 / 4;"></div>');
     $('.daily-wrapper').append('<div id="daily-entete-Jerescelestia" class="card-content" style="grid-column: 9 / 13; grid-row: 1 / 4;"></div>');
     $('.daily-wrapper').append('<div id="daily-entete-Jeresbard" class="card-content" style="grid-column: 13 / 17; grid-row: 1 / 4;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Jeresakura" class="card-content" style="grid-column: 17 / 21; grid-row: 1 / 4;"></div>');
     
     $('.daily-wrapper').append('<div id="daily-tasks-Jeresayaya" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 1 / 5; grid-row: 4 / 8;"></div>');
     $('.daily-wrapper').append('<div id="daily-tasks-Jeresunshine" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 4 / 8;"></div>');
     $('.daily-wrapper').append('<div id="daily-tasks-Jerescelestia" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 4 / 8;"></div>');
     $('.daily-wrapper').append('<div id="daily-tasks-Jeresbard" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 4 / 8;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Jeresakura" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 4 / 8;"></div>');
     
     // Row 2
     $('.daily-wrapper').append('<div id="daily-entete-Roster" class="card-content" style="grid-column: 1 / 5; grid-row: 8 / 11;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Imanyrae" class="card-content" style="grid-column: 5 / 9; grid-row: 8 / 11;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Shadow" class="card-content" style="grid-column: 9 / 13; grid-row: 8 / 11;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Drevana" class="card-content" style="grid-column: 13 / 17; grid-row: 8 / 11;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Jeresblade" class="card-content" style="grid-column: 17 / 21; grid-row: 8 / 11;"></div>');
-    $('.daily-wrapper').append('<div id="daily-entete-Lopang" class="card-content" style="grid-column: 21 / 25; grid-row: 1 / 4;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Jeresakura" class="card-content" style="grid-column: 5 / 9; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Imanyrae" class="card-content" style="grid-column: 9 / 13; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Shadow" class="card-content" style="grid-column: 13 / 17; grid-row: 8 / 11;"></div>');
+    $('.daily-wrapper').append('<div id="daily-entete-Lopang" class="card-content" style="grid-column: 17 / 21; grid-row: 1 / 4;"></div>');
     
     $('.daily-wrapper').append('<div id="daily-tasks-Roster" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 1 / 5; grid-row: 11 / 15;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Imanyrae" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 11 / 15;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Shadow" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 11 / 15;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Drevana" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 11 / 15;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Jeresblade" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 11 / 15;"></div>');
-    $('.daily-wrapper').append('<div id="daily-tasks-Lopang" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 21 / 25; grid-row: 4 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Jeresakura" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 5 / 9; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Imanyrae" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 9 / 13; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Shadow" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 13 / 17; grid-row: 11 / 15;"></div>');
+    $('.daily-wrapper').append('<div id="daily-tasks-Lopang" class="card-daily-tasks scrollhidden flex-col-max-height" style="grid-column: 17 / 21; grid-row: 4 / 15;"></div>');
 
     tasksDaily();
 }
@@ -814,10 +838,14 @@ function tasksDaily() {
     let bgcolor = '';
     let color = '';
 
+    tasks.sort(function (a, b) {
+        return a.perso.localeCompare(b.perso);
+    });
+
     tasks.forEach(function(t, i) {
         let perso = list_perso.find((p) => p.perso.includes(t.perso));
         let importance = t.importance;
-        let tache_name = perso.name == 'Lopang' ? t.tache_name + '<br>' + t.perso : t.tache_name;
+        let tache_name = perso.name == 'Lopang' ? t.tache_name + ' ' + t.perso : t.tache_name;
         let todo = t.repet - t.done > 0 && t.rest >= t.restNeeded ? true : false;
 
         if (t.rest >= 40 && importance > 1) importance--;
@@ -1007,9 +1035,7 @@ function sidebar_raids() {
     
     if (b.diff(a, 'days') >= 7) semaine_brel_1_4 = false;
     
-    semaine_brel_1_4
-        ? tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && (t.type != 'kayangel' || (t.type == 'kayangel' && !t.restriction)))
-        : tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && t.type != 'brelshaza');
+    tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type));
     
     tasks.forEach(function(t, i) {
         t.repet - t.done > 0 ? time_remaining += (t.duration * (t.repet - t.done)) : null;
@@ -1299,20 +1325,16 @@ function tasksRaids() {
     
     if (b.diff(a, 'days') >= 7) semaine_brel_1_4 = false;
     
-    semaine_brel_1_4
-        ? tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && (t.type != 'kayangel' || (t.type == 'kayangel' && !t.restriction)))
-        : tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type) && t.type != 'brelshaza');
+    tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type));
 
-    semaine_brel_1_4 ? x_perso = 5 : x_perso = 6
-
-    $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / ${x_perso};"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Kayangel'}</span></div></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / 5;"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Brelshaza G1-3<br><br><i>NE PAS PRENDRE LES GOLDS KAYANGEL</i>'}</span></div></div>`);
     
-    $('.raids-wrapper').append(`<div id="raids-entete-Jeresayaya" class="card-content" style="grid-column: 3 / 4; grid-row: 1 / ${x_perso};"></div>`);
-    $('.raids-wrapper').append(`<div id="raids-entete-Jeresunshine" class="card-content" style="grid-column: 4 / 5; grid-row: 1 / ${x_perso};"></div>`);
-    $('.raids-wrapper').append(`<div id="raids-entete-Jerescelestia" class="card-content" style="grid-column: 5 / 6; grid-row: 1 / ${x_perso};"></div>`);
-    $('.raids-wrapper').append(`<div id="raids-entete-Jeresbard" class="card-content" style="grid-column: 6 / 7; grid-row: 1 / ${x_perso};"></div>`);
-    $('.raids-wrapper').append(`<div id="raids-entete-Jeresakura" class="card-content" style="grid-column: 7 / 8; grid-row: 1 / ${x_perso};"></div>`);
-    $('.raids-wrapper').append(`<div id="raids-entete-Imanyrae" class="card-content" style="grid-column: 8 / 9; grid-row: 1 / ${x_perso};"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresayaya" class="card-content" style="grid-column: 3 / 4; grid-row: 1 / 5;"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresunshine" class="card-content" style="grid-column: 4 / 5; grid-row: 1 / 5;"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jerescelestia" class="card-content" style="grid-column: 5 / 6; grid-row: 1 / 5;"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresbard" class="card-content" style="grid-column: 6 / 7; grid-row: 1 / 5;"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Jeresakura" class="card-content" style="grid-column: 7 / 8; grid-row: 1 / 5;"></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete-Imanyrae" class="card-content" style="grid-column: 8 / 9; grid-row: 1 / 5;"></div>`);
     
     list_perso.forEach(function(p, i) {
         $(`#raids-entete-${p.name}`).css('background-image', `url(${p.image})`);
@@ -1321,16 +1343,10 @@ function tasksRaids() {
         $(`#raids-entete-${p.name}`).css('background-size', 'cover');
     });
 
-    if (semaine_brel_1_4) {
-        $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 5 / 9;"></div>');
-        $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 9 / 13;"></div>');
-        $('.raids-wrapper').append('<div id="raids-entete-brelshaza" class="card-content" style="grid-column: 1 / 3; grid-row: 13 / 17;"></div>');
-        $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 17 / 21;"></div>');
-    } else {
-        $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 6 / 11;"></div>');
-        $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 11 / 16;"></div>');
-        $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 16 / 21;"></div>');
-    }
+    $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 5 / 9;"></div>');
+    $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 9 / 13;"></div>');
+    $('.raids-wrapper').append('<div id="raids-entete-brelshaza" class="card-content" style="grid-column: 1 / 3; grid-row: 13 / 17;"></div>');
+    $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 17 / 21;"></div>');
 
     liste_raids.forEach(function(r, i) {
         $(`#raids-entete-${r.name}`).css('background-image', `url(${r.image})`);
@@ -1349,9 +1365,7 @@ function tasksRaids() {
         let brel4 = t.tache_name == 'Brelshaza G4' ? true : false;
         let event = liste_events.find((e) => e.raid == t.id);
 
-        semaine_brel_1_4
-            ? $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`)
-            : $('.raids-wrapper').append(`<div style="grid-column: ${dispo.kay.y} / ${dispo.kay.y + 1}; grid-row: ${dispo.kay.x} / ${dispo.kay.x + 5};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
+        $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
     });
 }
 

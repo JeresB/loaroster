@@ -10,9 +10,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 498,
+            "count": 504,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -45,7 +45,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 256,
+            "count": 258,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -63,7 +63,7 @@
             "restNeeded": 0,
             "rested": false,
             "duration": 1,
-            "importance": 2,
+            "importance": 1,
             "prio": 2
         },
         {
@@ -78,7 +78,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 759,
+            "count": 765,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -109,9 +109,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 498,
+            "count": 502,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -142,9 +142,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 256,
+            "count": 259,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -175,9 +175,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 758,
+            "count": 765,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -210,7 +210,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 492,
+            "count": 494,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -243,7 +243,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 254,
+            "count": 255,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -276,7 +276,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 753,
+            "count": 759,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -309,7 +309,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 492,
+            "count": 494,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -342,7 +342,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 254,
+            "count": 256,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -375,7 +375,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 749,
+            "count": 755,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -408,7 +408,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 498,
+            "count": 500,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -441,7 +441,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 256,
+            "count": 258,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -474,7 +474,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 758,
+            "count": 763,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -488,7 +488,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -507,7 +507,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 346,
+            "count": 348,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -525,7 +525,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 3,
-            "importance": 1,
+            "importance": 2,
             "prio": 20
         },
         {
@@ -540,7 +540,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 173,
+            "count": 175,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -573,7 +573,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 518,
+            "count": 524,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -591,7 +591,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
-            "importance": 1,
+            "importance": 2,
             "prio": 22
         },
         {
@@ -606,7 +606,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 2,
-            "count": 470,
+            "count": 472,
             "revenu": 0,
             "cout": 0,
             "color": "#145CB8",
@@ -639,7 +639,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 253,
+            "count": 254,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -672,7 +672,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 744,
+            "count": 747,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -686,7 +686,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -719,11 +719,11 @@
             "progress": {
                 "y": 2
             },
-            "rest": 0,
-            "restNeeded": 0,
+            "rest": 40,
+            "restNeeded": 40,
             "rested": true,
             "duration": 3,
-            "importance": 2,
+            "importance": 4,
             "prio": 29
         },
         {
@@ -738,7 +738,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 251,
+            "count": 252,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -756,7 +756,7 @@
             "restNeeded": 0,
             "rested": false,
             "duration": 1,
-            "importance": 3,
+            "importance": 4,
             "prio": 30
         },
         {
@@ -771,7 +771,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 753,
+            "count": 756,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -785,11 +785,11 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
-            "importance": 1,
+            "importance": 4,
             "prio": 31
         },
         {
@@ -799,7 +799,7 @@
             "description": "",
             "type": "lopang",
             "important": true,
-            "actif": true,
+            "actif": false,
             "type_perso": "DPS",
             "reset": "daily",
             "done": 0,
@@ -818,7 +818,7 @@
             "progress": {
                 "y": 2
             },
-            "rest": 20,
+            "rest": 60,
             "restNeeded": 40,
             "rested": true,
             "duration": 3,
@@ -837,7 +837,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 245,
+            "count": 246,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -870,7 +870,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 734,
+            "count": 737,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -884,7 +884,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -903,7 +903,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 246,
+            "count": 247,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -936,7 +936,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 738,
+            "count": 741,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -950,7 +950,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -969,7 +969,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 244,
+            "count": 245,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1002,7 +1002,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 732,
+            "count": 735,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1016,7 +1016,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1035,7 +1035,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 245,
+            "count": 246,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -1068,7 +1068,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 733,
+            "count": 736,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1082,7 +1082,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 0,
+            "rest": 10,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1101,7 +1101,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 216,
+            "count": 219,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1115,7 +1115,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1134,7 +1134,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 726,
+            "count": 729,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1148,7 +1148,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1167,7 +1167,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 726,
+            "count": 729,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1181,7 +1181,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1200,7 +1200,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 725,
+            "count": 728,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1214,7 +1214,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1256,7 +1256,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 3,
-            "count": 516,
+            "count": 519,
             "revenu": 0,
             "cout": 0,
             "color": "#3B990E",
@@ -1270,7 +1270,7 @@
             "progress": {
                 "y": 4
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 1,
@@ -1287,9 +1287,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 273,
+            "count": 276,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1307,7 +1307,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 1,
             "prio": 7
         },
         {
@@ -1320,9 +1320,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 270,
+            "count": 273,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1340,7 +1340,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 1,
             "prio": 8
         },
         {
@@ -1355,7 +1355,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 269,
+            "count": 271,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1373,7 +1373,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 3,
+            "importance": 2,
             "prio": 13
         },
         {
@@ -1388,7 +1388,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 265,
+            "count": 267,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1406,7 +1406,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 1,
             "prio": 9
         },
         {
@@ -1421,7 +1421,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 261,
+            "count": 263,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1439,7 +1439,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 1,
             "prio": 10
         },
         {
@@ -1454,7 +1454,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 170,
+            "count": 172,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1472,7 +1472,7 @@
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 2,
+            "importance": 1,
             "prio": 12
         },
         {
@@ -1487,7 +1487,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 254,
+            "count": 255,
             "revenu": 0,
             "cout": 0,
             "color": "#AF2424",
@@ -1501,11 +1501,11 @@
             "progress": {
                 "y": 5
             },
-            "rest": 10,
+            "rest": 0,
             "restNeeded": 0,
             "rested": true,
             "duration": 5,
-            "importance": 3,
+            "importance": 2,
             "prio": 11
         },
         {
@@ -1534,8 +1534,8 @@
             "progress": {
                 "y": 5
             },
-            "rest": 0,
-            "restNeeded": 0,
+            "rest": 20,
+            "restNeeded": 20,
             "rested": true,
             "duration": 5,
             "importance": 3,
@@ -1548,7 +1548,7 @@
             "description": "",
             "type": "GR",
             "important": true,
-            "actif": true,
+            "actif": false,
             "type_perso": "DPS",
             "reset": "daily",
             "done": 0,
@@ -1567,7 +1567,7 @@
             "progress": {
                 "y": 5
             },
-            "rest": 10,
+            "rest": 30,
             "restNeeded": 20,
             "rested": true,
             "duration": 5,
@@ -2046,9 +2046,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 149,
+            "count": 152,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2062,7 +2062,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_jeresayaya",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2111,9 +2110,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 148,
+            "count": 151,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2127,7 +2126,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_jeresunshine",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2176,9 +2174,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 144,
+            "count": 147,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2192,7 +2190,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_imanyrae",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2241,9 +2238,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 140,
+            "count": 143,
             "revenu": 7500,
             "cout": 0,
             "color": "#A75FFF",
@@ -2257,7 +2254,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_jeresbard",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2322,7 +2318,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_jeresakura",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2387,7 +2382,6 @@
             "progress": {
                 "y": 9
             },
-            "restriction": "kayangel_jerescelestia",
             "rest": 0,
             "restNeeded": 0,
             "rested": false,
@@ -2480,10 +2474,10 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 111,
-            "revenu": 6500,
+            "count": 114,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2509,13 +2503,13 @@
             "description": "",
             "type": "kayangel",
             "important": true,
-            "actif": true,
+            "actif": false,
             "type_perso": "Support",
             "reset": "weekly",
             "done": 0,
             "repet": 3,
             "count": 95,
-            "revenu": 6500,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2542,13 +2536,13 @@
             "description": "",
             "type": "kayangel",
             "important": true,
-            "actif": true,
+            "actif": false,
             "type_perso": "DPS",
             "reset": "weekly",
             "done": 0,
             "repet": 3,
             "count": 99,
-            "revenu": 6500,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2575,13 +2569,13 @@
             "description": "",
             "type": "kayangel",
             "important": true,
-            "actif": true,
+            "actif": false,
             "type_perso": "Support",
             "reset": "weekly",
             "done": 0,
             "repet": 3,
             "count": 101,
-            "revenu": 6500,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2614,7 +2608,7 @@
             "done": 0,
             "repet": 3,
             "count": 111,
-            "revenu": 6500,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2646,7 +2640,7 @@
             "done": 0,
             "repet": 3,
             "count": 79,
-            "revenu": 6500,
+            "revenu": 0,
             "cout": 0,
             "color": "#D6B16B",
             "heatmap": {
@@ -2701,16 +2695,16 @@
         {
             "id": "voldis_jeresayaya",
             "perso": "Jeresayaya",
-            "tache_name": "Ivory Tower of Chaos HM",
+            "tache_name": "Voldis HM",
             "description": "",
             "type": "voldis",
             "important": true,
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 28,
+            "count": 32,
             "revenu": 14500,
             "cout": -5500,
             "color": "#B535F1",
@@ -2719,7 +2713,7 @@
                 "y": 1,
                 "nb": 80,
                 "id": "voldis_jeresayaya",
-                "nom": "Ivory Tower of Chaos HM Jeresayaya"
+                "nom": "Voldis HM Jeresayaya"
             },
             "progress": {
                 "y": 7
@@ -2733,7 +2727,7 @@
         {
             "id": "voldis_jeresunshine",
             "perso": "Jeresunshine",
-            "tache_name": "Ivory Tower of Chaos HM",
+            "tache_name": "Voldis HM",
             "description": "",
             "type": "voldis",
             "important": true,
@@ -2751,7 +2745,7 @@
                 "y": 2,
                 "nb": 160,
                 "id": "voldis_jeresunshine",
-                "nom": "Ivory Tower of Chaos HM Jeresunshine"
+                "nom": "Voldis HM Jeresunshine"
             },
             "progress": {
                 "y": 7
@@ -2765,7 +2759,7 @@
         {
             "id": "voldis_imanyrae",
             "perso": "Imanyrae",
-            "tache_name": "Ivory Tower of Chaos NM",
+            "tache_name": "Voldis NM",
             "description": "",
             "type": "voldis",
             "important": true,
@@ -2783,7 +2777,7 @@
                 "y": 6,
                 "nb": 240,
                 "id": "voldis_imanyrae",
-                "nom": "Ivory Tower of Chaos NM Imanyrae"
+                "nom": "Voldis NM Imanyrae"
             },
             "progress": {
                 "y": 7
@@ -2797,7 +2791,7 @@
         {
             "id": "voldis_jeresbard",
             "perso": "Jeresbard",
-            "tache_name": "Ivory Tower of Chaos HM",
+            "tache_name": "Voldis HM",
             "description": "",
             "type": "voldis",
             "important": true,
@@ -2815,7 +2809,7 @@
                 "y": 3,
                 "nb": 120,
                 "id": "voldis_jeresbard",
-                "nom": "Ivory Tower of Chaos NM Jeresbard"
+                "nom": "Voldis NM Jeresbard"
             },
             "progress": {
                 "y": 7
@@ -2829,7 +2823,7 @@
         {
             "id": "voldis_jeresakura",
             "perso": "Jeresakura",
-            "tache_name": "Ivory Tower of Chaos NM",
+            "tache_name": "Voldis NM",
             "description": "",
             "type": "voldis",
             "important": true,
@@ -2847,7 +2841,7 @@
                 "y": 4,
                 "nb": 160,
                 "id": "voldis_jeresakura",
-                "nom": "Ivory Tower of Chaos NM Jeresakura"
+                "nom": "Voldis NM Jeresakura"
             },
             "progress": {
                 "y": 7
@@ -2861,16 +2855,16 @@
         {
             "id": "voldis_jerescelestia",
             "perso": "Jerescelestia",
-            "tache_name": "Ivory Tower of Chaos HM",
+            "tache_name": "Voldis HM",
             "description": "",
             "type": "voldis",
             "important": true,
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 4,
             "repet": 4,
-            "count": 28,
+            "count": 32,
             "revenu": 14500,
             "cout": 0,
             "color": "#B535F1",
@@ -2879,7 +2873,7 @@
                 "y": 5,
                 "nb": 200,
                 "id": "voldis_jerescelestia",
-                "nom": "Ivory Tower of Chaos NM Jerescelestia"
+                "nom": "Voldis NM Jerescelestia"
             },
             "progress": {
                 "y": 7
@@ -2900,9 +2894,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 75,
+            "count": 78,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -2964,9 +2958,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 75,
+            "count": 78,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -2996,9 +2990,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 75,
+            "count": 78,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3028,9 +3022,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 75,
+            "count": 78,
             "revenu": 10000,
             "cout": 0,
             "color": "#B535F1",
@@ -3578,9 +3572,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3611,9 +3605,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3644,9 +3638,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3677,9 +3671,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3710,9 +3704,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3743,9 +3737,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 24,
+            "count": 25,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3776,9 +3770,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -3809,9 +3803,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 38,
+            "count": 39,
             "revenu": 0,
             "cout": 0,
             "color": "#057807",
@@ -4088,9 +4082,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 37,
+            "count": 38,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4120,9 +4114,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 37,
+            "count": 38,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4152,9 +4146,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 37,
+            "count": 38,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4184,9 +4178,9 @@
             "actif": true,
             "type_perso": "DPS",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 37,
+            "count": 38,
             "revenu": 0,
             "cout": 0,
             "color": "#dbbe56",
@@ -4463,9 +4457,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 23,
+            "count": 24,
             "revenu": 0,
             "cout": 0,
             "color": "#9abf96",
@@ -4785,9 +4779,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 2,
             "repet": 2,
-            "count": 76,
+            "count": 78,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4817,9 +4811,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "weekly",
-            "done": 0,
+            "done": 3,
             "repet": 3,
-            "count": 111,
+            "count": 114,
             "revenu": 0,
             "cout": 0,
             "color": "#d52b2b",
@@ -4851,7 +4845,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 224,
+            "count": 225,
             "revenu": 0,
             "cout": 0,
             "color": "#2056CB",
@@ -4884,7 +4878,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 230,
+            "count": 231,
             "revenu": 0,
             "cout": 0,
             "color": "#842A98",
@@ -5022,7 +5016,7 @@
             "reset": "daily",
             "done": 0,
             "repet": 1,
-            "count": 149,
+            "count": 150,
             "revenu": 0,
             "cout": 0,
             "color": "#5D13DE",
@@ -5059,9 +5053,9 @@
             "actif": true,
             "type_perso": "Support",
             "reset": "daily",
-            "done": 0,
+            "done": 1,
             "repet": 1,
-            "count": 112,
+            "count": 113,
             "revenu": 0,
             "cout": 0,
             "color": "#33AF0B",
@@ -5211,7 +5205,7 @@
             "prio": 0
         }
     ],
-    "resetDaily": "07/02/2024",
+    "resetDaily": "09/02/2024",
     "resetWeekly": "07/02/2024",
     "resetBiMensuel": "31/01/2024",
     "fate_embers": [
@@ -6353,6 +6347,134 @@
     ],
     "gold_income": [
         {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 7500,
+            "date": "Thu Feb 08 2024 23:48:56 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 7500,
+            "date": "Thu Feb 08 2024 23:30:48 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 7500,
+            "date": "Thu Feb 08 2024 23:30:39 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Brelshaza G1-3",
+            "categorie": "revenu",
+            "perso": "Jeresunshine",
+            "montant": 7500,
+            "date": "Thu Feb 08 2024 23:30:31 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresakura",
+            "montant": 10000,
+            "date": "Thu Feb 08 2024 23:30:21 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Oreha",
+            "description": "Craft",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -2760,
+            "date": "Thu Feb 08 2024 20:34:48 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -100,
+            "date": "Thu Feb 08 2024 20:34:34 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Vente",
+            "description": "Cadeau Event",
+            "categorie": "revenu",
+            "perso": "Roster",
+            "montant": 12000,
+            "date": "Thu Feb 08 2024 20:09:29 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -1203,
+            "date": "Thu Feb 08 2024 20:09:03 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Voldis HM",
+            "categorie": "revenu",
+            "perso": "Jerescelestia",
+            "montant": 14500,
+            "date": "Thu Feb 08 2024 18:41:29 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 10000,
+            "date": "Thu Feb 08 2024 00:02:02 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Kayangel",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 6500,
+            "date": "Wed Feb 07 2024 23:15:11 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Coffre de raids",
+            "description": "Coffre de Voldis HM",
+            "categorie": "depense",
+            "perso": "Jeresayaya",
+            "montant": -5500,
+            "date": "Wed Feb 07 2024 23:15:08 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Voldis HM",
+            "categorie": "revenu",
+            "perso": "Jeresayaya",
+            "montant": 14500,
+            "date": "Wed Feb 07 2024 23:15:08 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Imanyrae",
+            "montant": 10000,
+            "date": "Wed Feb 07 2024 20:33:52 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Raids",
+            "description": "Akkan HM",
+            "categorie": "revenu",
+            "perso": "Jeresbard",
+            "montant": 10000,
+            "date": "Wed Feb 07 2024 20:33:41 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
             "type": "Vente",
             "description": "Bijou",
             "categorie": "revenu",
@@ -6434,7 +6556,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -6442,7 +6564,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -6530,7 +6652,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 14500,
@@ -6554,7 +6676,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -6562,7 +6684,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -6698,7 +6820,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -5500,
@@ -6706,7 +6828,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 14500,
@@ -6753,7 +6875,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -6960,7 +7082,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -6968,7 +7090,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -7080,7 +7202,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 14500,
@@ -7088,7 +7210,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 14500,
@@ -7096,7 +7218,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -7104,7 +7226,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -7112,7 +7234,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -7183,7 +7305,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresbard",
             "montant": -5500,
@@ -7191,7 +7313,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 14500,
@@ -7199,7 +7321,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresakura",
             "montant": -3500,
@@ -7207,7 +7329,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -7551,7 +7673,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -3500,
@@ -7559,7 +7681,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 9000,
@@ -7575,7 +7697,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Imanyrae",
             "montant": -3500,
@@ -7583,7 +7705,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -7623,7 +7745,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresunshine",
             "montant": -5500,
@@ -7631,7 +7753,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -7639,7 +7761,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -7647,7 +7769,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -7718,7 +7840,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresakura",
             "montant": -3500,
@@ -7726,7 +7848,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -7838,7 +7960,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Imanyrae",
             "montant": -3500,
@@ -7846,7 +7968,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -7854,7 +7976,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -3500,
@@ -7862,7 +7984,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 9000,
@@ -8013,7 +8135,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresunshine",
             "montant": -5500,
@@ -8021,7 +8143,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -8092,7 +8214,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresbard",
             "montant": -5500,
@@ -8100,7 +8222,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 14500,
@@ -8108,7 +8230,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -8116,7 +8238,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -8148,7 +8270,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresakura",
             "montant": -3500,
@@ -8156,7 +8278,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -8204,7 +8326,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -3500,
@@ -8212,7 +8334,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 9000,
@@ -8220,7 +8342,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Imanyrae",
             "montant": -3500,
@@ -8228,7 +8350,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -8323,7 +8445,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresbard",
             "montant": -3500,
@@ -8331,7 +8453,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 9000,
@@ -8474,7 +8596,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresunshine",
             "montant": -5500,
@@ -8482,7 +8604,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -8505,7 +8627,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -8513,7 +8635,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -8551,7 +8673,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresakura",
             "montant": -3500,
@@ -8559,7 +8681,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -8638,7 +8760,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -3500,
@@ -8646,7 +8768,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 9000,
@@ -8669,7 +8791,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresunshine",
             "montant": -5500,
@@ -8677,7 +8799,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -8700,7 +8822,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Imanyrae",
             "montant": -3500,
@@ -8708,7 +8830,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -8724,7 +8846,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresbard",
             "montant": -3500,
@@ -8732,7 +8854,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 9000,
@@ -8843,7 +8965,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -8851,7 +8973,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -9031,7 +9153,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jerescelestia",
             "montant": -3500,
@@ -9039,7 +9161,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jerescelestia",
             "montant": 9000,
@@ -9086,7 +9208,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresakura",
             "montant": -3500,
@@ -9094,7 +9216,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresakura",
             "montant": 9000,
@@ -9102,7 +9224,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Jeresbard",
             "montant": -3500,
@@ -9110,7 +9232,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Jeresbard",
             "montant": 9000,
@@ -9134,7 +9256,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos NM",
+            "description": "Coffre de Voldis NM",
             "categorie": "depense",
             "perso": "Imanyrae",
             "montant": -3500,
@@ -9142,7 +9264,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos NM",
+            "description": "Voldis NM",
             "categorie": "revenu",
             "perso": "Imanyrae",
             "montant": 9000,
@@ -9150,7 +9272,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresayaya",
             "montant": -5500,
@@ -9158,7 +9280,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresayaya",
             "montant": 14500,
@@ -9166,7 +9288,7 @@
         },
         {
             "type": "Coffre de raids",
-            "description": "Coffre de Ivory Tower of Chaos HM",
+            "description": "Coffre de Voldis HM",
             "categorie": "depense",
             "perso": "Jeresunshine",
             "montant": -5500,
@@ -9174,7 +9296,7 @@
         },
         {
             "type": "Raids",
-            "description": "Ivory Tower of Chaos HM",
+            "description": "Voldis HM",
             "categorie": "revenu",
             "perso": "Jeresunshine",
             "montant": 14500,
@@ -10594,6 +10716,14 @@
             "perso": "Imanyrae",
             "montant": 10000,
             "date": "Fri Nov 24 2023 19:59:47 GMT+0100 (heure normale d’Europe centrale)"
+        },
+        {
+            "type": "Update",
+            "description": "",
+            "categorie": "depense",
+            "perso": "Roster",
+            "montant": -14965,
+            "date": "Thu Feb 08 2024 23:49:47 GMT+0100 (heure normale d’Europe centrale)"
         }
     ],
     "gold_histo": [
@@ -13311,20 +13441,105 @@
             "date": "2024-02-07T11:15:19.431Z",
             "label": "07/02/2024 12:15:19",
             "gold": 186061
+        },
+        {
+            "date": "2024-02-07T19:33:41.397Z",
+            "label": "07/02/2024 20:33:41",
+            "gold": 196061
+        },
+        {
+            "date": "2024-02-07T19:33:52.417Z",
+            "label": "07/02/2024 20:33:52",
+            "gold": 206061
+        },
+        {
+            "date": "2024-02-07T22:15:08.411Z",
+            "label": "07/02/2024 23:15:08",
+            "gold": 220561
+        },
+        {
+            "date": "2024-02-07T22:15:08.422Z",
+            "label": "07/02/2024 23:15:08",
+            "gold": 215061
+        },
+        {
+            "date": "2024-02-07T22:15:11.556Z",
+            "label": "07/02/2024 23:15:11",
+            "gold": 221561
+        },
+        {
+            "date": "2024-02-07T23:02:02.664Z",
+            "label": "08/02/2024 00:02:02",
+            "gold": 231561
+        },
+        {
+            "date": "2024-02-08T17:41:29.366Z",
+            "label": "08/02/2024 18:41:29",
+            "gold": 246061
+        },
+        {
+            "date": "2024-02-08T19:09:03.528Z",
+            "label": "08/02/2024 20:09:03",
+            "gold": 244858
+        },
+        {
+            "date": "2024-02-08T19:09:29.873Z",
+            "label": "08/02/2024 20:09:29",
+            "gold": 256858
+        },
+        {
+            "date": "2024-02-08T19:34:34.424Z",
+            "label": "08/02/2024 20:34:34",
+            "gold": 256758
+        },
+        {
+            "date": "2024-02-08T19:34:48.509Z",
+            "label": "08/02/2024 20:34:48",
+            "gold": 253998
+        },
+        {
+            "date": "2024-02-08T22:30:21.572Z",
+            "label": "08/02/2024 23:30:21",
+            "gold": 263998
+        },
+        {
+            "date": "2024-02-08T22:30:31.023Z",
+            "label": "08/02/2024 23:30:31",
+            "gold": 271498
+        },
+        {
+            "date": "2024-02-08T22:30:39.635Z",
+            "label": "08/02/2024 23:30:39",
+            "gold": 278998
+        },
+        {
+            "date": "2024-02-08T22:30:48.029Z",
+            "label": "08/02/2024 23:30:48",
+            "gold": 286498
+        },
+        {
+            "date": "2024-02-08T22:48:56.564Z",
+            "label": "08/02/2024 23:48:56",
+            "gold": 293998
+        },
+        {
+            "date": "2024-02-08T22:49:47.836Z",
+            "label": "08/02/2024 23:49:47",
+            "gold": 279033
         }
     ],
-    "gold": 186061,
+    "gold": 279033,
     "events": [
         {
             "perso": "Jeresayaya",
             "categorie": "Honing",
             "description": "Monter la main jusqu'à 1630",
             "statut": "todo",
-            "compteur": 2,
+            "compteur": 3,
             "max": 9,
             "priority": 10,
             "expensive": true,
-            "date": "Sat Feb 03 2024 02:21:28 GMT+0100 (heure normale d’Europe centrale)"
+            "date": "Wed Feb 07 2024 12:18:41 GMT+0100 (heure normale d’Europe centrale)"
         },
         {
             "perso": "Jerescelestia",
@@ -13482,26 +13697,7 @@
         }
     ],
     "planning": {
-        "events": [
-            {
-                "id": "voldis_jerescelestia",
-                "raid": "voldis_jerescelestia",
-                "title": "Ivory Tower of Chaos HM<br>Jerescelestia",
-                "start": "2024-01-31T22:00",
-                "end": "2024-01-31T23:00",
-                "backgroundColor": "#444444",
-                "textColor": "#00A2BF"
-            },
-            {
-                "id": "voldis_jeresbard",
-                "raid": "voldis_jeresbard",
-                "title": "Ivory Tower of Chaos HM<br>Jeresbard",
-                "start": "2024-01-31T20:00",
-                "end": "2024-01-31T21:30",
-                "backgroundColor": "#444444",
-                "textColor": "#00A2BF"
-            }
-        ]
+        "events": []
     },
     "dashboard_card_stats": [
         {
@@ -13533,8 +13729,8 @@
         {
             "name": "Raids",
             "tache_name": [
-                "Ivory Tower of Chaos HM",
-                "Ivory Tower of Chaos NM",
+                "Voldis HM",
+                "Voldis NM",
                 "Akkan NM",
                 "Akkan HM",
                 "Brelshaza G1-3",
@@ -13970,28 +14166,10 @@
             "ilevel": 1588
         },
         {
-            "name": "Drevana",
-            "perso": [
-                "Drevana"
-            ],
-            "class": "Shadowhunter",
-            "image": "images/Drevana11.jpg",
-            "logo": "images/class_shadowhunter.png",
-            "ilevel": 1540
-        },
-        {
-            "name": "Jeresblade",
-            "perso": [
-                "Jeresblade"
-            ],
-            "class": "Slayer",
-            "image": "images/Jeresblade.jpg",
-            "logo": "images/class_slayer.png",
-            "ilevel": 1540
-        },
-        {
             "name": "Lopang",
             "perso": [
+                "Drevana",
+                "Jeresblade",
                 "Skairiper",
                 "Shadotech",
                 "Shadorim",
@@ -14004,13 +14182,13 @@
             "class": "Lopang",
             "image": "images/lopang11.jpg",
             "logo": "images/etc_14.webp",
-            "ilevel": 9
+            "ilevel": 10
         }
     ],
     "gemmes": {
         "weekaverage": 0,
-        "week": 0,
-        "total": 124,
+        "week": 3,
+        "total": 127,
         "all": [
             {
                 "date": "2024-01-24T11:12:39.590Z",
@@ -14035,7 +14213,7 @@
             },
             {
                 "name": "Jeresunshine",
-                "gemme": 13
+                "gemme": 14
             },
             {
                 "name": "Jerescelestia",
@@ -14047,11 +14225,11 @@
             },
             {
                 "name": "Jeresakura",
-                "gemme": 11
+                "gemme": 12
             },
             {
                 "name": "Imanyrae",
-                "gemme": 14
+                "gemme": 15
             },
             {
                 "name": "Shadowbreacher",
@@ -14075,15 +14253,7 @@
                         "type": "cdr",
                         "level": 10,
                         "pos": {
-                            "x": 0,
-                            "y": 0
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 10,
-                        "pos": {
-                            "x": 0,
+                            "x": 1,
                             "y": 1
                         }
                     },
@@ -14091,31 +14261,31 @@
                         "type": "cdr",
                         "level": 10,
                         "pos": {
-                            "x": 0,
-                            "y": 3
+                            "x": 1,
+                            "y": 2
                         }
                     },
                     {
                         "type": "cdr",
                         "level": 10,
                         "pos": {
-                            "x": 0,
+                            "x": 1,
                             "y": 4
                         }
                     },
                     {
                         "type": "cdr",
-                        "level": 9,
+                        "level": 10,
                         "pos": {
-                            "x": 2,
-                            "y": 0
+                            "x": 1,
+                            "y": 5
                         }
                     },
                     {
                         "type": "cdr",
                         "level": 9,
                         "pos": {
-                            "x": 2,
+                            "x": 3,
                             "y": 1
                         }
                     },
@@ -14123,16 +14293,24 @@
                         "type": "cdr",
                         "level": 9,
                         "pos": {
-                            "x": 2,
-                            "y": 3
+                            "x": 3,
+                            "y": 2
                         }
                     },
                     {
                         "type": "cdr",
                         "level": 9,
                         "pos": {
-                            "x": 2,
+                            "x": 3,
                             "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 3,
+                            "y": 5
                         }
                     }
                 ],
@@ -14159,77 +14337,13 @@
                         "type": "cdr",
                         "level": 9,
                         "pos": {
-                            "x": 0,
-                            "y": 0
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 9,
-                        "pos": {
-                            "x": 0,
-                            "y": 1
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 9,
-                        "pos": {
-                            "x": 0,
-                            "y": 3
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 9,
-                        "pos": {
-                            "x": 2,
-                            "y": 0
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 9,
-                        "pos": {
-                            "x": 2,
-                            "y": 1
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 9,
-                        "pos": {
-                            "x": 2,
-                            "y": 3
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 7,
-                        "pos": {
-                            "x": 0,
-                            "y": 4
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 7,
-                        "pos": {
-                            "x": 2,
-                            "y": 4
-                        }
-                    },
-                    {
-                        "type": "cdr",
-                        "level": 7,
-                        "pos": {
                             "x": 1,
                             "y": 1
                         }
                     },
                     {
                         "type": "cdr",
-                        "level": 7,
+                        "level": 9,
                         "pos": {
                             "x": 1,
                             "y": 2
@@ -14237,10 +14351,74 @@
                     },
                     {
                         "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 1,
+                            "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 3,
+                            "y": 1
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 3,
+                            "y": 2
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 9,
+                        "pos": {
+                            "x": 3,
+                            "y": 4
+                        }
+                    },
+                    {
+                        "type": "cdr",
                         "level": 7,
                         "pos": {
                             "x": 1,
+                            "y": 5
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 3,
+                            "y": 5
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 2,
+                            "y": 2
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 2,
                             "y": 3
+                        }
+                    },
+                    {
+                        "type": "cdr",
+                        "level": 7,
+                        "pos": {
+                            "x": 2,
+                            "y": 4
                         }
                     }
                 ],
@@ -14460,13 +14638,13 @@
                     "image": "legion_raid.png"
                 },
                 {
-                    "tache_name": "Ivory Tower of Chaos HM",
+                    "tache_name": "Voldis HM",
                     "show_perso_name": false,
                     "icon_only": false,
                     "image": "abyssal-dungeon.webp"
                 },
                 {
-                    "tache_name": "Ivory Tower of Chaos NM",
+                    "tache_name": "Voldis NM",
                     "show_perso_name": false,
                     "icon_only": false,
                     "image": "abyssal-dungeon.webp"
