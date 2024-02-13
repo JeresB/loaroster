@@ -8,94 +8,105 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@2.6.0/event-calendar.min.css">
     <link rel="stylesheet" href="css/index.css" />
-    
+
     <link rel="icon" type="image/png" href="images/la.jpg">
 </head>
 
 <body class="" style="width: 100%;height: 100%;padding: 10px;">
     <!-- SIDEBAR ---------------------------------------------------------------------------------------------------------->
-    <div style="height: calc(100% - 20px);position: fixed;background-color: #1e1e1e;overflow: hidden;z-index: 99;padding: 10px;border-radius: 8px;">
+    <div
+        style="height: calc(100% - 20px);position: fixed;background-color: #1e1e1e;overflow: hidden;z-index: 99;padding: 10px;border-radius: 8px;">
         <div class="sidebar">
-            <!-- DASHBOARD-->
-            <div id="menu-dashboard" class="sidebar-link sidebar-link-selected d-flex flex-row gap-4" data-page="dashboard">
+            <!-- DASHBOARD -->
+            <div id="menu-dashboard" class="sidebar-link sidebar-link-selected d-flex flex-row gap-4"
+                data-page="dashboard">
                 <i class="logo-sidebar fa-solid fa-chart-line"></i>
                 <span class="flex-grow-1">Dashboard</span>
                 <span id="sidebar-dashboard-data"></span>
             </div>
-            
-            <!-- PERSO-->
+
+            <!-- DASHBOARD JOURNALIER -->
+            <div id="menu-journalier" class="sidebar-link d-flex flex-row gap-4" data-page="journalier">
+                <i class="logo-sidebar fa-solid fa-brain"></i>
+                <span class="flex-grow-1">IA Assistant</span>
+                <span id="sidebar-journalier-data"></span>
+            </div>
+
+            <!-- PERSO -->
             <div id="menu-perso" class="sidebar-link d-flex flex-row gap-4" data-page="perso">
                 <i class="logo-sidebar fa-solid fa-user"></i>
                 <span id="sidebar-personame-data" class="flex-grow-1">Perso</span>
                 <span id="sidebar-perso-data"></span>
             </div>
-            
-            <!-- DAILY-->
+
+            <!-- DAILY -->
             <div id="menu-daily" class="sidebar-link d-flex flex-row gap-4" data-page="daily">
                 <i class="logo-sidebar fa-solid fa-sun"></i>
                 <span class="flex-grow-1">Daily</span>
                 <span id="sidebar-daily-data"></span>
             </div>
-            
-            <!-- WEEKLY-->
+
+            <!-- WEEKLY -->
             <div id="menu-weekly" class="sidebar-link d-flex flex-row gap-4" data-page="weekly">
                 <i class="logo-sidebar fa-solid fa-moon" style="padding-left: 5px;"></i>
                 <span class="flex-grow-1">Weekly</span>
                 <span id="sidebar-weekly-data"></span>
             </div>
-            
-            <!-- RAIDS-->
+
+            <!-- RAIDS -->
             <div id="menu-raids" class="sidebar-link d-flex flex-row gap-4" data-page="raids">
                 <i class="logo-sidebar fa-solid fa-skull"></i>
                 <span class="flex-grow-1">Raids</span>
                 <span id="sidebar-raids-data"></span>
             </div>
-            
-            <!-- GOLDS-->
+
+            <!-- GOLDS -->
             <div id="menu-gold" class="sidebar-link d-flex flex-row gap-4" data-page="gold">
                 <i class="logo-sidebar fa-solid fa-wallet"></i>
                 <span id="sidebar-golds-datavalue" class="flex-grow-1"></span>
                 <span id="sidebar-golds-datastatus"></span>
             </div>
-            
-            <!-- FATE EMBERS-->
+
+            <!-- FATE EMBERS -->
             <div id="menu-fate-ember" class="sidebar-link d-flex flex-row gap-4" data-page="fate-ember">
                 <i class="logo-sidebar fa-solid fa-circle-dollar-to-slot"></i>
                 <span id="sidebar-fate-embers-datatotal" class="flex-grow-1"></span>
                 <span id="sidebar-fate-embers-dataweek"></span>
             </div>
-            
-            <!-- GEMMES-->
+
+            <!-- GEMMES -->
             <div id="menu-gemme" class="sidebar-link d-flex flex-row gap-4" data-page="gemme">
                 <i class="logo-sidebar fa-solid fa-gem"></i>
                 <span class="flex-grow-1"><span id="sidebar-gemme-datavalue"></span> Gemmes Niv.5</span>
                 <span id="sidebar-gemme-datastatus"></span>
             </div>
-            
-            <!-- EVENTS (ROSTER)-->
+
+            <!-- EVENTS (ROSTER) -->
             <div id="menu-events" class="sidebar-link d-flex flex-row gap-4" data-page="events">
                 <i class="logo-sidebar fa-solid fa-calendar-check"></i>
                 <span class="flex-grow-1">Roster</span>
                 <span id="sidebar-events-data"></span>
             </div>
-            
-            <!-- PLANNING-->
+
+            <!-- PLANNING -->
             <div id="menu-planning" class="sidebar-link d-flex flex-row gap-4" data-page="planning">
                 <i class="logo-sidebar fa-solid fa-calendar-week"></i>
                 <span class="flex-grow-1">Planning</span>
                 <span id="sidebar-planning-data"></span>
             </div>
-            
-            <!-- SETTINGS-->
+
+            <!-- SETTINGS -->
             <div id="menu-settings" class="sidebar-link d-flex flex-row gap-4" data-page="settings">
                 <i class="logo-sidebar fa-solid fa-gear"></i>
                 <span class="flex-grow-1">Settings</span>
             </div>
-            
-            <!-- README-->
+
+            <!-- README -->
             <div id="menu-help" class="sidebar-link d-flex flex-row gap-4" data-page="help">
                 <i class="logo-sidebar fa-solid fa-circle-question"></i>
                 <span class="flex-grow-1">Help</span>
@@ -109,37 +120,40 @@
         <section id="section-dashboard" class="section-content">
             <div class="dashboard-wrapper"></div>
         </section>
-        <section id="section-perso" class="section-content"style="display: none;">
+        <section id="section-journalier" class="section-content" style="display: none;">
+            <div class="journalier-wrapper"></div>
+        </section>
+        <section id="section-perso" class="section-content" style="display: none;">
             <div id="pageperso-wrapper"></div>
         </section>
-        <section id="section-daily" class="section-content"style="display: none;">
+        <section id="section-daily" class="section-content" style="display: none;">
             <div class="daily-wrapper"></div>
         </section>
-        <section id="section-weekly" class="section-content"style="display: none;">
+        <section id="section-weekly" class="section-content" style="display: none;">
             <div class="weekly-wrapper"></div>
         </section>
-        <section id="section-raids" class="section-content"style="display: none;">
+        <section id="section-raids" class="section-content" style="display: none;">
             <div class="raids-wrapper"></div>
         </section>
-        <section id="section-gold" class="section-content"style="display: none;">
+        <section id="section-gold" class="section-content" style="display: none;">
             <div class="gold-wrapper"></div>
         </section>
-        <section id="section-fate-ember" class="section-content"style="display: none;">
+        <section id="section-fate-ember" class="section-content" style="display: none;">
             <div class="fate-ember-wrapper"></div>
         </section>
-        <section id="section-gemme" class="section-content"style="display: none;">
+        <section id="section-gemme" class="section-content" style="display: none;">
             <div class="gemme-wrapper"></div>
         </section>
-        <section id="section-events" class="section-content"style="display: none;">
+        <section id="section-events" class="section-content" style="display: none;">
             <div class="events-wrapper"></div>
         </section>
-        <section id="section-planning" class="section-content"style="display: none;">
+        <section id="section-planning" class="section-content" style="display: none;">
             <div class="planning-wrapper"></div>
         </section>
-        <section id="section-settings" class="section-content"style="display: none;">
+        <section id="section-settings" class="section-content" style="display: none;">
             <div class="settings-wrapper"></div>
         </section>
-        <section id="section-help" class="section-content"style="display: none;">
+        <section id="section-help" class="section-content" style="display: none;">
             <embed src="README.md" style="width: 100%;height: 100%;">
         </section>
     </div>

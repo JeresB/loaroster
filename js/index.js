@@ -13,6 +13,9 @@ var index_perso = 0;
 var list_perso = db.get("persos").value();
 var scroll_position = [];
 
+var intervalJournalierTime = null;
+var intervalJournalierEvents = null;
+
 reset();
 
 $(document).ready(function () {
@@ -51,6 +54,7 @@ $(document).on('click', '.sidebar-link', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'journalier') journalier();
     if (page == 'perso') perso();
     if (page == 'daily') daily();
     if (page == 'weekly') weekly();
@@ -61,6 +65,11 @@ $(document).on('click', '.sidebar-link', function () {
     if (page == 'gemme') gemme();
     if (page == 'events') events();
     if (page == 'planning') planning();
+
+    if (page != 'journalier') {
+        clearInterval(intervalJournalierTime);
+        clearInterval(intervalJournalierEvents);
+    }
 });
 
 $(document).on('click', '.logo-sidebar', function () {
@@ -78,6 +87,7 @@ $(document).on('click', '.logo-sidebar', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'journalier') journalier();
     if (page == 'perso') perso();
     if (page == 'daily') daily();
     if (page == 'weekly') weekly();
@@ -88,10 +98,16 @@ $(document).on('click', '.logo-sidebar', function () {
     if (page == 'gemme') gemme();
     if (page == 'events') events();
     if (page == 'planning') planning();
+
+    if (page != 'journalier') {
+        clearInterval(intervalJournalierTime);
+        clearInterval(intervalJournalierEvents);
+    }
 });
 
 function sidebar() {
     sidebar_dashboard();
+    sidebar_journalier();
     sidebar_perso();
     sidebar_daily();
     sidebar_weekly();
@@ -504,6 +520,264 @@ function showTasksWeeklyByPrio() {
     let div = document.getElementById('tasks-weekly-by-prio');
     div.scrollTop = getScrollPos('tasks-weekly-by-prio');
 }
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
+// --- DASHBOARD JOURNALIER ------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+var current_perso = null;
+var current_index = 0;
+
+function sidebar_journalier() {
+
+}
+
+function journalier() {
+    let now = new Date();
+
+    let tasks = db.get("dashboard").value().filter((t) => t.actif && t.done < t.repet && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    let tasksall = db.get("dashboard").value().filter((t) => t.actif && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    
+    $('.journalier-wrapper').html('');
+
+    $('.journalier-wrapper').append(`<div id="journalier-time" class="card-content d-flex justify-content-center align-items-center" style="grid-column: 4 / 21; grid-row: 1 / 2;"><span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span></div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-progress" class="card-content d-flex justify-content-start" style="grid-column: 4 / 21; grid-row: 2 / 3;padding: 0px;"><div id="journalier-progress-value" class="br8" style="height: 100%;width: ${((tasksall.length - tasks.length) * 100) / tasksall.length}%;background-color: #198754;"></div></div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-tasks" class="d-flex flex-row justify-content-evenly align-items-start gap-3" style="grid-column: 1 / 25; grid-row: 3 / 15;">
+        <div id="journalier-tasks-d" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
+        <div id="journalier-tasks-r" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
+        <div id="journalier-tasks-u" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
+    </div>`);
+
+    intervalJournalierTime = setInterval(journalierTime, 1000);
+    
+    let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
+    let events  = [];
+    let daily   = [];
+    let weekly  = [];
+    let raids   = [];
+
+    tasks.forEach(function(t) {
+        if (t.type == 'event') {
+            events.push(t);
+        } else if (type.includes(t.type)) {
+            raids.push(t);
+        } else if (t.reset == 'daily' || t.tache_name == 'tache_name') {
+            daily.push(t);
+        } else {
+            weekly.push(t);
+        }
+    });
+
+    // console.log(events)
+    // console.log(daily)
+    // console.log(weekly)
+    // console.log(raids)
+
+    // EVENT
+    if (events.length > 0) {
+        // $('#journalier-tasks-d').append(`<div id="journalier-tasks-event" class="text-center journalier-card"></div>`);
+        intervalJournalierEvents = setInterval(function() { journalierEvents(events) }, 1000);
+    }
+
+    // DAILY
+    daily.sort(function (a, b) {
+        return a.importance - b.importance || a.prio - b.prio || a.perso.localeCompare(b.perso);
+    });
+
+    // console.log(list_perso)
+
+    let perso_complet = [0, 1, 2, 5, 6].includes(now.getDay()) ? true : false;
+    let include_weekly = [0, 1, 2, 5, 6].includes(now.getDay()) && (raids.length < weekly.filter((w) => w.type == 'cube').length || !raids.find((r) => !r.grouped)) ? true : false;
+    let perso_name = daily.length > 0 && daily[current_index] ? daily[current_index].perso : (weekly.length > 0 && weekly[current_index] ? weekly[current_index].perso : null);
+
+    if (perso_name) {        
+        current_perso = current_perso == null || !perso_complet ? list_perso.find((p) => p.perso.includes(perso_name)) : (daily.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : (include_weekly && weekly.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : list_perso.find((p) => p.perso.includes(perso_name))));
+        let lopang = current_perso.name == 'Lopang';
+        let setting_tasks = db.get('settings.pageperso.tasks').value();
+        let todo = [];
+        let setting = null;
+        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;max-width: 600px;position: sticky; top: 0;background-color: #1e1e1e;"><img class="br8" src="${current_perso.image}" /><div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;margin-top: 10px;"><span>${current_perso.name}</span></div></div>`;
+
+        perso_complet
+            ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
+            : todo = daily[0];
+    
+        if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
+        
+        todo.forEach(function(t, i) {
+            setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
+            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''} ${lopang ? t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
+            // html += `<div class="journalier-card" data-id="${t.id}">${t.tache_name} ${t.perso}</div>`;
+        });
+    
+        $('#journalier-tasks-d').append(`${html} <div id="journalier-next-task" style="margin-top: 10px;text-align: center;cursor: pointer;">Next</div>`);
+    } else {
+        $('#journalier-tasks-d').append(`<div style="text-align: center;">ALL DONE FOR NOW</div>`);
+    }
+
+    // RAIDS
+    journalierRaids(raids);
+
+    // UTILITAIRE
+    journalierUtilitaire();
+}
+
+function journalierTime() {
+    let now = new Date();
+
+    $(`#journalier-time`).html(`<span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span>`);
+}
+
+function journalierEvents(events) {
+    let now = new Date();
+
+    let next = new Date();
+    now.setSeconds(0);
+    now.setMinutes(0);
+    now.setHours(now.getHours() + 1);
+    
+    let ile_hours = [12, 16, 18, 19, 22, 23];
+    let ile = new Date();
+    now.setSeconds(0);
+    ile.setMinutes(30);
+    ile.setHours(ile_hours.find((h) => h > now.getHours()));
+
+    let diff_event = Math.abs(now - next);
+    let secondes_event = (diff_event/1000) % 60;
+    let minutes_event = Math.floor((diff_event/1000)/60);
+
+    let diff_ile = Math.abs(now - ile);
+    let secondes_ile = (diff_ile/1000) % 60;
+    let minutes_ile = Math.floor((diff_ile/1000)/60);
+
+    let next_event = null;
+    let message = '';
+    let min = 0;
+
+    // console.log(minutes_ile)
+    
+    if (minutes_ile < minutes_event || (events.find((e) => e.id == 'medeia_limon_roster') && !events.find((e) => e.id != 'medeia_limon_roster'))) {
+        next_event = events.find((e) => e.id == 'medeia_limon_roster');
+        message = minutes_ile > 200 ? 'Evenement en cours' : 'dans ' + minutes_ile + ' minutes ' + secondes_ile + ' secondes';
+        min = minutes_ile;
+    } else if (events.find((e) => e.id != 'medeia_limon_roster')) {
+        next_event = events.find((e) => e.id != 'medeia_limon_roster');
+        message = minutes_event > 50 ? 'Evenement en cours' : 'dans ' + minutes_event + ' minutes ' + secondes_event + ' secondes';
+        min = minutes_event;
+    } else {
+        min = 60;
+    }
+
+    $('#journalier-tasks-event').removeClass('prio_1');
+    $('#journalier-tasks-event').removeClass('prio_2');
+    $('#journalier-tasks-event').removeClass('prio_3');
+
+    if (min < 5) $('#journalier-tasks-event').addClass('prio_1');
+    else if (min < 10) $('#journalier-tasks-event').addClass('prio_2');
+    else if (min < 20) $('#journalier-tasks-event').addClass('prio_3');
+    
+    // if (next_event) {
+    //     $('#journalier-tasks-event').html(`Evenements<br>${next_event.tache_name} ${message}`);
+    //     $('#journalier-tasks-event').data('id', next_event.id);
+    // }
+}
+
+function journalierRaids(raids) {
+    let liste_raids = db.get('settings.dashboard.liste_raids').value();
+    let setting_tasks = db.get('settings.pageperso.tasks').value();
+
+    let brel = raids.find((r) => r.done < r.repet && !r.grouped && r.type == 'brelshaza');
+    let akkan = raids.find((r) => r.done < r.repet && !r.grouped && r.type == 'akkan');
+    let kayang = raids.find((r) => r.done < r.repet && !r.grouped && r.type == 'kayangel');
+    let grouped = raids.filter((r) => r.done < r.repet && r.grouped);
+
+    let todo = [];
+
+    if (brel) todo.push(brel);
+    if (akkan) todo.push(akkan);
+    if (kayang) todo.push(kayang);
+
+    if (todo.length > 0 || grouped.length > 0) {
+        
+        r_setting = liste_raids.find((s) => s.name == (todo.length > 0 ? todo[0].type : grouped[0].type));
+        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;max-width: 600px;position: sticky; top: 0;"><img class="br8" src="${r_setting.image}" /></div>`;
+    
+        if (todo.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;position: sticky; top: 0;"><span>Raids Todo</span></div>`;
+        
+        todo.forEach(function(r, i) {
+            setting = setting_tasks.find((s) => s.tache_name == r.tache_name);
+            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${r.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${r.repet - r.done} - ${r.tache_name}  ${r.perso}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
+        });
+
+        if (grouped.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;position: sticky; top: 0;"><span>Raids en groupe</span></div>`;
+
+        grouped.forEach(function(r, i) {
+            setting = setting_tasks.find((s) => s.tache_name == r.tache_name);
+            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${r.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${r.repet - r.done} - ${r.tache_name}  ${r.perso}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
+        });
+
+        $('#journalier-tasks-r').append(`${html}`);
+    } else {
+        $('#journalier-tasks-r').append(`<div style="text-align: center;">ALL DONE FOR NOW</div>`);
+    }
+
+}
+
+function journalierUtilitaire() {
+    let collected = db.get("gemmes.collected").value().find((c) => c.name == current_perso.name);
+    let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == current_perso.name);
+    
+    $('#journalier-tasks-u').append(`<div class="journalier-card-gemme card-gemme-perso-collected" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 4px 16px;" data-id="${collectedIndex >= 0 ? collectedIndex : -1}"><span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="width: 64px;background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 20px;text-align: center;">${collected ? collected.gemme : 0} Gemmes Niv.5<br>${current_perso.name}</span><span><i class="fa-solid fa-arrow-trend-up fa-2x"></i></span></div>`);
+}
+
+$(document).on('click', '.journalier-card', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1);
+
+        if (task.rest && parseInt(task.rest) >= 20) {
+            db.get("dashboard")
+                .get(index)
+                .get('rest')
+                .set(task.rest - 20);
+        }
+
+        db.save();
+
+        completedRaid(task);
+    }
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
+});
+
+$(document).on('click', '#journalier-next-task', function () {
+    current_perso = null;
+    current_index++;
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
+});
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -2627,6 +2901,10 @@ $(document).on('click', '.card-gemme-perso-collected', function () {
 
     gemme();
     perso();
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+    journalier();
 });
 
 function gemmesClasses() {
