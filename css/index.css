@@ -267,7 +267,7 @@ div.sidebar-link {
 /* ------------------------------------------------------------------------------------------------------------- */
 .journalier-wrapper {
     display: grid;
-    grid-template-columns: repeat(24, 1fr);
+    grid-template-columns: repeat(25, 1fr);
     grid-template-rows: repeat(14, 1fr);
     grid-gap: 10px;
     width: calc(100% - 0px);
@@ -286,6 +286,13 @@ div.sidebar-link {
     /* filter: brightness(120%); */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #444444!important;
+}
+
+.journalier-card-info {
+    border-radius: 8px;
+    padding: 8px 24px;
+    font-family: comfortaa;
+    font-weight: 900;
 }
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
@@ -475,6 +482,18 @@ div.sidebar-link {
     height: calc(100vh - 20px);
 }
 
+.info-gold-card {
+    border-radius: 8px;
+    color: #a1a1a1;
+    padding: 2px 8px;
+    font-family: comfortaa;
+    font-weight: 900;
+}
+
+.info-gold-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #444444;
+}
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------- */

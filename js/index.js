@@ -544,13 +544,12 @@ function journalier() {
     
     $('.journalier-wrapper').html('');
 
-    $('.journalier-wrapper').append(`<div id="journalier-time" class="card-content d-flex justify-content-center align-items-center" style="grid-column: 4 / 21; grid-row: 1 / 2;"><span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span></div>`);
-    $('.journalier-wrapper').append(`<div id="journalier-progress" class="card-content d-flex justify-content-start" style="grid-column: 4 / 21; grid-row: 2 / 3;padding: 0px;"><div id="journalier-progress-value" class="br8" style="height: 100%;width: ${((tasksall.length - tasks.length) * 100) / tasksall.length}%;background-color: #198754;"></div></div>`);
-    $('.journalier-wrapper').append(`<div id="journalier-tasks" class="d-flex flex-row justify-content-evenly align-items-start gap-3" style="grid-column: 1 / 25; grid-row: 3 / 15;">
-        <div id="journalier-tasks-d" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
-        <div id="journalier-tasks-r" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
-        <div id="journalier-tasks-u" class="scrollhidden card-content d-flex flex-column gap-2" style="min-width: 400px; overflow-y: scroll; max-height: 100%;"></div>
-    </div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-time" class="card-content d-flex justify-content-center align-items-center" style="grid-column: 4 / 22; grid-row: 1 / 2;"><span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span></div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-progress" class="card-content d-flex justify-content-start" style="grid-column: 4 / 22; grid-row: 2 / 3;padding: 0px;"><div id="journalier-progress-value" class="br8" style="height: 100%;width: ${((tasksall.length - tasks.length) * 100) / tasksall.length}%;background-color: #198754;"></div></div>`);
+    
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 4 / 10; grid-row: 3 / 15;"><div id="journalier-tasks-d" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 10 / 16; grid-row: 3 / 15;"><div id="journalier-tasks-r" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 16 / 22; grid-row: 3 / 15;"><div id="journalier-tasks-u" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
 
     intervalJournalierTime = setInterval(journalierTime, 1000);
     
@@ -588,8 +587,6 @@ function journalier() {
         return a.importance - b.importance || a.prio - b.prio || a.perso.localeCompare(b.perso);
     });
 
-    // console.log(list_perso)
-
     let perso_complet = [0, 1, 2, 5, 6].includes(now.getDay()) ? true : false;
     let include_weekly = [0, 1, 2, 5, 6].includes(now.getDay()) && (raids.length < weekly.filter((w) => w.type == 'cube').length || !raids.find((r) => !r.grouped)) ? true : false;
     let perso_name = daily.length > 0 && daily[current_index] ? daily[current_index].perso : (weekly.length > 0 && weekly[current_index] ? weekly[current_index].perso : null);
@@ -604,14 +601,13 @@ function journalier() {
 
         perso_complet
             ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
-            : todo = daily[0];
+            : todo = [daily[current_index]];
     
         if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
         
         todo.forEach(function(t, i) {
             setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
             html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''} ${lopang ? t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
-            // html += `<div class="journalier-card" data-id="${t.id}">${t.tache_name} ${t.perso}</div>`;
         });
     
         $('#journalier-tasks-d').append(`${html} <div id="journalier-next-task" style="margin-top: 10px;text-align: center;cursor: pointer;">Next</div>`);
@@ -706,14 +702,14 @@ function journalierRaids(raids) {
         r_setting = liste_raids.find((s) => s.name == (todo.length > 0 ? todo[0].type : grouped[0].type));
         let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;max-width: 600px;position: sticky; top: 0;"><img class="br8" src="${r_setting.image}" /></div>`;
     
-        if (todo.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;position: sticky; top: 0;"><span>Raids Todo</span></div>`;
+        if (todo.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Raids Todo</span></div>`;
         
         todo.forEach(function(r, i) {
             setting = setting_tasks.find((s) => s.tache_name == r.tache_name);
             html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${r.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${r.repet - r.done} - ${r.tache_name}  ${r.perso}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
         });
 
-        if (grouped.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;position: sticky; top: 0;"><span>Raids en groupe</span></div>`;
+        if (grouped.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Raids en groupe</span></div>`;
 
         grouped.forEach(function(r, i) {
             setting = setting_tasks.find((s) => s.tache_name == r.tache_name);
@@ -731,7 +727,71 @@ function journalierUtilitaire() {
     let collected = db.get("gemmes.collected").value().find((c) => c.name == current_perso.name);
     let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == current_perso.name);
     
-    $('#journalier-tasks-u').append(`<div class="journalier-card-gemme card-gemme-perso-collected" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 4px 16px;" data-id="${collectedIndex >= 0 ? collectedIndex : -1}"><span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="width: 64px;background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 20px;text-align: center;">${collected ? collected.gemme : 0} Gemmes Niv.5<br>${current_perso.name}</span><span><i class="fa-solid fa-arrow-trend-up fa-2x"></i></span></div>`);
+    let last_fate_ember = current_perso.name == 'Roster' || current_perso.name == 'Lopang'
+        ? db.get("fate_embers").value().find((fe) => true)
+        : db.get("fate_embers").value().find((fe) => fe.perso == current_perso.name);
+
+    let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
+    let html_option_fate_ember = '';
+
+    fate_ember_types.forEach(function(type, i) {
+        html_option_fate_ember += `<div class="${current_perso.name == 'Roster' || current_perso.name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" data-perso="${current_perso.name}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
+    });
+
+    let gi = db.get("gold_income").value()
+
+    gi.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+    });
+
+    let last_gold_income = gi.find((g) => g.perso == current_perso.name);
+
+    let html_options_gold_income = '';
+
+    db.get("settings.gold.options_gold_income").value().forEach(function (g, i) {
+        html_options_gold_income += `<option>${g}</option>`;
+    });
+
+    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Gemme</span></div>`);
+    $('#journalier-tasks-u').append(`<div class="journalier-card-gemme card-gemme-perso-collected" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 8px 16px;" data-id="${collectedIndex >= 0 ? collectedIndex : -1}"><span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="width: 64px;background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 20px;text-align: center;">${collected ? collected.gemme : 0} Gemmes Niv.5<br>${current_perso.name}</span><span><i class="fa-solid fa-arrow-trend-up fa-2x"></i></span></div>`);
+    
+    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Fate Ember</span></div>`);
+    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;font-size: 20px;"><span>${nbfateemberPerso(current_perso.name) ? nbfateemberPerso(current_perso.name) : db.get("fate_embers").value().length} Fate Embers</span></div>`);
+    $('#journalier-tasks-u').append('<hr>');
+    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${colorFateEmbers(last_fate_ember).bg_color};">${last_fate_ember.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div>`);
+    $('#journalier-tasks-u').append('<hr>');
+    $('#journalier-tasks-u').append(`<div class="scrollhidden" style="flex: 1;display: flex;justify-content: start;flex-direction: column;padding: 8px 24px;font-size: 20px;max-height: 300px;overflow-y: scroll;margin-bottom: 20px;">${html_option_fate_ember}</div>`);
+
+    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds</span></div>`);
+    $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
+        <div class="d-flex flex-row justify-content-between flex-nowrap gap-3">
+            <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_update_journalier"
+                style="background-color: #202020;color: white;width: auto;" placeholder="Gold Actuel">
+
+            <button id="update_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Update</button>
+        </div>
+    </div>`);
+    $('#journalier-tasks-u').append('<hr>');
+    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${last_gold_income.montant >= 0 ? '#00b135' : '#cf4747'};">${last_gold_income.montant >= 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${last_gold_income.montant} ${last_gold_income.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_gold_income.date).toLocaleDateString()}</span></div>`);
+    $('#journalier-tasks-u').append('<hr>');
+    $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
+        <div class="d-flex flex-column justify-content-center flex-nowrap gap-3" style="padding: 5px;">
+            <input list="gold_income_type_list_journalier" class="form-control flex-grow-1" id="gold_income_type_journalier"
+                style="background-color: #202020;color: white;" placeholder="Gold Income">
+
+            <datalist id="gold_income_type_list_journalier">
+                ${html_options_gold_income}
+            </datalist>
+
+            <input id="gold_income_description_journalier" class="form-control flex-grow-1"
+                style="background-color: #202020;color: white;" placeholder="Description">
+
+            <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_journalier"
+                style="background-color: #202020;color: white;width: auto;" placeholder="Montant">
+
+            <button id="add_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter</button>
+        </div>
+    </div>`);
 }
 
 $(document).on('click', '.journalier-card', function () {
@@ -777,6 +837,22 @@ $(document).on('click', '#journalier-next-task', function () {
     clearInterval(intervalJournalierEvents);
 
     journalier();
+});
+
+$(document).on('click', '#add_gold_income_journalier', function () {
+    let type = $('#gold_income_type_journalier').val();
+    let description = $('#gold_income_description_journalier').val();
+    let perso = current_perso.name;
+    let montant = $('#gold_income_montant_journalier').val();
+
+    addGold(type, description, perso, montant);
+});
+
+$(document).on('click', '#update_gold_income_journalier', function () {
+    let gold_actuel = $('#gold_income_montant_update_journalier').val();
+    let montant = parseInt(gold_actuel) - parseInt(db.get("gold").value());
+
+    updateGold(montant);
 });
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -909,7 +985,7 @@ function perso() {
         let html_option_fate_ember = '';
     
         fate_ember_types.forEach(function(type, i) {
-            html_option_fate_ember += `<div class="${list_perso[index_perso].name == 'Roster' || list_perso[index_perso].name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
+            html_option_fate_ember += `<div class="${list_perso[index_perso].name == 'Roster' || list_perso[index_perso].name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" data-perso="${list_perso[index_perso].name}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
         });
         
         $('#pageperso-wrapper').append(`<div class="card-content scrollhidden justify-content-center align-items-start" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;grid-column: 21 / 25; grid-row: 7 / 15;">
@@ -986,7 +1062,7 @@ $(document).on('click', '.pageperso-fateember', function () {
     });
 
     let type = $(this).data('type');
-    let name_perso = list_perso[index_perso].name;
+    let name_perso = $(this).data('perso');
 
     let fate_ember = {
         'type': type,
@@ -1044,6 +1120,10 @@ $(document).on('click', '.pageperso-fateember', function () {
 
     fate_embers();
     perso();
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+    journalier();
 });
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -1589,11 +1669,14 @@ function tasksRaids() {
             }
         },
     ];
+
     let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
+    
     let liste_raids = db.get('settings.dashboard.liste_raids').value();
     let liste_events = db.get('planning.events').value();
+    
     let semaine_brel_1_4 = true;
-    let x_perso = 0;
+    
     let a = moment(db.get('resetBiMensuel').value(), 'DD/MM/YYYY');
     let b = moment();
     
@@ -1601,7 +1684,7 @@ function tasksRaids() {
     
     tasks = db.get("dashboard").value().filter((t) => t.actif == true && type.includes(t.type));
 
-    $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / 5;"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Brelshaza G1-3<br><br><i>NE PAS PRENDRE LES GOLDS KAYANGEL</i>'}</span></div></div>`);
+    $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / 5;"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Brelshaza G1-3'}<br><br><i>NE PAS PRENDRE LES GOLDS KAYANGEL</i></span></div></div>`);
     
     $('.raids-wrapper').append(`<div id="raids-entete-Jeresayaya" class="card-content" style="grid-column: 3 / 4; grid-row: 1 / 5;"></div>`);
     $('.raids-wrapper').append(`<div id="raids-entete-Jeresunshine" class="card-content" style="grid-column: 4 / 5; grid-row: 1 / 5;"></div>`);
@@ -1638,6 +1721,10 @@ function tasksRaids() {
         let brel13 = t.tache_name == 'Brelshaza G1-3' ? true : false;
         let brel4 = t.tache_name == 'Brelshaza G4' ? true : false;
         let event = liste_events.find((e) => e.raid == t.id);
+        
+        todo && t.type == 'kayangel' && db.get("dashboard").value().filter((d) => d.actif == true && d.done == 0 && t.perso == d.perso && [ 'brelshaza', 'akkan', 'voldis' ].includes(d.type)).length > 0
+            ? bgcolor = '#812717'
+            : bgcolor = '#5a5a5a';
 
         $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
     });
@@ -1704,21 +1791,24 @@ function gold() {
     $('.gold-wrapper').append(`<div id="gold_form_update" class="card-content" style="grid-column: 7 / 10; grid-row: 8 / 9;"></div>`);
 
     // Revenus
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 1 / 4; grid-row: 9 / 16;"><div id="gold_income_revenus" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    //$('.gold-wrapper').append(`<div class="card-content" style="grid-column: 1 / 4; grid-row: 9 / 16;"><div id="gold_income_revenus" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
     // Depenses
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 4 / 7; grid-row: 9 / 16;"><div id="gold_income_depenses" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    //$('.gold-wrapper').append(`<div class="card-content" style="grid-column: 4 / 7; grid-row: 9 / 16;"><div id="gold_income_depenses" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+
+    // Revenus & Depenses
+    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 2 / 16;"><div id="gold_income_revenus_depenses" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Historique
     $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 7 / 10; grid-row: 9 / 16;"><div id="historique_gold_income" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
 
     // Rentabilite perso
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 2 / 4;"><div id="gold_income_roster" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 4 / 6;"><div id="gold_income_jeresayaya" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 6 / 8;"><div id="gold_income_jeresunshine" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 8 / 10;"><div id="gold_income_jerescelestia" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 10 / 12;"><div id="gold_income_jeresbard" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 12 / 14;"><div id="gold_income_jeresakura" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
-    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 10 / 13; grid-row: 14 / 16;"><div id="gold_income_imanyrae" class="scrollhidden" style="display: flex; flex-direction: column;height: 100%;gap: 10px; overflow-y: scroll;"></div></div>`);
+    $('.gold-wrapper').append(`<div class="card-content" style="grid-column: 1 / 7; grid-row: 9 / 10;"><div id="gold_income_roster" style="display: flex; flex-direction: row;justify-content: space-between;align-items: center;height: 100%;gap: 10px;font-size: 20px;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 1 / 4; grid-row: 10 / 12;"><div id="gold_income_jeresayaya" class="br8" style="width: 100%; height: 100%;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 1 / 4; grid-row: 12 / 14;"><div id="gold_income_jeresunshine" class="br8" style="width: 100%; height: 100%;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 1 / 4; grid-row: 14 / 16;"><div id="gold_income_jerescelestia" class="br8" style="width: 100%; height: 100%;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 4 / 7; grid-row: 10 / 12;"><div id="gold_income_jeresbard" class="br8" style="width: 100%; height: 100%;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 4 / 7; grid-row: 12 / 14;"><div id="gold_income_jeresakura" class="br8" style="width: 100%; height: 100%;"></div></div>`);
+    $('.gold-wrapper').append(`<div style="grid-column: 4 / 7; grid-row: 14 / 16;"><div id="gold_income_imanyrae" class="br8" style="width: 100%; height: 100%;"></div></div>`);
 
     sidebar_golds();
     goldChart();
@@ -1885,41 +1975,15 @@ $(document).on('click', '#add_gold_income', function () {
     let description = $('#gold_income_description').val();
     let perso = $('#gold_income_perso').val();
     let montant = $('#gold_income_montant').val();
-
-    let gold_income = {
-        'type': type,
-        'description': description,
-        'categorie': (montant > 0 ? 'revenu' : 'depense'),
-        'perso': perso,
-        'montant': parseInt(montant),
-        'date': new Date().toString()
-    }
-
-    db.get("gold_income").push(gold_income).save();
-    db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(montant)).save();
-    db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
-
-    gold();
+    
+    addGold(type, description, perso, montant);
 });
 
 $(document).on('click', '#update_gold_income', function () {
     let gold_actuel = $('#gold_income_montant_update').val();
     let montant = parseInt(gold_actuel) - parseInt(db.get("gold").value());
 
-    let gold_income = {
-        'type': 'Update',
-        'description': '',
-        'categorie': (montant > 0 ? 'revenu' : 'depense'),
-        'perso': 'Roster',
-        'montant': parseInt(montant),
-        'date': new Date().toString()
-    }
-
-    db.get("gold_income").push(gold_income).save();
-    db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(montant)).save();
-    db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
-
-    gold();
+    updateGold(montant);
 });
 
 $(document).on('keyup', '#gold_histo_search', function () {
@@ -1974,8 +2038,7 @@ function goldHistorique() {
 function goldRevenusDepenses() {
     let gold_incomes = (db.get("gold_income").value()) ? db.get("gold_income").value() : null;
     let gold_incomes_groupby_types = Object.groupBy(gold_incomes, ({ type }) => type);
-    let gold_incomes_group_total_revenus = [];
-    let gold_incomes_group_total_depenses = [];
+    let gold_incomes_group_total = [];
 
     Object.entries(gold_incomes_groupby_types).forEach(function (gold_income_group, i) {
         let total = 0;
@@ -1984,51 +2047,23 @@ function goldRevenusDepenses() {
             total += g.montant;
         });
 
-        if (total >= 0) gold_incomes_group_total_revenus.push({ "type": gold_income_group[0], "montant": total });
-        else gold_incomes_group_total_depenses.push({ "type": gold_income_group[0], "montant": total });
+        gold_incomes_group_total.push({ "type": gold_income_group[0], "montant": Math.abs(total), "color": `${total >= 0 ? '#00b135' : '#cf4747'}`, "logo": `${total >= 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'}` });
     });
 
-    gold_incomes_group_total_revenus.sort(function (a, b) {
+    gold_incomes_group_total.sort(function (a, b) {
         return b.montant - a.montant;
     });
 
-    gold_incomes_group_total_depenses.sort(function (a, b) {
-        return a.montant - b.montant;
-    });
-
-    let html_revenus = '';
-    let html_depenses = '';
+    let html = '';
     let bg_color = '';
-    let color = '';
-    let total_revenus = 0;
-    let total_depenses = 0;
 
-    gold_incomes_group_total_revenus.forEach(function (g, i) {
-        bg_color = '00b135';
-        color = 'FFF';
-        total_revenus += g.montant;
-        html_revenus += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: x-large;">${g.montant > 0 ? '+' : ''}${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span><span>${g.type}</span></div>`;
+    gold_incomes_group_total.forEach(function (g, i) {
+        bg_color = g.color;
+        html += `<div class="info-gold-card" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: ${bg_color};font-size: x-large;">${g.logo} ${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span><span style="color: #a1a1a1;">${g.type}</span></div>`;
     });
 
-    gold_incomes_group_total_depenses.forEach(function (g, i) {
-        bg_color = 'cf4747';
-        color = 'FFF';
-        total_depenses += g.montant;
-        html_depenses += `<div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="color: #${bg_color};font-size: x-large;">${g.montant > 0 ? '+' : ''}${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span><span>${g.type}</span></div>`;
-    });
-
-    $('#gold_income_revenus').html(`
-        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;color: #00b135;font-size: 26px;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 10%;max-height: 10%;">
-            <span>Revenus : +${new Intl.NumberFormat('fr-FR').format(total_revenus)} Golds</span>
-        </div>
-        ${html_revenus}
-    `);
-
-    $('#gold_income_depenses').html(`
-        <div class="histo-task" style="flex: 1;display: flex;justify-content: center;flex-direction: column;background-color: #1e1e1e;color: #cf4747;font-size: 26px;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 10%;max-height: 10%;">
-            <span>D&eacute;penses : ${new Intl.NumberFormat('fr-FR').format(total_depenses)} Golds</span>
-        </div>
-        ${html_depenses}
+    $('#gold_income_revenus_depenses').html(`
+        ${html}
     `);
 }
 
@@ -2059,17 +2094,71 @@ function goldRentabilitePerso() {
             total += g.montant;
         });
 
-        gold_incomes_group_total.push({ "perso": gold_income_group[0], "montant": total });
+        gold_incomes_group_total.push({ "perso": gold_income_group[0], "montant": Math.abs(total), "color": `${total >= 0 ? '#00b135' : '#cf4747'}`, "logo": `${total >= 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'}` });
     });
 
     gold_incomes_group_total.forEach(function (g, i) {
         let perso = list_perso.find((p) => p.name == g.perso);
 
-        $(`#${perso.page_gold_div_rentabilite}`).html(`
-            <div class="head-task" style="flex: 1;display: flex;justify-content: center;flex-direction: row;background-color: #1e1e1e;text-align: center;position: sticky; top: 0;border-radius: 0px;min-height: 40%;max-height: 40%;gap: 20px;"><img src="${perso.logo}"><div style="display: flex; flex-direction: column; justify-content: center;">${perso.name} ${perso.ilevel}</span></div></div>
-            <div class="histo-task" style="color: white;flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;"><span style="color: #${g.montant >= 0 ? '00b135' : 'cf4747'};font-size: x-large;">${g.montant > 0 ? '+' : ''}${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span></div>
-        `);
+        if (perso && perso.page_gold_div_rentabilite) {            
+            if (perso.name == 'Roster') {
+                $(`#${perso.page_gold_div_rentabilite}`).html(`<span>${perso.name} ${perso.ilevel}</span><span style="color: ${g.color};">${g.logo} ${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span>`);
+            } else {
+                console.log(perso, g)
+
+                $(`#${perso.page_gold_div_rentabilite}`).css("background-image", `url(${perso.image})`);
+                $(`#${perso.page_gold_div_rentabilite}`).css('background-repeat', 'no-repeat');
+                $(`#${perso.page_gold_div_rentabilite}`).css('background-position', 'center');
+                $(`#${perso.page_gold_div_rentabilite}`).css('background-size', 'cover');
+                
+                $(`#${perso.page_gold_div_rentabilite}`).html(`<div class="d-flex justify-content-end align-items-end" style="height: 100%; padding-right: 0px; padding-bottom: 0px;"><span style="background-color: #1e1e1e; color: ${g.color}; padding: 4px 8px;border-top-left-radius: 8px; border-bottom-right-radius: 8px;">${g.logo} ${new Intl.NumberFormat('fr-FR').format(g.montant)} Golds</span></div>`);
+            }
+        }
     });
+}
+
+function addGold(type, description, perso, montant) {
+    let gold_income = {
+        'type': type,
+        'description': description,
+        'categorie': (montant > 0 ? 'revenu' : 'depense'),
+        'perso': perso,
+        'montant': parseInt(montant),
+        'date': new Date().toString()
+    }
+
+    db.get("gold_income").push(gold_income).save();
+    db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(montant)).save();
+    db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+
+    gold();
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
+}
+
+function updateGold(montant) {
+    let gold_income = {
+        'type': 'Update',
+        'description': '',
+        'categorie': (montant > 0 ? 'revenu' : 'depense'),
+        'perso': 'Roster',
+        'montant': parseInt(montant),
+        'date': new Date().toString()
+    }
+
+    db.get("gold_income").push(gold_income).save();
+    db.get("gold").set(parseInt(db.get("gold").value()) + parseInt(montant)).save();
+    db.get("gold_histo").push({ 'date': new Date(), 'label': new Date().toLocaleString(), 'gold': db.get("gold").value() }).save();
+
+    gold();
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
 }
 // -------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
@@ -2921,7 +3010,7 @@ function gemmesClasses() {
         });
 
         html += `<div style="display:flex;flex: 1; align-items: center; justify-content: center;text-align: center;font-size: xx-large;">${c.name}</div>`;
-        html += `<div class="gem-classe-wrapper" style="flex: 1; align-items: center; justify-content: center;">${html_gem}</div>`;
+        html += `<div class="gem-classe-wrapper" style="flex: 1; align-items: center; justify-content: center;background-color: #1e1e1e;">${html_gem}</div>`;
 
         $(`#${c.div}`).html(`
             <div class="d-flex gap-2 justify-content-center flex-column h-100">${html}</div>
@@ -3412,9 +3501,9 @@ function planningRaids() {
             let config_raid = db.get("settings.dashboard.liste_raids").value().find((cr) => cr.name == task.type);
 
             if (event) {
-                html_ok += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;color: ${config_raid.color};">${task.tache_name}</span><span style="font-size: 20px;">${task.perso}</span></div>`;
+                html_ok += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;"><span style="font-size: 20px;"><span style="color: ${config_raid.color};">${task.tache_name}</span><br><span>${task.perso}</span></span><span class="badge rounded-pill" style="background-color: ${config_raid.color}; color: #1e1e1e;">${task.grouped ? 'En Guilde' : 'En PU'}</span></div>`;
             } else {
-                html_ko += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: center;flex-direction: column;"><span style="font-size: 20px;color: ${config_raid.color};">${task.tache_name}</span><span style="font-size: 20px;">${task.perso}</span></div>`;
+                html_ko += `<div class="card-raid" data-id="${task.id}" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;align-items: center;"><span style="font-size: 20px;"><span style="color: ${config_raid.color};">${task.tache_name}</span><br><span>${task.perso}</span></span><span class="badge rounded-pill" style="background-color: ${config_raid.color}; color: #1e1e1e;">${task.grouped ? 'En Guilde' : 'En PU'}</span></div>`;
             }
         }
     });
