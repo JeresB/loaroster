@@ -636,6 +636,7 @@ div.sidebar-link {
     margin: 5px;
     width: calc(100% - 10px);
     height: calc(100% - 10px);
+    background-color: #1e1e1e!important;
 }
 
 .card-content-perso {

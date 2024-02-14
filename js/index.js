@@ -597,7 +597,7 @@ function journalier() {
         let setting_tasks = db.get('settings.pageperso.tasks').value();
         let todo = [];
         let setting = null;
-        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;max-width: 600px;position: sticky; top: 0;background-color: #1e1e1e;"><img class="br8" src="${current_perso.image}" /><div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;margin-top: 10px;"><span>${current_perso.name}</span></div></div>`;
+        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;position: sticky; top: 0;background-color: #1e1e1e;"><img class="br8" src="${current_perso.image}" /><div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;margin-top: 10px;"><span>${current_perso.name}</span></div></div>`;
 
         perso_complet
             ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
@@ -700,7 +700,7 @@ function journalierRaids(raids) {
     if (todo.length > 0 || grouped.length > 0) {
         
         r_setting = liste_raids.find((s) => s.name == (todo.length > 0 ? todo[0].type : grouped[0].type));
-        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;max-width: 600px;position: sticky; top: 0;"><img class="br8" src="${r_setting.image}" /></div>`;
+        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;position: sticky; top: 0;"><img class="br8" src="${r_setting.image}" /></div>`;
     
         if (todo.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Raids Todo</span></div>`;
         
