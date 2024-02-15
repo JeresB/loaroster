@@ -603,6 +603,15 @@ function journalier() {
             ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
             : todo = [daily[current_index]];
     
+        let next_task_same_caractere = true;
+        let i_next_task_same_caractere = 1;
+        
+        while (next_task_same_caractere) {
+            if (todo.length == i_next_task_same_caractere && daily[current_index + i_next_task_same_caractere] && daily[current_index + i_next_task_same_caractere].perso == todo[0].perso && daily[current_index + i_next_task_same_caractere].importance == todo[0].importance) todo.push(daily[current_index + i_next_task_same_caractere]);
+            else next_task_same_caractere = false;
+            i_next_task_same_caractere++;
+        }
+        
         if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
         
         todo.forEach(function(t, i) {
