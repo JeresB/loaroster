@@ -611,7 +611,16 @@ function journalier() {
             else next_task_same_caractere = false;
             i_next_task_same_caractere++;
         }
-        
+
+        // S'il y a du temps
+        // Que les taches concernent la main
+        // Alors on inclut les taches du Roster
+        // + Daily
+        if (perso_complet && current_perso.name == 'Jeresayaya') todo = todo.concat(daily.filter((t) => t.perso == 'Roster'));
+        // + Weekly
+        if (include_weekly && current_perso.name == 'Jeresayaya') todo = todo.concat(weekly.filter((t) => t.perso == 'Roster'));
+
+        // S'il y a beaucoup de temps alors on inclut les taches weekly
         if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
         
         todo.forEach(function(t, i) {
