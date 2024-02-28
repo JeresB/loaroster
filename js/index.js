@@ -38,6 +38,10 @@ function getScrollPos(div) {
     else return 0;
 }
 
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
+
 // Au click sur un lien du menu
 $(document).on('click', '.sidebar-link', function () {
     // récupération de la page
@@ -54,6 +58,7 @@ $(document).on('click', '.sidebar-link', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'array') array();
     if (page == 'journalier') journalier();
     if (page == 'perso') perso();
     if (page == 'daily') daily();
@@ -87,6 +92,7 @@ $(document).on('click', '.logo-sidebar', function () {
     console.log(page);
 
     if (page == 'dashboard') dashboard();
+    if (page == 'array') array();
     if (page == 'journalier') journalier();
     if (page == 'perso') perso();
     if (page == 'daily') daily();
@@ -527,10 +533,223 @@ function showTasksWeeklyByPrio() {
 
 
 // -------------------------------------------------------------------------------------------------------------
+// --- ARRAY ---------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+function sidebar_array() {
+    
+}
+
+function array() {
+    sidebar_array();
+
+    // Reset de l'HTML
+    $('.array-wrapper').html('');
+
+    tasksArray();
+}
+
+function tasksArray() {
+    let perso_entete_name = ['Jeresayaya', 'Jeresunshine', 'Jerescelestia', 'Jeresbard', 'Jeresakura', 'Imanyrae', 'Shadow'];
+    let tasks_name = ['Chaos', 'Guilde', 'Una', 'Gargadis', 'Sonavel', 'Hanumatan', 'Weekly Una', 'Ebony Cube', 'Pirate Shop', 'Guilde Shop', 'GVE'];
+    let perso_entete = list_perso.filter((p) => perso_entete_name.includes(p.name));
+    let lopang_setting = list_perso.find((p) => p.name == 'Lopang');
+    let settings_tasks_name = ['Chaos', 'Guilde', 'Una', 'Gargadis', 'Weekly Una', 'Ebony Cube', 'Pirate Shop', 'Guilde Shop', 'GVE'];
+    let settings_tasks = db.get('settings.pageperso.tasks').value().filter((t) => settings_tasks_name.includes(t.tache_name));
+    let disposition = [];
+
+    disposition['Jeresayaya'] = 7;
+    disposition['Jeresunshine'] = 10;
+    disposition['Jerescelestia'] = 13;
+    disposition['Jeresbard'] = 16;
+    disposition['Jeresakura'] = 19;
+    disposition['Imanyrae'] = 22;
+    disposition['Shadow'] = 25;
+    
+    disposition['Chaos'] = 6;
+    disposition['Guilde'] = 8;
+    disposition['Una'] = 10;
+    disposition['Guardian'] = 12;
+    disposition['Weekly Una'] = 14;
+    disposition['Ebony Cube'] = 16;
+    disposition['Pirate Shop'] = 18;
+    disposition['Guilde Shop'] = 20;
+    disposition['GVE'] = 22;
+
+    tasks = db.get("dashboard").value().filter((t) => t.actif == true && perso_entete_name.includes(t.perso) && tasks_name.includes(t.tache_name));
+    rosterTasks = db.get("dashboard").value().filter((t) => t.actif == true && t.perso == 'Roster' && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event'));
+    lopangTasks = db.get("dashboard").value().filter((t) => t.actif == true && lopang_setting.perso.includes(t.perso));
+
+    console.log(tasks);
+    console.log(rosterTasks);
+    console.log(lopangTasks);
+    console.log(settings_tasks);
+
+    let htmlrostertasks = '';
+    
+    rosterTasks.sort(function (a, b) {
+        return a.reset.localeCompare(b.reset) || a.prio - b.prio;
+    });
+    
+    rosterTasks.forEach(function (t, i) {
+        let todo = t.repet - t.done == 0 ? false : true;
+        htmlrostertasks += `<div class="card-content d-flex justify-content-center align-items-center ${todo ? 'todo-bright pointer ia_tasks' : ''}" data-id="${t.id}" style="flex: 1;white-space: nowrap;${todo ? 'background-color: #444444;' : ''}border-radius: 8px;">${t.tache_name}</div>`;
+    });
+
+    $('.array-wrapper').append(`<div class="card-content scrollhidden h100 d-flex gap-3 flex-wrap justify-content-center align-items-stretch" style="grid-column: 1 / 7; grid-row: 1 / 6;">${htmlrostertasks}</div>`);
+    
+    perso_entete.forEach(function(p, i) {
+        $('.array-wrapper').append(`<div id="array-perso-${p.name}" class="br8" style="grid-column: ${disposition[p.name]} / ${disposition[p.name] + 3}; grid-row: 1 / 5;"></div>`);
+        $('.array-wrapper').append(`<div class="card-content d-flex justify-content-between align-items-center" style="grid-column: ${disposition[p.name]} / ${disposition[p.name] + 3}; grid-row: 5 / 6;"><span>${p.name}</span><span>${p.ilevel}</span></div>`);
+
+        $(`#array-perso-${p.name}`).css('background-image', `url(${p.image})`);
+        $(`#array-perso-${p.name}`).css('background-repeat', 'no-repeat');
+        $(`#array-perso-${p.name}`).css('background-position', 'center center');
+        $(`#array-perso-${p.name}`).css('background-size', 'cover');
+    });
+
+    settings_tasks.forEach(function(t, i) {
+        let name = t.tache_name;
+        
+        if(t.tache_name == 'Gargadis') name = 'Guardian';
+        
+        if (disposition[name]) $('.array-wrapper').append(`<div class="card-content d-flex justify-content-between align-items-center" style="font-size: 2em; grid-column: 1 / 7; grid-row: ${disposition[name]} / ${disposition[name] + 2};"><span>${name}</span><span><img style="width: 64px;" src="images/${t.image}" /></span></div>`);
+    });
+    
+    tasks.forEach(function(t, i) {
+        let tache_name = t.tache_name;
+        let todo = t.repet - t.done == 0 ? false : true;
+        
+        if(t.tache_name == 'Gargadis' || t.tache_name == 'Sonavel') tache_name = 'Guardian';
+        
+        $('.array-wrapper').append(`<div class="card-content d-flex justify-content-center align-items-center ${todo ? 'todo-bright pointer ia_tasks' : ''}" data-id="${t.id}" style="${todo ? 'background-color: #444444;' : ''} grid-column: ${disposition[t.perso]} / ${disposition[t.perso] + 3}; grid-row: ${disposition[tache_name]} / ${disposition[tache_name] + 2};">${todo ? '<i class="fa-solid fa-2xl fa-xmark"></i>' : '<i class="fa-solid fa-2xl fa-check"></i>'}</div>`);
+    });
+
+    $('.array-wrapper').append(`<div class="card-content d-flex justify-content-center align-items-center" style="font-size: 2em; grid-column: 1 / 28; grid-row: 24 / 26;">Lopang</div>`);
+
+    let htmllopangtasks = '';
+    
+    lopangTasks.sort(function (a, b) {
+        return a.perso.localeCompare(b.perso) || a.reset.localeCompare(b.reset) || a.prio - b.prio;
+    });
+
+    lopangTasks.forEach(function (t, i) {
+        let todo = t.repet - t.done == 0 || !(t.repet - t.done > 0 && t.rest >= t.restNeeded) ? false : true;
+        htmllopangtasks += `<div class="card-content d-flex justify-content-center align-items-center ${todo ? 'todo-bright pointer ia_tasks' : ''}" data-id="${t.id}" style="flex: 1;white-space: nowrap;${todo ? 'background-color: #444444;' : ''}border-radius: 8px;">${t.tache_name} ${t.perso}</div>`;
+    });
+
+    $('.array-wrapper').append(`<div class="card-content scrollhidden h100 d-flex gap-3 flex-wrap justify-content-center align-items-stretch" style="overflow-y: scroll;grid-column: 1 / 28; grid-row: 26 / 30;">${htmllopangtasks}</div>`);
+    
+    // $('.raids-wrapper').append(`<div id="raids-entete" class="card-content" style="grid-column: 1 / 3; grid-row: 1 / 5;"><div class="card-raid-done" style="flex: 1;height:100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;"><span style="font-size: 20px;">${semaine_brel_1_4 ? 'Semaine<br>Brelshaza G1-4' : 'Semaine<br>Brelshaza G1-3'}<br><br><i>NE PAS PRENDRE LES GOLDS KAYANGEL</i></span></div></div>`);
+    
+    // $('.raids-wrapper').append(`<div id="raids-entete-Jeresayaya" class="card-content" style="grid-column: 3 / 4; grid-row: 1 / 5;"></div>`);
+    // $('.raids-wrapper').append(`<div id="raids-entete-Jeresunshine" class="card-content" style="grid-column: 4 / 5; grid-row: 1 / 5;"></div>`);
+    // $('.raids-wrapper').append(`<div id="raids-entete-Jerescelestia" class="card-content" style="grid-column: 5 / 6; grid-row: 1 / 5;"></div>`);
+    // $('.raids-wrapper').append(`<div id="raids-entete-Jeresbard" class="card-content" style="grid-column: 6 / 7; grid-row: 1 / 5;"></div>`);
+    // $('.raids-wrapper').append(`<div id="raids-entete-Jeresakura" class="card-content" style="grid-column: 7 / 8; grid-row: 1 / 5;"></div>`);
+    // $('.raids-wrapper').append(`<div id="raids-entete-Imanyrae" class="card-content" style="grid-column: 8 / 9; grid-row: 1 / 5;"></div>`);
+    
+    // list_perso.forEach(function(p, i) {
+    //     $(`#raids-entete-${p.name}`).css('background-image', `url(${p.image})`);
+    //     $(`#raids-entete-${p.name}`).css('background-repeat', 'no-repeat');
+    //     $(`#raids-entete-${p.name}`).css('background-position', 'center center');
+    //     $(`#raids-entete-${p.name}`).css('background-size', 'cover');
+    // });
+
+    // $('.raids-wrapper').append('<div id="raids-entete-voldis" class="card-content" style="grid-column: 1 / 3; grid-row: 5 / 9;"></div>');
+    // $('.raids-wrapper').append('<div id="raids-entete-akkan" class="card-content" style="grid-column: 1 / 3; grid-row: 9 / 13;"></div>');
+    // $('.raids-wrapper').append('<div id="raids-entete-brelshaza" class="card-content" style="grid-column: 1 / 3; grid-row: 13 / 17;"></div>');
+    // $('.raids-wrapper').append('<div id="raids-entete-kayangel" class="card-content" style="grid-column: 1 / 3; grid-row: 17 / 21;"></div>');
+
+    // liste_raids.forEach(function(r, i) {
+    //     $(`#raids-entete-${r.name}`).css('background-image', `url(${r.image})`);
+    //     $(`#raids-entete-${r.name}`).css('background-repeat', 'no-repeat');
+    //     $(`#raids-entete-${r.name}`).css('background-position', 'center center');
+    //     $(`#raids-entete-${r.name}`).css('background-size', 'cover');
+    // });
+
+    // let bgcolor = '#5a5a5a';
+    // let color = '#e1e1e1';
+
+    // tasks.forEach(function(t, i) {
+    //     let dispo = disposition.find((d) => d.perso == t.perso && d.raid == t.type);
+    //     let todo = t.repet - t.done > 0 ? true : false;
+    //     let brel13 = t.tache_name == 'Brelshaza G1-3' ? true : false;
+    //     let brel4 = t.tache_name == 'Brelshaza G4' ? true : false;
+    //     let event = liste_events.find((e) => e.raid == t.id);
+        
+    //     todo && t.type == 'kayangel' && db.get("dashboard").value().filter((d) => d.actif == true && d.done == 0 && t.perso == d.perso && [ 'brelshaza', 'akkan', 'voldis' ].includes(d.type)).length > 0
+    //         ? bgcolor = '#812717'
+    //         : bgcolor = '#5a5a5a';
+
+    //     $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? (t.repet - t.done) + (t.grouped ? '' : ' - En PU') : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
+    // });
+}
+
+$(document).on('click', '.card-raid-todo', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.done) + 1);
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1); 
+
+        db.save();
+
+        completedRaid(task);
+    }
+
+    raids();
+});
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------------------------------------------------------------
 // --- DASHBOARD JOURNALIER ------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
 var current_perso = null;
 var current_index = 0;
+
+var ia_options = [];
+
+ia_options['ia_chaos'] = true;
+ia_options['ia_gr'] = true;
+ia_options['ia_una'] = true;
+ia_options['ia_don'] = true;
+
+ia_options['ia_abysse'] = true;
+ia_options['ia_gr_defi'] = true;
+ia_options['ia_weekly_una'] = true;
+ia_options['ia_cube'] = true;
+ia_options['ia_pirate'] = true;
+ia_options['ia_roster'] = false;
+ia_options['ia_guilde'] = false;
+ia_options['ia_gve'] = false;
+
+ia_options['ia_1'] = false;
+ia_options['ia_2'] = true;
+ia_options['ia_3'] = false;
+ia_options['ia_4'] = false;
+
+ia_options['ia_ayaya'] = true;
+ia_options['ia_sunshine'] = true;
+ia_options['ia_celestia'] = true;
+ia_options['ia_bard'] = false;
+ia_options['ia_sakura'] = false;
+ia_options['ia_imanyrae'] = false;
+ia_options['ia_shadow'] = false;
+ia_options['ia_lopang'] = false;
 
 function sidebar_journalier() {
 
@@ -544,14 +763,47 @@ function journalier() {
     
     $('.journalier-wrapper').html('');
 
-    $('.journalier-wrapper').append(`<div id="journalier-time" class="card-content d-flex justify-content-center align-items-center" style="grid-column: 4 / 22; grid-row: 1 / 2;"><span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span></div>`);
-    $('.journalier-wrapper').append(`<div id="journalier-progress" class="card-content d-flex justify-content-start" style="grid-column: 4 / 22; grid-row: 2 / 3;padding: 0px;"><div id="journalier-progress-value" class="br8" style="height: 100%;width: ${((tasksall.length - tasks.length) * 100) / tasksall.length}%;background-color: #198754;"></div></div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-time" class="card-content d-flex justify-content-center align-items-center" style="grid-column: 1 / 27; grid-row: 1 / 2;"><span style="font-size: 32px;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</span></div>`);
+    $('.journalier-wrapper').append(`<div id="journalier-progress" class="card-content d-flex justify-content-start" style="grid-column: 1 / 27; grid-row: 2 / 3;padding: 0px;"><div id="journalier-progress-value" class="br8" style="height: 100%;width: ${((tasksall.length - tasks.length) * 100) / tasksall.length}%;background-color: #198754;"></div></div>`);
     
-    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 4 / 10; grid-row: 3 / 15;"><div id="journalier-tasks-d" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
-    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 10 / 16; grid-row: 3 / 15;"><div id="journalier-tasks-r" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
-    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 16 / 22; grid-row: 3 / 15;"><div id="journalier-tasks-u" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    // $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 1 / 7; grid-row: 3 / 15;"><div id="journalier-tasks-d" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 1 / 7; grid-row: 3 / 15;"><div id="journalier-persos" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 7 / 13; grid-row: 3 / 15;"><div id="journalier-tasks-r" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_chaos'] ? 'ia-card-selected' : ''}" data-options="ia_chaos" style="grid-column: 13 / 15; grid-row: 3 / 4;"><img style="width: 64px;" src="images/chaos-dungeon.webp" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_gr'] ? 'ia-card-selected' : ''}" data-options="ia_gr" style="grid-column: 15 / 17; grid-row: 3 / 4;"><img style="width: 64px;" src="images/guardian.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_una'] ? 'ia-card-selected' : ''}" data-options="ia_una" style="grid-column: 17 / 19; grid-row: 3 / 4;"><img style="width: 64px;" src="images/daily.webp" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_don'] ? 'ia-card-selected' : ''}" data-options="ia_don" style="grid-column: 19 / 21; grid-row: 3 / 4;"><img style="width: 64px;" src="images/sylmael.png" /></div>`);
 
-    intervalJournalierTime = setInterval(journalierTime, 1000);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_abysse'] ? 'ia-card-selected' : ''}" data-options="ia_abysse" style="grid-column: 13 / 14; grid-row: 4 / 5;"><img style="width: 64px;" src="images/abyssal-dungeon.webp" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_gr_defi'] ? 'ia-card-selected' : ''}" data-options="ia_gr_defi" style="grid-column: 14 / 15; grid-row: 4 / 5;"><img style="width: 64px;" src="images/guardian.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_weekly_una'] ? 'ia-card-selected' : ''}" data-options="ia_weekly_una" style="grid-column: 15 / 16; grid-row: 4 / 5;"><img style="width: 64px;" src="images/weekly.webp" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_cube'] ? 'ia-card-selected' : ''}" data-options="ia_cube" style="grid-column: 16 / 17; grid-row: 4 / 5;"><img style="width: 64px;" src="images/t3_cube.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_pirate'] ? 'ia-card-selected' : ''}" data-options="ia_pirate" style="grid-column: 17 / 18; grid-row: 4 / 5;"><img style="width: 64px;" src="images/pirate_coin.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_roster'] ? 'ia-card-selected' : ''}" data-options="ia_roster" style="grid-column: 18 / 19; grid-row: 4 / 5;"><img style="width: 64px;" src="images/world_quest.webp" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_guilde'] ? 'ia-card-selected' : ''}" data-options="ia_guilde" style="grid-column: 19 / 20; grid-row: 4 / 5;"><img style="width: 64px;" src="images/sylmael.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_gve'] ? 'ia-card-selected' : ''}" data-options="ia_gve" style="grid-column: 20 / 21; grid-row: 4 / 5;"><img style="width: 64px;" src="images/sylmael.png" /></div>`);
+
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_1'] ? 'ia-card-selected' : ''}" data-options="ia_1" style="grid-column: 13 / 15; grid-row: 5 / 6;"><div class="d-flex justify-content-center h100 align-items-center"><i class="fa-solid fa-1 fa-2xl"></i></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_2'] ? 'ia-card-selected' : ''}" data-options="ia_2" style="grid-column: 15 / 17; grid-row: 5 / 6;"><div class="d-flex justify-content-center h100 align-items-center"><i class="fa-solid fa-2 fa-2xl"></i></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_3'] ? 'ia-card-selected' : ''}" data-options="ia_3" style="grid-column: 17 / 19; grid-row: 5 / 6;"><div class="d-flex justify-content-center h100 align-items-center"><i class="fa-solid fa-3 fa-2xl"></i></div></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_4'] ? 'ia-card-selected' : ''}" data-options="ia_4" style="grid-column: 19 / 21; grid-row: 5 / 6;"><div class="d-flex justify-content-center h100 align-items-center"><i class="fa-solid fa-4 fa-2xl"></i></div></div>`);
+
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_ayaya'] ? 'ia-card-selected' : ''}" data-options="ia_ayaya" style="grid-column: 13 / 14; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_artist.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_sunshine'] ? 'ia-card-selected' : ''}" data-options="ia_sunshine" style="grid-column: 14 / 15; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_bard.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_celestia'] ? 'ia-card-selected' : ''}" data-options="ia_celestia" style="grid-column: 15 / 16; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_aeromancer.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_bard'] ? 'ia-card-selected' : ''}" data-options="ia_bard" style="grid-column: 16 / 17; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_bard.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_sakura'] ? 'ia-card-selected' : ''}" data-options="ia_sakura" style="grid-column: 17 / 18; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_bard.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_imanyrae'] ? 'ia-card-selected' : ''}" data-options="ia_imanyrae" style="grid-column: 18 / 19; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_sorceress.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_shadow'] ? 'ia-card-selected' : ''}" data-options="ia_shadow" style="grid-column: 19 / 20; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_paladin.png" /></div>`);
+    $('.journalier-wrapper').append(`<div class="card-content text-center pointer ia-option ${ia_options['ia_lopang'] ? 'ia-card-selected' : ''}" data-options="ia_lopang" style="grid-column: 20 / 21; grid-row: 6 / 7;"><img style="width: 64px;" src="images/class_db.png" /></div>`);
+    
+    $('.journalier-wrapper').append(`<div class="" style="grid-column: 13 / 21; grid-row: 7 / 15;"><div id="journalier-all" onscroll="setScrollPos(\'journalier-all\');" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+    
+    $('.journalier-wrapper').append(`<div class="card-content" style="grid-column: 21 / 27; grid-row: 3 / 15;"><div id="journalier-tasks-u" class="scrollhidden d-flex flex-column gap-2" style="overflow-y: scroll;max-height: 100%;"></div></div>`);
+
+    // intervalJournalierTime = setInterval(journalierTime, 1000);
     
     let type = [ 'brelshaza', 'kayangel', 'akkan', 'voldis' ];
     let events  = [];
@@ -577,67 +829,73 @@ function journalier() {
     // console.log(raids)
 
     // EVENT
-    if (events.length > 0) {
-        // $('#journalier-tasks-d').append(`<div id="journalier-tasks-event" class="text-center journalier-card"></div>`);
-        intervalJournalierEvents = setInterval(function() { journalierEvents(events) }, 1000);
-    }
+    // if (events.length > 0) {
+    //     // $('#journalier-tasks-d').append(`<div id="journalier-tasks-event" class="text-center journalier-card"></div>`);
+    //     intervalJournalierEvents = setInterval(function() { journalierEvents(events) }, 1000);
+    // }
 
     // DAILY
-    daily.sort(function (a, b) {
-        return a.importance - b.importance || a.prio - b.prio || a.perso.localeCompare(b.perso);
-    });
+    // daily.sort(function (a, b) {
+    //     return a.importance - b.importance || a.prio - b.prio || a.perso.localeCompare(b.perso);
+    // });
 
-    let perso_complet = [0, 1, 2, 5, 6].includes(now.getDay()) ? true : false;
-    let include_weekly = [0, 1, 2, 5, 6].includes(now.getDay()) && (raids.length < weekly.filter((w) => w.type == 'cube').length || !raids.find((r) => !r.grouped)) ? true : false;
-    let perso_name = daily.length > 0 && daily[current_index] ? daily[current_index].perso : (weekly.length > 0 && weekly[current_index] ? weekly[current_index].perso : null);
+    // let perso_complet = [0, 1, 2, 5, 6].includes(now.getDay()) ? true : false;
+    // let include_weekly = daily.length == 0 || ([0, 1, 2, 5, 6].includes(now.getDay()) && (raids.length < weekly.filter((w) => w.type == 'cube').length || !raids.find((r) => !r.grouped))) ? true : false;
+    // let perso_name = daily.length > 0 && daily[current_index] ? daily[current_index].perso : (weekly.length > 0 && weekly[current_index] ? weekly[current_index].perso : null);
 
-    if (perso_name) {        
-        current_perso = current_perso == null || !perso_complet ? list_perso.find((p) => p.perso.includes(perso_name)) : (daily.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : (include_weekly && weekly.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : list_perso.find((p) => p.perso.includes(perso_name))));
-        let lopang = current_perso.name == 'Lopang';
-        let setting_tasks = db.get('settings.pageperso.tasks').value();
-        let todo = [];
-        let setting = null;
-        let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;position: sticky; top: 0;background-color: #1e1e1e;"><img class="br8" src="${current_perso.image}" /><div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;margin-top: 10px;"><span>${current_perso.name}</span></div></div>`;
+    // if (perso_name) {        
+    //     current_perso = current_perso == null || !perso_complet ? list_perso.find((p) => p.perso.includes(perso_name)) : (daily.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : (include_weekly && weekly.filter((t) => current_perso.perso.includes(t.perso)).length > 0 ? current_perso : list_perso.find((p) => p.perso.includes(perso_name))));
+    //     let lopang = current_perso.name == 'Lopang';
+    //     let setting_tasks = db.get('settings.pageperso.tasks').value();
+    //     let todo = [];
+    //     let setting = null;
+    //     let html = `<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;position: sticky; top: 0;background-color: #1e1e1e;"><img class="br8" src="${current_perso.image}" /><div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;margin-top: 10px;"><span>${current_perso.name}</span></div></div>`;
 
-        perso_complet
-            ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
-            : todo = [daily[current_index]];
+    //     perso_complet
+    //         ? todo = daily.filter((t) => current_perso.perso.includes(t.perso))
+    //         : todo = daily[current_index] ? [daily[current_index]] : [];
     
-        let next_task_same_caractere = true;
-        let i_next_task_same_caractere = 1;
+    //     let next_task_same_caractere = true;
+    //     let i_next_task_same_caractere = 1;
         
-        while (next_task_same_caractere) {
-            if (todo.length == i_next_task_same_caractere && daily[current_index + i_next_task_same_caractere] && daily[current_index + i_next_task_same_caractere].perso == todo[0].perso && daily[current_index + i_next_task_same_caractere].importance == todo[0].importance) todo.push(daily[current_index + i_next_task_same_caractere]);
-            else next_task_same_caractere = false;
-            i_next_task_same_caractere++;
-        }
+    //     while (next_task_same_caractere) {
+    //         if (todo.length == i_next_task_same_caractere && daily[current_index + i_next_task_same_caractere] && daily[current_index + i_next_task_same_caractere].perso == todo[0].perso && daily[current_index + i_next_task_same_caractere].importance == todo[0].importance) todo.push(daily[current_index + i_next_task_same_caractere]);
+    //         else next_task_same_caractere = false;
+    //         i_next_task_same_caractere++;
+    //     }
 
-        // S'il y a du temps
-        // Que les taches concernent la main
-        // Alors on inclut les taches du Roster
-        // + Daily
-        if (perso_complet && current_perso.name == 'Jeresayaya') todo = todo.concat(daily.filter((t) => t.perso == 'Roster'));
-        // + Weekly
-        if (include_weekly && current_perso.name == 'Jeresayaya') todo = todo.concat(weekly.filter((t) => t.perso == 'Roster'));
+    //     // S'il y a du temps
+    //     // Que les taches concernent la main
+    //     // Alors on inclut les taches du Roster
+    //     // + Daily
+    //     if (perso_complet && current_perso.name == 'Jeresayaya') todo = todo.concat(daily.filter((t) => t.perso == 'Roster'));
+    //     // + Weekly
+    //     if (include_weekly && current_perso.name == 'Jeresayaya') todo = todo.concat(weekly.filter((t) => t.perso == 'Roster'));
 
-        // S'il y a beaucoup de temps alors on inclut les taches weekly
-        if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
+    //     // S'il y a beaucoup de temps alors on inclut les taches weekly
+    //     if (include_weekly) todo = todo.concat(weekly.filter((t) => current_perso.perso.includes(t.perso)));
         
-        todo.forEach(function(t, i) {
-            setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
-            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''} ${lopang ? t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
-        });
+    //     todo.forEach(function(t, i) {
+    //         setting = setting_tasks.find((s) => s.tache_name == t.tache_name);
+    //         html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${t.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${t.repet - t.done} - ${t.tache_name} ${t.rest > 10 ? ` (${t.rest})` : ''} ${lopang ? t.perso : ''}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
+    //     });
     
-        $('#journalier-tasks-d').append(`${html} <div id="journalier-next-task" style="margin-top: 10px;text-align: center;cursor: pointer;">Next</div>`);
-    } else {
-        $('#journalier-tasks-d').append(`<div style="text-align: center;">ALL DONE FOR NOW</div>`);
-    }
+    //     $('#journalier-tasks-d').append(`${html} <div id="journalier-next-task" style="margin-top: 10px;text-align: center;cursor: pointer;">Next</div>`);
+    // } else {
+    //     $('#journalier-tasks-d').append(`<div style="text-align: center;">ALL DONE FOR NOW</div>`);
+    // }
 
     // RAIDS
     journalierRaids(raids);
 
+    // FULL LISTE
+    journalierFull();
+
     // UTILITAIRE
     journalierUtilitaire();
+
+    // PERSO
+    journalierPerso();
 }
 
 function journalierTime() {
@@ -724,7 +982,12 @@ function journalierRaids(raids) {
         
         todo.forEach(function(r, i) {
             setting = setting_tasks.find((s) => s.tache_name == r.tache_name);
-            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 2px 16px;" data-id="${r.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${r.repet - r.done} - ${r.tache_name}  ${r.perso}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
+
+            r.type == 'kayangel' && db.get("dashboard").value().filter((d) => d.actif == true && d.done == 0 && r.perso == d.perso && [ 'brelshaza', 'akkan', 'voldis' ].includes(d.type)).length > 0
+            ? bgcolor = '#812717'
+            : bgcolor = '#1e1e1e';
+
+            html += `<div class="journalier-card" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: ${bgcolor};color: #a1a1a1;padding: 2px 16px;" data-id="${r.id}"><span><img style="width: 64px;" src="images/${setting ? setting.image : ''}" /></span><span style="font-size: 20px;">${r.repet - r.done} - ${r.tache_name}  ${r.perso}</span><span><i class="fa-solid fa-xmark fa-2x"></i></span></div>`;
         });
 
         if (grouped.length > 0) html += `<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Raids en groupe</span></div>`;
@@ -742,75 +1005,165 @@ function journalierRaids(raids) {
 }
 
 function journalierUtilitaire() {
-    let collected = db.get("gemmes.collected").value().find((c) => c.name == current_perso.name);
-    let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == current_perso.name);
+    if (current_perso) {
+        let collected = db.get("gemmes.collected").value().find((c) => c.name == current_perso.name);
+        let collectedIndex = db.get("gemmes.collected").value().findIndex((c) => c.name == current_perso.name);
+        
+        let last_fate_ember = current_perso.name == 'Roster' || current_perso.name == 'Lopang'
+            ? db.get("fate_embers").value().find((fe) => true)
+            : db.get("fate_embers").value().find((fe) => fe.perso == current_perso.name);
+        
+        let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
+        let html_option_fate_ember = '';
     
-    let last_fate_ember = current_perso.name == 'Roster' || current_perso.name == 'Lopang'
-        ? db.get("fate_embers").value().find((fe) => true)
-        : db.get("fate_embers").value().find((fe) => fe.perso == current_perso.name);
-
-    let fate_ember_types = db.get('settings.fate_embers.cards_stats.types').value().find((type) => type.name == 'Fate Embers').liste_type;
-    let html_option_fate_ember = '';
-
-    fate_ember_types.forEach(function(type, i) {
-        html_option_fate_ember += `<div class="${current_perso.name == 'Roster' || current_perso.name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" data-perso="${current_perso.name}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
-    });
-
-    let gi = db.get("gold_income").value()
-
-    gi.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date);
-    });
-
-    let last_gold_income = gi.find((g) => g.perso == current_perso.name);
-
-    let html_options_gold_income = '';
-
-    db.get("settings.gold.options_gold_income").value().forEach(function (g, i) {
-        html_options_gold_income += `<option>${g}</option>`;
-    });
-
-    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Gemme</span></div>`);
-    $('#journalier-tasks-u').append(`<div class="journalier-card-gemme card-gemme-perso-collected" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 8px 16px;" data-id="${collectedIndex >= 0 ? collectedIndex : -1}"><span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="width: 64px;background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 20px;text-align: center;">${collected ? collected.gemme : 0} Gemmes Niv.5<br>${current_perso.name}</span><span><i class="fa-solid fa-arrow-trend-up fa-2x"></i></span></div>`);
+        fate_ember_types.forEach(function(type, i) {
+            html_option_fate_ember += `<div class="${current_perso.name == 'Roster' || current_perso.name == 'Lopang' ? 'pageperso-fateember-no-click' : 'pageperso-fateember'}" data-type="${type}" data-perso="${current_perso.name}" style="color: ${colorFateEmbers({type: type}).bg_color}">${type}</div>`;
+        });
     
-    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Fate Ember</span></div>`);
-    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;font-size: 20px;"><span>${nbfateemberPerso(current_perso.name) ? nbfateemberPerso(current_perso.name) : db.get("fate_embers").value().length} Fate Embers</span></div>`);
-    $('#journalier-tasks-u').append('<hr>');
-    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${colorFateEmbers(last_fate_ember).bg_color};">${last_fate_ember.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div>`);
-    $('#journalier-tasks-u').append('<hr>');
-    $('#journalier-tasks-u').append(`<div class="scrollhidden" style="flex: 1;display: flex;justify-content: start;flex-direction: column;padding: 8px 24px;font-size: 20px;max-height: 300px;overflow-y: scroll;margin-bottom: 20px;">${html_option_fate_ember}</div>`);
-
-    $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds</span></div>`);
-    $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
-        <div class="d-flex flex-row justify-content-between flex-nowrap gap-3">
-            <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_update_journalier"
-                style="background-color: #202020;color: white;width: auto;" placeholder="Gold Actuel">
-
-            <button id="update_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Update</button>
-        </div>
-    </div>`);
-    $('#journalier-tasks-u').append('<hr>');
-    $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${last_gold_income.montant >= 0 ? '#00b135' : '#cf4747'};">${last_gold_income.montant >= 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${last_gold_income.montant} ${last_gold_income.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_gold_income.date).toLocaleDateString()}</span></div>`);
-    $('#journalier-tasks-u').append('<hr>');
-    $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
-        <div class="d-flex flex-column justify-content-center flex-nowrap gap-3" style="padding: 5px;">
-            <input list="gold_income_type_list_journalier" class="form-control flex-grow-1" id="gold_income_type_journalier"
-                style="background-color: #202020;color: white;" placeholder="Gold Income">
-
-            <datalist id="gold_income_type_list_journalier">
-                ${html_options_gold_income}
-            </datalist>
-
-            <input id="gold_income_description_journalier" class="form-control flex-grow-1"
-                style="background-color: #202020;color: white;" placeholder="Description">
-
-            <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_journalier"
-                style="background-color: #202020;color: white;width: auto;" placeholder="Montant">
-
-            <button id="add_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter</button>
-        </div>
-    </div>`);
+        let gi = db.get("gold_income").value()
+    
+        gi.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+    
+        let last_gold_income = gi.find((g) => g.perso == current_perso.name);
+    
+        let html_options_gold_income = '';
+    
+        db.get("settings.gold.options_gold_income").value().forEach(function (g, i) {
+            html_options_gold_income += `<option>${g}</option>`;
+        });
+    
+        $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Gemme</span></div>`);
+        $('#journalier-tasks-u').append(`<div class="journalier-card-gemme card-gemme-perso-collected" style="flex: 1;display: flex;justify-content: space-between;align-items: center;flex-direction: row;background-color: #1e1e1e;color: #a1a1a1;padding: 8px 16px;" data-id="${collectedIndex >= 0 ? collectedIndex : -1}"><span><img src="images/gem5_${Math.random() > 0.5 ? 1 : 2}.webp" style="width: 64px;background-image: url('images/gem5_bg.webp');background-size: cover;border-radius: 8px;" /></span><span style="font-size: 20px;text-align: center;">${collected ? collected.gemme : 0} Gemmes Niv.5<br>${current_perso.name}</span><span><i class="fa-solid fa-arrow-trend-up fa-2x"></i></span></div>`);
+        
+        $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>Fate Ember</span></div>`);
+        $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;font-size: 20px;"><span>${nbfateemberPerso(current_perso.name) ? nbfateemberPerso(current_perso.name) : db.get("fate_embers").value().length} Fate Embers</span></div>`);
+        $('#journalier-tasks-u').append('<hr>');
+        $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${colorFateEmbers(last_fate_ember).bg_color};">${last_fate_ember.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_fate_ember.date).toLocaleDateString()}</span></div>`);
+        $('#journalier-tasks-u').append('<hr>');
+        $('#journalier-tasks-u').append(`<div class="scrollhidden" style="flex: 1;display: flex;justify-content: start;flex-direction: column;padding: 8px 24px;font-size: 20px;max-height: 300px;overflow-y: scroll;margin-bottom: 20px;">${html_option_fate_ember}</div>`);
+    
+        $('#journalier-tasks-u').append(`<div class="histo-task-dashboard" style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;"><span>${new Intl.NumberFormat('fr-FR').format(db.get("gold").value())} Golds</span></div>`);
+        $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
+            <div class="d-flex flex-row justify-content-between flex-nowrap gap-3">
+                <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_update_journalier"
+                    style="background-color: #202020;color: white;width: auto;" placeholder="Gold Actuel">
+    
+                <button id="update_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Update</button>
+            </div>
+        </div>`);
+        $('#journalier-tasks-u').append('<hr>');
+        
+        if (last_gold_income) {
+            $('#journalier-tasks-u').append(`<div class="journalier-card-info" style="flex: 1;display: flex;justify-content: space-between;flex-direction: row;text-align: center;padding: 8px 24px;font-size: 20px;"><span style="padding: 4px 16px;color: ${last_gold_income.montant >= 0 ? '#00b135' : '#cf4747'};">${last_gold_income.montant >= 0 ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'} ${last_gold_income.montant} ${last_gold_income.description.length > 0 ? last_gold_income.description : last_gold_income.type}</span><span style="padding: 4px 16px;">Le ${new Date(last_gold_income.date).toLocaleDateString()}</span></div>`);
+            $('#journalier-tasks-u').append('<hr>');
+        }
+        
+        $('#journalier-tasks-u').append(`<div style="flex: 1;display: flex;justify-content: center;flex-direction: column;text-align: center;padding: 8px 24px;">
+            <div class="d-flex flex-column justify-content-center flex-nowrap gap-3" style="padding: 5px;">
+                <input list="gold_income_type_list_journalier" class="form-control flex-grow-1" id="gold_income_type_journalier"
+                    style="background-color: #202020;color: white;" placeholder="Gold Income">
+    
+                <datalist id="gold_income_type_list_journalier">
+                    ${html_options_gold_income}
+                </datalist>
+    
+                <input id="gold_income_description_journalier" class="form-control flex-grow-1"
+                    style="background-color: #202020;color: white;" placeholder="Description">
+    
+                <input type="number" class="form-control flex-shrink-1" id="gold_income_montant_journalier"
+                    style="background-color: #202020;color: white;width: auto;" placeholder="Montant">
+    
+                <button id="add_gold_income_journalier" type="button" class="btn btn-outline-light flex-shrink-1">Ajouter</button>
+            </div>
+        </div>`);
+    }
 }
+
+function journalierFull() {
+    let roster_options = ['Fouille', 'Forteresse', 'Chaos Gate', 'World Boss', 'Medeia / Limon', 'Event Shop', 'Legion Raid Shop', 'Elgacia leg Shop', 'Elgacia Shop'];
+    let lopang_alt = ['Drevana', 'Jeresblade', 'Skairiper', 'Shadotech', 'Shadorim', 'Jerestarwhale', 'Jereseraphina', 'Jeresfighter', 'Jerespala', 'Jereslopang'];
+    
+    let tasks = db.get("dashboard").value().filter((t) => 
+        t.actif 
+        && t.done < t.repet 
+        && (t.done == 0 && t.rest >= t.restNeeded || t.done > 0) 
+        && ((t.type == 'event' && t.horaire.includes(moment().isoWeekday())) || t.type != 'event')
+        && (ia_options['ia_chaos'] ? true : t.tache_name != 'Chaos')
+        && (ia_options['ia_gr'] ? true : t.type != 'GR')
+        && (ia_options['ia_una'] ? true : t.tache_name != 'Una')
+        && (ia_options['ia_don'] ? true : t.tache_name != 'Guilde')
+        && (ia_options['ia_abysse'] ? true : t.tache_name != 'Abyssal Challenge')
+        && (ia_options['ia_gr_defi'] ? true : t.tache_name != 'GR Challenge')
+        && (ia_options['ia_weekly_una'] ? true : t.tache_name != 'Weekly Una')
+        && (ia_options['ia_cube'] ? true : t.tache_name != 'Ebony Cube')
+        && (ia_options['ia_pirate'] ? true : t.tache_name != 'Pirate Shop')
+        && (ia_options['ia_roster'] ? true : !roster_options.includes(t.tache_name))
+        && (ia_options['ia_guilde'] ? true : t.tache_name != 'Guilde Shop')
+        && (ia_options['ia_gve'] ? true : t.tache_name != 'GVE')
+        && (ia_options['ia_1'] && t.reset == 'daily' ? t.importance <= 1 : true)
+        && (ia_options['ia_2'] && t.reset == 'daily' ? t.importance <= 2 : true)
+        && (ia_options['ia_3'] && t.reset == 'daily' ? t.importance <= 3 : true)
+        && (ia_options['ia_4'] && t.reset == 'daily' ? t.importance <= 4 : true)
+        && (ia_options['ia_ayaya'] ? true : t.perso != 'Jeresayaya')
+        && (ia_options['ia_sunshine'] ? true : t.perso != 'Jeresunshine')
+        && (ia_options['ia_celestia'] ? true : t.perso != 'Jerescelestia')
+        && (ia_options['ia_bard'] ? true : t.perso != 'Jeresbard')
+        && (ia_options['ia_sakura'] ? true : t.perso != 'Jeresakura')
+        && (ia_options['ia_imanyrae'] ? true : t.perso != 'Imanyrae')
+        && (ia_options['ia_shadow'] ? true : t.perso != 'Shadow')
+        && (ia_options['ia_lopang'] ? true : !lopang_alt.includes(t.perso))
+        && !['voldis', 'akkan', 'brelshaza', 'kayangel'].includes(t.type)
+    );
+
+    let html = '';
+
+    tasks.sort(function (a, b) {
+        return a.perso.localeCompare(b.perso) || a.importance - b.importance || a.prio - b.prio;
+    });
+
+    current_perso = tasks.length > 0 ? list_perso.find((p) => p.perso.includes(tasks[0].perso)) : null;
+    
+    tasks.forEach(function(t, i) {
+        // console.log(t.tache_name + ' ' + t.type);
+
+        html += `<div class="card-content pointer d-flex justify-content-between ia_tasks" data-id="${t.id}"><span>${t.tache_name}</span><span>${t.perso}</span></div>`;
+    })
+
+    $('#journalier-all').html(html);
+
+    let div = document.getElementById('journalier-all');
+    div.scrollTop = getScrollPos('journalier-all');
+}
+
+function journalierPerso() {
+    let html = '';
+
+    list_perso.forEach(function(p, i) {
+        html += `<img src="${p.image}" />`;
+    });
+
+    $('#journalier-persos').html(html);
+}
+
+$(document).on('click', '.ia-option', function () {
+    let option = $(this).data('options');
+
+    if (['ia_1', 'ia_2', 'ia_3', 'ia_4'].includes(option)) {
+        ia_options['ia_1'] = false;
+        ia_options['ia_2'] = false;
+        ia_options['ia_3'] = false;
+        ia_options['ia_4'] = false;
+    }
+
+    ia_options[`${option}`] ? ia_options[`${option}`] = false : ia_options[`${option}`] = true;
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
+});
 
 $(document).on('click', '.journalier-card', function () {
     let id = $(this).data('id');
@@ -845,6 +1198,49 @@ $(document).on('click', '.journalier-card', function () {
     clearInterval(intervalJournalierEvents);
 
     journalier();
+});
+
+$(document).on('click', '.ia_tasks', function () {
+    let id = $(this).data('id');
+
+    let index = db.get("dashboard").value().findIndex((t) => t.id == id);
+    let task = db.get("dashboard").value().find((t) => t.id == id);
+
+    if (task) {
+        db.get("dashboard")
+            .get(index)
+            .get('done')
+            .set(parseInt(task.repet));
+
+        db.get("dashboard")
+            .get(index)
+            .get('count')
+            .set(parseInt(task.count) + 1);
+
+        let rep = parseInt(task.repet);
+        let rest = parseInt(task.rest);
+
+        for (let index = 0; index < rep; index++) {
+            if (rest && rest >= 20) {
+                rest = rest - 20;
+            }
+        }
+        
+        db.get("dashboard")
+            .get(index)
+            .get('rest')
+            .set(rest);
+
+        db.save();
+
+        completedRaid(task);
+    }
+
+    clearInterval(intervalJournalierTime);
+    clearInterval(intervalJournalierEvents);
+
+    journalier();
+    array();
 });
 
 $(document).on('click', '#journalier-next-task', function () {
@@ -1744,7 +2140,7 @@ function tasksRaids() {
             ? bgcolor = '#812717'
             : bgcolor = '#5a5a5a';
 
-        $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? t.repet - t.done : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
+        $('.raids-wrapper').append(`<div style="grid-column: ${dispo.brel14.y} / ${dispo.brel14.y + 1}; grid-row: ${brel4 ? dispo.brel14.x + 2 : dispo.brel14.x} / ${brel13 ? dispo.brel14.x + 2 : dispo.brel14.x + 4};"><div class="${todo ? 'card-raid-todo' : 'card-raid-done'}" style="flex: 1;height: 100%;display: flex;justify-content: center;flex-direction: row;justify-content: center;align-items: center;${todo ? `background-color: ${bgcolor};color: ${color};` : ''}" data-id="${t.id}"><span style="font-size: 20px;">${event ? new Date(event.start).toLocaleDateString() + '<br>' + new Date(event.start).toLocaleTimeString() : (t.repet - t.done > 0 ? (t.repet - t.done) + (t.grouped ? '' : ' - En PU') : '<i class="fa-solid fa-check"></i>')}</span></div></div>`);
     });
 }
 
